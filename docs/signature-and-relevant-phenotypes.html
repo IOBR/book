@@ -205,10 +205,9 @@ div.csl-indent {
 <li class="chapter" data-level="4.3" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#signature-score-estimation"><i class="fa fa-check"></i><b>4.3</b> Signature score estimation</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#signature-collection-of-iobr"><i class="fa fa-check"></i><b>4.3.1</b> Signature collection of IOBR</a></li>
-<li class="chapter" data-level="4.3.2" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#estimated-by-pca-method"><i class="fa fa-check"></i><b>4.3.2</b> Estimated by PCA method</a></li>
-<li class="chapter" data-level="4.3.3" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#estimated-by-ssgsea-methodology"><i class="fa fa-check"></i><b>4.3.3</b> Estimated by ssGSEA methodology</a></li>
-<li class="chapter" data-level="4.3.4" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#estimated-by-zscore-function"><i class="fa fa-check"></i><b>4.3.4</b> Estimated by zscore function</a></li>
-<li class="chapter" data-level="4.3.5" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#reference"><i class="fa fa-check"></i><b>4.3.5</b> Reference</a></li>
+<li class="chapter" data-level="4.3.2" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#estimated-by-ssgsea-methodology"><i class="fa fa-check"></i><b>4.3.2</b> Estimated by ssGSEA methodology</a></li>
+<li class="chapter" data-level="4.3.3" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#estimated-by-zscore-function"><i class="fa fa-check"></i><b>4.3.3</b> Estimated by zscore function</a></li>
+<li class="chapter" data-level="4.3.4" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#reference"><i class="fa fa-check"></i><b>4.3.4</b> Reference</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#identifying-features-associated-with-survival"><i class="fa fa-check"></i><b>4.4</b> Identifying features associated with survival</a></li>
 <li class="chapter" data-level="4.5" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#visulization-using-heatmap"><i class="fa fa-check"></i><b>4.5</b> Visulization using heatmap</a></li>
@@ -296,7 +295,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="signature-and-relevant-phenotypes.html#cb90-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;GEOquery&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
 <span id="cb90-2"><a href="signature-and-relevant-phenotypes.html#cb90-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
 <span id="cb90-3"><a href="signature-and-relevant-phenotypes.html#cb90-3" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
-<span id="cb90-4"><a href="signature-and-relevant-phenotypes.html#cb90-4" tabindex="-1"></a>eset_geo <span class="ot">&lt;-</span> <span class="fu">getGEO</span>(<span class="at">GEO     =</span> <span class="st">&quot;GSE62254&quot;</span>, <span class="at">getGPL  =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
+<span id="cb90-4"><a href="signature-and-relevant-phenotypes.html#cb90-4" tabindex="-1"></a>eset_geo <span class="ot">&lt;-</span> <span class="fu">getGEO</span>(<span class="at">GEO =</span> <span class="st">&quot;GSE62254&quot;</span>, <span class="at">getGPL  =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
 <span id="cb90-5"><a href="signature-and-relevant-phenotypes.html#cb90-5" tabindex="-1"></a>eset    <span class="ot">&lt;-</span>eset_geo[[<span class="dv">1</span>]]</span>
 <span id="cb90-6"><a href="signature-and-relevant-phenotypes.html#cb90-6" tabindex="-1"></a>eset    <span class="ot">&lt;-</span><span class="fu">exprs</span>(eset)</span>
 <span id="cb90-7"><a href="signature-and-relevant-phenotypes.html#cb90-7" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
@@ -430,17 +429,16 @@ div.csl-indent {
 ## 18 Base_excision_repair                   2018 Nature          TGFβ… 2944… 10.1…
 ## 19 TMEscoreA_CIR                          2019 Cancer Immunol… Tumo… 3084… 10.1…
 ## 20 TMEscoreB_CIR                          2019 Cancer Immunol… Tumo… 3084… 10.1…</code></pre>
-<p>Three methodologies were adopted in the process of signature score evaluation, comprising Single-sample Gene Set Enrichment Analysis (ssGSEA), Principal component analysis (PCA), and Z-score.</p>
-</div>
-<div id="estimated-by-pca-method" class="section level3 hasAnchor" number="4.3.2">
-<h3><span class="header-section-number">4.3.2</span> Estimated by PCA method<a href="signature-and-relevant-phenotypes.html#estimated-by-pca-method" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Three methodologies were adopted in the process of signature score evaluation, comprising Single-sample Gene Set Enrichment Analysis (ssGSEA), Principal component analysis (PCA), and Z-score.
+### Estimated by PCA method</p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="signature-and-relevant-phenotypes.html#cb108-1" tabindex="-1"></a>sig_tme<span class="ot">&lt;-</span><span class="fu">calculate_sig_score</span>(<span class="at">pdata           =</span> <span class="cn">NULL</span>,</span>
 <span id="cb108-2"><a href="signature-and-relevant-phenotypes.html#cb108-2" tabindex="-1"></a>                             <span class="at">eset            =</span> eset,</span>
 <span id="cb108-3"><a href="signature-and-relevant-phenotypes.html#cb108-3" tabindex="-1"></a>                             <span class="at">signature       =</span> signature_collection,</span>
 <span id="cb108-4"><a href="signature-and-relevant-phenotypes.html#cb108-4" tabindex="-1"></a>                             <span class="at">method          =</span> <span class="st">&quot;pca&quot;</span>,</span>
 <span id="cb108-5"><a href="signature-and-relevant-phenotypes.html#cb108-5" tabindex="-1"></a>                             <span class="at">mini_gene_count =</span> <span class="dv">2</span>)</span>
-<span id="cb108-6"><a href="signature-and-relevant-phenotypes.html#cb108-6" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">column_to_rownames</span>(sig_tme, <span class="at">var =</span> <span class="st">&quot;ID&quot;</span>))</span>
-<span id="cb108-7"><a href="signature-and-relevant-phenotypes.html#cb108-7" tabindex="-1"></a>sig_tme[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<span id="cb108-6"><a href="signature-and-relevant-phenotypes.html#cb108-6" tabindex="-1"></a></span>
+<span id="cb108-7"><a href="signature-and-relevant-phenotypes.html#cb108-7" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">column_to_rownames</span>(sig_tme, <span class="at">var =</span> <span class="st">&quot;ID&quot;</span>))</span>
+<span id="cb108-8"><a href="signature-and-relevant-phenotypes.html#cb108-8" tabindex="-1"></a>sig_tme[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>##                   GSM1523727 GSM1523728 GSM1523729
 ## CD_8_T_effector   -2.5513794  0.7789141 -2.1770675
 ## DDR               -0.8747614  0.7425162 -1.3272054
@@ -448,8 +446,8 @@ div.csl-indent {
 ## Immune_Checkpoint -2.3701787  0.9455120 -1.4844104
 ## CellCycle_Reg      0.1063358  0.7583302 -0.3649795</code></pre>
 </div>
-<div id="estimated-by-ssgsea-methodology" class="section level3 hasAnchor" number="4.3.3">
-<h3><span class="header-section-number">4.3.3</span> Estimated by ssGSEA methodology<a href="signature-and-relevant-phenotypes.html#estimated-by-ssgsea-methodology" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="estimated-by-ssgsea-methodology" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Estimated by ssGSEA methodology<a href="signature-and-relevant-phenotypes.html#estimated-by-ssgsea-methodology" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This method is suitable for gene sets with a large number of genes, such as those of <a href="https://www.gsea-msigdb.org/gsea/msigdb">GO, KEGG, REACTOME gene sets</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-42"></span>
 <img src="fig/gsea.png" alt="The workflow of IOBR" width="95%" />
@@ -463,16 +461,16 @@ Figure 4.1: The workflow of IOBR
 <span id="cb110-4"><a href="signature-and-relevant-phenotypes.html#cb110-4" tabindex="-1"></a>                             <span class="at">method          =</span> <span class="st">&quot;ssgsea&quot;</span>,</span>
 <span id="cb110-5"><a href="signature-and-relevant-phenotypes.html#cb110-5" tabindex="-1"></a>                             <span class="at">mini_gene_count =</span> <span class="dv">2</span>)</span></code></pre></div>
 </div>
-<div id="estimated-by-zscore-function" class="section level3 hasAnchor" number="4.3.4">
-<h3><span class="header-section-number">4.3.4</span> Estimated by zscore function<a href="signature-and-relevant-phenotypes.html#estimated-by-zscore-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="estimated-by-zscore-function" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Estimated by zscore function<a href="signature-and-relevant-phenotypes.html#estimated-by-zscore-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="signature-and-relevant-phenotypes.html#cb111-1" tabindex="-1"></a>sig_tme<span class="ot">&lt;-</span><span class="fu">calculate_sig_score</span>(<span class="at">pdata           =</span> <span class="cn">NULL</span>,</span>
 <span id="cb111-2"><a href="signature-and-relevant-phenotypes.html#cb111-2" tabindex="-1"></a>                             <span class="at">eset            =</span> eset,</span>
 <span id="cb111-3"><a href="signature-and-relevant-phenotypes.html#cb111-3" tabindex="-1"></a>                             <span class="at">signature       =</span> signature_collection,</span>
 <span id="cb111-4"><a href="signature-and-relevant-phenotypes.html#cb111-4" tabindex="-1"></a>                             <span class="at">method          =</span> <span class="st">&quot;zscore&quot;</span>,</span>
 <span id="cb111-5"><a href="signature-and-relevant-phenotypes.html#cb111-5" tabindex="-1"></a>                             <span class="at">mini_gene_count =</span> <span class="dv">2</span>)</span></code></pre></div>
 </div>
-<div id="reference" class="section level3 hasAnchor" number="4.3.5">
-<h3><span class="header-section-number">4.3.5</span> Reference<a href="signature-and-relevant-phenotypes.html#reference" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="reference" class="section level3 hasAnchor" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Reference<a href="signature-and-relevant-phenotypes.html#reference" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>ssgsea</strong>: Barbie, D.A. et al (2009). Systematic RNA interference reveals that oncogenic KRAS-driven cancers require TBK1. Nature, 462(5):108-112.</p>
 <p><strong>gsva</strong>: Hänzelmann, S., Castelo, R. and Guinney, J. (2013). GSVA: Gene set variation analysis for microarray and RNA-Seq data. BMC Bioinformatics, 14(1):7.</p>
 <p><strong>zscore</strong>: Lee, E. et al (2008). Inferring pathway activity toward precise disease classification. PLoS Comp Biol, 4(11):e1000217.</p>

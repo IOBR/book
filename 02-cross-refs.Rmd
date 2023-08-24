@@ -4,7 +4,7 @@
 
 ## Loading packages
 Load the IOBR package in your R session after the installation is complete:
-  ```{r, eval=TRUE, warning=FALSE, message=FALSE}
+```{r, eval=TRUE, warning=FALSE, message=FALSE}
 library(IOBR)
 library(survminer)
 library(tidyverse)
@@ -16,7 +16,7 @@ Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.n
 if (!requireNamespace("GEOquery", quietly = TRUE))  BiocManager::install("GEOquery")
 library("GEOquery")
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
-eset_geo <- getGEO(GEO     = "GSE62254", getGPL  = F, destdir = "./")
+eset_geo <- getGEO(GEO = "GSE62254", getGPL  = F, destdir = "./")
 eset    <-eset_geo[[1]]
 eset    <-exprs(eset)
 eset[1:5,1:5]
@@ -72,7 +72,6 @@ signature_collection_citation[1:20, ]
 ```
 
 Three methodologies were adopted in the process of signature score evaluation, comprising Single-sample Gene Set Enrichment Analysis (ssGSEA), Principal component analysis (PCA), and Z-score.
-
 ### Estimated by PCA method
 ```{r, message = F, warning = F}
 
@@ -81,6 +80,7 @@ sig_tme<-calculate_sig_score(pdata           = NULL,
                              signature       = signature_collection,
                              method          = "pca",
                              mini_gene_count = 2)
+
 sig_tme <- t(column_to_rownames(sig_tme, var = "ID"))
 sig_tme[1:5, 1:3]
 ```
