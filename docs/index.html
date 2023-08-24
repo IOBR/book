@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>IOBR Tutorial</title>
+  <meta name="description" content="The tutorial of IOBR package" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="IOBR Tutorial" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="your book url like https://bookdown.org/yihui/bookdown/./fig/cover.png" />
+  <meta property="og:description" content="The tutorial of IOBR package" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="IOBR Tutorial" />
+  
+  <meta name="twitter:description" content="The tutorial of IOBR package" />
+  <meta name="twitter:image" content="your book url like https://bookdown.org/yihui/bookdown/./fig/cover.png" />
+
+<meta name="author" content="Dongqiang Zeng" />
+
+
+<meta name="date" content="2023-08-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="how-to-install-iobr.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The tutorial of IOBR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>IOBR introduction</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#preface"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>0.1</b> 📚 Introduction</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>0.2</b> 💿 License</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#publishment"><i class="fa fa-check"></i><b>0.3</b> 🏆 Publishment</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#reporting-bugs"><i class="fa fa-check"></i><b>0.4</b> ✉️ Reporting bugs</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html"><i class="fa fa-check"></i><b>1</b> How to install IOBR</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#installing-dependency-packages"><i class="fa fa-check"></i><b>1.1</b> ⏳ Installing Dependency Packages</a></li>
+<li class="chapter" data-level="1.2" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-iobr-package"><i class="fa fa-check"></i><b>1.2</b> 💻 Install IOBR package</a></li>
+<li class="chapter" data-level="1.3" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>1.3</b> 🔍 The main pipeline of IOBR</a></li>
+<li class="chapter" data-level="1.4" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#main-functions"><i class="fa fa-check"></i><b>1.4</b> Main Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>2</b> RNA Data preprocessing</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#loading-packages"><i class="fa fa-check"></i><b>2.1</b> Loading packages</a></li>
+<li class="chapter" data-level="2.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#downloading-data-for-example"><i class="fa fa-check"></i><b>2.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="2.3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#gene-annotation"><i class="fa fa-check"></i><b>2.3</b> Gene Annotation</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-array-data-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>2.3.1</b> For Array data: HGU133PLUS-2 (Affaymetrix)</a></li>
+<li class="chapter" data-level="2.3.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-rnaseq-data"><i class="fa fa-check"></i><b>2.3.2</b> For RNAseq data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>2.4</b> Identifying outlier samples</a></li>
+<li class="chapter" data-level="2.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>2.5</b> PCA analysis of molecular subtypes</a></li>
+<li class="chapter" data-level="2.6" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>2.6</b> Batch effect correction</a></li>
+<li class="chapter" data-level="2.7" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#references"><i class="fa fa-check"></i><b>2.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html"><i class="fa fa-check"></i><b>3</b> Tumor ecosystem analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#determine-tme-subtype-of-gastric-cancer-using-tmeclassifier"><i class="fa fa-check"></i><b>3.1</b> Determine TME subtype of gastric cancer using TMEclassifier</a></li>
+<li class="chapter" data-level="3.2" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis"><i class="fa fa-check"></i><b>3.2</b> DEG analysis</a></li>
+<li class="chapter" data-level="3.3" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gsea-analysis-of-degs"><i class="fa fa-check"></i><b>3.3</b> GSEA analysis of DEGs</a></li>
+<li class="chapter" data-level="3.4" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis-1"><i class="fa fa-check"></i><b>3.4</b> DEG analysis</a></li>
+<li class="chapter" data-level="3.5" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>3.5</b> Identifying signatures associated with TME clusters</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html"><i class="fa fa-check"></i><b>4</b> Signatures and relevant phenotypes</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#loading-packages-1"><i class="fa fa-check"></i><b>4.1</b> Loading packages</a></li>
+<li class="chapter" data-level="4.2" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#downloading-data-for-example-1"><i class="fa fa-check"></i><b>4.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="4.3" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#signature-score-estimation"><i class="fa fa-check"></i><b>4.3</b> Signature score estimation</a></li>
+<li class="chapter" data-level="4.4" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#identifying-features-associated-with-survival"><i class="fa fa-check"></i><b>4.4</b> Identifying features associated with survival</a></li>
+<li class="chapter" data-level="4.5" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#visulization-using-heatmap"><i class="fa fa-check"></i><b>4.5</b> Visulization using heatmap</a></li>
+<li class="chapter" data-level="4.6" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#focus-on-target-signatures"><i class="fa fa-check"></i><b>4.6</b> Focus on target signatures</a></li>
+<li class="chapter" data-level="4.7" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#survival-analysis"><i class="fa fa-check"></i><b>4.7</b> Survival analysis</a></li>
+<li class="chapter" data-level="4.8" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#batch-correlation-analysis"><i class="fa fa-check"></i><b>4.8</b> Batch correlation analysis</a></li>
+<li class="chapter" data-level="4.9" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#visulization-of-correlations"><i class="fa fa-check"></i><b>4.9</b> Visulization of correlations</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html"><i class="fa fa-check"></i><b>5</b> TME deconvolution</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#loading-packages-2"><i class="fa fa-check"></i><b>5.1</b> Loading packages</a></li>
+<li class="chapter" data-level="5.2" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#downloading-data-for-example-2"><i class="fa fa-check"></i><b>5.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="5.3" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#available-methods-to-decode-tme-contexture"><i class="fa fa-check"></i><b>5.3</b> Available Methods to Decode TME Contexture</a></li>
+<li class="chapter" data-level="5.4" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-1-cibersort"><i class="fa fa-check"></i><b>5.4</b> Method 1: CIBERSORT</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-2-epic"><i class="fa fa-check"></i><b>5.4.1</b> Method 2: EPIC</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-3-mcpcounter"><i class="fa fa-check"></i><b>5.5</b> Method 3: MCPcounter</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-4-xcell"><i class="fa fa-check"></i><b>5.5.1</b> Method 4: xCELL</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-5-estimate"><i class="fa fa-check"></i><b>5.6</b> Method 5: ESTIMATE</a></li>
+<li class="chapter" data-level="5.7" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-6-timer"><i class="fa fa-check"></i><b>5.7</b> Method 6: TIMER</a></li>
+<li class="chapter" data-level="5.8" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-7-quantiseq"><i class="fa fa-check"></i><b>5.8</b> Method 7: quanTIseq</a></li>
+<li class="chapter" data-level="5.9" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-8-ips"><i class="fa fa-check"></i><b>5.9</b> Method 8: IPS</a></li>
+<li class="chapter" data-level="5.10" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#combination-of-above-deconvolution-results"><i class="fa fa-check"></i><b>5.10</b> Combination of above deconvolution results</a></a></li>
+<li class="chapter" data-level="5.11" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#licenses-of-the-deconvolution-methods"><i class="fa fa-check"></i><b>5.11</b> Licenses of the deconvolution methods</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#licenses-of-the-signature-esitmation-method"><i class="fa fa-check"></i><b>5.11.1</b> Licenses of the signature-esitmation method</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>6</b> Cross-references</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>6.1</b> Chapters and sub-chapters</a></li>
+<li class="chapter" data-level="6.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>6.2</b> Captioned figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>7</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>7.1</b> Footnotes</a></li>
+<li class="chapter" data-level="7.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>7.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>8</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>8.1</b> Equations</a></li>
+<li class="chapter" data-level="8.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>8.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="8.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>8.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>9</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>9.1</b> Publishing</a></li>
+<li class="chapter" data-level="9.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>9.2</b> 404 pages</a></li>
+<li class="chapter" data-level="9.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>9.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>10</b> References</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="references-1.html"><a href="references-1.html#tme-deconvolution-1"><i class="fa fa-check"></i><b>10.1</b> TME deconvolution</a></li>
+<li class="chapter" data-level="10.2" data-path="references-1.html"><a href="references-1.html#tme-signatures"><i class="fa fa-check"></i><b>10.2</b> TME Signatures</a></li>
+<li class="chapter" data-level="10.3" data-path="references-1.html"><a href="references-1.html#data-sets"><i class="fa fa-check"></i><b>10.3</b> Data sets</a></li>
+<li class="chapter" data-level="10.4" data-path="references-1.html"><a href="references-1.html#others"><i class="fa fa-check"></i><b>10.4</b> Others</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/DongqiangZeng0808" target="blank">Welcome to my GitHub</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">IOBR Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">IOBR Tutorial</h1>
+<p class="author"><em>Dongqiang Zeng</em></p>
+<p class="date"><em>2023-08-24</em></p>
+</div>
+<div id="iobr-introduction" class="section level1 unnumbered hasAnchor">
+<h1><strong>IOBR introduction</strong><a href="index.html#iobr-introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="preface" class="section level2 unnumbered hasAnchor">
+<h2>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
+<img src="fig/IOBR-Workflow.png" alt="The workflow of IOBR" width="95%" />
+<p class="caption">
+Figure 0.1: The workflow of IOBR
+</p>
+</div>
+</div>
+<div id="introduction" class="section level2 hasAnchor" number="0.1">
+<h2><span class="header-section-number">0.1</span> 📚 Introduction<a href="#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>IOBR is design for <a href="https://github.com/IOBR/IOBR">Immuno-Oncology Biological Research</a>.
+Recent advance in next-generation sequencing has triggered the rapidly accumulating publicly available multi-omics data. The application of integrated omics to exploring robust signatures for clinical translation is increasingly highlighted in immuno-oncology but raises computational and biological challenges. This vignette aims to demonstrate how to utilize the package named IOBR to perform multi-omics immuno-oncology biological research to decode tumor microenvironment and signatures for clinical translation.</p>
+<p>This R package integrates 8 published methodologies for decoding tumor microenvironment (TME) contexture: <code>CIBERSORT</code>, <code>TIMER</code>, <code>xCell</code>, <code>MCPcounter</code>, <code>ESITMATE</code>, <code>EPIC</code>, <code>IPS</code>, <code>quanTIseq</code>. Moreover, 255 published signature gene sets were collected by IOBR, involving tumor microenvironment, tumor metabolism, m6A, exosomes, microsatellite instability, and tertiary lymphoid structure. Run the function <code>signature_collection_citation</code> to obtain the source papers, and the function <code>signature_collection</code> returns the detail signature genes of all given signatures. Subsequently, IOBR adopts three computational methods to calculate the signature score, comprising <code>PCA</code>, <code>z-score</code>, and <code>ssGSEA</code>. To note, IOBR collected and employed multiple approaches for variable transition, visualization, batch survival analysis, feature selection, and statistical analysis. Batch analysis and visualization of corresponding results are supported. The details of how IOBR works are described below.</p>
+</div>
+<div id="license" class="section level2 hasAnchor" number="0.2">
+<h2><span class="header-section-number">0.2</span> 💿 License<a href="#license" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>IOBR</strong> is released under the GPL v3.0 license. See <a href="https://github.com/IOBR/IOBR/blob/master/LICENSE">LICENSE</a> for details. The code contained in this book is simultaneously available under the <a href="https://www.gnu.org/licenses/why-not-lgpl.html">GPL license</a>; this means that you are free to use it in your packages, as long as you cite the source. The online version of this book is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</a></p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></p>
+</div>
+<div id="publishment" class="section level2 hasAnchor" number="0.3">
+<h2><span class="header-section-number">0.3</span> 🏆 Publishment<a href="#publishment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Zeng D, Ye Z, Shen R, Yu G, Wu J, Xiong Y,…, Liao W (2021) <strong>IOBR</strong>: Multi-Omics Immuno-Oncology Biological Research to Decode Tumor Microenvironment and Signatures. <em>Frontiers in Immunology</em>. 12:687975. <a href="https://www.frontiersin.org/articles/10.3389/fimmu.2021.687975/full">doi: 10.3389/fimmu.2021.687975</a></p>
+</div>
+<div id="reporting-bugs" class="section level2 hasAnchor" number="0.4">
+<h2><span class="header-section-number">0.4</span> ✉️ Reporting bugs<a href="index.html#reporting-bugs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Please report bugs to the <a href="https://github.com/IOBR/IOBR/issues">Github issues page</a></p>
+<p>E-mail any questions to <a href="mailto:dongqiangzeng0808@gmail.com" class="email">dongqiangzeng0808@gmail.com</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="how-to-install-iobr.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/DongqiangZeng0808/IOBR-Book/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
