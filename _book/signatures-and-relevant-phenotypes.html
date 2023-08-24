@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Signatures and relevant phenotypes | IOBR Tutorial</title>
+  <meta name="description" content="The tutorial of IOBR package" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Signatures and relevant phenotypes | IOBR Tutorial" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="your book url like https://bookdown.org/yihui/bookdown/./fig/cover.png" />
+  <meta property="og:description" content="The tutorial of IOBR package" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Signatures and relevant phenotypes | IOBR Tutorial" />
+  
+  <meta name="twitter:description" content="The tutorial of IOBR package" />
+  <meta name="twitter:image" content="your book url like https://bookdown.org/yihui/bookdown/./fig/cover.png" />
+
+<meta name="author" content="Dongqiang Zeng" />
+
+
+<meta name="date" content="2023-08-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tumor-ecosystem-analysis.html"/>
+<link rel="next" href="tme-deconvolution.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The tutorial of IOBR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>IOBR introduction</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#preface"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>0.1</b> 📚 Introduction</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>0.2</b> 💿 License</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#publishment"><i class="fa fa-check"></i><b>0.3</b> 🏆 Publishment</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#reporting-bugs"><i class="fa fa-check"></i><b>0.4</b> ✉️ Reporting bugs</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html"><i class="fa fa-check"></i><b>1</b> How to install IOBR</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#installing-dependency-packages"><i class="fa fa-check"></i><b>1.1</b> ⏳ Installing Dependency Packages</a></li>
+<li class="chapter" data-level="1.2" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#installing-iobr"><i class="fa fa-check"></i><b>1.2</b> 💻 Installing IOBR</a></li>
+<li class="chapter" data-level="1.3" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>1.3</b> 🔍 The main pipeline of IOBR</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>2</b> RNA Data preprocessing</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#library"><i class="fa fa-check"></i><b>2.1</b> Library</a></li>
+<li class="chapter" data-level="2.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#downloading-data-for-example"><i class="fa fa-check"></i><b>2.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="2.3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>2.3</b> Identifying outlier samples</a></li>
+<li class="chapter" data-level="2.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>2.4</b> PCA analysis of molecular subtypes</a></li>
+<li class="chapter" data-level="2.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>2.5</b> Batch effect correction</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html"><i class="fa fa-check"></i><b>3</b> Tumor ecosystem analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#determine-tme-subtype-of-gastric-cancer-using-tmeclassifier"><i class="fa fa-check"></i><b>3.1</b> Determine TME subtype of gastric cancer using TMEclassifier</a></li>
+<li class="chapter" data-level="3.2" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis"><i class="fa fa-check"></i><b>3.2</b> DEG analysis</a></li>
+<li class="chapter" data-level="3.3" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gsea-analysis-of-degs"><i class="fa fa-check"></i><b>3.3</b> GSEA analysis of DEGs</a></li>
+<li class="chapter" data-level="3.4" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis-1"><i class="fa fa-check"></i><b>3.4</b> DEG analysis</a></li>
+<li class="chapter" data-level="3.5" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>3.5</b> Identifying signatures associated with TME clusters</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html"><i class="fa fa-check"></i><b>4</b> Signatures and relevant phenotypes</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#loading-packages"><i class="fa fa-check"></i><b>4.1</b> Loading packages</a></li>
+<li class="chapter" data-level="4.2" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#downloading-data-for-example-1"><i class="fa fa-check"></i><b>4.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="4.3" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#signature-score-estimation"><i class="fa fa-check"></i><b>4.3</b> Signature score estimation</a></li>
+<li class="chapter" data-level="4.4" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#identifying-features-associated-with-survival"><i class="fa fa-check"></i><b>4.4</b> Identifying features associated with survival</a></li>
+<li class="chapter" data-level="4.5" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#visulization-using-heatmap"><i class="fa fa-check"></i><b>4.5</b> Visulization using heatmap</a></li>
+<li class="chapter" data-level="4.6" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#focus-on-target-signatures"><i class="fa fa-check"></i><b>4.6</b> Focus on target signatures</a></li>
+<li class="chapter" data-level="4.7" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#survival-analysis"><i class="fa fa-check"></i><b>4.7</b> Survival analysis</a></li>
+<li class="chapter" data-level="4.8" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#batch-correlation-analysis"><i class="fa fa-check"></i><b>4.8</b> Batch correlation analysis</a></li>
+<li class="chapter" data-level="4.9" data-path="signatures-and-relevant-phenotypes.html"><a href="signatures-and-relevant-phenotypes.html#visulization-of-correlations"><i class="fa fa-check"></i><b>4.9</b> Visulization of correlations</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html"><i class="fa fa-check"></i><b>5</b> TME deconvolution</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#loading-packages-1"><i class="fa fa-check"></i><b>5.1</b> Loading packages</a></li>
+<li class="chapter" data-level="5.2" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#downloading-data-for-example-2"><i class="fa fa-check"></i><b>5.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="5.3" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#available-methods-to-decode-tme-contexture"><i class="fa fa-check"></i><b>5.3</b> Available Methods to Decode TME Contexture</a></li>
+<li class="chapter" data-level="5.4" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-1-cibersort"><i class="fa fa-check"></i><b>5.4</b> Method 1: CIBERSORT</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-2-epic"><i class="fa fa-check"></i><b>5.4.1</b> Method 2: EPIC</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-3-mcpcounter"><i class="fa fa-check"></i><b>5.5</b> Method 3: MCPcounter</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-4-xcell"><i class="fa fa-check"></i><b>5.5.1</b> Method 4: xCELL</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-5-estimate"><i class="fa fa-check"></i><b>5.6</b> Method 5: ESTIMATE</a></li>
+<li class="chapter" data-level="5.7" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-6-timer"><i class="fa fa-check"></i><b>5.7</b> Method 6: TIMER</a></li>
+<li class="chapter" data-level="5.8" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-7-quantiseq"><i class="fa fa-check"></i><b>5.8</b> Method 7: quanTIseq</a></li>
+<li class="chapter" data-level="5.9" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-8-ips"><i class="fa fa-check"></i><b>5.9</b> 8) Method 8: IPS</a></li>
+<li class="chapter" data-level="5.10" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#combination-of-above-deconvolution-results"><i class="fa fa-check"></i><b>5.10</b> 9) Combination of above deconvolution results</a></a></li>
+<li class="chapter" data-level="5.11" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#licenses-of-the-deconvolution-methods"><i class="fa fa-check"></i><b>5.11</b> Licenses of the deconvolution methods</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#licenses-of-the-signature-esitmation-method"><i class="fa fa-check"></i><b>5.11.1</b> Licenses of the signature-esitmation method</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>6</b> Cross-references</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>6.1</b> Chapters and sub-chapters</a></li>
+<li class="chapter" data-level="6.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>6.2</b> Captioned figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>7</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>7.1</b> Footnotes</a></li>
+<li class="chapter" data-level="7.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>7.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>8</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>8.1</b> Equations</a></li>
+<li class="chapter" data-level="8.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>8.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="8.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>8.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>9</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>9.1</b> Publishing</a></li>
+<li class="chapter" data-level="9.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>9.2</b> 404 pages</a></li>
+<li class="chapter" data-level="9.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>9.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="references.html"><a href="references.html#tme-deconvolution-1"><i class="fa fa-check"></i><b>10.1</b> TME deconvolution</a></li>
+<li class="chapter" data-level="10.2" data-path="references.html"><a href="references.html#tme-signatures"><i class="fa fa-check"></i><b>10.2</b> TME Signatures</a></li>
+<li class="chapter" data-level="10.3" data-path="references.html"><a href="references.html#data-sets"><i class="fa fa-check"></i><b>10.3</b> Data sets</a></li>
+<li class="chapter" data-level="10.4" data-path="references.html"><a href="references.html#others"><i class="fa fa-check"></i><b>10.4</b> Others</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/DongqiangZeng0808" target="blank">Welcome to my GitHub</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">IOBR Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="signatures-and-relevant-phenotypes" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Signatures and relevant phenotypes<a href="signatures-and-relevant-phenotypes.html#signatures-and-relevant-phenotypes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="loading-packages" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Loading packages<a href="signatures-and-relevant-phenotypes.html#loading-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Load the IOBR package in your R session after the installation is complete:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="signatures-and-relevant-phenotypes.html#cb85-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span>
+<span id="cb85-2"><a href="signatures-and-relevant-phenotypes.html#cb85-2" tabindex="-1"></a><span class="fu">library</span>(survminer)</span>
+<span id="cb85-3"><a href="signatures-and-relevant-phenotypes.html#cb85-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+</div>
+<div id="downloading-data-for-example-1" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Downloading data for example<a href="signatures-and-relevant-phenotypes.html#downloading-data-for-example-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Obtaining data set from GEO <a href="https://pubmed.ncbi.nlm.nih.gov/25894828/">Gastric cancer: GSE62254</a> using <code>GEOquery</code> R package.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="signatures-and-relevant-phenotypes.html#cb86-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;GEOquery&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
+<span id="cb86-2"><a href="signatures-and-relevant-phenotypes.html#cb86-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
+<span id="cb86-3"><a href="signatures-and-relevant-phenotypes.html#cb86-3" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
+<span id="cb86-4"><a href="signatures-and-relevant-phenotypes.html#cb86-4" tabindex="-1"></a>eset_geo <span class="ot">&lt;-</span> <span class="fu">getGEO</span>(<span class="at">GEO     =</span> <span class="st">&quot;GSE62254&quot;</span>, <span class="at">getGPL  =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
+<span id="cb86-5"><a href="signatures-and-relevant-phenotypes.html#cb86-5" tabindex="-1"></a>eset    <span class="ot">&lt;-</span>eset_geo[[<span class="dv">1</span>]]</span>
+<span id="cb86-6"><a href="signatures-and-relevant-phenotypes.html#cb86-6" tabindex="-1"></a>eset    <span class="ot">&lt;-</span><span class="fu">exprs</span>(eset)</span>
+<span id="cb86-7"><a href="signatures-and-relevant-phenotypes.html#cb86-7" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>##           GSM1523727 GSM1523728 GSM1523729 GSM1523744 GSM1523745
+## 1007_s_at  3.2176645  3.0624323  3.0279131   2.921683  2.8456013
+## 1053_at    2.4050109  2.4394879  2.2442708   2.345916  2.4328582
+## 117_at     1.4933412  1.8067380  1.5959665   1.839822  1.8326058
+## 121_at     2.1965561  2.2812181  2.1865556   2.258599  2.1874363
+## 1255_g_at  0.8698382  0.9502466  0.8125414   1.012860  0.9441993</code></pre>
+<p>Annotation of genes in the expression matrix and removal of duplicate genes.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="signatures-and-relevant-phenotypes.html#cb88-1" tabindex="-1"></a><span class="co"># Load the annotation file `anno_hug133plus2` in IOBR.</span></span>
+<span id="cb88-2"><a href="signatures-and-relevant-phenotypes.html#cb88-2" tabindex="-1"></a><span class="fu">head</span>(anno_hug133plus2)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##   probe_id  symbol 
+##   &lt;fct&gt;     &lt;fct&gt;  
+## 1 1007_s_at MIR4640
+## 2 1053_at   RFC2   
+## 3 117_at    HSPA6  
+## 4 121_at    PAX8   
+## 5 1255_g_at GUCA1A 
+## 6 1294_at   MIR5193</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="signatures-and-relevant-phenotypes.html#cb90-1" tabindex="-1"></a><span class="co"># Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. </span></span>
+<span id="cb90-2"><a href="signatures-and-relevant-phenotypes.html#cb90-2" tabindex="-1"></a></span>
+<span id="cb90-3"><a href="signatures-and-relevant-phenotypes.html#cb90-3" tabindex="-1"></a>eset<span class="ot">&lt;-</span><span class="fu">anno_eset</span>(<span class="at">eset       =</span> eset,</span>
+<span id="cb90-4"><a href="signatures-and-relevant-phenotypes.html#cb90-4" tabindex="-1"></a>                <span class="at">annotation =</span> anno_hug133plus2,</span>
+<span id="cb90-5"><a href="signatures-and-relevant-phenotypes.html#cb90-5" tabindex="-1"></a>                <span class="at">symbol     =</span> <span class="st">&quot;symbol&quot;</span>,</span>
+<span id="cb90-6"><a href="signatures-and-relevant-phenotypes.html#cb90-6" tabindex="-1"></a>                <span class="at">probe      =</span> <span class="st">&quot;probe_id&quot;</span>,</span>
+<span id="cb90-7"><a href="signatures-and-relevant-phenotypes.html#cb90-7" tabindex="-1"></a>                <span class="at">method     =</span> <span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb90-8"><a href="signatures-and-relevant-phenotypes.html#cb90-8" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>##              GSM1523727 GSM1523728 GSM1523729
+## SH3KBP1        4.327974   4.316195   4.351425
+## RPL41          4.246149   4.246808   4.257940
+## EEF1A1         4.293762   4.291038   4.262199
+## COX2           4.250288   4.283714   4.270508
+## LOC101928826   4.219303   4.219670   4.213252</code></pre>
+</div>
+<div id="signature-score-estimation" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Signature score estimation<a href="signatures-and-relevant-phenotypes.html#signature-score-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="signatures-and-relevant-phenotypes.html#cb92-1" tabindex="-1"></a>sig_tme<span class="ot">&lt;-</span><span class="fu">calculate_sig_score</span>(<span class="at">pdata           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb92-2"><a href="signatures-and-relevant-phenotypes.html#cb92-2" tabindex="-1"></a>                             <span class="at">eset            =</span> eset,</span>
+<span id="cb92-3"><a href="signatures-and-relevant-phenotypes.html#cb92-3" tabindex="-1"></a>                             <span class="at">signature       =</span> signature_collection,</span>
+<span id="cb92-4"><a href="signatures-and-relevant-phenotypes.html#cb92-4" tabindex="-1"></a>                             <span class="at">method          =</span> <span class="st">&quot;pca&quot;</span>,</span>
+<span id="cb92-5"><a href="signatures-and-relevant-phenotypes.html#cb92-5" tabindex="-1"></a>                             <span class="at">mini_gene_count =</span> <span class="dv">2</span>)</span>
+<span id="cb92-6"><a href="signatures-and-relevant-phenotypes.html#cb92-6" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">column_to_rownames</span>(sig_tme, <span class="at">var =</span> <span class="st">&quot;ID&quot;</span>))</span>
+<span id="cb92-7"><a href="signatures-and-relevant-phenotypes.html#cb92-7" tabindex="-1"></a>sig_tme[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>##                   GSM1523727 GSM1523728 GSM1523729
+## CD_8_T_effector   -2.5513794  0.7789141 -2.1770675
+## DDR               -0.8747614  0.7425162 -1.3272054
+## APM                1.1098368  2.1988688 -0.9516419
+## Immune_Checkpoint -2.3701787  0.9455120 -1.4844104
+## CellCycle_Reg      0.1063358  0.7583302 -0.3649795</code></pre>
+</div>
+<div id="identifying-features-associated-with-survival" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Identifying features associated with survival<a href="signatures-and-relevant-phenotypes.html#identifying-features-associated-with-survival" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="signatures-and-relevant-phenotypes.html#cb94-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;pdata_acrg&quot;</span>)</span>
+<span id="cb94-2"><a href="signatures-and-relevant-phenotypes.html#cb94-2" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">combine_pd_eset</span>(<span class="at">eset =</span> sig_tme, <span class="at">pdata =</span> pdata_acrg, <span class="at">scale =</span> T)</span>
+<span id="cb94-3"><a href="signatures-and-relevant-phenotypes.html#cb94-3" tabindex="-1"></a>res<span class="ot">&lt;-</span> <span class="fu">batch_surv</span>(<span class="at">pdata    =</span> input,</span>
+<span id="cb94-4"><a href="signatures-and-relevant-phenotypes.html#cb94-4" tabindex="-1"></a>                 <span class="at">time     =</span> <span class="st">&quot;OS_time&quot;</span>, </span>
+<span id="cb94-5"><a href="signatures-and-relevant-phenotypes.html#cb94-5" tabindex="-1"></a>                 <span class="at">status   =</span> <span class="st">&quot;OS_status&quot;</span>, </span>
+<span id="cb94-6"><a href="signatures-and-relevant-phenotypes.html#cb94-6" tabindex="-1"></a>                 <span class="at">variable =</span> <span class="fu">colnames</span>(input)[<span class="dv">69</span><span class="sc">:</span><span class="fu">ncol</span>(input)])</span>
+<span id="cb94-7"><a href="signatures-and-relevant-phenotypes.html#cb94-7" tabindex="-1"></a><span class="fu">head</span>(res)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 5
+##   ID                           P    HR CI_low_0.95 CI_up_0.95
+##   &lt;chr&gt;                    &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
+## 1 Folate_biosynthesis   1.00e-10 0.579       0.490      0.683
+## 2 TMEscore_CIR          1.32e- 9 0.640       0.554      0.739
+## 3 Glycogen_Biosynthesis 3.24e- 9 1.52        1.32       1.74 
+## 4 Pan_F_TBRs            6.33e- 9 1.55        1.34       1.80 
+## 5 TMEscoreB_CIR         7.17e- 9 1.52        1.32       1.75 
+## 6 TMEscore_plus         8.08e- 9 0.638       0.547      0.743</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="signatures-and-relevant-phenotypes.html#cb96-1" tabindex="-1"></a>res<span class="ot">&lt;-</span> res[<span class="fu">nchar</span>(res<span class="sc">$</span>ID)<span class="sc">&lt;=</span><span class="dv">28</span>, ]</span>
+<span id="cb96-2"><a href="signatures-and-relevant-phenotypes.html#cb96-2" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">sig_forest</span>(res, <span class="at">signature =</span> <span class="st">&quot;ID&quot;</span>, <span class="at">n =</span> <span class="dv">20</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="visulization-using-heatmap" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Visulization using heatmap<a href="signatures-and-relevant-phenotypes.html#visulization-using-heatmap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Signatures和分子分型之间的关系
+使用<code>IOBR</code>的<code>sig_heatmap</code>进行热图的可视化</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="signatures-and-relevant-phenotypes.html#cb97-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_heatmap</span>(<span class="at">input         =</span> input, </span>
+<span id="cb97-2"><a href="signatures-and-relevant-phenotypes.html#cb97-2" tabindex="-1"></a>                  <span class="at">features      =</span> res<span class="sc">$</span>ID[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>],</span>
+<span id="cb97-3"><a href="signatures-and-relevant-phenotypes.html#cb97-3" tabindex="-1"></a>                  <span class="at">group         =</span> <span class="st">&quot;Subtype&quot;</span>, </span>
+<span id="cb97-4"><a href="signatures-and-relevant-phenotypes.html#cb97-4" tabindex="-1"></a>                  <span class="at">palette_group =</span> <span class="st">&quot;jama&quot;</span>, </span>
+<span id="cb97-5"><a href="signatures-and-relevant-phenotypes.html#cb97-5" tabindex="-1"></a>                  <span class="at">palette       =</span> <span class="dv">6</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="864" style="display: block; margin: auto;" /></p>
+</div>
+<div id="focus-on-target-signatures" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Focus on target signatures<a href="signatures-and-relevant-phenotypes.html#focus-on-target-signatures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="signatures-and-relevant-phenotypes.html#cb98-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
+<span id="cb98-2"><a href="signatures-and-relevant-phenotypes.html#cb98-2" tabindex="-1"></a>              <span class="at">signature      =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>,</span>
+<span id="cb98-3"><a href="signatures-and-relevant-phenotypes.html#cb98-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
+<span id="cb98-4"><a href="signatures-and-relevant-phenotypes.html#cb98-4" tabindex="-1"></a>              <span class="at">jitter          =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb98-5"><a href="signatures-and-relevant-phenotypes.html#cb98-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb98-6"><a href="signatures-and-relevant-phenotypes.html#cb98-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jama&quot;</span>,</span>
+<span id="cb98-7"><a href="signatures-and-relevant-phenotypes.html#cb98-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb98-8"><a href="signatures-and-relevant-phenotypes.html#cb98-8" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>,</span>
+<span id="cb98-9"><a href="signatures-and-relevant-phenotypes.html#cb98-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
+<span id="cb98-10"><a href="signatures-and-relevant-phenotypes.html#cb98-10" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
+<span id="cb98-11"><a href="signatures-and-relevant-phenotypes.html#cb98-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 8
+##   .y.       group1    group2           p    p.adj p.format p.signif method  
+##   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+## 1 signature EMT       MSI       5.39e-15 3.20e-14 5.4e-15  ****     Wilcoxon
+## 2 signature EMT       MSS/TP53- 5.53e-13 2.8 e-12 5.5e-13  ****     Wilcoxon
+## 3 signature EMT       MSS/TP53+ 1.90e-12 7.6 e-12 1.9e-12  ****     Wilcoxon
+## 4 signature MSI       MSS/TP53- 1.14e- 3 3.4 e- 3 0.0011   **       Wilcoxon
+## 5 signature MSI       MSS/TP53+ 7.05e- 3 1.4 e- 2 0.0071   **       Wilcoxon
+## 6 signature MSS/TP53- MSS/TP53+ 7.16e- 1 7.2 e- 1 0.7161   ns       Wilcoxon</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="signatures-and-relevant-phenotypes.html#cb100-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
+<span id="cb100-2"><a href="signatures-and-relevant-phenotypes.html#cb100-2" tabindex="-1"></a>              <span class="at">signature      =</span> <span class="st">&quot;Pan_F_TBRs&quot;</span>,</span>
+<span id="cb100-3"><a href="signatures-and-relevant-phenotypes.html#cb100-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
+<span id="cb100-4"><a href="signatures-and-relevant-phenotypes.html#cb100-4" tabindex="-1"></a>              <span class="at">jitter          =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb100-5"><a href="signatures-and-relevant-phenotypes.html#cb100-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb100-6"><a href="signatures-and-relevant-phenotypes.html#cb100-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jama&quot;</span>,</span>
+<span id="cb100-7"><a href="signatures-and-relevant-phenotypes.html#cb100-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb100-8"><a href="signatures-and-relevant-phenotypes.html#cb100-8" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
+<span id="cb100-9"><a href="signatures-and-relevant-phenotypes.html#cb100-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
+<span id="cb100-10"><a href="signatures-and-relevant-phenotypes.html#cb100-10" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>, </span>
+<span id="cb100-11"><a href="signatures-and-relevant-phenotypes.html#cb100-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 8
+##   .y.       group1    group2           p    p.adj p.format p.signif method  
+##   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+## 1 signature EMT       MSI       7.98e-17 3.20e-16 &lt;2e-16   ****     Wilcoxon
+## 2 signature EMT       MSS/TP53- 1.70e-17 1   e-16 &lt;2e-16   ****     Wilcoxon
+## 3 signature EMT       MSS/TP53+ 2.57e-17 1.3 e-16 &lt;2e-16   ****     Wilcoxon
+## 4 signature MSI       MSS/TP53- 1.32e- 2 4   e- 2 0.013    *        Wilcoxon
+## 5 signature MSI       MSS/TP53+ 6.99e- 2 1.4 e- 1 0.070    ns       Wilcoxon
+## 6 signature MSS/TP53- MSS/TP53+ 4.02e- 1 4   e- 1 0.402    ns       Wilcoxon</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="signatures-and-relevant-phenotypes.html#cb102-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
+<span id="cb102-2"><a href="signatures-and-relevant-phenotypes.html#cb102-2" tabindex="-1"></a>              <span class="at">signature      =</span> <span class="st">&quot;Immune_Checkpoint&quot;</span>,</span>
+<span id="cb102-3"><a href="signatures-and-relevant-phenotypes.html#cb102-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
+<span id="cb102-4"><a href="signatures-and-relevant-phenotypes.html#cb102-4" tabindex="-1"></a>              <span class="at">jitter          =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb102-5"><a href="signatures-and-relevant-phenotypes.html#cb102-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb102-6"><a href="signatures-and-relevant-phenotypes.html#cb102-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jama&quot;</span>,</span>
+<span id="cb102-7"><a href="signatures-and-relevant-phenotypes.html#cb102-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb102-8"><a href="signatures-and-relevant-phenotypes.html#cb102-8" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
+<span id="cb102-9"><a href="signatures-and-relevant-phenotypes.html#cb102-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
+<span id="cb102-10"><a href="signatures-and-relevant-phenotypes.html#cb102-10" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>, </span>
+<span id="cb102-11"><a href="signatures-and-relevant-phenotypes.html#cb102-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 8
+##   .y.       group1    group2           p        p.adj p.format p.signif method  
+##   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+## 1 signature EMT       MSI       2.20e- 2 0.044        0.0220   *        Wilcoxon
+## 2 signature EMT       MSS/TP53- 2.11e- 3 0.0085       0.0021   **       Wilcoxon
+## 3 signature EMT       MSS/TP53+ 4.03e- 1 0.4          0.4026   ns       Wilcoxon
+## 4 signature MSI       MSS/TP53- 9.13e-10 0.0000000055 9.1e-10  ****     Wilcoxon
+## 5 signature MSI       MSS/TP53+ 5.03e- 4 0.0025       0.0005   ***      Wilcoxon
+## 6 signature MSS/TP53- MSS/TP53+ 4.82e- 3 0.014        0.0048   **       Wilcoxon</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="signatures-and-relevant-phenotypes.html#cb104-1" tabindex="-1"></a>p1<span class="sc">|</span>p2<span class="sc">|</span>p3</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="1344" style="display: block; margin: auto;" /></p>
+</div>
+<div id="survival-analysis" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Survival analysis<a href="signatures-and-relevant-phenotypes.html#survival-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Signature的多种分层下的生存分析</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="signatures-and-relevant-phenotypes.html#cb105-1" tabindex="-1"></a>res <span class="ot">&lt;-</span>       <span class="fu">sig_surv_plot</span>(<span class="at">input_pdata       =</span> input, </span>
+<span id="cb105-2"><a href="signatures-and-relevant-phenotypes.html#cb105-2" tabindex="-1"></a>                           <span class="at">signature         =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>,</span>
+<span id="cb105-3"><a href="signatures-and-relevant-phenotypes.html#cb105-3" tabindex="-1"></a>                           <span class="at">cols              =</span> <span class="cn">NULL</span>, </span>
+<span id="cb105-4"><a href="signatures-and-relevant-phenotypes.html#cb105-4" tabindex="-1"></a>                           <span class="at">palette           =</span> <span class="st">&quot;jco&quot;</span>,</span>
+<span id="cb105-5"><a href="signatures-and-relevant-phenotypes.html#cb105-5" tabindex="-1"></a>                           <span class="at">project           =</span> <span class="st">&quot;ACRG&quot;</span>,</span>
+<span id="cb105-6"><a href="signatures-and-relevant-phenotypes.html#cb105-6" tabindex="-1"></a>                           <span class="at">time              =</span> <span class="st">&quot;OS_time&quot;</span>,</span>
+<span id="cb105-7"><a href="signatures-and-relevant-phenotypes.html#cb105-7" tabindex="-1"></a>                           <span class="at">status            =</span> <span class="st">&quot;OS_status&quot;</span>,</span>
+<span id="cb105-8"><a href="signatures-and-relevant-phenotypes.html#cb105-8" tabindex="-1"></a>                           <span class="at">time_type         =</span> <span class="st">&quot;month&quot;</span>,</span>
+<span id="cb105-9"><a href="signatures-and-relevant-phenotypes.html#cb105-9" tabindex="-1"></a>                           <span class="at">save_path         =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
+<pre><code>##           ID   time status Glycogen_Biosynthesis group3 group2 bestcutoff
+## 1 GSM1523727  88.73      0            -0.3612213 Middle    Low        Low
+## 2 GSM1523728  88.23      0            -0.6926726    Low    Low        Low
+## 3 GSM1523729  88.23      0            -0.9388531    Low    Low        Low
+## 4 GSM1523744 105.70      0            -1.1825136    Low    Low        Low
+## 5 GSM1523745 105.53      0            -0.3034304 Middle    Low        Low
+## 6 GSM1523746  25.50      1             0.7517934   High   High       High</code></pre>
+<pre><code>## [1] &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&quot;</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="signatures-and-relevant-phenotypes.html#cb108-1" tabindex="-1"></a>res<span class="sc">$</span>plots</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="1536" /></p>
+<p>Signature在预测生存上的ROC</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="signatures-and-relevant-phenotypes.html#cb109-1" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">roc_time</span>(<span class="at">input      =</span> input,  </span>
+<span id="cb109-2"><a href="signatures-and-relevant-phenotypes.html#cb109-2" tabindex="-1"></a>             <span class="at">vars       =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, </span>
+<span id="cb109-3"><a href="signatures-and-relevant-phenotypes.html#cb109-3" tabindex="-1"></a>             <span class="at">time       =</span> <span class="st">&quot;OS_time&quot;</span>,</span>
+<span id="cb109-4"><a href="signatures-and-relevant-phenotypes.html#cb109-4" tabindex="-1"></a>             <span class="at">status     =</span> <span class="st">&quot;OS_status&quot;</span>, </span>
+<span id="cb109-5"><a href="signatures-and-relevant-phenotypes.html#cb109-5" tabindex="-1"></a>             <span class="at">time_point =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">36</span>), </span>
+<span id="cb109-6"><a href="signatures-and-relevant-phenotypes.html#cb109-6" tabindex="-1"></a>             <span class="at">time_type  =</span> <span class="st">&quot;month&quot;</span>,</span>
+<span id="cb109-7"><a href="signatures-and-relevant-phenotypes.html#cb109-7" tabindex="-1"></a>             <span class="at">palette    =</span> <span class="st">&quot;jama&quot;</span>,</span>
+<span id="cb109-8"><a href="signatures-and-relevant-phenotypes.html#cb109-8" tabindex="-1"></a>             <span class="at">cols       =</span> <span class="st">&quot;normal&quot;</span>,</span>
+<span id="cb109-9"><a href="signatures-and-relevant-phenotypes.html#cb109-9" tabindex="-1"></a>             <span class="at">seed       =</span> <span class="dv">1234</span>, </span>
+<span id="cb109-10"><a href="signatures-and-relevant-phenotypes.html#cb109-10" tabindex="-1"></a>             <span class="at">show_col   =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb109-11"><a href="signatures-and-relevant-phenotypes.html#cb109-11" tabindex="-1"></a>             <span class="at">path       =</span> <span class="st">&quot;result&quot;</span>, </span>
+<span id="cb109-12"><a href="signatures-and-relevant-phenotypes.html#cb109-12" tabindex="-1"></a>             <span class="at">main       =</span> <span class="st">&quot;OS&quot;</span>,</span>
+<span id="cb109-13"><a href="signatures-and-relevant-phenotypes.html#cb109-13" tabindex="-1"></a>             <span class="at">index      =</span> <span class="dv">1</span>,</span>
+<span id="cb109-14"><a href="signatures-and-relevant-phenotypes.html#cb109-14" tabindex="-1"></a>             <span class="at">fig.type   =</span> <span class="st">&quot;pdf&quot;</span>,</span>
+<span id="cb109-15"><a href="signatures-and-relevant-phenotypes.html#cb109-15" tabindex="-1"></a>             <span class="at">width      =</span> <span class="dv">5</span>,</span>
+<span id="cb109-16"><a href="signatures-and-relevant-phenotypes.html#cb109-16" tabindex="-1"></a>             <span class="at">height     =</span> <span class="fl">5.2</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;&gt;&gt;&gt;-- Range of Time: &quot;
+## [1]   1.0 105.7</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="signatures-and-relevant-phenotypes.html#cb111-1" tabindex="-1"></a>p2<span class="ot">&lt;-</span> <span class="fu">roc_time</span>(<span class="at">input      =</span> input,  </span>
+<span id="cb111-2"><a href="signatures-and-relevant-phenotypes.html#cb111-2" tabindex="-1"></a>             <span class="at">vars       =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, </span>
+<span id="cb111-3"><a href="signatures-and-relevant-phenotypes.html#cb111-3" tabindex="-1"></a>             <span class="at">time       =</span> <span class="st">&quot;RFS_time&quot;</span>,</span>
+<span id="cb111-4"><a href="signatures-and-relevant-phenotypes.html#cb111-4" tabindex="-1"></a>             <span class="at">status     =</span> <span class="st">&quot;RFS_status&quot;</span>, </span>
+<span id="cb111-5"><a href="signatures-and-relevant-phenotypes.html#cb111-5" tabindex="-1"></a>             <span class="at">time_point =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">36</span>), </span>
+<span id="cb111-6"><a href="signatures-and-relevant-phenotypes.html#cb111-6" tabindex="-1"></a>             <span class="at">time_type  =</span> <span class="st">&quot;month&quot;</span>,</span>
+<span id="cb111-7"><a href="signatures-and-relevant-phenotypes.html#cb111-7" tabindex="-1"></a>             <span class="at">palette    =</span> <span class="st">&quot;jama&quot;</span>,</span>
+<span id="cb111-8"><a href="signatures-and-relevant-phenotypes.html#cb111-8" tabindex="-1"></a>             <span class="at">cols       =</span> <span class="st">&quot;normal&quot;</span>,</span>
+<span id="cb111-9"><a href="signatures-and-relevant-phenotypes.html#cb111-9" tabindex="-1"></a>             <span class="at">seed       =</span> <span class="dv">1234</span>, </span>
+<span id="cb111-10"><a href="signatures-and-relevant-phenotypes.html#cb111-10" tabindex="-1"></a>             <span class="at">show_col   =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb111-11"><a href="signatures-and-relevant-phenotypes.html#cb111-11" tabindex="-1"></a>             <span class="at">path       =</span> <span class="st">&quot;result&quot;</span>, </span>
+<span id="cb111-12"><a href="signatures-and-relevant-phenotypes.html#cb111-12" tabindex="-1"></a>             <span class="at">main       =</span> <span class="st">&quot;OS&quot;</span>,</span>
+<span id="cb111-13"><a href="signatures-and-relevant-phenotypes.html#cb111-13" tabindex="-1"></a>             <span class="at">index      =</span> <span class="dv">1</span>,</span>
+<span id="cb111-14"><a href="signatures-and-relevant-phenotypes.html#cb111-14" tabindex="-1"></a>             <span class="at">fig.type   =</span> <span class="st">&quot;pdf&quot;</span>,</span>
+<span id="cb111-15"><a href="signatures-and-relevant-phenotypes.html#cb111-15" tabindex="-1"></a>             <span class="at">width      =</span> <span class="dv">5</span>,</span>
+<span id="cb111-16"><a href="signatures-and-relevant-phenotypes.html#cb111-16" tabindex="-1"></a>             <span class="at">height     =</span> <span class="fl">5.2</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;&gt;&gt;&gt;-- Range of Time: &quot;
+## [1]   0.10 100.87</code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="signatures-and-relevant-phenotypes.html#cb113-1" tabindex="-1"></a>p1<span class="sc">|</span>p2</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="1296" /></p>
+</div>
+<div id="batch-correlation-analysis" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Batch correlation analysis<a href="signatures-and-relevant-phenotypes.html#batch-correlation-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>寻找与目标signature相关的基因或者signatures</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="signatures-and-relevant-phenotypes.html#cb114-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">batch_cor</span>(<span class="at">data =</span> input, <span class="at">target =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, <span class="at">feature =</span> <span class="fu">colnames</span>(input)[<span class="dv">69</span><span class="sc">:</span><span class="fu">ncol</span>(input)])</span>
+<span id="cb114-2"><a href="signatures-and-relevant-phenotypes.html#cb114-2" tabindex="-1"></a><span class="fu">head</span>(res)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 6
+##   sig_names                         p.value statistic    p.adj log10pvalue stars
+##   &lt;chr&gt;                               &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;
+## 1 TMEscoreB_CIR                    8.89e-42     0.678 2.27e-39        41.1 **** 
+## 2 Glycine__Serine_and_Threonine_M… 7.49e-40    -0.666 9.54e-38        39.1 **** 
+## 3 Ether_Lipid_Metabolism           3.84e-39     0.662 3.27e-37        38.4 **** 
+## 4 MDSC_Peng_et_al                  1.13e-38     0.659 7.21e-37        37.9 **** 
+## 5 Glycerophospholipid_Metabolism   8.72e-38    -0.653 4.44e-36        37.1 **** 
+## 6 TIP_Release_of_cancer_cell_anti… 2.32e-37    -0.650 9.86e-36        36.6 ****</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="signatures-and-relevant-phenotypes.html#cb116-1" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">get_cor</span>(<span class="at">eset =</span> sig_tme, <span class="at">pdata =</span> pdata_acrg, <span class="at">var1 =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, <span class="at">var2 =</span> <span class="st">&quot;TMEscore_CIR&quot;</span>, <span class="at">subtype =</span> <span class="st">&quot;Subtype&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;aaas&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Spearman&#39;s rank correlation rho
+## 
+## data:  data[, var1] and data[, var2]
+## S = 7282858, p-value &lt; 2.2e-16
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##        rho 
+## -0.6184309 
+## 
+## [1] &quot;&gt;&gt;&gt;--- The exact p value is: 4.78971420439895e-33&quot;
+##       EMT       MSI MSS/TP53- MSS/TP53+ 
+##        46        68       107        79</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="signatures-and-relevant-phenotypes.html#cb118-1" tabindex="-1"></a>p2<span class="ot">&lt;-</span> <span class="fu">get_cor</span>(<span class="at">eset =</span> sig_tme, <span class="at">pdata =</span> pdata_acrg, <span class="at">var1 =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, <span class="at">var2 =</span> <span class="st">&quot;TGFb.myCAF&quot;</span>, <span class="at">subtype =</span> <span class="st">&quot;Subtype&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;aaas&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Spearman&#39;s rank correlation rho
+## 
+## data:  data[, var1] and data[, var2]
+## S = 2471758, p-value &lt; 2.2e-16
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##       rho 
+## 0.4507143 
+## 
+## [1] &quot;&gt;&gt;&gt;--- The exact p value is: 2.04505761057615e-16&quot;
+##       EMT       MSI MSS/TP53- MSS/TP53+ 
+##        46        68       107        79</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="signatures-and-relevant-phenotypes.html#cb120-1" tabindex="-1"></a>p1<span class="sc">|</span>p2</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="1152" /></p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="signatures-and-relevant-phenotypes.html#cb121-1" tabindex="-1"></a>feas1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, <span class="st">&quot;Ferroptosis&quot;</span>)</span>
+<span id="cb121-2"><a href="signatures-and-relevant-phenotypes.html#cb121-2" tabindex="-1"></a>feas2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Glutathione_Metabolism&quot;</span>, <span class="st">&quot;TMEscore_CIR&quot;</span>, <span class="st">&quot;Purine_Metabolism&quot;</span>, <span class="st">&quot;ICB_resistance_Peng_et_al&quot;</span>, <span class="st">&quot;Interleukins_Li_et_al&quot;</span>, <span class="st">&quot;TLS_Nature&quot;</span>)</span>
+<span id="cb121-3"><a href="signatures-and-relevant-phenotypes.html#cb121-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">get_cor_matrix</span>(<span class="at">data           =</span> input, </span>
+<span id="cb121-4"><a href="signatures-and-relevant-phenotypes.html#cb121-4" tabindex="-1"></a>                    <span class="at">feas1          =</span> feas2, </span>
+<span id="cb121-5"><a href="signatures-and-relevant-phenotypes.html#cb121-5" tabindex="-1"></a>                    <span class="at">feas2          =</span> feas1,</span>
+<span id="cb121-6"><a href="signatures-and-relevant-phenotypes.html#cb121-6" tabindex="-1"></a>                    <span class="at">method         =</span> <span class="st">&quot;pearson&quot;</span>,</span>
+<span id="cb121-7"><a href="signatures-and-relevant-phenotypes.html#cb121-7" tabindex="-1"></a>                    <span class="at">font.size.star =</span> <span class="dv">8</span>, </span>
+<span id="cb121-8"><a href="signatures-and-relevant-phenotypes.html#cb121-8" tabindex="-1"></a>                    <span class="at">font.size      =</span> <span class="dv">15</span>, </span>
+<span id="cb121-9"><a href="signatures-and-relevant-phenotypes.html#cb121-9" tabindex="-1"></a>                    <span class="at">fill_by_cor    =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb121-10"><a href="signatures-and-relevant-phenotypes.html#cb121-10" tabindex="-1"></a>                    <span class="at">round.num      =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="1152" /></p>
+</div>
+<div id="visulization-of-correlations" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> Visulization of correlations<a href="signatures-and-relevant-phenotypes.html#visulization-of-correlations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="signatures-and-relevant-phenotypes.html#cb122-1" tabindex="-1"></a>input2 <span class="ot">&lt;-</span> <span class="fu">combine_pd_eset</span>(<span class="at">eset =</span> eset, <span class="at">pdata =</span>  input[, <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, <span class="st">&quot;TLS_Nature&quot;</span>, <span class="st">&quot;Ferroptosis&quot;</span>)])</span>
+<span id="cb122-2"><a href="signatures-and-relevant-phenotypes.html#cb122-2" tabindex="-1"></a>feas1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Glycogen_Biosynthesis&quot;</span>,<span class="st">&quot;TLS_Nature&quot;</span>, <span class="st">&quot;Ferroptosis&quot;</span>)</span>
+<span id="cb122-3"><a href="signatures-and-relevant-phenotypes.html#cb122-3" tabindex="-1"></a>feas2 <span class="ot">&lt;-</span> signature_collection<span class="sc">$</span>CD_8_T_effector</span>
+<span id="cb122-4"><a href="signatures-and-relevant-phenotypes.html#cb122-4" tabindex="-1"></a>feas2</span></code></pre></div>
+<pre><code>## [1] &quot;CD8A&quot;   &quot;GZMA&quot;   &quot;GZMB&quot;   &quot;IFNG&quot;   &quot;CXCL9&quot;  &quot;CXCL10&quot; &quot;PRF1&quot;   &quot;TBX21&quot;</code></pre>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="signatures-and-relevant-phenotypes.html#cb124-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">get_cor_matrix</span>(<span class="at">data           =</span> input2, </span>
+<span id="cb124-2"><a href="signatures-and-relevant-phenotypes.html#cb124-2" tabindex="-1"></a>                    <span class="at">feas1          =</span> feas2, </span>
+<span id="cb124-3"><a href="signatures-and-relevant-phenotypes.html#cb124-3" tabindex="-1"></a>                    <span class="at">feas2          =</span> feas1,</span>
+<span id="cb124-4"><a href="signatures-and-relevant-phenotypes.html#cb124-4" tabindex="-1"></a>                    <span class="at">method         =</span> <span class="st">&quot;pearson&quot;</span>,</span>
+<span id="cb124-5"><a href="signatures-and-relevant-phenotypes.html#cb124-5" tabindex="-1"></a>                    <span class="at">scale          =</span> T, </span>
+<span id="cb124-6"><a href="signatures-and-relevant-phenotypes.html#cb124-6" tabindex="-1"></a>                    <span class="at">font.size.star =</span> <span class="dv">8</span>, </span>
+<span id="cb124-7"><a href="signatures-and-relevant-phenotypes.html#cb124-7" tabindex="-1"></a>                    <span class="at">font.size      =</span> <span class="dv">15</span>, </span>
+<span id="cb124-8"><a href="signatures-and-relevant-phenotypes.html#cb124-8" tabindex="-1"></a>                    <span class="at">fill_by_cor    =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb124-9"><a href="signatures-and-relevant-phenotypes.html#cb124-9" tabindex="-1"></a>                    <span class="at">round.num      =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="1152" /></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="signatures-and-relevant-phenotypes.html#cb125-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">get_cor_matrix</span>(<span class="at">data           =</span> input2, </span>
+<span id="cb125-2"><a href="signatures-and-relevant-phenotypes.html#cb125-2" tabindex="-1"></a>                    <span class="at">feas1          =</span> feas2, </span>
+<span id="cb125-3"><a href="signatures-and-relevant-phenotypes.html#cb125-3" tabindex="-1"></a>                    <span class="at">feas2          =</span> feas1,</span>
+<span id="cb125-4"><a href="signatures-and-relevant-phenotypes.html#cb125-4" tabindex="-1"></a>                    <span class="at">method         =</span> <span class="st">&quot;pearson&quot;</span>,</span>
+<span id="cb125-5"><a href="signatures-and-relevant-phenotypes.html#cb125-5" tabindex="-1"></a>                    <span class="at">scale          =</span> T, </span>
+<span id="cb125-6"><a href="signatures-and-relevant-phenotypes.html#cb125-6" tabindex="-1"></a>                    <span class="at">font.size.star =</span> <span class="dv">8</span>, </span>
+<span id="cb125-7"><a href="signatures-and-relevant-phenotypes.html#cb125-7" tabindex="-1"></a>                    <span class="at">font.size      =</span> <span class="dv">15</span>, </span>
+<span id="cb125-8"><a href="signatures-and-relevant-phenotypes.html#cb125-8" tabindex="-1"></a>                    <span class="at">fill_by_cor    =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb125-9"><a href="signatures-and-relevant-phenotypes.html#cb125-9" tabindex="-1"></a>                    <span class="at">round.num      =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="1152" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tumor-ecosystem-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tme-deconvolution.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/DongqiangZeng0808/IOBR-Book/02-cross-refs.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
