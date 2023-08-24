@@ -18,9 +18,9 @@ for(i in 1:length(depens)){
 }
 ```
 
-## `r if(knitr::is_html_output()) emo::ji("computer")` Installing IOBR
+## `r if(knitr::is_html_output()) emo::ji("computer")` Install IOBR package
 
-Then, you can start to install IOBR from github by typing the following code into your R session:
+When the dependent environments are built, users are able to install IOBR from github by typing the following code into your R session:
 ```{r, message=FALSE}
 
 if (!requireNamespace("IOBR", quietly = TRUE))  devtools::install_github("IOBR/IOBR")
@@ -29,15 +29,58 @@ library(IOBR)
 ```
 
 
+
+
 ## `r if(knitr::is_html_output()) emo::ji("zoom")` The main pipeline of IOBR
 
 ```{r echo=FALSE, flowchart, fig.cap='The main pipeline of IOBR',  fig.width= 8, fig.height = 5.5, fig.align='center'}
 knitr::include_graphics(rep("./fig/IOBR-Package.png", 1))
 ```
 
+## Main Functions
+
+* <div style="color:green">**Data Preparation: data annotation and transformation**</div> 
+    * `count2tpm()`: transform count data of RNA sequencing into TPM data.
+    * `anno_eset()`: annotate the normalized genes expression matrix, including RNAseq and array (Affymetrix or Illumina).
+    * `remove_duplicate_genes()`: remove the genes annotated with the duplicated symbol after normalization and retain only the symbol with highest expression level.
+</br>
+
+* <div style="color:green">**TME Deconvolution Module: integrate multiple algorithms to decode immune contexture**</div> 
+    * `deconvo_tme()`: decode the TME infiltration with different deconvolution methodologies, based on bulk RNAseq, microarray or single cell RNAseq data.
+    * `generateRef()`: generate a novel gene reference matrix for a specific feature such as infiltrating cell, through the  SVR and lsei algorithm.
+</br>
+
+* <div style="color:green">**Signature Module: calculate signature scores, estimate phenotype related signatures and corresponding genes, and evaluate signatures generated from single-cell RNA sequencing data **</div>
+    * `calculate_sig_score()`: estimate the interested signatures enrolled in IOBR R package, which involves TME-associated, tumor-metabolism, and tumor-intrinsic signatures.
+    * `feature_manipulation()`: manipulate features including the cell fraction and signatures generated from multi-omics data for latter analysis and model construction. Remove missing values, outliers and variables without significant variance.
+    * `format_signatures()`: generate the object of `calculate_sig_score()`function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.
+    * `format_msigdb()`: transform the signature gene sets data  with gmt format, which is not included in the signature collection and might be downloaded in the MSgiDB website, into the object of `calculate_sig_score()`function.
+</br>
+    
+  * <div style="color:green">**Batch Analysis and Visualization: batch survival analysis and batch correlation analysis and other batch statistical analyses **</div>
+    * `batch_surv`: batch survival analysis of multiple continuous variables including varied signature scores.
+    * `subgroup_survival`: batch survival analysis of multiple categorized variables with different number of subgroups. 
+    * `batch_cor()`: batch analysis of correlation between two continuous variables using Pearson correlation coefficient or Spearman's rank correlation coefficient .
+    * `batch_wilcoxon()`: conduct batch wilcoxon analyses of binary variables.
+    * `batch_pcc()`: batch analyses of Partial Correlation coefficient(PCC) between continuous variables  and minimize the interference derived from confounding factors.
+    * `iobr_cor_plot()`: visualization of batch correlation analysis of signatures from 'sig_group'. Visualize the correlation between signature or phenotype with  expression of gene sets  in target signature is also supported.
+    * `cell_bar_plot()`: batch visualization of TME cell fraction, supporting input of deconvolution results from 'CIBERSORT', 'EPIC' and 'quanTIseq' methodologies to further compare the TME cell distributions within one sample or among different samples. 
+</br>
+
+* <div style="color:green">**Signature Associated Mutation Module: identify and analyze mutations relevant to targeted signatures**</div>
+    * `make_mut_matrix()`: transform the mutation data with MAF format(contain the columns of gene ID and the corresponding gene alterations which including SNP, indel and frameshift) into a mutation matrix in a suitable manner for further investigating signature relevant mutations.
+    * `find_mutations()`: identify mutations associated with a distinct phenotype or signature.
+</br>
+
+* <div style="color:green">**Model Construction Module: feature selection and fast model construct to predict clinical phenotype**</div>
+    * `BinomialModel()`: select features and construct a model to predict a binary phenotype.
+    * `PrognosticMode()`: select features and construct a model to predict clinical survial outcome.
+</br>
+
+
 
 # RNA Data preprocessing
-## Library
+## Loading packages
 
 Load the IOBR package in your R session after the installation is complete:
   ```{r, eval=TRUE, warning=FALSE, message=FALSE}
@@ -58,10 +101,31 @@ eset    <-exprs(eset)
 eset[1:5,1:5]
 ```
 
+## Gene Annotation
+
 Annotation of genes in the expression matrix and removal of duplicate genes.
 ```{r,message=FALSE,warning=FALSE}
 # Load the annotation file `anno_hug133plus2` in IOBR.
 head(anno_hug133plus2)
+
+```
+
+```{r,message=FALSE,warning=FALSE}
+# Load the annotation file `anno_grch38` in IOBR.
+head(anno_grch38)
+
+```
+
+```{r,message=FALSE,warning=FALSE}
+# Load the annotation file `anno_gc_vm32` in IOBR for mouse RNAseq data
+head(anno_gc_vm32)
+
+```
+
+
+### For Array data: HGU133PLUS-2 (Affaymetrix)
+```{r,message=FALSE,warning=FALSE}
+
 # Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. 
 
 eset<-anno_eset(eset       = eset,
@@ -72,8 +136,39 @@ eset<-anno_eset(eset       = eset,
 eset[1:5, 1:3]
 ```
 
+### For RNAseq data
+
+Download RNAseq data using UCSCXenaTools
+```{r, echo=FALSE, eval=FALSE}
+if (!requireNamespace("UCSCXenaTools", quietly = TRUE))   BiocManager::install("UCSCXenaTools")
+library(UCSCXenaTools)
+# NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
+eset_stad<-XenaGenerate(subset = XenaCohorts =="GDC TCGA Stomach Cancer (STAD)") %>% 
+  XenaFilter(filterDatasets    = "TCGA-STAD.htseq_counts.tsv") %>% 
+  XenaQuery() %>%
+  XenaDownload() %>% 
+  XenaPrepare()
+eset_stad[1:5, 1:3]
+```
+
+Transform gene expression matrix into TPM format, and conduct subsequent annotation. 
+```{r, echo=FALSE, eval=FALSE}
+
+# Remove the version numbers in Ensembl ID.
+eset_stad$Ensembl_ID<-substring(eset_stad$Ensembl_ID, 1, 15)
+eset_stad<-column_to_rownames(eset_stad, var = "Ensembl_ID")
+
+# Revert back to original format because the data from UCSC was log2(x+1)transformed.
+eset_stad<-(2^eset_stad)+1
+
+eset_stad<-count2tpm(countMat = eset_stad, idType = "Ensembl", org="hsa", source = "local" )
+
+eset_stad[1:5,1:5]
+```
+
 ## Identifying outlier samples
 
+Take ACRG microarray data for example
 ```{r, message = F, warning = F,  fig.width= 7, fig.height=7, fig.align='center'}
 
 # source("E:/18-Github/Organization/IOBR/R/find_outlier_samples.R")
@@ -140,6 +235,14 @@ eset_com <- remove_batcheffect( eset1       = eset1,
                                 path        = "result")
 dim(eset_com)
 ```
+
+待补充-RNAseq的批次校正：count, combat-seq
+
+## References
+
+Yuqing Zhang and others, ComBat-seq: batch effect adjustment for RNA-seq count data, NAR Genomics and Bioinformatics, Volume 2, Issue 3, September 2020, lqaa078, https://doi.org/10.1093/nargab/lqaa078
+
+Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., & Storey, J. D. (2012). The sva package for removing batch effects and other unwanted variation in high-throughput experiments. Bioinformatics, 28(6), 882-883.
 
 
 # Tumor ecosystem analysis

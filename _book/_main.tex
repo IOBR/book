@@ -213,10 +213,10 @@ It is essential that you have R 3.6.3 or above already installed on your compute
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{installing-iobr}{%
-\section{Installing IOBR}\label{installing-iobr}}
+\hypertarget{install-iobr-package}{%
+\section{Install IOBR package}\label{install-iobr-package}}
 
-Then, you can start to install IOBR from github by typing the following code into your R session:
+When the dependent environments are built, users are able to install IOBR from github by typing the following code into your R session:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -258,11 +258,92 @@ Then, you can start to install IOBR from github by typing the following code int
 \caption{The main pipeline of IOBR}\label{fig:flowchart}
 \end{figure}
 
+\hypertarget{main-functions}{%
+\section{Main Functions}\label{main-functions}}
+
+\begin{itemize}
+\item
+  \textbf{Data Preparation: data annotation and transformation}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{count2tpm()}: transform count data of RNA sequencing into TPM data.
+  \item
+    \texttt{anno\_eset()}: annotate the normalized genes expression matrix, including RNAseq and array (Affymetrix or Illumina).
+  \item
+    \texttt{remove\_duplicate\_genes()}: remove the genes annotated with the duplicated symbol after normalization and retain only the symbol with highest expression level.
+  \end{itemize}
+\item
+  \textbf{TME Deconvolution Module: integrate multiple algorithms to decode immune contexture}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{deconvo\_tme()}: decode the TME infiltration with different deconvolution methodologies, based on bulk RNAseq, microarray or single cell RNAseq data.
+  \item
+    \texttt{generateRef()}: generate a novel gene reference matrix for a specific feature such as infiltrating cell, through the SVR and lsei algorithm.
+  \end{itemize}
+\item
+  \textbf{Signature Module: calculate signature scores, estimate phenotype related signatures and corresponding genes, and evaluate signatures generated from single-cell RNA sequencing data }
+
+  \begin{itemize}
+  \item
+    \texttt{calculate\_sig\_score()}: estimate the interested signatures enrolled in IOBR R package, which involves TME-associated, tumor-metabolism, and tumor-intrinsic signatures.
+  \item
+    \texttt{feature\_manipulation()}: manipulate features including the cell fraction and signatures generated from multi-omics data for latter analysis and model construction. Remove missing values, outliers and variables without significant variance.
+  \item
+    \texttt{format\_signatures()}: generate the object of \texttt{calculate\_sig\_score()}function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.
+  \item
+    \texttt{format\_msigdb()}: transform the signature gene sets data with gmt format, which is not included in the signature collection and might be downloaded in the MSgiDB website, into the object of \texttt{calculate\_sig\_score()}function.
+  \item
+    \textbf{Batch Analysis and Visualization: batch survival analysis and batch correlation analysis and other batch statistical analyses }
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \texttt{batch\_surv}: batch survival analysis of multiple continuous variables including varied signature scores.
+    \item
+      \texttt{subgroup\_survival}: batch survival analysis of multiple categorized variables with different number of subgroups.
+    \item
+      \texttt{batch\_cor()}: batch analysis of correlation between two continuous variables using Pearson correlation coefficient or Spearman's rank correlation coefficient .
+    \item
+      \texttt{batch\_wilcoxon()}: conduct batch wilcoxon analyses of binary variables.
+    \item
+      \texttt{batch\_pcc()}: batch analyses of Partial Correlation coefficient(PCC) between continuous variables and minimize the interference derived from confounding factors.
+    \item
+      \texttt{iobr\_cor\_plot()}: visualization of batch correlation analysis of signatures from `sig\_group'. Visualize the correlation between signature or phenotype with expression of gene sets in target signature is also supported.
+    \item
+      \texttt{cell\_bar\_plot()}: batch visualization of TME cell fraction, supporting input of deconvolution results from `CIBERSORT', `EPIC' and `quanTIseq' methodologies to further compare the TME cell distributions within one sample or among different samples.
+    \end{itemize}
+  \end{itemize}
+\item
+  \textbf{Signature Associated Mutation Module: identify and analyze mutations relevant to targeted signatures}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{make\_mut\_matrix()}: transform the mutation data with MAF format(contain the columns of gene ID and the corresponding gene alterations which including SNP, indel and frameshift) into a mutation matrix in a suitable manner for further investigating signature relevant mutations.
+  \item
+    \texttt{find\_mutations()}: identify mutations associated with a distinct phenotype or signature.
+  \end{itemize}
+\item
+  \textbf{Model Construction Module: feature selection and fast model construct to predict clinical phenotype}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{BinomialModel()}: select features and construct a model to predict a binary phenotype.
+  \item
+    \texttt{PrognosticMode()}: select features and construct a model to predict clinical survial outcome.
+  \end{itemize}
+\end{itemize}
+
 \hypertarget{rna-data-preprocessing}{%
 \chapter{RNA Data preprocessing}\label{rna-data-preprocessing}}
 
-\hypertarget{library}{%
-\section{Library}\label{library}}
+\hypertarget{loading-packages}{%
+\section{Loading packages}\label{loading-packages}}
 
 Load the IOBR package in your R session after the installation is complete:
 
@@ -300,6 +381,9 @@ Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gas
 ## 1255_g_at  0.8698382  0.9502466  0.8125414   1.012860  0.9441993
 \end{verbatim}
 
+\hypertarget{gene-annotation}{%
+\section{Gene Annotation}\label{gene-annotation}}
+
 Annotation of genes in the expression matrix and removal of duplicate genes.
 
 \begin{Shaded}
@@ -323,6 +407,64 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# Load the annotation file \textasciigrave{}anno\_grch38\textasciigrave{} in IOBR.}
+\FunctionTok{head}\NormalTok{(anno\_grch38)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                id eff_length        gc entrez   symbol chr     start       end
+## 1 ENSG00000000003       4536 0.3992504   7105   TSPAN6   X 100627109 100639991
+## 2 ENSG00000000005       1476 0.4241192  64102     TNMD   X 100584802 100599885
+## 3 ENSG00000000419       9276 0.4252911   8813     DPM1  20  50934867  50958555
+## 4 ENSG00000000457       6883 0.4117391  57147    SCYL3   1 169849631 169894267
+## 5 ENSG00000000460       5970 0.4298157  55732 C1orf112   1 169662007 169854080
+## 6 ENSG00000000938       3382 0.5644589   2268      FGR   1  27612064  27635277
+##   strand        biotype
+## 1     -1 protein_coding
+## 2      1 protein_coding
+## 3     -1 protein_coding
+## 4     -1 protein_coding
+## 5      1 protein_coding
+## 6     -1 protein_coding
+##                                                                                                  description
+## 1                                                          tetraspanin 6 [Source:HGNC Symbol;Acc:HGNC:11858]
+## 2                                                            tenomodulin [Source:HGNC Symbol;Acc:HGNC:17757]
+## 3 dolichyl-phosphate mannosyltransferase polypeptide 1, catalytic subunit [Source:HGNC Symbol;Acc:HGNC:3005]
+## 4                                               SCY1-like, kinase-like 3 [Source:HGNC Symbol;Acc:HGNC:19285]
+## 5                                    chromosome 1 open reading frame 112 [Source:HGNC Symbol;Acc:HGNC:25565]
+## 6                          FGR proto-oncogene, Src family tyrosine kinase [Source:HGNC Symbol;Acc:HGNC:3697]
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load the annotation file \textasciigrave{}anno\_gc\_vm32\textasciigrave{} in IOBR for mouse RNAseq data}
+\FunctionTok{head}\NormalTok{(anno\_gc\_vm32)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   id eff_length        gc symbol      mgi_id      gene_type
+## 1 ENSMUSG00000000001       3262 0.4350092  Gnai3   MGI:95773 protein_coding
+## 2 ENSMUSG00000000003        902 0.3481153   Pbsn MGI:1860484 protein_coding
+## 3 ENSMUSG00000000028       3506 0.4962921  Cdc45 MGI:1338073 protein_coding
+## 4 ENSMUSG00000000031       2625 0.5588571    H19   MGI:95891         lncRNA
+## 5 ENSMUSG00000000037       6397 0.4377052  Scml2 MGI:1340042 protein_coding
+## 6 ENSMUSG00000000049       1594 0.5050188   Apoh   MGI:88058 protein_coding
+##       start       end transcript_id  ont
+## 1 108014596 108053462          <NA> <NA>
+## 2  76881507  76897229          <NA> <NA>
+## 3  18599197  18630737          <NA> <NA>
+## 4 142129262 142131886          <NA> <NA>
+## 5 159865521 160041209          <NA> <NA>
+## 6 108234180 108305222          <NA> <NA>
+\end{verbatim}
+
+\hypertarget{for-array-data-hgu133plus-2-affaymetrix}{%
+\subsection{For Array data: HGU133PLUS-2 (Affaymetrix)}\label{for-array-data-hgu133plus-2-affaymetrix}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# Conduct gene annotation using \textasciigrave{}anno\_hug133plus2\textasciigrave{} file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. }
 
 \NormalTok{eset}\OtherTok{\textless{}{-}}\FunctionTok{anno\_eset}\NormalTok{(}\AttributeTok{eset       =}\NormalTok{ eset,}
@@ -343,8 +485,17 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 ## LOC101928826   4.219303   4.219670   4.213252
 \end{verbatim}
 
+\hypertarget{for-rnaseq-data}{%
+\subsection{For RNAseq data}\label{for-rnaseq-data}}
+
+Download RNAseq data using UCSCXenaTools
+
+Transform gene expression matrix into TPM format, and conduct subsequent annotation.
+
 \hypertarget{identifying-outlier-samples}{%
 \section{Identifying outlier samples}\label{identifying-outlier-samples}}
+
+Take ACRG microarray data for example
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -353,7 +504,7 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-8-1} \end{center}
+\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-13-1} \end{center}
 
 \begin{verbatim}
 ## [1] "GSM1523817" "GSM1523858" "GSM1523984" "GSM1523988" "GSM1524030"
@@ -402,7 +553,7 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-9-1} \end{center}
+\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
 \hypertarget{batch-effect-correction}{%
 \section{Batch effect correction}\label{batch-effect-correction}}
@@ -478,7 +629,7 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 ## [1] ">>-- colors for PCA: #5f75ae" ">>-- colors for PCA: #64a841"
 \end{verbatim}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-12-1} \end{center}
+\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-17-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -489,6 +640,15 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 \begin{verbatim}
 ## [1] 21752   365
 \end{verbatim}
+
+待补充-RNAseq的批次校正：count, combat-seq
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+Yuqing Zhang and others, ComBat-seq: batch effect adjustment for RNA-seq count data, NAR Genomics and Bioinformatics, Volume 2, Issue 3, September 2020, lqaa078, \url{https://doi.org/10.1093/nargab/lqaa078}
+
+Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012). The sva package for removing batch effects and other unwanted variation in high-throughput experiments. Bioinformatics, 28(6), 882-883.
 
 \hypertarget{tumor-ecosystem-analysis}{%
 \chapter{Tumor ecosystem analysis}\label{tumor-ecosystem-analysis}}
@@ -509,7 +669,7 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 ## Step-1: Expression data preprocessing...
 ## Step-2: TME deconvolution...
 ## Step-3: Predicting TME phenotypes...
-## [10:58:25] WARNING: amalgamation/../src/learner.cc:1040: 
+## [16:59:55] WARNING: amalgamation/../src/learner.cc:1040: 
 ##   If you are loading a serialized model (like pickle in Python, RDS in R) generated by
 ##   older XGBoost, please export the model by calling `Booster.save_model` from that version
 ##   first, then load it back in current version. See:
@@ -518,7 +678,7 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 ## 
 ##   for more details about differences between saving model and serializing.
 ## 
-## [10:58:25] WARNING: amalgamation/../src/learner.cc:749: Found JSON model saved before XGBoost 1.6, please save the model using current version again. The support for old JSON model will be discontinued in XGBoost 2.3.
+## [16:59:55] WARNING: amalgamation/../src/learner.cc:749: Found JSON model saved before XGBoost 1.6, please save the model using current version again. The support for old JSON model will be discontinued in XGBoost 2.3.
 ## >>>--- DONE!
 \end{verbatim}
 
@@ -896,7 +1056,7 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-20-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-25-1.pdf}
 
 \hypertarget{identifying-signatures-associated-with-tme-clusters}{%
 \section{Identifying signatures associated with TME clusters}\label{identifying-signatures-associated-with-tme-clusters}}
@@ -1006,7 +1166,7 @@ Calculate TME associated signatures-(through PCA method).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-24-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-29-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1065,7 +1225,7 @@ Calculate TME associated signatures-(through PCA method).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-25-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-30-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1143,13 +1303,13 @@ Calculate TME associated signatures-(through PCA method).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-27-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-32-1.pdf}
 
 \hypertarget{signatures-and-relevant-phenotypes}{%
 \chapter{Signatures and relevant phenotypes}\label{signatures-and-relevant-phenotypes}}
 
-\hypertarget{loading-packages}{%
-\section{Loading packages}\label{loading-packages}}
+\hypertarget{loading-packages-1}{%
+\section{Loading packages}\label{loading-packages-1}}
 
 Load the IOBR package in your R session after the installation is complete:
 
@@ -1288,7 +1448,7 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-32-1} \end{center}
+\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-37-1} \end{center}
 
 \hypertarget{visulization-using-heatmap}{%
 \section{Visulization using heatmap}\label{visulization-using-heatmap}}
@@ -1306,7 +1466,7 @@ Signatures和分子分型之间的关系
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-33-1} \end{center}
+\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-38-1} \end{center}
 
 \hypertarget{focus-on-target-signatures}{%
 \section{Focus on target signatures}\label{focus-on-target-signatures}}
@@ -1401,7 +1561,7 @@ Signatures和分子分型之间的关系
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-35-1} \end{center}
+\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-40-1} \end{center}
 
 \hypertarget{survival-analysis}{%
 \section{Survival analysis}\label{survival-analysis}}
@@ -1442,7 +1602,7 @@ Signature的多种分层下的生存分析
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-36-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-41-1.pdf}
 
 Signature在预测生存上的ROC
 
@@ -1504,7 +1664,7 @@ Signature在预测生存上的ROC
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-37-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-42-1.pdf}
 
 \hypertarget{batch-correlation-analysis}{%
 \section{Batch correlation analysis}\label{batch-correlation-analysis}}
@@ -1580,7 +1740,7 @@ Signature在预测生存上的ROC
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-40-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-45-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1597,7 +1757,7 @@ Signature在预测生存上的ROC
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-41-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-46-1.pdf}
 
 \hypertarget{visulization-of-correlations}{%
 \section{Visulization of correlations}\label{visulization-of-correlations}}
@@ -1629,7 +1789,7 @@ Signature在预测生存上的ROC
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-42-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-47-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1645,13 +1805,13 @@ Signature在预测生存上的ROC
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-43-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-48-1.pdf}
 
 \hypertarget{tme-deconvolution}{%
 \chapter{TME deconvolution}\label{tme-deconvolution}}
 
-\hypertarget{loading-packages-1}{%
-\section{Loading packages}\label{loading-packages-1}}
+\hypertarget{loading-packages-2}{%
+\section{Loading packages}\label{loading-packages-2}}
 
 Load the IOBR package in your R session after the installation is complete:
 
@@ -1813,7 +1973,7 @@ Check detail parameters of the function
 ## >>>>=== Palette option for random: 1: palette1; 2: palette2; 3: palette3;  4: palette4
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-50-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-55-1.pdf}
 
 \hypertarget{method-2-epic}{%
 \subsection{Method 2: EPIC}\label{method-2-epic}}
@@ -2070,10 +2230,10 @@ Check detail parameters of the function
 ## >>>>=== Palette option for random: 1: palette1; 2: palette2; 3: palette3;  4: palette4
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-57-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-62-1.pdf}
 
 \hypertarget{method-8-ips}{%
-\section{8) Method 8: IPS}\label{method-8-ips}}
+\section{Method 8: IPS}\label{method-8-ips}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2095,7 +2255,7 @@ Check detail parameters of the function
 \end{verbatim}
 
 \hypertarget{combination-of-above-deconvolution-results}{%
-\section{9) Combination of above deconvolution results}\label{combination-of-above-deconvolution-results}}
+\section{Combination of above deconvolution results}\label{combination-of-above-deconvolution-results}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2343,8 +2503,8 @@ Or use:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{references}{%
-\chapter{References}\label{references}}
+\hypertarget{references-1}{%
+\chapter{References}\label{references-1}}
 
 If IOBR R package is utilized in your published research, please cite:
 

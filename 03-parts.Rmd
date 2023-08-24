@@ -103,13 +103,13 @@ head(quantiseq)
 res<-cell_bar_plot(input = quantiseq[1:12, ], title = "quanTIseq Cell Fraction")
 ```
 
-## 8) Method 8: IPS
+## Method 8: IPS
 ```{r,message=FALSE}
 ips<-deconvo_tme(eset = eset_acrg, method = "ips", plot= FALSE)
 head(ips)
 ```
 
-## 9) Combination of above deconvolution results</a>
+## Combination of above deconvolution results</a>
 ```{r}
 tme_combine<-cibersort %>% 
   inner_join(.,mcp,by       = "ID") %>% 
