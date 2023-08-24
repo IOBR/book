@@ -28,7 +28,7 @@ deg-analysis
 gsea-analysis-of-degs
 deg-analysis-1
 identifying-signatures-associated-with-tme-clusters
-signatures-and-relevant-phenotypes
+signature-and-relevant-phenotypes
 loading-packages-1
 downloading-data-for-example-1
 signature-score-estimation
@@ -51,8 +51,6 @@ method-6-timer
 method-7-quantiseq
 method-8-ips
 combination-of-above-deconvolution-results
-licenses-of-the-deconvolution-methods
-licenses-of-the-signature-esitmation-method
 cross
 chapters-and-sub-chapters
 captioned-figures-and-tables

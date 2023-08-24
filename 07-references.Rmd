@@ -1,4 +1,4 @@
-# References
+# **References**
 
 If IOBR R package is utilized in your published research, please cite:
    
@@ -96,7 +96,6 @@ TCGA.STAD MAF data: https://api.gdc.cancer.gov/data/c06465a3-50e7-46f7-b2dd-7bd6
 19. Qin X, Zhou M, Lv H, Mao X, Li X, Guo H, Li L, Xing H. Long noncoding RNA LINC00657 inhibits cervical cancer development by sponging miR-20a-5p and targeting RUNX3. Cancer Lett. 2020 Oct 
 
 20. Zhang XM, Wang J, Liu ZL, Liu H, Cheng YF, Wang T. LINC00657/miR-26a-5p/CKS2 ceRNA network promotes the growth of esophageal cancer cells via the MDM2/p53/Bcl2/Bax pathway. Biosci Rep. 2020;40(6):BSR20200525.
-
 
 21. Cancer Genome Atlas Research Network. Comprehensive molecular characterization of gastric adenocarcinoma. Nature. 2014 Sep 11;513(7517):202-9. doi: 10.1038/nature13480.
 

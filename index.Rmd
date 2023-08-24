@@ -20,8 +20,7 @@ csl: chicago-fullnote-bibliography.csl
 ---
 
 # **IOBR introduction**{-}
-
-## Preface{-}
+Preface
 ```{r echo=FALSE, fig.cap='The workflow of IOBR', out.width='95%', fig.asp=.85, fig.align='center'}
 knitr::include_graphics(rep("./fig/IOBR-Workflow.png", 1))
 ```

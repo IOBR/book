@@ -1,6 +1,6 @@
 
 
-# Signatures and relevant phenotypes
+# **Signature and relevant phenotypes**
 
 ## Loading packages
 Load the IOBR package in your R session after the installation is complete:

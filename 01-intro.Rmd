@@ -1,6 +1,6 @@
 
 
-# How to install IOBR
+# **How to install IOBR**
 
 ## `r if(knitr::is_html_output()) emo::ji("time")` Installing Dependency Packages
 
@@ -79,7 +79,7 @@ knitr::include_graphics(rep("./fig/IOBR-Package.png", 1))
 
 
 
-# RNA Data preprocessing
+# **RNA Data preprocessing**
 ## Loading packages
 
 Load the IOBR package in your R session after the installation is complete:
@@ -245,7 +245,7 @@ Yuqing Zhang and others, ComBat-seq: batch effect adjustment for RNA-seq count d
 Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., & Storey, J. D. (2012). The sva package for removing batch effects and other unwanted variation in high-throughput experiments. Bioinformatics, 28(6), 882-883.
 
 
-# Tumor ecosystem analysis
+# **Tumor ecosystem analysis**
 ## Determine TME subtype of gastric cancer using TMEclassifier
 加载TME分类器R包[TMEclassifier](https://github.com/LiaoWJLab/TMEclassifier)
 ```{r, message=FALSE}

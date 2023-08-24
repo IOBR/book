@@ -1,5 +1,5 @@
 
-# TME deconvolution
+# **TME deconvolution**
 
 ## Loading packages
 Load the IOBR package in your R session after the installation is complete:
