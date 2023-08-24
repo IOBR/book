@@ -2,3 +2,6 @@ delete_merged_file: true
 language:
   ui:
     chapter_name: "Chapter "
+
+# Github Pages
+output_dir: "docs"
