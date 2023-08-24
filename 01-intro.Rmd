@@ -29,8 +29,6 @@ library(IOBR)
 ```
 
 
-
-
 ## `r if(knitr::is_html_output()) emo::ji("zoom")` The main pipeline of IOBR
 
 ```{r echo=FALSE, flowchart, fig.cap='The main pipeline of IOBR',  fig.width= 8, fig.height = 5.5, fig.align='center'}
