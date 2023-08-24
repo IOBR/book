@@ -62,7 +62,7 @@ cibersort<-deconvo_tme(eset = eset_acrg, method = "cibersort", arrays = TRUE, pe
 res<-cell_bar_plot(input = cibersort[1:12,], title = "CIBERSORT Cell Fraction")
 ```
 
-### Method 2: EPIC
+## Method 2: EPIC
 ```{r}
 # help(deconvo_epic)
 epic<-deconvo_tme(eset = eset_acrg, method = "epic", arrays = TRUE)
@@ -75,7 +75,7 @@ mcp<-deconvo_tme(eset = eset_acrg, method = "mcpcounter")
 head(mcp)
 ```
 
-### Method 4: xCELL
+## Method 4: xCELL
 ```{r,results = "hide", message = FALSE, warning = FALSE}
 xcell<-deconvo_tme(eset = eset_acrg, method = "xcell", arrays = TRUE)
 ```
@@ -124,7 +124,7 @@ dim(tme_combine)
 
 If you use this package in your work, please cite both our package and the method(s) you are using.
 
-## Licenses of the deconvolution methods
+Licenses of the deconvolution methods
 | method | license | citation |
 |--------|---------|----------|
 | [CIBERSORT](https://cibersort.stanford.edu/) | free for non-commerical use only | Newman, A. M., Liu, C. L., Green, M. R., Gentles, A. J., Feng, W., Xu, Y., … Alizadeh, A. A. (2015). Robust enumeration of cell subsets from tissue expression profiles. Nature Methods, 12(5), 453–457.  https://doi.org/10.1038/nmeth.3337 |
@@ -136,7 +136,7 @@ If you use this package in your work, please cite both our package and the metho
 | [xCell](http://xcell.ucsf.edu/) | free ([GPL 3.0](https://github.com/dviraran/xCell/blob/master/DESCRIPTION)) | Aran, D., Hu, Z., & Butte, A. J. (2017). xCell: digitally portraying the tissue cellular heterogeneity landscape. Genome Biology, 18(1), 220. https://doi.org/10.1186/s13059-017-1349-1 |
 | [EPIC](https://gfellerlab.shinyapps.io/EPIC_1-1/) | free for non-commercial use only ([Academic License](https://github.com/GfellerLab/EPIC/blob/master/LICENSE)) | Racle, J., de Jonge, K., Baumgaertner, P., Speiser, D. E., & Gfeller, D. (2017). Simultaneous enumeration of cancer and immune cell types from bulk tumor gene expression data. ELife, 6, e26476. https://doi.org/10.7554/eLife.26476 |
 
-### Licenses of the signature-esitmation method
+Licenses of the signature-esitmation method
 | method | license | citation |
 |--------|---------|----------|
 | [GSVA](http://www.bioconductor.org/packages/release/bioc/html/GSVA.html) | free ([GPL (>= 2)](https://github.com/rcastelo/GSVA)) | Hänzelmann S, Castelo R, Guinney J (2013). “GSVA: gene set variation analysis for microarray and RNA-Seq data.” BMC Bioinformatics, 14, 7. doi: 10.1186/1471-2105-14-7, http://www.biomedcentral.com/1471-2105/14/7 |
