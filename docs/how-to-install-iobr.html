@@ -205,9 +205,10 @@ div.csl-indent {
 <li class="chapter" data-level="4.3" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#signature-score-estimation"><i class="fa fa-check"></i><b>4.3</b> Signature score estimation</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#signature-collection-of-iobr"><i class="fa fa-check"></i><b>4.3.1</b> Signature collection of IOBR</a></li>
-<li class="chapter" data-level="4.3.2" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#estimated-by-ssgsea-methodology"><i class="fa fa-check"></i><b>4.3.2</b> Estimated by ssGSEA methodology</a></li>
-<li class="chapter" data-level="4.3.3" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#estimated-by-zscore-function"><i class="fa fa-check"></i><b>4.3.3</b> Estimated by zscore function</a></li>
-<li class="chapter" data-level="4.3.4" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#reference"><i class="fa fa-check"></i><b>4.3.4</b> Reference</a></li>
+<li class="chapter" data-level="4.3.2" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#estimated-by-pca-method"><i class="fa fa-check"></i><b>4.3.2</b> Estimated by PCA method</a></li>
+<li class="chapter" data-level="4.3.3" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#estimated-by-ssgsea-methodology"><i class="fa fa-check"></i><b>4.3.3</b> Estimated by ssGSEA methodology</a></li>
+<li class="chapter" data-level="4.3.4" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#estimated-by-zscore-function"><i class="fa fa-check"></i><b>4.3.4</b> Estimated by zscore function</a></li>
+<li class="chapter" data-level="4.3.5" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#reference"><i class="fa fa-check"></i><b>4.3.5</b> Reference</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#identifying-features-associated-with-survival"><i class="fa fa-check"></i><b>4.4</b> Identifying features associated with survival</a></li>
 <li class="chapter" data-level="4.5" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#visulization-using-heatmap"><i class="fa fa-check"></i><b>4.5</b> Visulization using heatmap</a></li>
@@ -337,11 +338,12 @@ Figure 1.1: The main pipeline of IOBR
 <strong>Signature Module: calculate signature scores, estimate phenotype related signatures and corresponding genes, and evaluate signatures generated from single-cell RNA sequencing data </strong>
 </div>
 <ul>
-<li><p><code>calculate_sig_score()</code>: estimate the interested signatures enrolled in IOBR R package, which involves TME-associated, tumor-metabolism, and tumor-intrinsic signatures.</p></li>
-<li><p><code>feature_manipulation()</code>: manipulate features including the cell fraction and signatures generated from multi-omics data for latter analysis and model construction. Remove missing values, outliers and variables without significant variance.</p></li>
-<li><p><code>format_signatures()</code>: generate the object of <code>calculate_sig_score()</code>function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.</p></li>
-<li><p><code>format_msigdb()</code>: transform the signature gene sets data with gmt format, which is not included in the signature collection and might be downloaded in the MSgiDB website, into the object of <code>calculate_sig_score()</code>function.
-</br></p></li>
+<li><code>calculate_sig_score()</code>: estimate the interested signatures enrolled in IOBR R package, which involves TME-associated, tumor-metabolism, and tumor-intrinsic signatures.</li>
+<li><code>feature_manipulation()</code>: manipulate features including the cell fraction and signatures generated from multi-omics data for latter analysis and model construction. Remove missing values, outliers and variables without significant variance.</li>
+<li><code>format_signatures()</code>: generate the object of <code>calculate_sig_score()</code>function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.</li>
+<li><code>format_msigdb()</code>: transform the signature gene sets data with gmt format, which is not included in the signature collection and might be downloaded in the MSgiDB website, into the object of <code>calculate_sig_score()</code>function.
+</br></li>
+</ul></li>
 <li><div style="color:green">
 <strong>Batch Analysis and Visualization: batch survival analysis and batch correlation analysis and other batch statistical analyses </strong>
 </div>
@@ -354,7 +356,6 @@ Figure 1.1: The main pipeline of IOBR
 <li><code>iobr_cor_plot()</code>: visualization of batch correlation analysis of signatures from ‘sig_group’. Visualize the correlation between signature or phenotype with expression of gene sets in target signature is also supported.</li>
 <li><code>cell_bar_plot()</code>: batch visualization of TME cell fraction, supporting input of deconvolution results from ‘CIBERSORT’, ‘EPIC’ and ‘quanTIseq’ methodologies to further compare the TME cell distributions within one sample or among different samples.
 </br></li>
-</ul></li>
 </ul></li>
 <li><div style="color:green">
 <strong>Signature Associated Mutation Module: identify and analyze mutations relevant to targeted signatures</strong>
@@ -369,7 +370,7 @@ Figure 1.1: The main pipeline of IOBR
 </div>
 <ul>
 <li><code>BinomialModel()</code>: select features and construct a model to predict a binary phenotype.</li>
-<li><code>PrognosticMode()</code>: select features and construct a model to predict clinical survial outcome.
+<li><code>PrognosticMode()</code>: select features and construct a model to predict clinical survival outcome.
 </br></li>
 </ul></li>
 </ul>
