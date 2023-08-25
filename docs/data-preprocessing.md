@@ -10,7 +10,7 @@ library(tidyverse)
 library(clusterProfiler)
 ```
 
-## Downloading data for example
+## Download array data using `GEOquery`
 Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.nih.gov/25894828/) using `GEOquery` R package.
 
 ```r
@@ -106,7 +106,6 @@ head(anno_gc_vm32)
 ## 6 108234180 108305222          <NA> <NA>
 ```
 
-
 ### For Array data: HGU133PLUS-2 (Affaymetrix)
 
 ```r
@@ -131,18 +130,40 @@ eset[1:5, 1:3]
 
 ### For RNAseq data
 
-Download RNAseq data using UCSCXenaTools
+Download RNAseq data using `UCSCXenaTools`
 
+```r
+if (!requireNamespace("UCSCXenaTools", quietly = TRUE))   BiocManager::install("UCSCXenaTools")
+library(UCSCXenaTools)
+# NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
+eset_stad<-XenaGenerate(subset = XenaCohorts =="GDC TCGA Stomach Cancer (STAD)") %>% 
+  XenaFilter(filterDatasets    = "TCGA-STAD.htseq_counts.tsv") %>% 
+  XenaQuery() %>%
+  XenaDownload() %>% 
+  XenaPrepare()
+eset_stad[1:5, 1:3]
+```
 
 Transform gene expression matrix into TPM format, and conduct subsequent annotation. 
 
+```r
+# Remove the version numbers in Ensembl ID.
+eset_stad$Ensembl_ID<-substring(eset_stad$Ensembl_ID, 1, 15)
+eset_stad<-column_to_rownames(eset_stad, var = "Ensembl_ID")
+
+# Revert back to original format because the data from UCSC was log2(x+1)transformed.
+eset_stad<-(2^eset_stad)+1
+
+eset_stad<-count2tpm(countMat = eset_stad, idType = "Ensembl", org="hsa", source = "local" )
+
+eset_stad[1:5,1:5]
+```
 
 ## Identifying outlier samples
 
 Take ACRG microarray data for example
 
 ```r
-# source("E:/18-Github/Organization/IOBR/R/find_outlier_samples.R")
 res <- find_outlier_samples(eset = eset, project = "ACRG", show_plot = TRUE)
 ```
 
@@ -151,6 +172,8 @@ res <- find_outlier_samples(eset = eset, project = "ACRG", show_plot = TRUE)
 ```
 ## [1] "GSM1523817" "GSM1523858" "GSM1523984" "GSM1523988" "GSM1524030"
 ```
+
+Removing potential outlier samples
 
 ```r
 eset1 <- eset[, !colnames(eset)%in%res]
@@ -189,7 +212,7 @@ res<- iobr_pca(data       = eset1,
 res
 ```
 
-<img src="data-preprocessing_files/figure-epub3/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
+<img src="data-preprocessing_files/figure-epub3/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
 
 
 ## Batch effect correction
@@ -261,7 +284,7 @@ eset_com <- remove_batcheffect( eset1       = eset1,
 ## [1] ">>-- colors for PCA: #5f75ae" ">>-- colors for PCA: #64a841"
 ```
 
-<img src="data-preprocessing_files/figure-epub3/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
+<img src="data-preprocessing_files/figure-epub3/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
 
 ```r
 dim(eset_com)
@@ -275,6 +298,10 @@ dim(eset_com)
 
 ## References
 
+Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. Journal of Open Source Software, 4(40), 1627, https://doi.org/10.21105/joss.01627
+
 Yuqing Zhang and others, ComBat-seq: batch effect adjustment for RNA-seq count data, NAR Genomics and Bioinformatics, Volume 2, Issue 3, September 2020, lqaa078, https://doi.org/10.1093/nargab/lqaa078
 
 Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., & Storey, J. D. (2012). The sva package for removing batch effects and other unwanted variation in high-throughput experiments. Bioinformatics, 28(6), 882-883.
+
+

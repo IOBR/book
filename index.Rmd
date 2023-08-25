@@ -44,10 +44,17 @@ This R package integrates 8 published methodologies for decoding tumor microenvi
 Zeng D, Ye Z, Shen R, Yu G, Wu J, Xiong Y,..., Liao W (2021) **IOBR**: Multi-Omics Immuno-Oncology Biological Research to Decode Tumor Microenvironment and Signatures. *Frontiers in Immunology*. 12:687975. [doi: 10.3389/fimmu.2021.687975](https://www.frontiersin.org/articles/10.3389/fimmu.2021.687975/full)
 
 
+## `r if(knitr::is_html_output()) emo::ji("time")` Major Updates
+
+```{r echo=FALSE, fig.cap='The workflow of IOBR', out.width='95%', fig.asp=.85, fig.align='center'}
+knitr::include_graphics(rep("./fig/IOBR-Workflow2.png", 1))
+```
+
 ## `r if(knitr::is_html_output()) emo::ji("email")` Reporting bugs
 Please report bugs to the [Github issues page](https://github.com/IOBR/IOBR/issues)
 
 E-mail any questions to <dongqiangzeng0808@gmail.com>
+
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages

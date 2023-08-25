@@ -49,7 +49,7 @@ table(tme$TMEcluster)
 head(tme)
 ```
 
-## DEG analysis
+## DEG analysis: method1
 选择IA和IE分型进行差异分析
 
 ```{r}
@@ -67,10 +67,10 @@ deg  <-   iobr_deg(eset         = eset,
                    logfc_cutoff = 0.5)
 ```
 
+## GSEA analysis based on differential express gene analysis results
 
-## GSEA analysis of DEGs
 
-选择IOBR的signature collection
+Select the gene set list in IOBR's signature collection.
 ```{r}
 head(deg)
 
@@ -78,10 +78,48 @@ sig_list <- signature_collection[c("TMEscoreB_CIR", "TMEscoreA_CIR", "DNA_replic
                                    "Pan_F_TBRs", "TGFb.myCAF", "Ferroptosis", "TLS_Nature", "Glycolysis")]
 sig_list
 ```
-结果有报错，寻找原因中！！！
+
+```{r, eval=FALSE}
+gsea<-     sig_gsea(deg,
+                    genesets          = sig_list,
+                    path              = "GSEA",
+                    gene_symbol       = "symbol",
+                    logfc             = "log2FoldChange",
+                    org               = "hsa",
+                    show_plot         = TRUE,
+                    msigdb            = TRUE,
+                    category          = "H",
+                    subcategory       = NULL,
+                    palette_bar       = "set2")
+```
+
+```{r echo=FALSE, fig.cap='GSEA of TME gent sets', out.width='95%', fig.asp=.85, fig.align='center'}
+knitr::include_graphics(rep("./fig/gsea-1.png", 1))
+```
+
+Hallmark gene sigantures
+```{r, eval=FALSE}
+gsea<-     sig_gsea(deg,
+                    genesets          = NULL,
+                    path              = "GSEA",
+                    gene_symbol       = "symbol",
+                    logfc             = "log2FoldChange",
+                    org               = "hsa",
+                    show_plot         = TRUE,
+                    msigdb            = TRUE,
+                    category          = "H",
+                    subcategory       = NULL,
+                    palette_bar       = "aaas",
+                    show_bar          = 5,
+                    show_gsea         = 6)
+```
+
+```{r echo=FALSE, fig.cap='GSEA of Hallmark gent sets', out.width='95%', fig.asp=.85, fig.align='center'}
+knitr::include_graphics(rep("./fig/gsea-2.png", 1))
+```
 
 
-## DEG analysis
+## DEG analysis: method2
 使用`find_markers_in_bulk`寻找TME分型相关的差异基因
 
 ```{r, message = F, warning = F}

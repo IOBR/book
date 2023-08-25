@@ -166,6 +166,18 @@ This R package integrates 8 published methodologies for decoding tumor microenvi
 
 Zeng D, Ye Z, Shen R, Yu G, Wu J, Xiong Y,\ldots, Liao W (2021) \textbf{IOBR}: Multi-Omics Immuno-Oncology Biological Research to Decode Tumor Microenvironment and Signatures. \emph{Frontiers in Immunology}. 12:687975. \href{https://www.frontiersin.org/articles/10.3389/fimmu.2021.687975/full}{doi: 10.3389/fimmu.2021.687975}
 
+\hypertarget{major-updates}{%
+\section{Major Updates}\label{major-updates}}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.95\linewidth]{./fig/IOBR-Workflow2} 
+
+}
+
+\caption{The workflow of IOBR}\label{fig:unnamed-chunk-2}
+\end{figure}
+
 \hypertarget{reporting-bugs}{%
 \section{Reporting bugs}\label{reporting-bugs}}
 
@@ -227,6 +239,18 @@ When the dependent environments are built, users are able to install IOBR from g
 ## Warning: package 'ggplot2' was built under R version 4.2.3
 \end{verbatim}
 
+\hypertarget{how-to-update-iobr-package}{%
+\section{How to update IOBR package}\label{how-to-update-iobr-package}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{detach}\NormalTok{(}\StringTok{"package:IOBR"}\NormalTok{)}
+\NormalTok{path}\OtherTok{\textless{}{-}}\FunctionTok{.libPaths}\NormalTok{()}
+\FunctionTok{remove.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}IOBR\textquotesingle{}}\NormalTok{), }\AttributeTok{lib=}\FunctionTok{file.path}\NormalTok{(path))}
+\NormalTok{devtools}\SpecialCharTok{::}\FunctionTok{install\_github}\NormalTok{(}\StringTok{"IOBR/IOBR"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{the-main-pipeline-of-iobr}{%
 \section{The main pipeline of IOBR}\label{the-main-pipeline-of-iobr}}
 
@@ -254,6 +278,12 @@ When the dependent environments are built, users are able to install IOBR from g
     \texttt{anno\_eset()}: annotate the normalized genes expression matrix, including RNAseq and array (Affymetrix or Illumina).
   \item
     \texttt{remove\_duplicate\_genes()}: remove the genes annotated with the duplicated symbol after normalization and retain only the symbol with highest expression level.
+  \item
+    \texttt{mouse2human\_eset()}: Converting muouse gene symbol to human gene symbol of expression set.
+  \item
+    \texttt{find\_outlier\_samples()}: Waiting for updates\ldots{}
+  \item
+    \texttt{remove\_batcheffect()}: Waiting for updates\ldots{}
   \end{itemize}
 \item
   \textbf{TME Deconvolution Module: integrate multiple algorithms to decode immune contexture}
@@ -278,6 +308,8 @@ When the dependent environments are built, users are able to install IOBR from g
     \texttt{format\_signatures()}: generate the object of \texttt{calculate\_sig\_score()}function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.
   \item
     \texttt{format\_msigdb()}: transform the signature gene sets data with gmt format, which is not included in the signature collection and might be downloaded in the MSgiDB website, into the object of \texttt{calculate\_sig\_score()}function.
+  \item
+    \texttt{sig\_gsea()}: Waiting for updates\ldots{}
   \end{itemize}
 \item
   \textbf{Batch Analysis and Visualization: batch survival analysis and batch correlation analysis and other batch statistical analyses }
@@ -285,9 +317,9 @@ When the dependent environments are built, users are able to install IOBR from g
   \begin{itemize}
   \tightlist
   \item
-    \texttt{batch\_surv}: batch survival analysis of multiple continuous variables including varied signature scores.
+    \texttt{batch\_surv()}: batch survival analysis of multiple continuous variables including varied signature scores.
   \item
-    \texttt{subgroup\_survival}: batch survival analysis of multiple categorized variables with different number of subgroups.
+    \texttt{subgroup\_survival()}: batch survival analysis of multiple categorized variables with different number of subgroups.
   \item
     \texttt{batch\_cor()}: batch analysis of correlation between two continuous variables using Pearson correlation coefficient or Spearman's rank correlation coefficient .
   \item
@@ -298,7 +330,32 @@ When the dependent environments are built, users are able to install IOBR from g
     \texttt{iobr\_cor\_plot()}: visualization of batch correlation analysis of signatures from `sig\_group'. Visualize the correlation between signature or phenotype with expression of gene sets in target signature is also supported.
   \item
     \texttt{cell\_bar\_plot()}: batch visualization of TME cell fraction, supporting input of deconvolution results from `CIBERSORT', `EPIC' and `quanTIseq' methodologies to further compare the TME cell distributions within one sample or among different samples.
+  \item
+    \texttt{iobr\_pca()}: The iobr\_pca function performs Principal Component Analysis (PCA), which reduces the dimensionality of data while maintaining most of the original variance, and visualizes the PCA results on a scatter plot.
+  \item
+    \texttt{iobr\_cor\_plot()}: Integrative correlation between phenotype and features.
+  \item
+    \texttt{iobr\_deg()}: Waiting for updates\ldots{}
+  \item
+    \texttt{get\_cor()}: Waiting for updates\ldots{}
+  \item
+    \texttt{roc\_time()}: Waiting for updates\ldots{}
+  \item
+    \texttt{sig\_box()}: Waiting for updates\ldots{}
+  \item
+    \texttt{sig\_heatmap()}: Waiting for updates\ldots{}
+  \item
+    \texttt{sig\_forest()}: Waiting for updates\ldots{}
+  \item
+    \texttt{sig\_roc()}: Waiting for updates\ldots{}
+  \item
+    \texttt{sig\_surv\_plot()}: Waiting for updates\ldots{}
+  \item
+    \texttt{find\_markers\_in\_bulk()}: Waiting for updates\ldots{}
   \end{itemize}
+\end{itemize}
+
+\begin{itemize}
 \item
   \textbf{Signature Associated Mutation Module: identify and analyze mutations relevant to targeted signatures}
 
@@ -321,6 +378,118 @@ When the dependent environments are built, users are able to install IOBR from g
   \end{itemize}
 \end{itemize}
 
+\hypertarget{current-working-environment}{%
+\section{Current working environment}\label{current-working-environment}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sessionInfo}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## R version 4.2.0 (2022-04-22 ucrt)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 19045)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.utf8 
+## [2] LC_CTYPE=Chinese (Simplified)_China.utf8   
+## [3] LC_MONETARY=Chinese (Simplified)_China.utf8
+## [4] LC_NUMERIC=C                               
+## [5] LC_TIME=Chinese (Simplified)_China.utf8    
+## 
+## attached base packages:
+## [1] grid      stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+## [1] IOBR_0.99.9           survival_3.3-1        ggpubr_0.4.0         
+## [4] ggplot2_3.4.2         dplyr_1.1.2           tibble_3.2.1         
+## [7] tidyHeatmap_1.8.1     ComplexHeatmap_2.15.4
+## 
+## loaded via a namespace (and not attached):
+##   [1] readxl_1.4.0                backports_1.4.1            
+##   [3] circlize_0.4.15             corrplot_0.92              
+##   [5] GSEABase_1.58.0             splines_4.2.0              
+##   [7] BiocParallel_1.30.3         GenomeInfoDb_1.34.4        
+##   [9] digest_0.6.29               foreach_1.5.2              
+##  [11] htmltools_0.5.2             viridis_0.6.2              
+##  [13] fansi_1.0.3                 magrittr_2.0.3             
+##  [15] memoise_2.0.1               ScaledMatrix_1.4.0         
+##  [17] cluster_2.1.3               googlesheets4_1.0.0        
+##  [19] doParallel_1.0.17           tzdb_0.3.0                 
+##  [21] limma_3.52.1                Biostrings_2.64.0          
+##  [23] readr_2.1.2                 annotate_1.74.0            
+##  [25] modelr_0.1.8                matrixStats_0.62.0         
+##  [27] limSolve_1.5.6              lpSolve_5.6.15             
+##  [29] colorspace_2.0-3            blob_1.2.3                 
+##  [31] rvest_1.0.2                 haven_2.5.0                
+##  [33] xfun_0.40                   crayon_1.5.2               
+##  [35] RCurl_1.98-1.7              jsonlite_1.8.0             
+##  [37] graph_1.74.0                genefilter_1.78.0          
+##  [39] zoo_1.8-10                  iterators_1.0.14           
+##  [41] glue_1.6.2                  survminer_0.4.9            
+##  [43] gtable_0.3.1                gargle_1.2.0               
+##  [45] zlibbioc_1.42.0             XVector_0.36.0             
+##  [47] GetoptLong_1.0.5            DelayedArray_0.22.0        
+##  [49] BiocSingular_1.12.0         car_3.1-0                  
+##  [51] Rhdf5lib_1.18.2             SingleCellExperiment_1.18.0
+##  [53] shape_1.4.6                 HDF5Array_1.24.1           
+##  [55] BiocGenerics_0.42.0         abind_1.4-5                
+##  [57] scales_1.2.0                DBI_1.1.2                  
+##  [59] rstatix_0.7.0               Rcpp_1.0.9                 
+##  [61] viridisLite_0.4.1           xtable_1.8-4               
+##  [63] clue_0.3-61                 rsvd_1.0.5                 
+##  [65] bit_4.0.4                   proxy_0.4-27               
+##  [67] preprocessCore_1.58.0       km.ci_0.5-6                
+##  [69] GSVA_1.44.2                 stats4_4.2.0               
+##  [71] glmnet_4.1-4                httr_1.4.3                 
+##  [73] RColorBrewer_1.1-3          ellipsis_0.3.2             
+##  [75] pkgconfig_2.0.3             XML_3.99-0.10              
+##  [77] dbplyr_2.2.0                locfit_1.5-9.5             
+##  [79] utf8_1.2.2                  tidyselect_1.2.0           
+##  [81] rlang_1.1.0                 AnnotationDbi_1.58.0       
+##  [83] munsell_0.5.0               cellranger_1.1.0           
+##  [85] tools_4.2.0                 cachem_1.0.6               
+##  [87] cli_3.4.1                   generics_0.1.3             
+##  [89] RSQLite_2.2.14              broom_0.8.0                
+##  [91] evaluate_0.15               stringr_1.4.0              
+##  [93] fastmap_1.1.0               yaml_2.3.5                 
+##  [95] knitr_1.39                  bit64_4.0.5                
+##  [97] fs_1.5.2                    survMisc_0.5.6             
+##  [99] purrr_0.3.4                 dendextend_1.15.2          
+## [101] KEGGREST_1.36.2             sparseMatrixStats_1.8.0    
+## [103] xml2_1.3.3                  compiler_4.2.0             
+## [105] rstudioapi_0.13             png_0.1-7                  
+## [107] e1071_1.7-11                ggsignif_0.6.3             
+## [109] reprex_2.0.1                geneplotter_1.74.0         
+## [111] stringi_1.7.6               forcats_0.5.1              
+## [113] lattice_0.20-45             Matrix_1.5-4.1             
+## [115] KMsurv_0.1-5                vctrs_0.6.2                
+## [117] rhdf5filters_1.8.0          pillar_1.9.0               
+## [119] lifecycle_1.0.3             GlobalOptions_0.1.2        
+## [121] irlba_2.3.5                 data.table_1.14.2          
+## [123] cowplot_1.1.1               bitops_1.0-7               
+## [125] patchwork_1.1.1             GenomicRanges_1.48.0       
+## [127] R6_2.5.1                    bookdown_0.35              
+## [129] gridExtra_2.3               IRanges_2.30.0             
+## [131] codetools_0.2-18            MASS_7.3-56                
+## [133] assertthat_0.2.1            rhdf5_2.40.0               
+## [135] SummarizedExperiment_1.26.1 DESeq2_1.36.0              
+## [137] rjson_0.2.21                withr_2.5.0                
+## [139] S4Vectors_0.34.0            GenomeInfoDbData_1.2.8     
+## [141] parallel_4.2.0              hms_1.1.1                  
+## [143] beachmat_2.12.0             quadprog_1.5-8             
+## [145] tidyverse_1.3.2             tidyr_1.2.0                
+## [147] class_7.3-20                DelayedMatrixStats_1.18.0  
+## [149] rmarkdown_2.14              MatrixGenerics_1.8.0       
+## [151] carData_3.0-5               googledrive_2.0.0          
+## [153] Biobase_2.56.0              lubridate_1.8.0
+\end{verbatim}
+
 \hypertarget{rna-data-preprocessing}{%
 \chapter{\texorpdfstring{\textbf{RNA Data preprocessing}}{RNA Data preprocessing}}\label{rna-data-preprocessing}}
 
@@ -337,8 +506,8 @@ Load the IOBR package in your R session after the installation is complete:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{downloading-data-for-example}{%
-\section{Downloading data for example}\label{downloading-data-for-example}}
+\hypertarget{download-array-data-using-geoquery}{%
+\section{\texorpdfstring{Download array data using \texttt{GEOquery}}{Download array data using GEOquery}}\label{download-array-data-using-geoquery}}
 
 Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gastric cancer: GSE62254} using \texttt{GEOquery} R package.
 
@@ -470,9 +639,38 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 \hypertarget{for-rnaseq-data}{%
 \subsection{For RNAseq data}\label{for-rnaseq-data}}
 
-Download RNAseq data using UCSCXenaTools
+Download RNAseq data using \texttt{UCSCXenaTools}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{requireNamespace}\NormalTok{(}\StringTok{"UCSCXenaTools"}\NormalTok{, }\AttributeTok{quietly =} \ConstantTok{TRUE}\NormalTok{))   BiocManager}\SpecialCharTok{::}\FunctionTok{install}\NormalTok{(}\StringTok{"UCSCXenaTools"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(UCSCXenaTools)}
+\CommentTok{\# }\AlertTok{NOTE}\CommentTok{: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.}
+\NormalTok{eset\_stad}\OtherTok{\textless{}{-}}\FunctionTok{XenaGenerate}\NormalTok{(}\AttributeTok{subset =}\NormalTok{ XenaCohorts }\SpecialCharTok{==}\StringTok{"GDC TCGA Stomach Cancer (STAD)"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{XenaFilter}\NormalTok{(}\AttributeTok{filterDatasets    =} \StringTok{"TCGA{-}STAD.htseq\_counts.tsv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{XenaQuery}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{XenaDownload}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{XenaPrepare}\NormalTok{()}
+\NormalTok{eset\_stad[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
 
 Transform gene expression matrix into TPM format, and conduct subsequent annotation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remove the version numbers in Ensembl ID.}
+\NormalTok{eset\_stad}\SpecialCharTok{$}\NormalTok{Ensembl\_ID}\OtherTok{\textless{}{-}}\FunctionTok{substring}\NormalTok{(eset\_stad}\SpecialCharTok{$}\NormalTok{Ensembl\_ID, }\DecValTok{1}\NormalTok{, }\DecValTok{15}\NormalTok{)}
+\NormalTok{eset\_stad}\OtherTok{\textless{}{-}}\FunctionTok{column\_to\_rownames}\NormalTok{(eset\_stad, }\AttributeTok{var =} \StringTok{"Ensembl\_ID"}\NormalTok{)}
+
+\CommentTok{\# Revert back to original format because the data from UCSC was log2(x+1)transformed.}
+\NormalTok{eset\_stad}\OtherTok{\textless{}{-}}\NormalTok{(}\DecValTok{2}\SpecialCharTok{\^{}}\NormalTok{eset\_stad)}\SpecialCharTok{+}\DecValTok{1}
+
+\NormalTok{eset\_stad}\OtherTok{\textless{}{-}}\FunctionTok{count2tpm}\NormalTok{(}\AttributeTok{countMat =}\NormalTok{ eset\_stad, }\AttributeTok{idType =} \StringTok{"Ensembl"}\NormalTok{, }\AttributeTok{org=}\StringTok{"hsa"}\NormalTok{, }\AttributeTok{source =} \StringTok{"local"}\NormalTok{ )}
+
+\NormalTok{eset\_stad[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{identifying-outlier-samples}{%
 \section{Identifying outlier samples}\label{identifying-outlier-samples}}
@@ -481,7 +679,6 @@ Take ACRG microarray data for example
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# source("E:/18{-}Github/Organization/IOBR/R/find\_outlier\_samples.R")}
 \NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{find\_outlier\_samples}\NormalTok{(}\AttributeTok{eset =}\NormalTok{ eset, }\AttributeTok{project =} \StringTok{"ACRG"}\NormalTok{, }\AttributeTok{show\_plot =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -491,6 +688,8 @@ Take ACRG microarray data for example
 \begin{verbatim}
 ## [1] "GSM1523817" "GSM1523858" "GSM1523984" "GSM1523988" "GSM1524030"
 \end{verbatim}
+
+Removing potential outlier samples
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -535,7 +734,7 @@ Take ACRG microarray data for example
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-10-1} \end{center}
+\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 \hypertarget{batch-effect-correction}{%
 \section{Batch effect correction}\label{batch-effect-correction}}
@@ -611,7 +810,7 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 ## [1] ">>-- colors for PCA: #5f75ae" ">>-- colors for PCA: #64a841"
 \end{verbatim}
 
-\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-13-1} \end{center}
+\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -627,6 +826,8 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 
 \hypertarget{references}{%
 \section{References}\label{references}}
+
+Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. Journal of Open Source Software, 4(40), 1627, \url{https://doi.org/10.21105/joss.01627}
 
 Yuqing Zhang and others, ComBat-seq: batch effect adjustment for RNA-seq count data, NAR Genomics and Bioinformatics, Volume 2, Issue 3, September 2020, lqaa078, \url{https://doi.org/10.1093/nargab/lqaa078}
 
@@ -644,8 +845,8 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{downloading-data-for-example-1}{%
-\section{Downloading data for example}\label{downloading-data-for-example-1}}
+\hypertarget{downloading-data-for-example}{%
+\section{Downloading data for example}\label{downloading-data-for-example}}
 
 Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gastric cancer: GSE62254} using \texttt{GEOquery} R package.
 
@@ -711,7 +912,7 @@ Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gas
 ## Step-1: Expression data preprocessing...
 ## Step-2: TME deconvolution...
 ## Step-3: Predicting TME phenotypes...
-## [09:58:03] WARNING: amalgamation/../src/learner.cc:1040: 
+## [12:37:55] WARNING: amalgamation/../src/learner.cc:1040: 
 ##   If you are loading a serialized model (like pickle in Python, RDS in R) generated by
 ##   older XGBoost, please export the model by calling `Booster.save_model` from that version
 ##   first, then load it back in current version. See:
@@ -720,7 +921,7 @@ Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gas
 ## 
 ##   for more details about differences between saving model and serializing.
 ## 
-## [09:58:03] WARNING: amalgamation/../src/learner.cc:749: Found JSON model saved before XGBoost 1.6, please save the model using current version again. The support for old JSON model will be discontinued in XGBoost 2.3.
+## [12:37:55] WARNING: amalgamation/../src/learner.cc:749: Found JSON model saved before XGBoost 1.6, please save the model using current version again. The support for old JSON model will be discontinued in XGBoost 2.3.
 ## >>>--- DONE!
 \end{verbatim}
 
@@ -1363,8 +1564,8 @@ Load the IOBR package in your R session after the installation is complete:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{downloading-data-for-example-2}{%
-\section{Downloading data for example}\label{downloading-data-for-example-2}}
+\hypertarget{downloading-data-for-example-1}{%
+\section{Downloading data for example}\label{downloading-data-for-example-1}}
 
 Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gastric cancer: GSE62254} using \texttt{GEOquery} R package.
 
@@ -1617,7 +1818,7 @@ This method is suitable for gene sets with a large number of genes, such as thos
 
 }
 
-\caption{The workflow of IOBR}\label{fig:unnamed-chunk-10}
+\caption{Gene sets of MSigDb}\label{fig:unnamed-chunk-10}
 \end{figure}
 
 \begin{Shaded}
@@ -2063,8 +2264,8 @@ Load the IOBR package in your R session after the installation is complete:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{downloading-data-for-example-3}{%
-\section{Downloading data for example}\label{downloading-data-for-example-3}}
+\hypertarget{downloading-data-for-example-2}{%
+\section{Downloading data for example}\label{downloading-data-for-example-2}}
 
 Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gastric cancer: GSE62254} using \texttt{GEOquery} R package.
 

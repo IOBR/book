@@ -241,8 +241,8 @@ sig_tme[1:5, 1:3]
 This method is suitable for gene sets with a large number of genes, such as those of [GO, KEGG, REACTOME gene sets](https://www.gsea-msigdb.org/gsea/msigdb).
 
 <div class="figure" style="text-align: center">
-<img src="./fig/gsea.png" alt="The workflow of IOBR" width="95%" />
-<p class="caption">(\#fig:unnamed-chunk-10)The workflow of IOBR</p>
+<img src="./fig/gsea.png" alt="Gene sets of MSigDb" width="95%" />
+<p class="caption">(\#fig:unnamed-chunk-10)Gene sets of MSigDb</p>
 </div>
 
 

@@ -28,6 +28,15 @@ library(IOBR)
 ```
 
 
+## `r if(knitr::is_html_output()) emo::ji("pin")` How to update IOBR package
+```{r, message=FALSE, eval=FALSE}
+
+detach("package:IOBR")
+path<-.libPaths()
+remove.packages(c('IOBR'), lib=file.path(path))
+devtools::install_github("IOBR/IOBR")
+```
+
 ## `r if(knitr::is_html_output()) emo::ji("zoom")` The main pipeline of IOBR
 
 ```{r echo=FALSE, flowchart, fig.cap='The main pipeline of IOBR', out.width='95%', fig.asp=.85, fig.align='center'}
@@ -40,7 +49,10 @@ knitr::include_graphics(rep("./fig/IOBR-Package.png", 1))
    * `count2tpm()`: transform count data of RNA sequencing into TPM data.
    * `anno_eset()`: annotate the normalized genes expression matrix, including RNAseq and array (Affymetrix or Illumina).
    * `remove_duplicate_genes()`: remove the genes annotated with the duplicated symbol after normalization and retain only the symbol with highest expression level.
-</br>
+   * `mouse2human_eset()`: Converting muouse gene symbol to human gene symbol of expression set.
+   * `find_outlier_samples()`: Waiting for updates...
+   * `remove_batcheffect()`: Waiting for updates...
+   </br>
 
 * <div style="color:green">**TME Deconvolution Module: integrate multiple algorithms to decode immune contexture**</div> 
    * `deconvo_tme()`: decode the TME infiltration with different deconvolution methodologies, based on bulk RNAseq, microarray or single cell RNAseq data.
@@ -52,16 +64,29 @@ knitr::include_graphics(rep("./fig/IOBR-Package.png", 1))
   * `feature_manipulation()`: manipulate features including the cell fraction and signatures generated from multi-omics data for latter analysis and model construction. Remove missing values, outliers and variables without significant variance.
   * `format_signatures()`: generate the object of `calculate_sig_score()`function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.
   * `format_msigdb()`: transform the signature gene sets data  with gmt format, which is not included in the signature collection and might be downloaded in the MSgiDB website, into the object of `calculate_sig_score()`function.
+  * `sig_gsea()`: Waiting for updates...
 </br>
     
 * <div style="color:green">**Batch Analysis and Visualization: batch survival analysis and batch correlation analysis and other batch statistical analyses **</div>
-  * `batch_surv`: batch survival analysis of multiple continuous variables including varied signature scores.
-  * `subgroup_survival`: batch survival analysis of multiple categorized variables with different number of subgroups. 
+  * `batch_surv()`: batch survival analysis of multiple continuous variables including varied signature scores.
+  * `subgroup_survival()`: batch survival analysis of multiple categorized variables with different number of subgroups. 
   * `batch_cor()`: batch analysis of correlation between two continuous variables using Pearson correlation coefficient or Spearman's rank correlation coefficient .
   * `batch_wilcoxon()`: conduct batch wilcoxon analyses of binary variables.
   * `batch_pcc()`: batch analyses of Partial Correlation coefficient(PCC) between continuous variables  and minimize the interference derived from confounding factors.
   * `iobr_cor_plot()`: visualization of batch correlation analysis of signatures from 'sig_group'. Visualize the correlation between signature or phenotype with  expression of gene sets  in target signature is also supported.
-  * `cell_bar_plot()`: batch visualization of TME cell fraction, supporting input of deconvolution results from 'CIBERSORT', 'EPIC' and 'quanTIseq' methodologies to further compare the TME cell distributions within one sample or among different samples. 
+  * `cell_bar_plot()`: batch visualization of TME cell fraction, supporting input of deconvolution results from 'CIBERSORT', 'EPIC' and 'quanTIseq' methodologies to further compare the TME cell distributions within one sample or among different samples.
+  * `iobr_pca()`: The iobr_pca function performs Principal Component Analysis (PCA), which reduces the dimensionality of data while maintaining most of the original variance, and visualizes the PCA results on a scatter plot.
+  * `iobr_cor_plot()`: Integrative correlation between phenotype and features.
+  * `iobr_deg()`: Waiting for updates...
+  * `get_cor()`: Waiting for updates...
+  * `roc_time()`: Waiting for updates...
+  * `sig_box()`: Waiting for updates...
+  * `sig_heatmap()`: Waiting for updates...
+  * `sig_forest()`: Waiting for updates...
+  * `sig_roc()`: Waiting for updates...
+  * `sig_surv_plot()`: Waiting for updates...
+  * `find_markers_in_bulk()`: Waiting for updates...
+  
 </br>
 
 * <div style="color:green">**Signature Associated Mutation Module: identify and analyze mutations relevant to targeted signatures**</div>
@@ -75,3 +100,8 @@ knitr::include_graphics(rep("./fig/IOBR-Package.png", 1))
 </br>
 
 
+## Current working environment
+
+```{r}
+sessionInfo()
+```
