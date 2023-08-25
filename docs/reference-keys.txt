@@ -1,6 +1,8 @@
 fig:unnamed-chunk-1
 fig:unnamed-chunk-2
 fig:flowchart
+fig:unnamed-chunk-9
+fig:unnamed-chunk-11
 fig:unnamed-chunk-10
 introduction-1
 license
@@ -28,10 +30,10 @@ tumor-ecosystem-analysis
 loading-packages-1
 downloading-data-for-example
 gene-annotation-hgu133plus-2-affaymetrix
-determine-tme-subtype-of-gastric-cancer-using-tmeclassifier
-deg-analysis
-gsea-analysis-of-degs
-deg-analysis-1
+determine-tme-subtype-of-gastric-cancer-using-tmeclassifier-r-package
+deg-analysis-method1
+gsea-analysis-based-on-differential-express-gene-analysis-results
+deg-analysis-method2
 identifying-signatures-associated-with-tme-clusters
 signature-and-relevant-phenotypes
 loading-packages-2
