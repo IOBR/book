@@ -1,11 +1,11 @@
 --- 
-title: "IOBR Tutorial"
+title: "IOBR (Immuno-Oncology Biological Research)"
 author: "Dongqiang Zeng"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
-url: your book url like https://bookdown.org/yihui/bookdown
+url: https://iobr.github.io/book/
 cover-image: ./fig/cover.png
 geometry:
   - top=1in
