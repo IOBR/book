@@ -34,8 +34,7 @@ eset<-anno_eset(eset       = eset,
 eset[1:5, 1:3]
 ```
 
-## Determine TME subtype of gastric cancer using TMEclassifier
-加载TME分类器R包[TMEclassifier](https://github.com/LiaoWJLab/TMEclassifier)
+## Determine TME subtype of gastric cancer using [TMEclassifier R package](https://github.com/LiaoWJLab/TMEclassifier)
 ```{r, message=FALSE}
 
 library(TMEclassifier)
@@ -50,7 +49,7 @@ head(tme)
 ```
 
 ## DEG analysis: method1
-选择IA和IE分型进行差异分析
+Differential analysis of selected immune-activated and immune-expelled gastric cancers
 
 ```{r}
 pdata <- tme[!tme$TMEcluster=="IS", ]
