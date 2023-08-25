@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 References | IOBR Tutorial</title>
+  <title>Chapter 6 References | IOBR (Immuno-Oncology Biological Research)</title>
   <meta name="description" content="The tutorial of IOBR package" />
   <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 References | IOBR Tutorial" />
+  <meta property="og:title" content="Chapter 6 References | IOBR (Immuno-Oncology Biological Research)" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="your book url like https://bookdown.org/yihui/bookdown/./fig/cover.png" />
+  <meta property="og:image" content="https://iobr.github.io/book/./fig/cover.png" />
   <meta property="og:description" content="The tutorial of IOBR package" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 References | IOBR Tutorial" />
+  <meta name="twitter:title" content="Chapter 6 References | IOBR (Immuno-Oncology Biological Research)" />
   
   <meta name="twitter:description" content="The tutorial of IOBR package" />
-  <meta name="twitter:image" content="your book url like https://bookdown.org/yihui/bookdown/./fig/cover.png" />
+  <meta name="twitter:image" content="https://iobr.github.io/book/./fig/cover.png" />
 
 <meta name="author" content="Dongqiang Zeng" />
 
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="sharing-your-book.html"/>
+<link rel="prev" href="tme-deconvolution.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -123,28 +123,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -162,9 +140,9 @@ div.csl-indent {
 <li><a href="./">The tutorial of IOBR</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>IOBR introduction</strong></a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>Introduction</strong></a>
 <ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#introduction"><i class="fa fa-check"></i><b>0.1</b> 📚 Introduction</a></li>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#introduction-1"><i class="fa fa-check"></i><b>0.1</b> 📚 Introduction</a></li>
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>0.2</b> 💿 License</a></li>
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#publishment"><i class="fa fa-check"></i><b>0.3</b> 🏆 Publishment</a></li>
 <li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#reporting-bugs"><i class="fa fa-check"></i><b>0.4</b> ✉️ Reporting bugs</a></li>
@@ -192,16 +170,19 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="3" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html"><i class="fa fa-check"></i><b>3</b> <strong>Tumor ecosystem analysis</strong></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#determine-tme-subtype-of-gastric-cancer-using-tmeclassifier"><i class="fa fa-check"></i><b>3.1</b> Determine TME subtype of gastric cancer using TMEclassifier</a></li>
-<li class="chapter" data-level="3.2" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis"><i class="fa fa-check"></i><b>3.2</b> DEG analysis</a></li>
-<li class="chapter" data-level="3.3" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gsea-analysis-of-degs"><i class="fa fa-check"></i><b>3.3</b> GSEA analysis of DEGs</a></li>
-<li class="chapter" data-level="3.4" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis-1"><i class="fa fa-check"></i><b>3.4</b> DEG analysis</a></li>
-<li class="chapter" data-level="3.5" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>3.5</b> Identifying signatures associated with TME clusters</a></li>
+<li class="chapter" data-level="3.1" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#loading-packages-1"><i class="fa fa-check"></i><b>3.1</b> Loading packages</a></li>
+<li class="chapter" data-level="3.2" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#downloading-data-for-example-1"><i class="fa fa-check"></i><b>3.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="3.3" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gene-annotation-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>3.3</b> Gene Annotation: HGU133PLUS-2 (Affaymetrix)</a></li>
+<li class="chapter" data-level="3.4" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#determine-tme-subtype-of-gastric-cancer-using-tmeclassifier"><i class="fa fa-check"></i><b>3.4</b> Determine TME subtype of gastric cancer using TMEclassifier</a></li>
+<li class="chapter" data-level="3.5" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis"><i class="fa fa-check"></i><b>3.5</b> DEG analysis</a></li>
+<li class="chapter" data-level="3.6" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gsea-analysis-of-degs"><i class="fa fa-check"></i><b>3.6</b> GSEA analysis of DEGs</a></li>
+<li class="chapter" data-level="3.7" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis-1"><i class="fa fa-check"></i><b>3.7</b> DEG analysis</a></li>
+<li class="chapter" data-level="3.8" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>3.8</b> Identifying signatures associated with TME clusters</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html"><i class="fa fa-check"></i><b>4</b> <strong>Signature and relevant phenotypes</strong></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#loading-packages-1"><i class="fa fa-check"></i><b>4.1</b> Loading packages</a></li>
-<li class="chapter" data-level="4.2" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#downloading-data-for-example-1"><i class="fa fa-check"></i><b>4.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="4.1" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#loading-packages-2"><i class="fa fa-check"></i><b>4.1</b> Loading packages</a></li>
+<li class="chapter" data-level="4.2" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#downloading-data-for-example-2"><i class="fa fa-check"></i><b>4.2</b> Downloading data for example</a></li>
 <li class="chapter" data-level="4.3" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#signature-score-estimation"><i class="fa fa-check"></i><b>4.3</b> Signature score estimation</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="signature-and-relevant-phenotypes.html"><a href="signature-and-relevant-phenotypes.html#signature-collection-of-iobr"><i class="fa fa-check"></i><b>4.3.1</b> Signature collection of IOBR</a></li>
@@ -219,8 +200,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html"><i class="fa fa-check"></i><b>5</b> <strong>TME deconvolution</strong></a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#loading-packages-2"><i class="fa fa-check"></i><b>5.1</b> Loading packages</a></li>
-<li class="chapter" data-level="5.2" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#downloading-data-for-example-2"><i class="fa fa-check"></i><b>5.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="5.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#loading-packages-3"><i class="fa fa-check"></i><b>5.1</b> Loading packages</a></li>
+<li class="chapter" data-level="5.2" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#downloading-data-for-example-3"><i class="fa fa-check"></i><b>5.2</b> Downloading data for example</a></li>
 <li class="chapter" data-level="5.3" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#available-methods-to-decode-tme-contexture"><i class="fa fa-check"></i><b>5.3</b> Available Methods to Decode TME Contexture</a></li>
 <li class="chapter" data-level="5.4" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-1-cibersort"><i class="fa fa-check"></i><b>5.4</b> Method 1: CIBERSORT</a></li>
 <li class="chapter" data-level="5.5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-2-epic"><i class="fa fa-check"></i><b>5.5</b> Method 2: EPIC</a></li>
@@ -232,34 +213,12 @@ div.csl-indent {
 <li class="chapter" data-level="5.11" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-8-ips"><i class="fa fa-check"></i><b>5.11</b> Method 8: IPS</a></li>
 <li class="chapter" data-level="5.12" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#combination-of-above-deconvolution-results"><i class="fa fa-check"></i><b>5.12</b> Combination of above deconvolution results</a></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>6</b> Cross-references</a>
+<li class="chapter" data-level="6" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>6</b> <strong>References</strong></a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>6.1</b> Chapters and sub-chapters</a></li>
-<li class="chapter" data-level="6.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>6.2</b> Captioned figures and tables</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>7</b> Footnotes and citations</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>7.1</b> Footnotes</a></li>
-<li class="chapter" data-level="7.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>7.2</b> Citations</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>8</b> Blocks</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>8.1</b> Equations</a></li>
-<li class="chapter" data-level="8.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>8.2</b> Theorems and proofs</a></li>
-<li class="chapter" data-level="8.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>8.3</b> Callout blocks</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>9</b> Sharing your book</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>9.1</b> Publishing</a></li>
-<li class="chapter" data-level="9.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>9.2</b> 404 pages</a></li>
-<li class="chapter" data-level="9.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>9.3</b> Metadata for sharing</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>10</b> <strong>References</strong></a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="references-1.html"><a href="references-1.html#tme-deconvolution-1"><i class="fa fa-check"></i><b>10.1</b> TME deconvolution</a></li>
-<li class="chapter" data-level="10.2" data-path="references-1.html"><a href="references-1.html#tme-signatures"><i class="fa fa-check"></i><b>10.2</b> TME Signatures</a></li>
-<li class="chapter" data-level="10.3" data-path="references-1.html"><a href="references-1.html#data-sets"><i class="fa fa-check"></i><b>10.3</b> Data sets</a></li>
-<li class="chapter" data-level="10.4" data-path="references-1.html"><a href="references-1.html#others"><i class="fa fa-check"></i><b>10.4</b> Others</a></li>
+<li class="chapter" data-level="6.1" data-path="references-1.html"><a href="references-1.html#tme-deconvolution-1"><i class="fa fa-check"></i><b>6.1</b> TME deconvolution</a></li>
+<li class="chapter" data-level="6.2" data-path="references-1.html"><a href="references-1.html#tme-signatures"><i class="fa fa-check"></i><b>6.2</b> TME Signatures</a></li>
+<li class="chapter" data-level="6.3" data-path="references-1.html"><a href="references-1.html#data-sets"><i class="fa fa-check"></i><b>6.3</b> Data sets</a></li>
+<li class="chapter" data-level="6.4" data-path="references-1.html"><a href="references-1.html#others"><i class="fa fa-check"></i><b>6.4</b> Others</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/DongqiangZeng0808" target="blank">Welcome to my GitHub</a></li>
@@ -273,7 +232,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">IOBR Tutorial</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">IOBR (Immuno-Oncology Biological Research)</a>
           </h1>
         </div>
 
@@ -281,12 +240,12 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references-1" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Chapter 10</span> <strong>References</strong><a href="references-1.html#references-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="references-1" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> <strong>References</strong><a href="references-1.html#references-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>If IOBR R package is utilized in your published research, please cite:</p>
 <p>Zeng D, Ye Z, Shen R, Yu G, Wu J, Xiong Y,…, Liao W (2021) <strong>IOBR</strong>: Multi-Omics Immuno-Oncology Biological Research to Decode Tumor Microenvironment and Signatures. <em>Frontiers in Immunology</em>. 12:687975. <a href="https://www.frontiersin.org/articles/10.3389/fimmu.2021.687975/full">doi: 10.3389/fimmu.2021.687975</a></p>
-<div id="tme-deconvolution-1" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> TME deconvolution<a href="references-1.html#tme-deconvolution-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="tme-deconvolution-1" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> TME deconvolution<a href="references-1.html#tme-deconvolution-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Please cite the following papers appropriately for TME deconvolution algorithm if used:</p>
 <p><strong>CIBERSORT</strong>: Newman, A. M., Liu, C. L., Green, M. R., Gentles, A. J., Feng, W., Xu, Y., … Alizadeh, A. A. (2015). Robust enumeration of cell subsets from tissue expression profiles. Nature Methods, 12(5), 453–457. <a href="https://doi.org/10.1038/nmeth.3337" class="uri">https://doi.org/10.1038/nmeth.3337</a></p>
 <p><strong>ESTIMATE</strong>: Vegesna R, Kim H, Torres-Garcia W, …, Verhaak R.*(2013). Inferring tumour purity and stromal and immune cell admixture from expression data. Nature Communications 4, 2612. <a href="http://doi.org/10.1038/ncomms3612" class="uri">http://doi.org/10.1038/ncomms3612</a></p>
@@ -297,15 +256,15 @@ div.csl-indent {
 <p><strong>xCell</strong>: Aran, D., Hu, Z., &amp; Butte, A. J.* (2017). xCell: digitally portraying the tissue cellular heterogeneity landscape. Genome Biology, 18(1), 220. <a href="https://doi.org/10.1186/s13059-017-1349-1" class="uri">https://doi.org/10.1186/s13059-017-1349-1</a></p>
 <p><strong>EPIC</strong>: Racle, J., de Jonge, K., Baumgaertner, P., Speiser, D. E., &amp; Gfeller, D*. (2017). Simultaneous enumeration of cancer and immune cell types from bulk tumor gene expression data. ELife, 6, e26476. <a href="https://doi.org/10.7554/eLife.26476" class="uri">https://doi.org/10.7554/eLife.26476</a></p>
 </div>
-<div id="tme-signatures" class="section level2 hasAnchor" number="10.2">
-<h2><span class="header-section-number">10.2</span> TME Signatures<a href="references-1.html#tme-signatures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="tme-signatures" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> TME Signatures<a href="references-1.html#tme-signatures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For signature score estimation, please cite corresponding literature below:</p>
 <p><strong>ssgsea</strong>: Barbie, D.A. et al (2009). Systematic RNA interference reveals that oncogenic KRAS-driven cancers require TBK1. Nature, 462(5):108-112.</p>
 <p><strong>gsva</strong>: Hänzelmann, S., Castelo, R. and Guinney, J. (2013). GSVA: Gene set variation analysis for microarray and RNA-Seq data. BMC Bioinformatics, 14(1):7.</p>
 <p><strong>zscore</strong>: Lee, E. et al (2008). Inferring pathway activity toward precise disease classification. PLoS Comp Biol, 4(11):e1000217.</p>
 </div>
-<div id="data-sets" class="section level2 hasAnchor" number="10.3">
-<h2><span class="header-section-number">10.3</span> Data sets<a href="references-1.html#data-sets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-sets" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Data sets<a href="references-1.html#data-sets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For the datasets enrolled in IOBR, please cite the data sources:</p>
 <p><strong>UCSCXena</strong>: Wang et al.,et al (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. Journal of Open Source Software, 4(40), 1627</p>
 <p><strong>TLSscore</strong>: Helmink BA, Reddy SM, Gao J, et al. B cells and tertiary lymphoid structures promote immunotherapy response. Nature. 2020 Jan;577(7791):549-555.</p>
@@ -319,8 +278,8 @@ HCP5: Sun J, Zhang Z, Bao S, et alIdentification of tumor immune infiltration-as
 <p><strong>TCGA-STAD</strong>: Cancer Genome Atlas Research Network. Comprehensive molecular characterization of gastric adenocarcinoma. Nature. 2014 Sep 11;513(7517):202-9. doi: 10.1038/nature13480.
 TCGA.STAD MAF data: <a href="https://api.gdc.cancer.gov/data/c06465a3-50e7-46f7-b2dd-7bd654ca206b" class="uri">https://api.gdc.cancer.gov/data/c06465a3-50e7-46f7-b2dd-7bd654ca206b</a></p>
 </div>
-<div id="others" class="section level2 hasAnchor" number="10.4">
-<h2><span class="header-section-number">10.4</span> Others<a href="references-1.html#others" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="others" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Others<a href="references-1.html#others" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Newman, A. M., Liu, C. L., Green, M. R., Gentles, A. J., Feng, W., Xu, Y., … Alizadeh, A. A. (2015). Robust enumeration of cell subsets from tissue expression profiles. Nature Methods, 12(5), 453–457.</p></li>
 <li><p>Vegesna R, Kim H, Torres-Garcia W, …, Verhaak R.*(2013). Inferring tumour purity and stromal and immune cell admixture from expression data. Nature Communications 4, 2612.</p></li>
@@ -345,30 +304,14 @@ TCGA.STAD MAF data: <a href="https://api.gdc.cancer.gov/data/c06465a3-50e7-46f7-
 <li><p>Cancer Genome Atlas Research Network. Comprehensive molecular characterization of gastric adenocarcinoma. Nature. 2014 Sep 11;513(7517):202-9. doi: 10.1038/nature13480.</p></li>
 </ol>
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-Xie, Yihui. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>, 2023. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.
-</div>
-<div class="csl-entry">
-———. <em>Dynamic Documents with <span>R</span> and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC, 2015. <a href="http://yihui.org/knitr/">http://yihui.org/knitr/</a>.
 </div>
 </div>
-</div>
-</div>
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="sharing-your-book.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tme-deconvolution.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -400,7 +343,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/DongqiangZeng0808/IOBR-Book/07-references.Rmd",
+"link": "https://github.com/DongqiangZeng0808/references.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -423,20 +366,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

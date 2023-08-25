@@ -13,13 +13,12 @@ geometry:
   - right=1in
   - bottom=1in
 fontsize: 12pt
-linestretch: 1.5
+linestretch: 1.2
 description: "The tutorial of IOBR package"
 biblio-style: apalike
 csl: chicago-fullnote-bibliography.csl
 ---
-
-# **IOBR introduction**{-}
+# **Introduction**{-}
 Preface
 ```{r echo=FALSE, fig.cap='The workflow of IOBR', out.width='95%', fig.asp=.85, fig.align='center'}
 knitr::include_graphics(rep("./fig/IOBR-Workflow.png", 1))

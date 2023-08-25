@@ -3,5 +3,23 @@ language:
   ui:
     chapter_name: "Chapter "
 
+new_session: yes
 # Github Pages
 output_dir: "docs"
+
+rmd_files:
+  [
+    "index.Rmd",
+
+    "install-iobr.Rmd",
+
+    "data-preprocessing.Rmd",
+
+    "tme-deg-gsea.Rmd",
+
+    "signature-analysis.Rmd",
+
+    "tme-deconvolution.Rmd",
+
+    "references.Rmd",
+  ]

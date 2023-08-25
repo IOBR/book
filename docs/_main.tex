@@ -116,32 +116,15 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={IOBR Tutorial},
+  pdftitle={IOBR (Immuno-Oncology Biological Research)},
   pdfauthor={Dongqiang Zeng},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{IOBR Tutorial}
+\title{IOBR (Immuno-Oncology Biological Research)}
 \author{Dongqiang Zeng}
 \date{2023-08-25}
 
-\usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{lemma}{Lemma}[chapter]
-\newtheorem{corollary}{Corollary}[chapter]
-\newtheorem{proposition}{Proposition}[chapter]
-\newtheorem{conjecture}{Conjecture}[chapter]
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[chapter]
-\theoremstyle{definition}
-\newtheorem{example}{Example}[chapter]
-\theoremstyle{definition}
-\newtheorem{exercise}{Exercise}[chapter]
-\theoremstyle{definition}
-\newtheorem{hypothesis}{Hypothesis}[chapter]
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-\newtheorem*{solution}{Solution}
 \begin{document}
 \maketitle
 
@@ -149,10 +132,10 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\setstretch{1.5}
-\hypertarget{iobr-introduction}{%
-\chapter*{\texorpdfstring{\textbf{IOBR introduction}}{IOBR introduction}}\label{iobr-introduction}}
-\addcontentsline{toc}{chapter}{\textbf{IOBR introduction}}
+\setstretch{1.2}
+\hypertarget{introduction}{%
+\chapter*{\texorpdfstring{\textbf{Introduction}}{Introduction}}\label{introduction}}
+\addcontentsline{toc}{chapter}{\textbf{Introduction}}
 
 Preface
 
@@ -165,8 +148,8 @@ Preface
 \caption{The workflow of IOBR}\label{fig:unnamed-chunk-1}
 \end{figure}
 
-\hypertarget{introduction}{%
-\section{Introduction}\label{introduction}}
+\hypertarget{introduction-1}{%
+\section{Introduction}\label{introduction-1}}
 
 IOBR is design for \href{https://github.com/IOBR/IOBR}{Immuno-Oncology Biological Research}.
 Recent advance in next-generation sequencing has triggered the rapidly accumulating publicly available multi-omics data. The application of integrated omics to exploring robust signatures for clinical translation is increasingly highlighted in immuno-oncology but raises computational and biological challenges. This vignette aims to demonstrate how to utilize the package named IOBR to perform multi-omics immuno-oncology biological research to decode tumor microenvironment and signatures for clinical translation.
@@ -249,7 +232,7 @@ When the dependent environments are built, users are able to install IOBR from g
 
 \begin{figure}
 
-{\centering \includegraphics[width=92.42in]{./fig/IOBR-Package} 
+{\centering \includegraphics[width=0.95\linewidth]{./fig/IOBR-Package} 
 
 }
 
@@ -503,7 +486,7 @@ Take ACRG microarray data for example
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-13-1} \end{center}
+\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-9-1} \end{center}
 
 \begin{verbatim}
 ## [1] "GSM1523817" "GSM1523858" "GSM1523984" "GSM1523988" "GSM1524030"
@@ -552,7 +535,7 @@ Take ACRG microarray data for example
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-14-1} \end{center}
+\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
 \hypertarget{batch-effect-correction}{%
 \section{Batch effect correction}\label{batch-effect-correction}}
@@ -628,7 +611,7 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 ## [1] ">>-- colors for PCA: #5f75ae" ">>-- colors for PCA: #64a841"
 \end{verbatim}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-17-1} \end{center}
+\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-13-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -652,6 +635,66 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 \hypertarget{tumor-ecosystem-analysis}{%
 \chapter{\texorpdfstring{\textbf{Tumor ecosystem analysis}}{Tumor ecosystem analysis}}\label{tumor-ecosystem-analysis}}
 
+\hypertarget{loading-packages-1}{%
+\section{Loading packages}\label{loading-packages-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(IOBR)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{downloading-data-for-example-1}{%
+\section{Downloading data for example}\label{downloading-data-for-example-1}}
+
+Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gastric cancer: GSE62254} using \texttt{GEOquery} R package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{requireNamespace}\NormalTok{(}\StringTok{"GEOquery"}\NormalTok{, }\AttributeTok{quietly =} \ConstantTok{TRUE}\NormalTok{))  BiocManager}\SpecialCharTok{::}\FunctionTok{install}\NormalTok{(}\StringTok{"GEOquery"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(}\StringTok{"GEOquery"}\NormalTok{)}
+\CommentTok{\# }\AlertTok{NOTE}\CommentTok{: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.}
+\NormalTok{eset\_geo}\OtherTok{\textless{}{-}}\FunctionTok{getGEO}\NormalTok{(}\AttributeTok{GEO     =} \StringTok{"GSE62254"}\NormalTok{, }\AttributeTok{getGPL  =}\NormalTok{ F, }\AttributeTok{destdir =} \StringTok{"./"}\NormalTok{)}
+\NormalTok{eset    }\OtherTok{\textless{}{-}}\NormalTok{eset\_geo[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{eset    }\OtherTok{\textless{}{-}}\FunctionTok{exprs}\NormalTok{(eset)}
+\NormalTok{eset[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           GSM1523727 GSM1523728 GSM1523729 GSM1523744 GSM1523745
+## 1007_s_at  3.2176645  3.0624323  3.0279131   2.921683  2.8456013
+## 1053_at    2.4050109  2.4394879  2.2442708   2.345916  2.4328582
+## 117_at     1.4933412  1.8067380  1.5959665   1.839822  1.8326058
+## 121_at     2.1965561  2.2812181  2.1865556   2.258599  2.1874363
+## 1255_g_at  0.8698382  0.9502466  0.8125414   1.012860  0.9441993
+\end{verbatim}
+
+\hypertarget{gene-annotation-hgu133plus-2-affaymetrix}{%
+\section{Gene Annotation: HGU133PLUS-2 (Affaymetrix)}\label{gene-annotation-hgu133plus-2-affaymetrix}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Conduct gene annotation using \textasciigrave{}anno\_hug133plus2\textasciigrave{} file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. }
+
+\NormalTok{eset}\OtherTok{\textless{}{-}}\FunctionTok{anno\_eset}\NormalTok{(}\AttributeTok{eset       =}\NormalTok{ eset,}
+                \AttributeTok{annotation =}\NormalTok{ anno\_hug133plus2,}
+                \AttributeTok{symbol     =} \StringTok{"symbol"}\NormalTok{,}
+                \AttributeTok{probe      =} \StringTok{"probe\_id"}\NormalTok{,}
+                \AttributeTok{method     =} \StringTok{"mean"}\NormalTok{)}
+\NormalTok{eset[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              GSM1523727 GSM1523728 GSM1523729
+## SH3KBP1        4.327974   4.316195   4.351425
+## RPL41          4.246149   4.246808   4.257940
+## EEF1A1         4.293762   4.291038   4.262199
+## COX2           4.250288   4.283714   4.270508
+## LOC101928826   4.219303   4.219670   4.213252
+\end{verbatim}
+
 \hypertarget{determine-tme-subtype-of-gastric-cancer-using-tmeclassifier}{%
 \section{Determine TME subtype of gastric cancer using TMEclassifier}\label{determine-tme-subtype-of-gastric-cancer-using-tmeclassifier}}
 
@@ -660,7 +703,7 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(TMEclassifier)}
-\NormalTok{tme }\OtherTok{\textless{}{-}} \FunctionTok{tme\_classifier}\NormalTok{(}\AttributeTok{eset =}\NormalTok{ eset1, }\AttributeTok{scale =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{tme }\OtherTok{\textless{}{-}} \FunctionTok{tme\_classifier}\NormalTok{(}\AttributeTok{eset =}\NormalTok{ eset, }\AttributeTok{scale =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -668,7 +711,7 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 ## Step-1: Expression data preprocessing...
 ## Step-2: TME deconvolution...
 ## Step-3: Predicting TME phenotypes...
-## [01:54:41] WARNING: amalgamation/../src/learner.cc:1040: 
+## [09:58:03] WARNING: amalgamation/../src/learner.cc:1040: 
 ##   If you are loading a serialized model (like pickle in Python, RDS in R) generated by
 ##   older XGBoost, please export the model by calling `Booster.save_model` from that version
 ##   first, then load it back in current version. See:
@@ -677,7 +720,7 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 ## 
 ##   for more details about differences between saving model and serializing.
 ## 
-## [01:54:41] WARNING: amalgamation/../src/learner.cc:749: Found JSON model saved before XGBoost 1.6, please save the model using current version again. The support for old JSON model will be discontinued in XGBoost 2.3.
+## [09:58:03] WARNING: amalgamation/../src/learner.cc:749: Found JSON model saved before XGBoost 1.6, please save the model using current version again. The support for old JSON model will be discontinued in XGBoost 2.3.
 ## >>>--- DONE!
 \end{verbatim}
 
@@ -690,7 +733,7 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 \begin{verbatim}
 ## 
 ##  IA  IE  IS 
-## 106  94  95
+## 107  96  97
 \end{verbatim}
 
 \begin{Shaded}
@@ -700,13 +743,13 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 \end{Shaded}
 
 \begin{verbatim}
-##           ID         IE        IS         IA TMEcluster
-## 1 GSM1523727 0.21034596 0.1089890 0.68066503         IA
-## 2 GSM1523728 0.01008306 0.1120120 0.87790490         IA
-## 3 GSM1523729 0.85603729 0.1119151 0.03204757         IE
-## 4 GSM1523744 0.05645817 0.0770771 0.86646473         IA
-## 5 GSM1523745 0.05785239 0.8128097 0.12933787         IS
-## 6 GSM1523746 0.55697476 0.3827613 0.06026396         IE
+##           ID          IE         IS         IA TMEcluster
+## 1 GSM1523727 0.204623557 0.11212681 0.68324962         IA
+## 2 GSM1523728 0.009599504 0.11179146 0.87860903         IA
+## 3 GSM1523729 0.852615046 0.11369089 0.03369407         IE
+## 4 GSM1523744 0.053842233 0.06994632 0.87621145         IA
+## 5 GSM1523745 0.055973019 0.80839488 0.13563209         IS
+## 6 GSM1523746 0.545343299 0.37437568 0.08028102         IE
 \end{verbatim}
 
 \begin{Shaded}
@@ -718,7 +761,7 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 \begin{verbatim}
 ## 
 ##  IA  IE  IS 
-## 106  94  95
+## 107  96  97
 \end{verbatim}
 
 \begin{Shaded}
@@ -728,13 +771,13 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 \end{Shaded}
 
 \begin{verbatim}
-##           ID         IE        IS         IA TMEcluster
-## 1 GSM1523727 0.21034596 0.1089890 0.68066503         IA
-## 2 GSM1523728 0.01008306 0.1120120 0.87790490         IA
-## 3 GSM1523729 0.85603729 0.1119151 0.03204757         IE
-## 4 GSM1523744 0.05645817 0.0770771 0.86646473         IA
-## 5 GSM1523745 0.05785239 0.8128097 0.12933787         IS
-## 6 GSM1523746 0.55697476 0.3827613 0.06026396         IE
+##           ID          IE         IS         IA TMEcluster
+## 1 GSM1523727 0.204623557 0.11212681 0.68324962         IA
+## 2 GSM1523728 0.009599504 0.11179146 0.87860903         IA
+## 3 GSM1523729 0.852615046 0.11369089 0.03369407         IE
+## 4 GSM1523744 0.053842233 0.06994632 0.87621145         IA
+## 5 GSM1523745 0.055973019 0.80839488 0.13563209         IS
+## 6 GSM1523746 0.545343299 0.37437568 0.08028102         IE
 \end{verbatim}
 
 \hypertarget{deg-analysis}{%
@@ -782,12 +825,12 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 ## # A tibble: 6 x 11
 ##   symbol  log2FoldChange AveExpr     t   pvalue     padj     B sigORnot    label
 ##   <chr>            <dbl>   <dbl> <dbl>    <dbl>    <dbl> <dbl> <chr>       <chr>
-## 1 TMEM100         -0.755    1.83 -14.0 1.54e-31 3.35e-27  60.9 Down_regul~ Both 
-## 2 ABCA8           -0.923    1.89 -12.9 3.18e-28 3.46e-24  53.4 Down_regul~ Both 
-## 3 HHIP            -0.625    1.74 -12.4 1.52e-26 1.10e-22  49.6 Down_regul~ Both 
-## 4 ADH1B           -0.901    1.84 -12.2 4.71e-26 2.09e-22  48.5 Down_regul~ Both 
-## 5 LMNB2            0.285    2.26  12.2 4.80e-26 2.09e-22  48.5 NOT         Sign~
-## 6 FCER1A          -0.552    1.57 -12.0 2.34e-25 7.27e-22  46.9 Down_regul~ Both 
+## 1 TMEM100         -0.774    1.84 -13.9 2.47e-31 5.37e-27  60.4 Down_regul~ Both 
+## 2 ABCA8           -0.933    1.90 -12.9 3.11e-28 3.38e-24  53.4 Down_regul~ Both 
+## 3 HHIP            -0.613    1.73 -12.1 7.62e-26 4.46e-22  48.0 Down_regul~ Both 
+## 4 LMNB2            0.287    2.25  12.1 9.28e-26 4.46e-22  47.8 NOT         Sign~
+## 5 MCM6             0.211    3.02  12.1 1.02e-25 4.46e-22  47.7 NOT         Sign~
+## 6 ADH1B           -0.907    1.86 -12.0 2.27e-25 7.04e-22  47.0 Down_regul~ Both 
 ## # i 2 more variables: IA <dbl>, IE <dbl>
 \end{verbatim}
 
@@ -806,12 +849,12 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 ## # A tibble: 6 x 11
 ##   symbol  log2FoldChange AveExpr     t   pvalue     padj     B sigORnot    label
 ##   <chr>            <dbl>   <dbl> <dbl>    <dbl>    <dbl> <dbl> <chr>       <chr>
-## 1 TMEM100         -0.755    1.83 -14.0 1.54e-31 3.35e-27  60.9 Down_regul~ Both 
-## 2 ABCA8           -0.923    1.89 -12.9 3.18e-28 3.46e-24  53.4 Down_regul~ Both 
-## 3 HHIP            -0.625    1.74 -12.4 1.52e-26 1.10e-22  49.6 Down_regul~ Both 
-## 4 ADH1B           -0.901    1.84 -12.2 4.71e-26 2.09e-22  48.5 Down_regul~ Both 
-## 5 LMNB2            0.285    2.26  12.2 4.80e-26 2.09e-22  48.5 NOT         Sign~
-## 6 FCER1A          -0.552    1.57 -12.0 2.34e-25 7.27e-22  46.9 Down_regul~ Both 
+## 1 TMEM100         -0.774    1.84 -13.9 2.47e-31 5.37e-27  60.4 Down_regul~ Both 
+## 2 ABCA8           -0.933    1.90 -12.9 3.11e-28 3.38e-24  53.4 Down_regul~ Both 
+## 3 HHIP            -0.613    1.73 -12.1 7.62e-26 4.46e-22  48.0 Down_regul~ Both 
+## 4 LMNB2            0.287    2.25  12.1 9.28e-26 4.46e-22  47.8 NOT         Sign~
+## 5 MCM6             0.211    3.02  12.1 1.02e-25 4.46e-22  47.7 NOT         Sign~
+## 6 ADH1B           -0.907    1.86 -12.0 2.27e-25 7.04e-22  47.0 Down_regul~ Both 
 ## # i 2 more variables: IA <dbl>, IE <dbl>
 \end{verbatim}
 
@@ -957,21 +1000,21 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 \begin{verbatim}
 ## 
 ##  IA  IE  IS 
-## 106  94  95 
+## 107  96  97 
 ## # A tibble: 56 x 7
 ## # Groups:   cluster [3]
 ##       p_val avg_log2FC pct.1 pct.2 p_val_adj cluster gene  
 ##       <dbl>      <dbl> <dbl> <dbl>     <dbl> <fct>   <chr> 
-##  1 4.66e-19      0.208     1     1  1.01e-14 IA      IFNG  
-##  2 7.41e-18      0.170     1     1  1.61e-13 IA      CXCL10
-##  3 1.21e-15      0.177     1     1  2.62e-11 IA      GZMB  
-##  4 1.34e-15      0.247     1     1  2.91e-11 IA      CXCL11
-##  5 5.33e-15      0.166     1     1  1.16e-10 IA      CXCL9 
-##  6 6.17e-15      0.158     1     1  1.34e-10 IA      POLR3G
-##  7 3.06e-14      0.214     1     1  6.66e-10 IA      IDO1  
-##  8 1.95e-13      0.179     1     1  4.24e- 9 IA      GBP4  
-##  9 4.17e-13      0.150     1     1  9.07e- 9 IA      ZBED2 
-## 10 3.74e-11      0.153     1     1  8.13e- 7 IA      GNLY  
+##  1 3.29e-20      0.218     1     1  7.15e-16 IA      IFNG  
+##  2 1.81e-18      0.172     1     1  3.93e-14 IA      CXCL10
+##  3 1.01e-16      0.183     1     1  2.20e-12 IA      GZMB  
+##  4 2.82e-16      0.251     1     1  6.12e-12 IA      CXCL11
+##  5 9.68e-16      0.170     1     1  2.10e-11 IA      CXCL9 
+##  6 3.11e-15      0.221     1     1  6.77e-11 IA      IDO1  
+##  7 9.90e-15      0.156     1     1  2.15e-10 IA      POLR3G
+##  8 3.02e-14      0.184     1     1  6.57e-10 IA      GBP4  
+##  9 9.23e-14      0.152     1     1  2.01e- 9 IA      ZBED2 
+## 10 9.79e-12      0.155     1     1  2.13e- 7 IA      GNLY  
 ## # i 46 more rows
 \end{verbatim}
 
@@ -984,15 +1027,15 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 
 \begin{verbatim}
 ##  [1] "IFNG"           "CXCL10"         "GZMB"           "CXCL11"        
-##  [5] "CXCL9"          "POLR3G"         "IDO1"           "GBP4"          
+##  [5] "CXCL9"          "IDO1"           "POLR3G"         "GBP4"          
 ##  [9] "GNLY"           "PLEKHS1"        "KLRC2"          "VSNL1"         
 ## [13] "AIM2"           "SLCO1B3"        "COL11A1"        "TMEM100"       
-## [17] "ADH1B"          "ABCA8"          "MAMDC2"         "SCN7A"         
-## [21] "C7"             "C2orf40"        "LIPF"           "PGA4"          
-## [25] "SCGB2A1"        "FUT9"           "GKN1"           "GKN2"          
-## [29] "OGN"            "GIF"            "IL1A"           "EREG"          
+## [17] "ADH1B"          "ABCA8"          "MAMDC2"         "C1QTNF7"       
+## [21] "SCN7A"          "C7"             "C2orf40"        "LIPF"          
+## [25] "PGA4"           "SCRG1"          "OGN"            "GKN1"          
+## [29] "GKN2"           "GIF"            "IL1A"           "EREG"          
 ## [33] "PPBP"           "IL11"           "CXCL6"          "PI15"          
-## [37] "TNFRSF11B"      "PROK2"          "CLEC5A"         "MAGEA10-MAGEA5"
+## [37] "PROK2"          "HCAR3"          "CLEC5A"         "MAGEA10-MAGEA5"
 ## [41] "MAGEA4"         "MAGEA12"        "MAGEA6"         "MAGEA2B"       
 ## [45] "REG1B"
 \end{verbatim}
@@ -1023,9 +1066,9 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 ## # A tibble: 3 x 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   <chr>     <chr>  <chr>     <dbl>    <dbl> <chr>    <chr>    <chr>   
-## 1 signature IA     IE     7.08e-16 2.10e-15 7.1e-16  ****     Wilcoxon
-## 2 signature IA     IS     5.12e-13 1   e-12 5.1e-13  ****     Wilcoxon
-## 3 signature IE     IS     9.36e- 2 9.4 e- 2 0.094    ns       Wilcoxon
+## 1 signature IA     IE     4.09e-17 1.20e-16 < 2e-16  ****     Wilcoxon
+## 2 signature IA     IS     1.44e-13 2.90e-13 1.4e-13  ****     Wilcoxon
+## 3 signature IE     IS     8.35e- 2 8.4 e- 2 0.084    ns       Wilcoxon
 \end{verbatim}
 
 \begin{Shaded}
@@ -1039,9 +1082,9 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 ## # A tibble: 3 x 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   <chr>     <chr>  <chr>     <dbl>    <dbl> <chr>    <chr>    <chr>   
-## 1 signature IA     IE     1.17e- 9 2.3 e- 9 1.2e-09  ****     Wilcoxon
-## 2 signature IA     IS     6.19e- 7 6.20e- 7 6.2e-07  ****     Wilcoxon
-## 3 signature IE     IS     4.51e-19 1.4 e-18 < 2e-16  ****     Wilcoxon
+## 1 signature IA     IE     1.46e-10 2.90e-10 1.5e-10  ****     Wilcoxon
+## 2 signature IA     IS     8.22e- 7 8.2 e- 7 8.2e-07  ****     Wilcoxon
+## 3 signature IE     IS     4.90e-20 1.5 e-19 < 2e-16  ****     Wilcoxon
 \end{verbatim}
 
 合并以上获得的结果图
@@ -1055,7 +1098,7 @@ Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., \& Storey, J. D. (2012
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-25-1.pdf}
+\includegraphics{tme-deg-gsea_files/figure-latex/unnamed-chunk-11-1.pdf}
 
 \hypertarget{identifying-signatures-associated-with-tme-clusters}{%
 \section{Identifying signatures associated with TME clusters}\label{identifying-signatures-associated-with-tme-clusters}}
@@ -1094,22 +1137,22 @@ Calculate TME associated signatures-(through PCA method).
 \begin{verbatim}
 ## 
 ##  IA  IE  IS 
-## 106  94  95 
-## # A tibble: 60 x 7
+## 107  96  97 
+## # A tibble: 58 x 7
 ## # Groups:   cluster [3]
 ##       p_val avg_log2FC pct.1 pct.2 p_val_adj cluster gene                       
 ##       <dbl>      <dbl> <dbl> <dbl>     <dbl> <fct>   <chr>                      
-##  1 2.73e-18      17.8  0.792 0.365  6.98e-16 IA      Base-excision-repair       
-##  2 8.18e-18       3.64 0.698 0.323  2.09e-15 IA      IFNG-signature-Ayers-et-al 
-##  3 9.03e-18       8.94 0.84  0.381  2.31e-15 IA      Mismatch-Repair            
-##  4 9.73e-18       4.17 0.821 0.402  2.49e-15 IA      Th2-cells-Bindea-et-al     
-##  5 1.20e-16       3.97 0.821 0.381  3.08e-14 IA      Folate-One-Carbon-Metaboli~
-##  6 1.14e-15       4.36 0.811 0.354  2.91e-13 IA      Homologous-recombination   
-##  7 2.13e-14       3.09 0.83  0.397  5.45e-12 IA      Purine-Biosynthesis        
-##  8 3.61e-14       4.20 0.67  0.28   9.25e-12 IA      CD-8-T-effector            
-##  9 1.49e-13       2.70 0.708 0.344  3.82e-11 IA      Th1-cells-Bindea-et-al     
-## 10 7.03e-13       2.61 0.792 0.429  1.80e-10 IA      TIP-Release-of-cancer-cell~
-## # i 50 more rows
+##  1 6.21e-19       4.07 0.701 0.316  1.59e-16 IA      IFNG-signature-Ayers-et-al 
+##  2 1.82e-17       5.18 0.813 0.399  4.66e-15 IA      Th2-cells-Bindea-et-al     
+##  3 2.60e-16       4.65 0.813 0.383  6.65e-14 IA      Folate-One-Carbon-Metaboli~
+##  4 1.52e-15       5.12 0.804 0.352  3.89e-13 IA      Homologous-recombination   
+##  5 4.95e-15       4.84 0.673 0.275  1.27e-12 IA      CD-8-T-effector            
+##  6 7.70e-15       3.16 0.71  0.332  1.97e-12 IA      Th1-cells-Bindea-et-al     
+##  7 9.52e-14       3.16 0.822 0.399  2.44e-11 IA      Purine-Biosynthesis        
+##  8 1.42e-13       2.83 0.664 0.352  3.63e-11 IA      ADP-Ribosylation           
+##  9 5.96e-13       2.96 0.785 0.42   1.53e-10 IA      TIP-Release-of-cancer-cell~
+## 10 3.00e-12       2.71 0.776 0.409  7.68e-10 IA      Glycine--Serine-and-Threon~
+## # i 48 more rows
 \end{verbatim}
 
 \begin{Shaded}
@@ -1135,11 +1178,11 @@ Calculate TME associated signatures-(through PCA method).
 
 \begin{verbatim}
 ## # A tibble: 3 x 8
-##   .y.       group1 group2        p    p.adj p.format p.signif method  
-##   <chr>     <chr>  <chr>     <dbl>    <dbl> <chr>    <chr>    <chr>   
-## 1 signature IA     IE     3.34e-12 6.70e-12 3.3e-12  ****     Wilcoxon
-## 2 signature IA     IS     7.93e-15 2.40e-14 7.9e-15  ****     Wilcoxon
-## 3 signature IE     IS     2.54e- 1 2.5 e- 1 0.25     ns       Wilcoxon
+##   .y.       group1 group2        p   p.adj p.format p.signif method  
+##   <chr>     <chr>  <chr>     <dbl>   <dbl> <chr>    <chr>    <chr>   
+## 1 signature IA     IE     2.98e-13 6  e-13 3.0e-13  ****     Wilcoxon
+## 2 signature IA     IS     1.85e-15 5.6e-15 1.9e-15  ****     Wilcoxon
+## 3 signature IE     IS     2.68e- 1 2.7e- 1 0.27     ns       Wilcoxon
 \end{verbatim}
 
 \begin{Shaded}
@@ -1151,11 +1194,11 @@ Calculate TME associated signatures-(through PCA method).
 
 \begin{verbatim}
 ## # A tibble: 3 x 8
-##   .y.       group1 group2        p  p.adj p.format p.signif method  
-##   <chr>     <chr>  <chr>     <dbl>  <dbl> <chr>    <chr>    <chr>   
-## 1 signature IA     IE     0.0222   0.044  0.02217  *        Wilcoxon
-## 2 signature IA     IS     0.0333   0.044  0.03326  *        Wilcoxon
-## 3 signature IE     IS     0.000133 0.0004 0.00013  ***      Wilcoxon
+##   .y.       group1 group2         p   p.adj p.format p.signif method  
+##   <chr>     <chr>  <chr>      <dbl>   <dbl> <chr>    <chr>    <chr>   
+## 1 signature IA     IE     0.00639   0.013   0.0064   **       Wilcoxon
+## 2 signature IA     IS     0.0584    0.058   0.0584   ns       Wilcoxon
+## 3 signature IE     IS     0.0000929 0.00028 9.3e-05  ****     Wilcoxon
 \end{verbatim}
 
 \begin{Shaded}
@@ -1165,7 +1208,7 @@ Calculate TME associated signatures-(through PCA method).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-29-1.pdf}
+\includegraphics{tme-deg-gsea_files/figure-latex/unnamed-chunk-15-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1207,11 +1250,11 @@ Calculate TME associated signatures-(through PCA method).
 
 \begin{verbatim}
 ##  IA  IE  IS 
-## 106  94  95
+## 107  96  97
 \end{verbatim}
 
 \begin{verbatim}
-## 1069495
+## 1079697
 \end{verbatim}
 
 \begin{verbatim}
@@ -1224,7 +1267,7 @@ Calculate TME associated signatures-(through PCA method).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-30-1.pdf}
+\includegraphics{tme-deg-gsea_files/figure-latex/unnamed-chunk-16-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1237,18 +1280,18 @@ Calculate TME associated signatures-(through PCA method).
 ## # Groups:   TMEcluster [3]
 ##    TMEcluster Subtype    Freq  Prop count
 ##    <chr>      <fct>     <dbl> <dbl> <dbl>
-##  1 IA         EMT           6  0.06   106
-##  2 IA         MSI          49  0.46   106
-##  3 IA         MSS/TP53-    27  0.25   106
-##  4 IA         MSS/TP53+    24  0.23   106
-##  5 IE         EMT          22  0.23    94
-##  6 IE         MSI           3  0.03    94
-##  7 IE         MSS/TP53-    40  0.43    94
-##  8 IE         MSS/TP53+    29  0.31    94
-##  9 IS         EMT          14  0.15    95
-## 10 IS         MSI          16  0.17    95
-## 11 IS         MSS/TP53-    39  0.41    95
-## 12 IS         MSS/TP53+    26  0.27    95
+##  1 IA         EMT           7  0.07   107
+##  2 IA         MSI          49  0.46   107
+##  3 IA         MSS/TP53-    27  0.25   107
+##  4 IA         MSS/TP53+    24  0.22   107
+##  5 IE         EMT          24  0.25    96
+##  6 IE         MSI           3  0.03    96
+##  7 IE         MSS/TP53-    40  0.42    96
+##  8 IE         MSS/TP53+    29  0.3     96
+##  9 IS         EMT          15  0.15    97
+## 10 IS         MSI          16  0.16    97
+## 11 IS         MSS/TP53-    40  0.41    97
+## 12 IS         MSS/TP53+    26  0.27    97
 ## [1] "'#374E55FF', '#DF8F44FF', '#00A1D5FF', '#B24745FF', '#79AF97FF', '#6A6599FF', '#80796BFF'"
 \end{verbatim}
 
@@ -1263,15 +1306,15 @@ Calculate TME associated signatures-(through PCA method).
 ## # Groups:   TMEcluster [3]
 ##   TMEcluster Lauren      Freq  Prop count
 ##   <chr>      <fct>      <dbl> <dbl> <dbl>
-## 1 IA         Diffuse       33  0.31   106
-## 2 IA         Intestinal    60  0.57   106
-## 3 IA         Mixed         13  0.12   106
-## 4 IE         Diffuse       58  0.62    94
-## 5 IE         Intestinal    32  0.34    94
-## 6 IE         Mixed          4  0.04    94
-## 7 IS         Diffuse       39  0.41    95
-## 8 IS         Intestinal    54  0.57    95
-## 9 IS         Mixed          2  0.02    95
+## 1 IA         Diffuse       34  0.32   107
+## 2 IA         Intestinal    60  0.56   107
+## 3 IA         Mixed         13  0.12   107
+## 4 IE         Diffuse       60  0.62    96
+## 5 IE         Intestinal    32  0.33    96
+## 6 IE         Mixed          4  0.04    96
+## 7 IS         Diffuse       41  0.42    97
+## 8 IS         Intestinal    54  0.56    97
+## 9 IS         Mixed          2  0.02    97
 ## [1] "'#374E55FF', '#DF8F44FF', '#00A1D5FF', '#B24745FF', '#79AF97FF', '#6A6599FF', '#80796BFF'"
 \end{verbatim}
 
@@ -1286,13 +1329,13 @@ Calculate TME associated signatures-(through PCA method).
 ## # Groups:   TMEcluster [3]
 ##   TMEcluster TMEscore_binary  Freq  Prop count
 ##   <chr>      <fct>           <dbl> <dbl> <dbl>
-## 1 IA         High               60  0.57   106
-## 2 IA         Low                46  0.43   106
-## 3 IE         High                5  0.05    94
-## 4 IE         Low                89  0.95    94
-## 5 IS         High                6  0.06    95
-## 6 IS         Low                88  0.93    95
-## 7 IS         <NA>                1  0.01    95
+## 1 IA         High               60  0.56   107
+## 2 IA         Low                47  0.44   107
+## 3 IE         High                5  0.05    96
+## 4 IE         Low                91  0.95    96
+## 5 IS         High                6  0.06    97
+## 6 IS         Low                90  0.93    97
+## 7 IS         <NA>                1  0.01    97
 ## [1] "'#374E55FF', '#DF8F44FF', '#00A1D5FF', '#B24745FF', '#79AF97FF', '#6A6599FF', '#80796BFF'"
 \end{verbatim}
 
@@ -1302,13 +1345,13 @@ Calculate TME associated signatures-(through PCA method).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-32-1.pdf}
+\includegraphics{tme-deg-gsea_files/figure-latex/unnamed-chunk-18-1.pdf}
 
 \hypertarget{signature-and-relevant-phenotypes}{%
 \chapter{\texorpdfstring{\textbf{Signature and relevant phenotypes}}{Signature and relevant phenotypes}}\label{signature-and-relevant-phenotypes}}
 
-\hypertarget{loading-packages-1}{%
-\section{Loading packages}\label{loading-packages-1}}
+\hypertarget{loading-packages-2}{%
+\section{Loading packages}\label{loading-packages-2}}
 
 Load the IOBR package in your R session after the installation is complete:
 
@@ -1320,8 +1363,8 @@ Load the IOBR package in your R session after the installation is complete:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{downloading-data-for-example-1}{%
-\section{Downloading data for example}\label{downloading-data-for-example-1}}
+\hypertarget{downloading-data-for-example-2}{%
+\section{Downloading data for example}\label{downloading-data-for-example-2}}
 
 Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gastric cancer: GSE62254} using \texttt{GEOquery} R package.
 
@@ -1574,7 +1617,7 @@ This method is suitable for gene sets with a large number of genes, such as thos
 
 }
 
-\caption{The workflow of IOBR}\label{fig:unnamed-chunk-42}
+\caption{The workflow of IOBR}\label{fig:unnamed-chunk-10}
 \end{figure}
 
 \begin{Shaded}
@@ -1645,7 +1688,7 @@ This method is suitable for gene sets with a large number of genes, such as thos
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-45-1} \end{center}
+\begin{center}\includegraphics{signature-analysis_files/figure-latex/unnamed-chunk-13-1} \end{center}
 
 \hypertarget{visulization-using-heatmap}{%
 \section{Visulization using heatmap}\label{visulization-using-heatmap}}
@@ -1663,7 +1706,7 @@ Signatures和分子分型之间的关系
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-46-1} \end{center}
+\begin{center}\includegraphics{signature-analysis_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
 \hypertarget{focus-on-target-signatures}{%
 \section{Focus on target signatures}\label{focus-on-target-signatures}}
@@ -1758,7 +1801,7 @@ Signatures和分子分型之间的关系
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-48-1} \end{center}
+\begin{center}\includegraphics{signature-analysis_files/figure-latex/unnamed-chunk-16-1} \end{center}
 
 \hypertarget{survival-analysis}{%
 \section{Survival analysis}\label{survival-analysis}}
@@ -1799,7 +1842,7 @@ Signature的多种分层下的生存分析
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-49-1.pdf}
+\includegraphics{signature-analysis_files/figure-latex/unnamed-chunk-17-1.pdf}
 
 Signature在预测生存上的ROC
 
@@ -1861,7 +1904,7 @@ Signature在预测生存上的ROC
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-50-1.pdf}
+\includegraphics{signature-analysis_files/figure-latex/unnamed-chunk-18-1.pdf}
 
 \hypertarget{batch-correlation-analysis}{%
 \section{Batch correlation analysis}\label{batch-correlation-analysis}}
@@ -1937,7 +1980,7 @@ Signature在预测生存上的ROC
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-53-1.pdf}
+\includegraphics{signature-analysis_files/figure-latex/unnamed-chunk-21-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1954,7 +1997,7 @@ Signature在预测生存上的ROC
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-54-1.pdf}
+\includegraphics{signature-analysis_files/figure-latex/unnamed-chunk-22-1.pdf}
 
 \hypertarget{visulization-of-correlations}{%
 \section{Visulization of correlations}\label{visulization-of-correlations}}
@@ -1986,7 +2029,7 @@ Signature在预测生存上的ROC
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-55-1.pdf}
+\includegraphics{signature-analysis_files/figure-latex/unnamed-chunk-23-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2002,13 +2045,13 @@ Signature在预测生存上的ROC
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-56-1.pdf}
+\includegraphics{signature-analysis_files/figure-latex/unnamed-chunk-24-1.pdf}
 
 \hypertarget{tme-deconvolution}{%
 \chapter{\texorpdfstring{\textbf{TME deconvolution}}{TME deconvolution}}\label{tme-deconvolution}}
 
-\hypertarget{loading-packages-2}{%
-\section{Loading packages}\label{loading-packages-2}}
+\hypertarget{loading-packages-3}{%
+\section{Loading packages}\label{loading-packages-3}}
 
 Load the IOBR package in your R session after the installation is complete:
 
@@ -2020,8 +2063,8 @@ Load the IOBR package in your R session after the installation is complete:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{downloading-data-for-example-2}{%
-\section{Downloading data for example}\label{downloading-data-for-example-2}}
+\hypertarget{downloading-data-for-example-3}{%
+\section{Downloading data for example}\label{downloading-data-for-example-3}}
 
 Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gastric cancer: GSE62254} using \texttt{GEOquery} R package.
 
@@ -2170,7 +2213,7 @@ Check detail parameters of the function
 ## >>>>=== Palette option for random: 1: palette1; 2: palette2; 3: palette3;  4: palette4
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-63-1.pdf}
+\includegraphics{tme-deconvolution_files/figure-latex/unnamed-chunk-7-1.pdf}
 
 \hypertarget{method-2-epic}{%
 \section{Method 2: EPIC}\label{method-2-epic}}
@@ -2427,7 +2470,7 @@ Check detail parameters of the function
 ## >>>>=== Palette option for random: 1: palette1; 2: palette2; 3: palette3;  4: palette4
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-70-1.pdf}
+\includegraphics{tme-deconvolution_files/figure-latex/unnamed-chunk-14-1.pdf}
 
 \hypertarget{method-8-ips}{%
 \section{Method 8: IPS}\label{method-8-ips}}
@@ -2493,181 +2536,6 @@ Licenses of the deconvolution methods
 \href{https://gfellerlab.shinyapps.io/EPIC_1-1/}{EPIC}; free for non-commercial use only (\href{https://github.com/GfellerLab/EPIC/blob/master/LICENSE}{Academic License}); Racle, J., de Jonge, K., Baumgaertner, P., Speiser, D. E., \& Gfeller, D. (2017). Simultaneous enumeration of cancer and immune cell types from bulk tumor gene expression data. ELife, 6, e26476. \url{https://doi.org/10.7554/eLife.26476};
 
 \href{http://www.bioconductor.org/packages/release/bioc/html/GSVA.html}{GSVA} free (\href{https://github.com/rcastelo/GSVA}{GPL (\textgreater= 2)}) Hänzelmann S, Castelo R, Guinney J (2013). ``GSVA: gene set variation analysis for microarray and RNA-Seq data.'' BMC Bioinformatics, 14, 7. doi: 10.1186/1471-2105-14-7, \url{http://www.biomedcentral.com/1471-2105/14/7} \textbar{}
-
-\hypertarget{cross}{%
-\chapter{Cross-references}\label{cross}}
-
-Cross-references make it easier for your readers to find and link to elements in your book.
-
-\hypertarget{chapters-and-sub-chapters}{%
-\section{Chapters and sub-chapters}\label{chapters-and-sub-chapters}}
-
-There are two steps to cross-reference any heading:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Label the heading: \texttt{\#\ Hello\ world\ \{\#nice-label\}}.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Leave the label off if you like the automated heading generated based on your heading title: for example, \texttt{\#\ Hello\ world} = \texttt{\#\ Hello\ world\ \{\#hello-world\}}.
-  \item
-    To label an un-numbered heading, use: \texttt{\#\ Hello\ world\ \{-\#nice-label\}} or \texttt{\{\#\ Hello\ world\ .unnumbered\}}.
-  \end{itemize}
-\item
-  Next, reference the labeled heading anywhere in the text using \texttt{\textbackslash{}@ref(nice-label)}; for example, please see Chapter \ref{cross}.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    If you prefer text as the link instead of a numbered reference use: \protect\hyperlink{cross}{any text you want can go here}.
-  \end{itemize}
-\end{enumerate}
-
-\hypertarget{captioned-figures-and-tables}{%
-\section{Captioned figures and tables}\label{captioned-figures-and-tables}}
-
-Figures and tables \emph{with captions} can also be cross-referenced from elsewhere in your book using \texttt{\textbackslash{}@ref(fig:chunk-label)} and \texttt{\textbackslash{}@ref(tab:chunk-label)}, respectively.
-
-See Figure \ref{fig:nice-fig}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(pressure, }\AttributeTok{type =} \StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/nice-fig-1} 
-
-}
-
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
-
-Don't miss Table \ref{tab:nice-tab}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
-  \FunctionTok{head}\NormalTok{(pressure, }\DecValTok{10}\NormalTok{), }\AttributeTok{caption =} \StringTok{\textquotesingle{}Here is a nice table!\textquotesingle{}}\NormalTok{,}
-  \AttributeTok{booktabs =} \ConstantTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}
-
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rr}
-\toprule
-temperature & pressure\\
-\midrule
-0 & 0.0002\\
-20 & 0.0012\\
-40 & 0.0060\\
-60 & 0.0300\\
-80 & 0.0900\\
-\addlinespace
-100 & 0.2700\\
-120 & 0.7500\\
-140 & 1.8500\\
-160 & 4.2000\\
-180 & 8.8000\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\hypertarget{footnotes-and-citations}{%
-\chapter{Footnotes and citations}\label{footnotes-and-citations}}
-
-\hypertarget{footnotes}{%
-\section{Footnotes}\label{footnotes}}
-
-Footnotes are put inside the square brackets after a caret \texttt{\^{}{[}{]}}. Like this one \footnote{This is a footnote.}.
-
-\hypertarget{citations}{%
-\section{Citations}\label{citations}}
-
-Reference items in your bibliography file(s) using \texttt{@key}.
-
-For example, we are using the \textbf{bookdown} package \citep{R-bookdown} (check out the last code chunk in index.Rmd to see how this citation key was added) in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015} (this citation was added manually in an external file book.bib).
-Note that the \texttt{.bib} files need to be listed in the index.Rmd with the YAML \texttt{bibliography} key.
-
-The RStudio Visual Markdown Editor can also make it easier to insert citations: \url{https://rstudio.github.io/visual-markdown-editing/\#/citations}
-
-\hypertarget{blocks}{%
-\chapter{Blocks}\label{blocks}}
-
-\hypertarget{equations}{%
-\section{Equations}\label{equations}}
-
-Here is an equation.
-
-\begin{equation} 
-  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
-  \label{eq:binom}
-\end{equation}
-
-You may refer to using \texttt{\textbackslash{}@ref(eq:binom)}, like see Equation \eqref{eq:binom}.
-
-\hypertarget{theorems-and-proofs}{%
-\section{Theorems and proofs}\label{theorems-and-proofs}}
-
-Labeled theorems can be referenced in text using \texttt{\textbackslash{}@ref(thm:tri)}, for example, check out this smart theorem \ref{thm:tri}.
-
-\begin{theorem}
-\protect\hypertarget{thm:tri}{}\label{thm:tri}For a right triangle, if \(c\) denotes the \emph{length} of the hypotenuse
-and \(a\) and \(b\) denote the lengths of the \textbf{other} two sides, we have
-\[a^2 + b^2 = c^2\]
-\end{theorem}
-
-Read more here \url{https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html}.
-
-\hypertarget{callout-blocks}{%
-\section{Callout blocks}\label{callout-blocks}}
-
-The R Markdown Cookbook provides more help on how to use custom blocks to design your own callouts: \url{https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html}
-
-\hypertarget{sharing-your-book}{%
-\chapter{Sharing your book}\label{sharing-your-book}}
-
-\hypertarget{publishing}{%
-\section{Publishing}\label{publishing}}
-
-HTML books can be published online, see: \url{https://bookdown.org/yihui/bookdown/publishing.html}
-
-\hypertarget{pages}{%
-\section{404 pages}\label{pages}}
-
-By default, users will be directed to a 404 page if they try to access a webpage that cannot be found. If you'd like to customize your 404 page instead of using the default, you may add either a \texttt{\_404.Rmd} or \texttt{\_404.md} file to your project root and use code and/or Markdown syntax.
-
-\hypertarget{metadata-for-sharing}{%
-\section{Metadata for sharing}\label{metadata-for-sharing}}
-
-Bookdown HTML books will provide HTML metadata for social sharing on platforms like Twitter, Facebook, and LinkedIn, using information you provide in the \texttt{index.Rmd} YAML. To setup, set the \texttt{url} for your book and the path to your \texttt{cover-image} file. Your book's \texttt{title} and \texttt{description} are also used.
-
-This \texttt{gitbook} uses the same social sharing data across all chapters in your book- all links shared will look the same.
-
-Specify your book's source repository on GitHub using the \texttt{edit} key under the configuration options in the \texttt{\_output.yml} file, which allows users to suggest an edit by linking to a chapter's source file.
-
-Read more about the features of this output format here:
-
-\url{https://pkgs.rstudio.com/bookdown/reference/gitbook.html}
-
-Or use:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{?bookdown}\SpecialCharTok{::}\NormalTok{gitbook}
-\end{Highlighting}
-\end{Shaded}
 
 \hypertarget{references-1}{%
 \chapter{\texorpdfstring{\textbf{References}}{References}}\label{references-1}}

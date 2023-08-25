@@ -6,7 +6,7 @@ bookdown::gitbook:
         <li><a href="./">The tutorial of IOBR</a></li>
       after: |
         <li><a href="https://github.com/DongqiangZeng0808" target="blank">Welcome to my GitHub</a></li>
-    edit: https://github.com/DongqiangZeng0808/IOBR-Book/%s
+    edit: https://github.com/DongqiangZeng0808/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:
