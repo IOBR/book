@@ -10,11 +10,11 @@ publishment
 major-updates
 reporting-bugs
 how-to-install-iobr
-installing-dependency-packages
+install-dependency-packages
 install-iobr-package
-how-to-update-iobr-package
+how-to-update-iobr
 the-main-pipeline-of-iobr
-main-functions
+main-functions-of-iobr
 current-working-environment
 rna-data-preprocessing
 loading-packages

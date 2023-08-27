@@ -158,7 +158,7 @@ eset_com <- remove_batcheffect( eset1       = eset1,
 dim(eset_com)
 ```
 
-待补充-RNAseq的批次校正：count, combat-seq
+Waiting for updates: Removing batch effect of RNAseq datasets: count, combat-seq
 
 ## References
 

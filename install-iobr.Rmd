@@ -1,7 +1,7 @@
 
 # **How to install IOBR**
 
-## `r if(knitr::is_html_output()) emo::ji("time")` Installing Dependency Packages
+## `r if(knitr::is_html_output()) emo::ji("time")` Install Dependency Packages
 
 It is essential that you have R 3.6.3 or above already installed on your computer or server. IOBR is a pipeline that utilizes many other R packages that are currently available from CRAN, Bioconductor and GitHub.
 
@@ -20,7 +20,7 @@ for(i in 1:length(depens)){
 ## `r if(knitr::is_html_output()) emo::ji("computer")` Install IOBR package
 
 When the dependent environments are built, users are able to install IOBR from github by typing the following code into your R session:
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 
 if (!requireNamespace("IOBR", quietly = TRUE))  devtools::install_github("IOBR/IOBR")
 
@@ -28,7 +28,7 @@ library(IOBR)
 ```
 
 
-## `r if(knitr::is_html_output()) emo::ji("pin")` How to update IOBR package
+## `r if(knitr::is_html_output()) emo::ji("pin")` How to update IOBR
 ```{r, message=FALSE, eval=FALSE}
 
 detach("package:IOBR")
@@ -43,7 +43,7 @@ devtools::install_github("IOBR/IOBR")
 knitr::include_graphics(rep("./fig/IOBR-Package.png", 1))
 ```
 
-## Main Functions
+## `r if(knitr::is_html_output()) emo::ji("index")` Main Functions of IOBR
 
 * <div style="color:green">**Data Preparation: data annotation and transformation**</div> 
    * `count2tpm()`: transform count data of RNA sequencing into TPM data.
@@ -59,10 +59,10 @@ knitr::include_graphics(rep("./fig/IOBR-Package.png", 1))
    * `generateRef()`: generate a novel gene reference matrix for a specific feature such as infiltrating cell, through the  SVR and lsei algorithm.
 </br>
 
-* <div style="color:green">**Signature Module: calculate signature scores, estimate phenotype related signatures and corresponding genes, and evaluate signatures generated from single-cell RNA sequencing data **</div>
+* <div style="color:green">**Signature Module: calculatint signature scores, estimate phenotype related signatures and corresponding genes, and evaluate signatures generated from single-cell RNA sequencing data **</div>
   * `calculate_sig_score()`: estimate the interested signatures enrolled in IOBR R package, which involves TME-associated, tumor-metabolism, and tumor-intrinsic signatures.
   * `feature_manipulation()`: manipulate features including the cell fraction and signatures generated from multi-omics data for latter analysis and model construction. Remove missing values, outliers and variables without significant variance.
-  * `format_signatures()`: generate the object of `calculate_sig_score()`function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.
+  * `format_signatures()`: generate the object for `calculate_sig_score()` function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.
   * `format_msigdb()`: transform the signature gene sets data  with gmt format, which is not included in the signature collection and might be downloaded in the MSgiDB website, into the object of `calculate_sig_score()`function.
   * `sig_gsea()`: Waiting for updates...
 </br>
@@ -100,7 +100,7 @@ knitr::include_graphics(rep("./fig/IOBR-Package.png", 1))
 </br>
 
 
-## Current working environment
+## `r if(knitr::is_html_output()) emo::ji("world")` Current working environment
 
 ```{r}
 sessionInfo()

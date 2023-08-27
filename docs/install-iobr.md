@@ -1,7 +1,7 @@
 
 # **How to install IOBR**
 
-## ⏳ Installing Dependency Packages
+## ⏳ Install Dependency Packages
 
 It is essential that you have R 3.6.3 or above already installed on your computer or server. IOBR is a pipeline that utilizes many other R packages that are currently available from CRAN, Bioconductor and GitHub.
 
@@ -23,30 +23,12 @@ When the dependent environments are built, users are able to install IOBR from g
 
 ```r
 if (!requireNamespace("IOBR", quietly = TRUE))  devtools::install_github("IOBR/IOBR")
-```
 
-```
-## Warning: package 'tidyHeatmap' was built under R version 4.2.3
-```
-
-```r
 library(IOBR)
 ```
 
-```
-## Warning: package 'tibble' was built under R version 4.2.3
-```
 
-```
-## Warning: package 'dplyr' was built under R version 4.2.3
-```
-
-```
-## Warning: package 'ggplot2' was built under R version 4.2.3
-```
-
-
-## 📍 How to update IOBR package
+## 📌 How to update IOBR
 
 ```r
 detach("package:IOBR")
@@ -62,7 +44,7 @@ devtools::install_github("IOBR/IOBR")
 <p class="caption">(\#fig:flowchart)The main pipeline of IOBR</p>
 </div>
 
-## Main Functions
+## 👆 Main Functions of IOBR
 
 * <div style="color:green">**Data Preparation: data annotation and transformation**</div> 
    * `count2tpm()`: transform count data of RNA sequencing into TPM data.
@@ -78,10 +60,10 @@ devtools::install_github("IOBR/IOBR")
    * `generateRef()`: generate a novel gene reference matrix for a specific feature such as infiltrating cell, through the  SVR and lsei algorithm.
 </br>
 
-* <div style="color:green">**Signature Module: calculate signature scores, estimate phenotype related signatures and corresponding genes, and evaluate signatures generated from single-cell RNA sequencing data **</div>
+* <div style="color:green">**Signature Module: calculatint signature scores, estimate phenotype related signatures and corresponding genes, and evaluate signatures generated from single-cell RNA sequencing data **</div>
   * `calculate_sig_score()`: estimate the interested signatures enrolled in IOBR R package, which involves TME-associated, tumor-metabolism, and tumor-intrinsic signatures.
   * `feature_manipulation()`: manipulate features including the cell fraction and signatures generated from multi-omics data for latter analysis and model construction. Remove missing values, outliers and variables without significant variance.
-  * `format_signatures()`: generate the object of `calculate_sig_score()`function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.
+  * `format_signatures()`: generate the object for `calculate_sig_score()` function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.
   * `format_msigdb()`: transform the signature gene sets data  with gmt format, which is not included in the signature collection and might be downloaded in the MSgiDB website, into the object of `calculate_sig_score()`function.
   * `sig_gsea()`: Waiting for updates...
 </br>
@@ -119,7 +101,7 @@ devtools::install_github("IOBR/IOBR")
 </br>
 
 
-## Current working environment
+## 🌎 Current working environment
 
 
 ```r

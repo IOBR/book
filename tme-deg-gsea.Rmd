@@ -35,8 +35,7 @@ eset[1:5, 1:3]
 ```
 
 ## Determine TME subtype of gastric cancer using [TMEclassifier R package](https://github.com/LiaoWJLab/TMEclassifier)
-```{r, message=FALSE}
-
+```{r, message=FALSE, warning=FALSE}
 library(TMEclassifier)
 tme <- tme_classifier(eset = eset, scale = TRUE)
 table(tme$TMEcluster)
@@ -119,10 +118,9 @@ knitr::include_graphics(rep("./fig/gsea-2.png", 1))
 
 
 ## DEG analysis: method2
-使用`find_markers_in_bulk`寻找TME分型相关的差异基因
 
+Identifing TME subtype-related differential genes using `find_markers_in_bulk`
 ```{r, message = F, warning = F}
-
 library(Seurat)
 res <- find_markers_in_bulk(pdata      = tme, 
                             eset       = eset, 
@@ -136,7 +134,7 @@ top15 <-  res$top_markers %>% dplyr:: group_by(cluster) %>%  dplyr::top_n(15, av
 top15$gene
 ```
 
-使用`Seurat`的`DoHeatmap`进行热图的可视化
+Heatmap visualisation using `Seurat`'s `DoHeatmap`
 ```{r,fig.show= 'hide',message=FALSE}
 #定义分型对应的颜色
 cols <- c('#2692a4','#fc0d3a','#ffbe0b')
@@ -145,11 +143,10 @@ p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols )+
 
 ```
 
-提取表达矩阵中的变量与TME分型数据进行合并
+Extracting variables from the expression matrix to merge with TME subtype
 ```{r,fig.show= 'hide',message=FALSE}
 
 input <- combine_pd_eset(eset = eset, pdata = tme, feas = top15$gene, scale = T)
-
 p2 <- sig_box(input, variable = "TMEcluster", signature = "IFNG", jitter = TRUE,
               cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
 

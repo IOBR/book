@@ -123,7 +123,7 @@
 
 \title{IOBR (Immuno-Oncology Biological Research)}
 \author{Dongqiang Zeng}
-\date{2023-08-25}
+\date{2023-08-27}
 
 \begin{document}
 \maketitle
@@ -188,8 +188,8 @@ E-mail any questions to \href{mailto:dongqiangzeng0808@gmail.com}{\nolinkurl{don
 \hypertarget{how-to-install-iobr}{%
 \chapter{\texorpdfstring{\textbf{How to install IOBR}}{How to install IOBR}}\label{how-to-install-iobr}}
 
-\hypertarget{installing-dependency-packages}{%
-\section{Installing Dependency Packages}\label{installing-dependency-packages}}
+\hypertarget{install-dependency-packages}{%
+\section{Install Dependency Packages}\label{install-dependency-packages}}
 
 It is essential that you have R 3.6.3 or above already installed on your computer or server. IOBR is a pipeline that utilizes many other R packages that are currently available from CRAN, Bioconductor and GitHub.
 
@@ -214,33 +214,13 @@ When the dependent environments are built, users are able to install IOBR from g
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{requireNamespace}\NormalTok{(}\StringTok{"IOBR"}\NormalTok{, }\AttributeTok{quietly =} \ConstantTok{TRUE}\NormalTok{))  devtools}\SpecialCharTok{::}\FunctionTok{install\_github}\NormalTok{(}\StringTok{"IOBR/IOBR"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-## Warning: package 'tidyHeatmap' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(IOBR)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Warning: package 'tibble' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'dplyr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'ggplot2' was built under R version 4.2.3
-\end{verbatim}
-
-\hypertarget{how-to-update-iobr-package}{%
-\section{How to update IOBR package}\label{how-to-update-iobr-package}}
+\hypertarget{how-to-update-iobr}{%
+\section{How to update IOBR}\label{how-to-update-iobr}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -263,8 +243,8 @@ When the dependent environments are built, users are able to install IOBR from g
 \caption{The main pipeline of IOBR}\label{fig:flowchart}
 \end{figure}
 
-\hypertarget{main-functions}{%
-\section{Main Functions}\label{main-functions}}
+\hypertarget{main-functions-of-iobr}{%
+\section{Main Functions of IOBR}\label{main-functions-of-iobr}}
 
 \begin{itemize}
 \item
@@ -296,7 +276,7 @@ When the dependent environments are built, users are able to install IOBR from g
     \texttt{generateRef()}: generate a novel gene reference matrix for a specific feature such as infiltrating cell, through the SVR and lsei algorithm.
   \end{itemize}
 \item
-  \textbf{Signature Module: calculate signature scores, estimate phenotype related signatures and corresponding genes, and evaluate signatures generated from single-cell RNA sequencing data }
+  \textbf{Signature Module: calculatint signature scores, estimate phenotype related signatures and corresponding genes, and evaluate signatures generated from single-cell RNA sequencing data }
 
   \begin{itemize}
   \tightlist
@@ -305,7 +285,7 @@ When the dependent environments are built, users are able to install IOBR from g
   \item
     \texttt{feature\_manipulation()}: manipulate features including the cell fraction and signatures generated from multi-omics data for latter analysis and model construction. Remove missing values, outliers and variables without significant variance.
   \item
-    \texttt{format\_signatures()}: generate the object of \texttt{calculate\_sig\_score()}function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.
+    \texttt{format\_signatures()}: generate the object for \texttt{calculate\_sig\_score()} function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.
   \item
     \texttt{format\_msigdb()}: transform the signature gene sets data with gmt format, which is not included in the signature collection and might be downloaded in the MSgiDB website, into the object of \texttt{calculate\_sig\_score()}function.
   \item
@@ -822,7 +802,7 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 ## [1] 21752   365
 \end{verbatim}
 
-待补充-RNAseq的批次校正：count, combat-seq
+Waiting for updates: Removing batch effect of RNAseq datasets: count, combat-seq
 
 \hypertarget{references}{%
 \section{References}\label{references}}
@@ -910,7 +890,7 @@ Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gas
 ## Step-1: Expression data preprocessing...
 ## Step-2: TME deconvolution...
 ## Step-3: Predicting TME phenotypes...
-## [13:14:46] WARNING: amalgamation/../src/learner.cc:1040: 
+## [12:31:47] WARNING: amalgamation/../src/learner.cc:1040: 
 ##   If you are loading a serialized model (like pickle in Python, RDS in R) generated by
 ##   older XGBoost, please export the model by calling `Booster.save_model` from that version
 ##   first, then load it back in current version. See:
@@ -919,7 +899,7 @@ Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gas
 ## 
 ##   for more details about differences between saving model and serializing.
 ## 
-## [13:14:46] WARNING: amalgamation/../src/learner.cc:749: Found JSON model saved before XGBoost 1.6, please save the model using current version again. The support for old JSON model will be discontinued in XGBoost 2.3.
+## [12:31:47] WARNING: amalgamation/../src/learner.cc:749: Found JSON model saved before XGBoost 1.6, please save the model using current version again. The support for old JSON model will be discontinued in XGBoost 2.3.
 ## >>>--- DONE!
 \end{verbatim}
 
@@ -1232,7 +1212,7 @@ Hallmark gene sigantures
 \hypertarget{deg-analysis-method2}{%
 \section{DEG analysis: method2}\label{deg-analysis-method2}}
 
-使用\texttt{find\_markers\_in\_bulk}寻找TME分型相关的差异基因
+Identifing TME subtype-related differential genes using \texttt{find\_markers\_in\_bulk}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1291,7 +1271,7 @@ Hallmark gene sigantures
 ## [45] "REG1B"
 \end{verbatim}
 
-使用\texttt{Seurat}的\texttt{DoHeatmap}进行热图的可视化
+Heatmap visualisation using \texttt{Seurat}'s \texttt{DoHeatmap}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1302,12 +1282,11 @@ Hallmark gene sigantures
 \end{Highlighting}
 \end{Shaded}
 
-提取表达矩阵中的变量与TME分型数据进行合并
+Extracting variables from the expression matrix to merge with TME subtype
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{input }\OtherTok{\textless{}{-}} \FunctionTok{combine\_pd\_eset}\NormalTok{(}\AttributeTok{eset =}\NormalTok{ eset, }\AttributeTok{pdata =}\NormalTok{ tme, }\AttributeTok{feas =}\NormalTok{ top15}\SpecialCharTok{$}\NormalTok{gene, }\AttributeTok{scale =}\NormalTok{ T)}
-
 \NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{sig\_box}\NormalTok{(input, }\AttributeTok{variable =} \StringTok{"TMEcluster"}\NormalTok{, }\AttributeTok{signature =} \StringTok{"IFNG"}\NormalTok{, }\AttributeTok{jitter =} \ConstantTok{TRUE}\NormalTok{,}
               \AttributeTok{cols =}\NormalTok{  cols, }\AttributeTok{show\_pvalue =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{size\_of\_pvalue =} \DecValTok{4}\NormalTok{)}
 \end{Highlighting}
@@ -2766,9 +2745,9 @@ Check detail parameters of the function
 ## [1]  50 138
 \end{verbatim}
 
-If you use this package in your work, please cite both our package and the method(s) you are using.
+\textbf{If you use this package in your work, please cite both our package and the method(s) you are using.}
 
-Licenses of the deconvolution methods
+Citation and licenses of these deconvolution methods
 
 \href{https://cibersort.stanford.edu/}{CIBERSORT}; free for non-commerical use only; Newman, A. M., Liu, C. L., Green, M. R., Gentles, A. J., Feng, W., Xu, Y., \ldots{} Alizadeh, A. A. (2015). Robust enumeration of cell subsets from tissue expression profiles. Nature Methods, 12(5), 453--457. \url{https://doi.org/10.1038/nmeth.3337};
 
@@ -2786,7 +2765,7 @@ Licenses of the deconvolution methods
 
 \href{https://gfellerlab.shinyapps.io/EPIC_1-1/}{EPIC}; free for non-commercial use only (\href{https://github.com/GfellerLab/EPIC/blob/master/LICENSE}{Academic License}); Racle, J., de Jonge, K., Baumgaertner, P., Speiser, D. E., \& Gfeller, D. (2017). Simultaneous enumeration of cancer and immune cell types from bulk tumor gene expression data. ELife, 6, e26476. \url{https://doi.org/10.7554/eLife.26476};
 
-\href{http://www.bioconductor.org/packages/release/bioc/html/GSVA.html}{GSVA} free (\href{https://github.com/rcastelo/GSVA}{GPL (\textgreater= 2)}) Hänzelmann S, Castelo R, Guinney J (2013). ``GSVA: gene set variation analysis for microarray and RNA-Seq data.'' BMC Bioinformatics, 14, 7. doi: 10.1186/1471-2105-14-7, \url{http://www.biomedcentral.com/1471-2105/14/7} \textbar{}
+\href{http://www.bioconductor.org/packages/release/bioc/html/GSVA.html}{GSVA} free (\href{https://github.com/rcastelo/GSVA}{GPL (\textgreater= 2)}) Hänzelmann S, Castelo R, Guinney J (2013). ``GSVA: gene set variation analysis for microarray and RNA-Seq data.'' BMC Bioinformatics, 14, 7. doi: 10.1186/1471-2105-14-7, \url{http://www.biomedcentral.com/1471-2105/14/7}
 
 \hypertarget{references-1}{%
 \chapter{\texorpdfstring{\textbf{References}}{References}}\label{references-1}}

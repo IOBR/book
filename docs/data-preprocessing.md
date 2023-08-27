@@ -294,7 +294,7 @@ dim(eset_com)
 ## [1] 21752   365
 ```
 
-待补充-RNAseq的批次校正：count, combat-seq
+Waiting for updates: Removing batch effect of RNAseq datasets: count, combat-seq
 
 ## References
 
