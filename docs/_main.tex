@@ -123,7 +123,7 @@
 
 \title{IOBR (Immuno-Oncology Biological Research)}
 \author{Dongqiang Zeng}
-\date{2023-08-27}
+\date{2023-09-08}
 
 \begin{document}
 \maketitle
@@ -386,88 +386,105 @@ When the dependent environments are built, users are able to install IOBR from g
 ## [8] base     
 ## 
 ## other attached packages:
-## [1] IOBR_0.99.9           survival_3.3-1        ggpubr_0.4.0         
-## [4] ggplot2_3.4.2         dplyr_1.1.2           tibble_3.2.1         
-## [7] tidyHeatmap_1.8.1     ComplexHeatmap_2.15.4
+##  [1] IOBR_0.99.9           survminer_0.4.9       patchwork_1.1.1      
+##  [4] clusterProfiler_4.4.3 survival_3.3-1        ggpubr_0.4.0         
+##  [7] ggplot2_3.4.2         dplyr_1.1.2           tibble_3.2.1         
+## [10] tidyHeatmap_1.8.1     ComplexHeatmap_2.15.4
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] readxl_1.4.0                backports_1.4.1            
-##   [3] circlize_0.4.15             corrplot_0.92              
-##   [5] GSEABase_1.58.0             splines_4.2.0              
-##   [7] BiocParallel_1.30.3         GenomeInfoDb_1.34.4        
-##   [9] digest_0.6.29               foreach_1.5.2              
-##  [11] htmltools_0.5.2             viridis_0.6.2              
-##  [13] fansi_1.0.3                 magrittr_2.0.3             
-##  [15] memoise_2.0.1               ScaledMatrix_1.4.0         
-##  [17] cluster_2.1.3               googlesheets4_1.0.0        
-##  [19] doParallel_1.0.17           tzdb_0.3.0                 
-##  [21] limma_3.52.1                Biostrings_2.64.0          
-##  [23] readr_2.1.2                 annotate_1.74.0            
-##  [25] modelr_0.1.8                matrixStats_0.62.0         
-##  [27] limSolve_1.5.6              lpSolve_5.6.15             
-##  [29] colorspace_2.0-3            blob_1.2.3                 
-##  [31] rvest_1.0.2                 haven_2.5.0                
-##  [33] xfun_0.40                   crayon_1.5.2               
-##  [35] RCurl_1.98-1.7              jsonlite_1.8.0             
-##  [37] graph_1.74.0                genefilter_1.78.0          
-##  [39] zoo_1.8-10                  iterators_1.0.14           
-##  [41] glue_1.6.2                  survminer_0.4.9            
-##  [43] gtable_0.3.1                gargle_1.2.0               
-##  [45] zlibbioc_1.42.0             XVector_0.36.0             
-##  [47] GetoptLong_1.0.5            DelayedArray_0.22.0        
-##  [49] BiocSingular_1.12.0         car_3.1-0                  
-##  [51] Rhdf5lib_1.18.2             SingleCellExperiment_1.18.0
-##  [53] shape_1.4.6                 HDF5Array_1.24.1           
-##  [55] BiocGenerics_0.42.0         abind_1.4-5                
-##  [57] scales_1.2.0                DBI_1.1.2                  
-##  [59] rstatix_0.7.0               Rcpp_1.0.9                 
-##  [61] viridisLite_0.4.1           xtable_1.8-4               
-##  [63] clue_0.3-61                 rsvd_1.0.5                 
-##  [65] bit_4.0.4                   proxy_0.4-27               
-##  [67] preprocessCore_1.58.0       km.ci_0.5-6                
-##  [69] GSVA_1.44.2                 stats4_4.2.0               
-##  [71] glmnet_4.1-4                httr_1.4.3                 
-##  [73] RColorBrewer_1.1-3          ellipsis_0.3.2             
-##  [75] pkgconfig_2.0.3             XML_3.99-0.10              
-##  [77] dbplyr_2.2.0                locfit_1.5-9.5             
-##  [79] utf8_1.2.2                  tidyselect_1.2.0           
-##  [81] rlang_1.1.0                 AnnotationDbi_1.58.0       
-##  [83] munsell_0.5.0               cellranger_1.1.0           
-##  [85] tools_4.2.0                 cachem_1.0.6               
-##  [87] cli_3.4.1                   generics_0.1.3             
-##  [89] RSQLite_2.2.14              broom_0.8.0                
-##  [91] evaluate_0.15               stringr_1.4.0              
-##  [93] fastmap_1.1.0               yaml_2.3.5                 
-##  [95] knitr_1.39                  bit64_4.0.5                
-##  [97] fs_1.5.2                    survMisc_0.5.6             
-##  [99] purrr_0.3.4                 dendextend_1.15.2          
-## [101] KEGGREST_1.36.2             sparseMatrixStats_1.8.0    
-## [103] xml2_1.3.3                  compiler_4.2.0             
-## [105] rstudioapi_0.13             png_0.1-7                  
-## [107] e1071_1.7-11                ggsignif_0.6.3             
-## [109] reprex_2.0.1                geneplotter_1.74.0         
-## [111] stringi_1.7.6               forcats_0.5.1              
-## [113] lattice_0.20-45             Matrix_1.5-4.1             
-## [115] KMsurv_0.1-5                vctrs_0.6.2                
-## [117] rhdf5filters_1.8.0          pillar_1.9.0               
-## [119] lifecycle_1.0.3             GlobalOptions_0.1.2        
-## [121] irlba_2.3.5                 data.table_1.14.2          
-## [123] cowplot_1.1.1               bitops_1.0-7               
-## [125] patchwork_1.1.1             GenomicRanges_1.48.0       
-## [127] R6_2.5.1                    bookdown_0.35              
-## [129] gridExtra_2.3               IRanges_2.30.0             
-## [131] codetools_0.2-18            MASS_7.3-56                
-## [133] assertthat_0.2.1            rhdf5_2.40.0               
-## [135] SummarizedExperiment_1.26.1 DESeq2_1.36.0              
-## [137] rjson_0.2.21                withr_2.5.0                
-## [139] S4Vectors_0.34.0            GenomeInfoDbData_1.2.8     
-## [141] parallel_4.2.0              hms_1.1.1                  
-## [143] beachmat_2.12.0             quadprog_1.5-8             
-## [145] tidyverse_1.3.2             tidyr_1.2.0                
-## [147] class_7.3-20                DelayedMatrixStats_1.18.0  
-## [149] rmarkdown_2.14              MatrixGenerics_1.8.0       
-## [151] carData_3.0-5               googledrive_2.0.0          
-## [153] Biobase_2.56.0              lubridate_1.8.0
+##   [1] utf8_1.2.2                  tidyselect_1.2.0           
+##   [3] RSQLite_2.2.14              AnnotationDbi_1.58.0       
+##   [5] BiocParallel_1.30.3         lpSolve_5.6.15             
+##   [7] scatterpie_0.1.7            ScaledMatrix_1.4.0         
+##   [9] munsell_0.5.0               codetools_0.2-18           
+##  [11] preprocessCore_1.58.0       withr_2.5.0                
+##  [13] colorspace_2.0-3            GOSemSim_2.22.0            
+##  [15] Biobase_2.56.0              limSolve_1.5.6             
+##  [17] knitr_1.39                  rstudioapi_0.13            
+##  [19] SingleCellExperiment_1.18.0 stats4_4.2.0               
+##  [21] ggsignif_0.6.3              DOSE_3.22.0                
+##  [23] MatrixGenerics_1.8.0        GenomeInfoDbData_1.2.8     
+##  [25] KMsurv_0.1-5                polyclip_1.10-0            
+##  [27] bit64_4.0.5                 farver_2.1.0               
+##  [29] rhdf5_2.40.0                downloader_0.4             
+##  [31] treeio_1.21.2               vctrs_0.6.2                
+##  [33] generics_0.1.3              xfun_0.40                  
+##  [35] R6_2.5.1                    doParallel_1.0.17          
+##  [37] GenomeInfoDb_1.34.4         clue_0.3-61                
+##  [39] graphlayouts_0.8.0          rsvd_1.0.5                 
+##  [41] locfit_1.5-9.5              rhdf5filters_1.8.0         
+##  [43] gridGraphics_0.5-1          bitops_1.0-7               
+##  [45] cachem_1.0.6                fgsea_1.22.0               
+##  [47] DelayedArray_0.22.0         assertthat_0.2.1           
+##  [49] scales_1.2.0                ggraph_2.0.5               
+##  [51] enrichplot_1.16.1           googlesheets4_1.0.0        
+##  [53] gtable_0.3.1                beachmat_2.12.0            
+##  [55] tidygraph_1.2.1             rlang_1.1.0                
+##  [57] genefilter_1.78.0           GlobalOptions_0.1.2        
+##  [59] splines_4.2.0               lazyeval_0.2.2             
+##  [61] rstatix_0.7.0               gargle_1.2.0               
+##  [63] broom_0.8.0                 yaml_2.3.5                 
+##  [65] reshape2_1.4.4              abind_1.4-5                
+##  [67] modelr_0.1.8                backports_1.4.1            
+##  [69] qvalue_2.28.0               tools_4.2.0                
+##  [71] bookdown_0.35               ggplotify_0.1.0            
+##  [73] ellipsis_0.3.2              RColorBrewer_1.1-3         
+##  [75] proxy_0.4-27                BiocGenerics_0.42.0        
+##  [77] Rcpp_1.0.9                  plyr_1.8.7                 
+##  [79] sparseMatrixStats_1.8.0     zlibbioc_1.42.0            
+##  [81] purrr_0.3.4                 RCurl_1.98-1.7             
+##  [83] GetoptLong_1.0.5            viridis_0.6.2              
+##  [85] cowplot_1.1.1               S4Vectors_0.34.0           
+##  [87] zoo_1.8-10                  SummarizedExperiment_1.26.1
+##  [89] haven_2.5.0                 ggrepel_0.9.1              
+##  [91] cluster_2.1.3               fs_1.5.2                   
+##  [93] magrittr_2.0.3              data.table_1.14.2          
+##  [95] DO.db_2.9                   circlize_0.4.15            
+##  [97] reprex_2.0.1                googledrive_2.0.0          
+##  [99] matrixStats_0.62.0          GSVA_1.44.2                
+## [101] hms_1.1.1                   evaluate_0.15              
+## [103] xtable_1.8-4                XML_3.99-0.10              
+## [105] readxl_1.4.0                IRanges_2.30.0             
+## [107] gridExtra_2.3               shape_1.4.6                
+## [109] compiler_4.2.0              shadowtext_0.1.2           
+## [111] crayon_1.5.2                htmltools_0.5.2            
+## [113] ggfun_0.0.6                 tzdb_0.3.0                 
+## [115] tidyr_1.2.0                 geneplotter_1.74.0         
+## [117] aplot_0.1.6                 lubridate_1.8.0            
+## [119] DBI_1.1.2                   tweenr_1.0.2               
+## [121] corrplot_0.92               dbplyr_2.2.0               
+## [123] MASS_7.3-56                 Matrix_1.5-4.1             
+## [125] car_3.1-0                   readr_2.1.2                
+## [127] cli_3.4.1                   quadprog_1.5-8             
+## [129] parallel_4.2.0              igraph_1.3.2               
+## [131] GenomicRanges_1.48.0        forcats_0.5.1              
+## [133] pkgconfig_2.0.3             km.ci_0.5-6                
+## [135] xml2_1.3.3                  foreach_1.5.2              
+## [137] ggtree_3.4.4                annotate_1.74.0            
+## [139] XVector_0.36.0              rvest_1.0.2                
+## [141] yulab.utils_0.0.4           stringr_1.4.0              
+## [143] digest_0.6.29               graph_1.74.0               
+## [145] Biostrings_2.64.0           rmarkdown_2.14             
+## [147] cellranger_1.1.0            fastmatch_1.1-3            
+## [149] tidytree_0.3.9              survMisc_0.5.6             
+## [151] dendextend_1.15.2           DelayedMatrixStats_1.18.0  
+## [153] GSEABase_1.58.0             rjson_0.2.21               
+## [155] nlme_3.1-157                lifecycle_1.0.3            
+## [157] jsonlite_1.8.0              Rhdf5lib_1.18.2            
+## [159] carData_3.0-5               viridisLite_0.4.1          
+## [161] limma_3.52.1                fansi_1.0.3                
+## [163] pillar_1.9.0                lattice_0.20-45            
+## [165] KEGGREST_1.36.2             fastmap_1.1.0              
+## [167] httr_1.4.3                  GO.db_3.15.0               
+## [169] glue_1.6.2                  png_0.1-7                  
+## [171] iterators_1.0.14            glmnet_4.1-4               
+## [173] bit_4.0.4                   HDF5Array_1.24.1           
+## [175] ggforce_0.3.3               class_7.3-20               
+## [177] stringi_1.7.6               blob_1.2.3                 
+## [179] BiocSingular_1.12.0         DESeq2_1.36.0              
+## [181] memoise_2.0.1               irlba_2.3.5                
+## [183] ape_5.6-2                   tidyverse_1.3.2            
+## [185] e1071_1.7-11
 \end{verbatim}
 
 \hypertarget{rna-data-preprocessing}{%
@@ -704,8 +721,8 @@ Removing potential outlier samples
 ## 
 ##       CIN       EBV       EMT        GS       MSI MSS/TP53- MSS/TP53+ 
 ##         0         0        42         0        68       106        79 
-## [1] ">>-- colors for PCA: #5f75ae" ">>-- colors for PCA: #64a841"
-## [3] ">>-- colors for PCA: #e5486e" ">>-- colors for PCA: #de8e06"
+## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
+## [3] ">>-- colors for PCA: #00A1D5FF" ">>-- colors for PCA: #B24745FF"
 \end{verbatim}
 
 \begin{Shaded}
@@ -783,11 +800,11 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 ## 
 ## eset1 eset2 
 ##   295    70 
-## [1] ">>-- colors for PCA: #5f75ae" ">>-- colors for PCA: #64a841"
+## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
 ## 
 ## eset1 eset2 
 ##   295    70 
-## [1] ">>-- colors for PCA: #5f75ae" ">>-- colors for PCA: #64a841"
+## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
 \end{verbatim}
 
 \begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-14-1} \end{center}
@@ -890,7 +907,7 @@ Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gas
 ## Step-1: Expression data preprocessing...
 ## Step-2: TME deconvolution...
 ## Step-3: Predicting TME phenotypes...
-## [12:31:47] WARNING: amalgamation/../src/learner.cc:1040: 
+## [19:19:48] WARNING: amalgamation/../src/learner.cc:1040: 
 ##   If you are loading a serialized model (like pickle in Python, RDS in R) generated by
 ##   older XGBoost, please export the model by calling `Booster.save_model` from that version
 ##   first, then load it back in current version. See:
@@ -899,7 +916,7 @@ Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gas
 ## 
 ##   for more details about differences between saving model and serializing.
 ## 
-## [12:31:47] WARNING: amalgamation/../src/learner.cc:749: Found JSON model saved before XGBoost 1.6, please save the model using current version again. The support for old JSON model will be discontinued in XGBoost 2.3.
+## [19:19:48] WARNING: amalgamation/../src/learner.cc:749: Found JSON model saved before XGBoost 1.6, please save the model using current version again. The support for old JSON model will be discontinued in XGBoost 2.3.
 ## >>>--- DONE!
 \end{verbatim}
 
@@ -968,18 +985,26 @@ Differential analysis of selected immune-activated and immune-expelled gastric c
 \begin{Highlighting}[]
 \NormalTok{pdata }\OtherTok{\textless{}{-}}\NormalTok{ tme[}\SpecialCharTok{!}\NormalTok{tme}\SpecialCharTok{$}\NormalTok{TMEcluster}\SpecialCharTok{==}\StringTok{"IS"}\NormalTok{, ]}
 \NormalTok{deg  }\OtherTok{\textless{}{-}}   \FunctionTok{iobr\_deg}\NormalTok{(}\AttributeTok{eset         =}\NormalTok{ eset,}
-                   \AttributeTok{annoation    =} \ConstantTok{NULL}\NormalTok{,}
+                   \AttributeTok{annotation    =} \ConstantTok{NULL}\NormalTok{,}
                    \AttributeTok{pdata        =}\NormalTok{ pdata,}
                    \AttributeTok{group\_id     =} \StringTok{"TMEcluster"}\NormalTok{,}
                    \AttributeTok{pdata\_id     =} \StringTok{"ID"}\NormalTok{,}
                    \AttributeTok{array        =} \ConstantTok{TRUE}\NormalTok{,}
                    \AttributeTok{method       =} \StringTok{"limma"}\NormalTok{,}
-                   \AttributeTok{contrast     =} \FunctionTok{c}\NormalTok{(}\StringTok{"deg\_group"}\NormalTok{,}\StringTok{"IA"}\NormalTok{,}\StringTok{"IE"}\NormalTok{),}
+                   \AttributeTok{contrast     =} \FunctionTok{c}\NormalTok{(}\StringTok{"IA"}\NormalTok{,}\StringTok{"IE"}\NormalTok{),}
                    \AttributeTok{path         =} \ConstantTok{NULL}\NormalTok{,}
                    \AttributeTok{padj\_cutoff  =} \FloatTok{0.01}\NormalTok{,}
                    \AttributeTok{logfc\_cutoff =} \FloatTok{0.5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## >>>== Matching grouping information and expression matrix
+\end{verbatim}
+
+\begin{verbatim}
+## >>>== limma was selected for differential gene analysis of Array data
+\end{verbatim}
 
 \begin{verbatim}
 ## 
@@ -993,24 +1018,24 @@ Differential analysis of selected immune-activated and immune-expelled gastric c
 \end{verbatim}
 
 \begin{verbatim}
-## group1 = IA
+## group1 = IE
 \end{verbatim}
 
 \begin{verbatim}
-## group2 = IE
+## group2 = NA
 \end{verbatim}
 
 \begin{verbatim}
 ## # A tibble: 6 x 11
 ##   symbol  log2FoldChange AveExpr     t   pvalue     padj     B sigORnot    label
 ##   <chr>            <dbl>   <dbl> <dbl>    <dbl>    <dbl> <dbl> <chr>       <chr>
-## 1 TMEM100         -0.774    1.84 -13.9 2.47e-31 5.37e-27  60.4 Down_regul~ Both 
-## 2 ABCA8           -0.933    1.90 -12.9 3.11e-28 3.38e-24  53.4 Down_regul~ Both 
-## 3 HHIP            -0.613    1.73 -12.1 7.62e-26 4.46e-22  48.0 Down_regul~ Both 
-## 4 LMNB2            0.287    2.25  12.1 9.28e-26 4.46e-22  47.8 NOT         Sign~
-## 5 MCM6             0.211    3.02  12.1 1.02e-25 4.46e-22  47.7 NOT         Sign~
-## 6 ADH1B           -0.907    1.86 -12.0 2.27e-25 7.04e-22  47.0 Down_regul~ Both 
-## # i 2 more variables: IA <dbl>, IE <dbl>
+## 1 TMEM100          0.774    1.84  13.9 2.47e-31 5.37e-27  60.4 Up_regulat~ Both 
+## 2 ABCA8            0.933    1.90  12.9 3.11e-28 3.38e-24  53.4 Up_regulat~ Both 
+## 3 HHIP             0.613    1.73  12.1 7.62e-26 4.46e-22  48.0 Up_regulat~ Both 
+## 4 LMNB2           -0.287    2.25 -12.1 9.28e-26 4.46e-22  47.8 NOT         Sign~
+## 5 MCM6            -0.211    3.02 -12.1 1.02e-25 4.46e-22  47.7 NOT         Sign~
+## 6 ADH1B            0.907    1.86  12.0 2.27e-25 7.04e-22  47.0 Up_regulat~ Both 
+## # i 2 more variables: IE <dbl>, `` <dbl>
 \end{verbatim}
 
 \hypertarget{gsea-analysis-based-on-differential-express-gene-analysis-results}{%
@@ -1028,13 +1053,13 @@ Select the gene set list in IOBR's signature collection.
 ## # A tibble: 6 x 11
 ##   symbol  log2FoldChange AveExpr     t   pvalue     padj     B sigORnot    label
 ##   <chr>            <dbl>   <dbl> <dbl>    <dbl>    <dbl> <dbl> <chr>       <chr>
-## 1 TMEM100         -0.774    1.84 -13.9 2.47e-31 5.37e-27  60.4 Down_regul~ Both 
-## 2 ABCA8           -0.933    1.90 -12.9 3.11e-28 3.38e-24  53.4 Down_regul~ Both 
-## 3 HHIP            -0.613    1.73 -12.1 7.62e-26 4.46e-22  48.0 Down_regul~ Both 
-## 4 LMNB2            0.287    2.25  12.1 9.28e-26 4.46e-22  47.8 NOT         Sign~
-## 5 MCM6             0.211    3.02  12.1 1.02e-25 4.46e-22  47.7 NOT         Sign~
-## 6 ADH1B           -0.907    1.86 -12.0 2.27e-25 7.04e-22  47.0 Down_regul~ Both 
-## # i 2 more variables: IA <dbl>, IE <dbl>
+## 1 TMEM100          0.774    1.84  13.9 2.47e-31 5.37e-27  60.4 Up_regulat~ Both 
+## 2 ABCA8            0.933    1.90  12.9 3.11e-28 3.38e-24  53.4 Up_regulat~ Both 
+## 3 HHIP             0.613    1.73  12.1 7.62e-26 4.46e-22  48.0 Up_regulat~ Both 
+## 4 LMNB2           -0.287    2.25 -12.1 9.28e-26 4.46e-22  47.8 NOT         Sign~
+## 5 MCM6            -0.211    3.02 -12.1 1.02e-25 4.46e-22  47.7 NOT         Sign~
+## 6 ADH1B            0.907    1.86  12.0 2.27e-25 7.04e-22  47.0 Up_regulat~ Both 
+## # i 2 more variables: IE <dbl>, `` <dbl>
 \end{verbatim}
 
 \begin{Shaded}
@@ -1163,7 +1188,7 @@ Select the gene set list in IOBR's signature collection.
                     \AttributeTok{gene\_symbol       =} \StringTok{"symbol"}\NormalTok{,}
                     \AttributeTok{logfc             =} \StringTok{"log2FoldChange"}\NormalTok{,}
                     \AttributeTok{org               =} \StringTok{"hsa"}\NormalTok{,}
-                    \AttributeTok{show\_plot         =} \ConstantTok{TRUE}\NormalTok{,}
+                    \AttributeTok{show\_plot         =} \ConstantTok{FALSE}\NormalTok{,}
                     \AttributeTok{msigdb            =} \ConstantTok{TRUE}\NormalTok{,}
                     \AttributeTok{category          =} \StringTok{"H"}\NormalTok{,}
                     \AttributeTok{subcategory       =} \ConstantTok{NULL}\NormalTok{,}
@@ -1180,7 +1205,7 @@ Select the gene set list in IOBR's signature collection.
 \caption{GSEA of TME gent sets}\label{fig:unnamed-chunk-9}
 \end{figure}
 
-Hallmark gene sigantures
+Hallmark gene signatures
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1190,7 +1215,7 @@ Hallmark gene sigantures
                     \AttributeTok{gene\_symbol       =} \StringTok{"symbol"}\NormalTok{,}
                     \AttributeTok{logfc             =} \StringTok{"log2FoldChange"}\NormalTok{,}
                     \AttributeTok{org               =} \StringTok{"hsa"}\NormalTok{,}
-                    \AttributeTok{show\_plot         =} \ConstantTok{TRUE}\NormalTok{,}
+                    \AttributeTok{show\_plot         =} \ConstantTok{FALSE}\NormalTok{,}
                     \AttributeTok{msigdb            =} \ConstantTok{TRUE}\NormalTok{,}
                     \AttributeTok{category          =} \StringTok{"H"}\NormalTok{,}
                     \AttributeTok{subcategory       =} \ConstantTok{NULL}\NormalTok{,}
@@ -1443,22 +1468,6 @@ Calculate TME associated signatures-(through PCA method).
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(survminer)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Attaching package: 'survminer'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:survival':
-## 
-##     myeloma
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{data}\NormalTok{(pdata\_acrg, }\AttributeTok{package =} \StringTok{"IOBR"}\NormalTok{)}
 \NormalTok{input }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(pdata\_acrg, input, }\AttributeTok{by =} \StringTok{"ID"}\NormalTok{)}
 \NormalTok{p1}\OtherTok{\textless{}{-}}\FunctionTok{surv\_group}\NormalTok{(}\AttributeTok{input\_pdata       =}\NormalTok{ input,}

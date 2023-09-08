@@ -204,8 +204,8 @@ res<- iobr_pca(data       = eset1,
 ## 
 ##       CIN       EBV       EMT        GS       MSI MSS/TP53- MSS/TP53+ 
 ##         0         0        42         0        68       106        79 
-## [1] ">>-- colors for PCA: #5f75ae" ">>-- colors for PCA: #64a841"
-## [3] ">>-- colors for PCA: #e5486e" ">>-- colors for PCA: #de8e06"
+## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
+## [3] ">>-- colors for PCA: #00A1D5FF" ">>-- colors for PCA: #B24745FF"
 ```
 
 ```r
@@ -277,11 +277,11 @@ eset_com <- remove_batcheffect( eset1       = eset1,
 ## 
 ## eset1 eset2 
 ##   295    70 
-## [1] ">>-- colors for PCA: #5f75ae" ">>-- colors for PCA: #64a841"
+## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
 ## 
 ## eset1 eset2 
 ##   295    70 
-## [1] ">>-- colors for PCA: #5f75ae" ">>-- colors for PCA: #64a841"
+## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
 ```
 
 <img src="data-preprocessing_files/figure-epub3/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />

@@ -53,13 +53,13 @@ Differential analysis of selected immune-activated and immune-expelled gastric c
 ```{r}
 pdata <- tme[!tme$TMEcluster=="IS", ]
 deg  <-   iobr_deg(eset         = eset,
-                   annoation    = NULL,
+                   annotation    = NULL,
                    pdata        = pdata,
                    group_id     = "TMEcluster",
                    pdata_id     = "ID",
                    array        = TRUE,
                    method       = "limma",
-                   contrast     = c("deg_group","IA","IE"),
+                   contrast     = c("IA","IE"),
                    path         = NULL,
                    padj_cutoff  = 0.01,
                    logfc_cutoff = 0.5)
@@ -84,7 +84,7 @@ gsea<-     sig_gsea(deg,
                     gene_symbol       = "symbol",
                     logfc             = "log2FoldChange",
                     org               = "hsa",
-                    show_plot         = TRUE,
+                    show_plot         = FALSE,
                     msigdb            = TRUE,
                     category          = "H",
                     subcategory       = NULL,
@@ -95,7 +95,7 @@ gsea<-     sig_gsea(deg,
 knitr::include_graphics(rep("./fig/gsea-1.png", 1))
 ```
 
-Hallmark gene sigantures
+Hallmark gene signatures
 ```{r, eval=FALSE}
 gsea<-     sig_gsea(deg,
                     genesets          = NULL,
@@ -103,7 +103,7 @@ gsea<-     sig_gsea(deg,
                     gene_symbol       = "symbol",
                     logfc             = "log2FoldChange",
                     org               = "hsa",
-                    show_plot         = TRUE,
+                    show_plot         = FALSE,
                     msigdb            = TRUE,
                     category          = "H",
                     subcategory       = NULL,
