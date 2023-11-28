@@ -44,7 +44,7 @@ devtools::install_github("IOBR/IOBR")
 <p class="caption">(\#fig:flowchart)The main pipeline of IOBR</p>
 </div>
 
-## 📇 Main Functions of IOBR
+## 👈 Main Functions of IOBR
 
 * <div style="color:green">**Data Preparation: data annotation and transformation**</div> 
    * `count2tpm()`: transform count data of RNA sequencing into TPM data.
@@ -101,7 +101,7 @@ devtools::install_github("IOBR/IOBR")
 </br>
 
 
-## 🌎 Current working environment
+## 🌍 Current working environment
 
 
 ```r

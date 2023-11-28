@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 RNA Data preprocessing | IOBR (Immuno-Oncology Biological Research)</title>
   <meta name="description" content="The tutorial of IOBR package" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 RNA Data preprocessing | IOBR (Immuno-Oncology Biological Research)" />
   <meta property="og:type" content="book" />
@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="The tutorial of IOBR package" />
   <meta name="twitter:image" content="https://iobr.github.io/book/./fig/cover.png" />
 
-<meta name="author" content="Dongqiang Zeng" />
+<meta name="author" content="Dongqiang Zeng, Yiran Fang" />
 
 
-<meta name="date" content="2023-09-08" />
+<meta name="date" content="2023-11-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#introduction-1"><i class="fa fa-check"></i><b>0.1</b> 📚 Introduction</a></li>
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>0.2</b> 💿 License</a></li>
-<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#publishment"><i class="fa fa-check"></i><b>0.3</b> 🏆 Publishment</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#previous-publication"><i class="fa fa-check"></i><b>0.3</b> 🏆 Previous publication</a></li>
 <li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#major-updates"><i class="fa fa-check"></i><b>0.4</b> ⏳ Major Updates</a></li>
 <li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#reporting-bugs"><i class="fa fa-check"></i><b>0.5</b> ✉️ Reporting bugs</a></li>
 </ul></li>
@@ -154,8 +154,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-iobr-package"><i class="fa fa-check"></i><b>1.2</b> 💻 Install IOBR package</a></li>
 <li class="chapter" data-level="1.3" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#how-to-update-iobr"><i class="fa fa-check"></i><b>1.3</b> 📌 How to update IOBR</a></li>
 <li class="chapter" data-level="1.4" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>1.4</b> 🔍 The main pipeline of IOBR</a></li>
-<li class="chapter" data-level="1.5" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>1.5</b> 🗂 Main Functions of IOBR</a></li>
-<li class="chapter" data-level="1.6" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>1.6</b> 🗺 Current working environment</a></li>
+<li class="chapter" data-level="1.5" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>1.5</b> 👈 Main Functions of IOBR</a></li>
+<li class="chapter" data-level="1.6" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>1.6</b> 🌍 Current working environment</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>2</b> <strong>RNA Data preprocessing</strong></a>
 <ul>
@@ -164,12 +164,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#gene-annotation"><i class="fa fa-check"></i><b>2.3</b> Gene Annotation</a>
 <ul>
 <li class="chapter" data-level="2.3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-array-data-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>2.3.1</b> For Array data: HGU133PLUS-2 (Affaymetrix)</a></li>
-<li class="chapter" data-level="2.3.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-rnaseq-data"><i class="fa fa-check"></i><b>2.3.2</b> For RNAseq data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>2.4</b> Identifying outlier samples</a></li>
-<li class="chapter" data-level="2.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>2.5</b> PCA analysis of molecular subtypes</a></li>
-<li class="chapter" data-level="2.6" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>2.6</b> Batch effect correction</a></li>
-<li class="chapter" data-level="2.7" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#references"><i class="fa fa-check"></i><b>2.7</b> References</a></li>
+<li class="chapter" data-level="2.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-rnaseq-data-using-ucscxenatools"><i class="fa fa-check"></i><b>2.4</b> Download RNAseq data using <code>UCSCXenaTools</code></a></li>
+<li class="chapter" data-level="2.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#normalization-and-gene-annotation"><i class="fa fa-check"></i><b>2.5</b> Normalization and Gene annotation</a></li>
+<li class="chapter" data-level="2.6" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>2.6</b> Identifying outlier samples</a></li>
+<li class="chapter" data-level="2.7" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>2.7</b> PCA analysis of molecular subtypes</a></li>
+<li class="chapter" data-level="2.8" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>2.8</b> Batch effect correction</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-microarray-data"><i class="fa fa-check"></i><b>2.8.1</b> For microarray data</a></li>
+<li class="chapter" data-level="2.8.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-rnaseq-count-data"><i class="fa fa-check"></i><b>2.8.2</b> For RNAseq count data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#references"><i class="fa fa-check"></i><b>2.9</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html"><i class="fa fa-check"></i><b>3</b> <strong>Tumor ecosystem analysis</strong></a>
 <ul>
@@ -248,20 +253,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="loading-packages" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Loading packages<a href="rna-data-preprocessing.html#loading-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Load the IOBR package in your R session after the installation is complete:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rna-data-preprocessing.html#cb6-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span>
-<span id="cb6-2"><a href="rna-data-preprocessing.html#cb6-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb6-3"><a href="rna-data-preprocessing.html#cb6-3" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rna-data-preprocessing.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span>
+<span id="cb1-2"><a href="rna-data-preprocessing.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="rna-data-preprocessing.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span></code></pre></div>
 </div>
 <div id="download-array-data-using-geoquery" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Download array data using <code>GEOquery</code><a href="rna-data-preprocessing.html#download-array-data-using-geoquery" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Obtaining data set from GEO <a href="https://pubmed.ncbi.nlm.nih.gov/25894828/">Gastric cancer: GSE62254</a> using <code>GEOquery</code> R package.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="rna-data-preprocessing.html#cb7-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;GEOquery&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
-<span id="cb7-2"><a href="rna-data-preprocessing.html#cb7-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
-<span id="cb7-3"><a href="rna-data-preprocessing.html#cb7-3" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
-<span id="cb7-4"><a href="rna-data-preprocessing.html#cb7-4" tabindex="-1"></a>eset_geo<span class="ot">&lt;-</span><span class="fu">getGEO</span>(<span class="at">GEO     =</span> <span class="st">&quot;GSE62254&quot;</span>, <span class="at">getGPL  =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
-<span id="cb7-5"><a href="rna-data-preprocessing.html#cb7-5" tabindex="-1"></a>eset    <span class="ot">&lt;-</span>eset_geo[[<span class="dv">1</span>]]</span>
-<span id="cb7-6"><a href="rna-data-preprocessing.html#cb7-6" tabindex="-1"></a>eset    <span class="ot">&lt;-</span><span class="fu">exprs</span>(eset)</span>
-<span id="cb7-7"><a href="rna-data-preprocessing.html#cb7-7" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rna-data-preprocessing.html#cb2-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;GEOquery&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
+<span id="cb2-2"><a href="rna-data-preprocessing.html#cb2-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
+<span id="cb2-3"><a href="rna-data-preprocessing.html#cb2-3" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
+<span id="cb2-4"><a href="rna-data-preprocessing.html#cb2-4" tabindex="-1"></a>eset_geo<span class="ot">&lt;-</span><span class="fu">getGEO</span>(<span class="at">GEO     =</span> <span class="st">&quot;GSE62254&quot;</span>, <span class="at">getGPL  =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
+<span id="cb2-5"><a href="rna-data-preprocessing.html#cb2-5" tabindex="-1"></a>eset    <span class="ot">&lt;-</span>eset_geo[[<span class="dv">1</span>]]</span>
+<span id="cb2-6"><a href="rna-data-preprocessing.html#cb2-6" tabindex="-1"></a>eset    <span class="ot">&lt;-</span><span class="fu">exprs</span>(eset)</span>
+<span id="cb2-7"><a href="rna-data-preprocessing.html#cb2-7" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>##           GSM1523727 GSM1523728 GSM1523729 GSM1523744 GSM1523745
 ## 1007_s_at  3.2176645  3.0624323  3.0279131   2.921683  2.8456013
 ## 1053_at    2.4050109  2.4394879  2.2442708   2.345916  2.4328582
@@ -272,8 +277,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="gene-annotation" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Gene Annotation<a href="rna-data-preprocessing.html#gene-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Annotation of genes in the expression matrix and removal of duplicate genes.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="rna-data-preprocessing.html#cb9-1" tabindex="-1"></a><span class="co"># Load the annotation file `anno_hug133plus2` in IOBR.</span></span>
-<span id="cb9-2"><a href="rna-data-preprocessing.html#cb9-2" tabindex="-1"></a><span class="fu">head</span>(anno_hug133plus2)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="rna-data-preprocessing.html#cb4-1" tabindex="-1"></a><span class="co"># Load the annotation file `anno_hug133plus2` in IOBR.</span></span>
+<span id="cb4-2"><a href="rna-data-preprocessing.html#cb4-2" tabindex="-1"></a><span class="fu">head</span>(anno_hug133plus2)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##   probe_id  symbol 
 ##   &lt;fct&gt;     &lt;fct&gt;  
@@ -283,8 +288,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 121_at    PAX8   
 ## 5 1255_g_at GUCA1A 
 ## 6 1294_at   MIR5193</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="rna-data-preprocessing.html#cb11-1" tabindex="-1"></a><span class="co"># Load the annotation file `anno_grch38` in IOBR.</span></span>
-<span id="cb11-2"><a href="rna-data-preprocessing.html#cb11-2" tabindex="-1"></a><span class="fu">head</span>(anno_grch38)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rna-data-preprocessing.html#cb6-1" tabindex="-1"></a><span class="co"># Load the annotation file `anno_grch38` in IOBR.</span></span>
+<span id="cb6-2"><a href="rna-data-preprocessing.html#cb6-2" tabindex="-1"></a><span class="fu">head</span>(anno_grch38)</span></code></pre></div>
 <pre><code>##                id eff_length        gc entrez   symbol chr     start       end
 ## 1 ENSG00000000003       4536 0.3992504   7105   TSPAN6   X 100627109 100639991
 ## 2 ENSG00000000005       1476 0.4241192  64102     TNMD   X 100584802 100599885
@@ -306,8 +311,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4                                               SCY1-like, kinase-like 3 [Source:HGNC Symbol;Acc:HGNC:19285]
 ## 5                                    chromosome 1 open reading frame 112 [Source:HGNC Symbol;Acc:HGNC:25565]
 ## 6                          FGR proto-oncogene, Src family tyrosine kinase [Source:HGNC Symbol;Acc:HGNC:3697]</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="rna-data-preprocessing.html#cb13-1" tabindex="-1"></a><span class="co"># Load the annotation file `anno_gc_vm32` in IOBR for mouse RNAseq data</span></span>
-<span id="cb13-2"><a href="rna-data-preprocessing.html#cb13-2" tabindex="-1"></a><span class="fu">head</span>(anno_gc_vm32)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="rna-data-preprocessing.html#cb8-1" tabindex="-1"></a><span class="co"># Load the annotation file `anno_gc_vm32` in IOBR for mouse RNAseq data</span></span>
+<span id="cb8-2"><a href="rna-data-preprocessing.html#cb8-2" tabindex="-1"></a><span class="fu">head</span>(anno_gc_vm32)</span></code></pre></div>
 <pre><code>##                   id eff_length        gc symbol      mgi_id      gene_type
 ## 1 ENSMUSG00000000001       3262 0.4350092  Gnai3   MGI:95773 protein_coding
 ## 2 ENSMUSG00000000003        902 0.3481153   Pbsn MGI:1860484 protein_coding
@@ -324,14 +329,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 108234180 108305222          &lt;NA&gt; &lt;NA&gt;</code></pre>
 <div id="for-array-data-hgu133plus-2-affaymetrix" class="section level3 hasAnchor" number="2.3.1">
 <h3><span class="header-section-number">2.3.1</span> For Array data: HGU133PLUS-2 (Affaymetrix)<a href="rna-data-preprocessing.html#for-array-data-hgu133plus-2-affaymetrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="rna-data-preprocessing.html#cb15-1" tabindex="-1"></a><span class="co"># Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. </span></span>
-<span id="cb15-2"><a href="rna-data-preprocessing.html#cb15-2" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="rna-data-preprocessing.html#cb15-3" tabindex="-1"></a>eset<span class="ot">&lt;-</span><span class="fu">anno_eset</span>(<span class="at">eset       =</span> eset,</span>
-<span id="cb15-4"><a href="rna-data-preprocessing.html#cb15-4" tabindex="-1"></a>                <span class="at">annotation =</span> anno_hug133plus2,</span>
-<span id="cb15-5"><a href="rna-data-preprocessing.html#cb15-5" tabindex="-1"></a>                <span class="at">symbol     =</span> <span class="st">&quot;symbol&quot;</span>,</span>
-<span id="cb15-6"><a href="rna-data-preprocessing.html#cb15-6" tabindex="-1"></a>                <span class="at">probe      =</span> <span class="st">&quot;probe_id&quot;</span>,</span>
-<span id="cb15-7"><a href="rna-data-preprocessing.html#cb15-7" tabindex="-1"></a>                <span class="at">method     =</span> <span class="st">&quot;mean&quot;</span>)</span>
-<span id="cb15-8"><a href="rna-data-preprocessing.html#cb15-8" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="rna-data-preprocessing.html#cb10-1" tabindex="-1"></a><span class="co"># Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. </span></span>
+<span id="cb10-2"><a href="rna-data-preprocessing.html#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="rna-data-preprocessing.html#cb10-3" tabindex="-1"></a>eset<span class="ot">&lt;-</span><span class="fu">anno_eset</span>(<span class="at">eset       =</span> eset,</span>
+<span id="cb10-4"><a href="rna-data-preprocessing.html#cb10-4" tabindex="-1"></a>                <span class="at">annotation =</span> anno_hug133plus2,</span>
+<span id="cb10-5"><a href="rna-data-preprocessing.html#cb10-5" tabindex="-1"></a>                <span class="at">symbol     =</span> <span class="st">&quot;symbol&quot;</span>,</span>
+<span id="cb10-6"><a href="rna-data-preprocessing.html#cb10-6" tabindex="-1"></a>                <span class="at">probe      =</span> <span class="st">&quot;probe_id&quot;</span>,</span>
+<span id="cb10-7"><a href="rna-data-preprocessing.html#cb10-7" tabindex="-1"></a>                <span class="at">method     =</span> <span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb10-8"><a href="rna-data-preprocessing.html#cb10-8" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>##              GSM1523727 GSM1523728 GSM1523729
 ## SH3KBP1        4.327974   4.316195   4.351425
 ## RPL41          4.246149   4.246808   4.257940
@@ -339,73 +344,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## COX2           4.250288   4.283714   4.270508
 ## LOC101928826   4.219303   4.219670   4.213252</code></pre>
 </div>
-<div id="for-rnaseq-data" class="section level3 hasAnchor" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> For RNAseq data<a href="rna-data-preprocessing.html#for-rnaseq-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Download RNAseq data using <code>UCSCXenaTools</code></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="rna-data-preprocessing.html#cb17-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;UCSCXenaTools&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))   BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;UCSCXenaTools&quot;</span>)</span>
-<span id="cb17-2"><a href="rna-data-preprocessing.html#cb17-2" tabindex="-1"></a><span class="fu">library</span>(UCSCXenaTools)</span>
-<span id="cb17-3"><a href="rna-data-preprocessing.html#cb17-3" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
-<span id="cb17-4"><a href="rna-data-preprocessing.html#cb17-4" tabindex="-1"></a>eset_stad<span class="ot">&lt;-</span><span class="fu">XenaGenerate</span>(<span class="at">subset =</span> XenaCohorts <span class="sc">==</span><span class="st">&quot;GDC TCGA Stomach Cancer (STAD)&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-5"><a href="rna-data-preprocessing.html#cb17-5" tabindex="-1"></a>  <span class="fu">XenaFilter</span>(<span class="at">filterDatasets    =</span> <span class="st">&quot;TCGA-STAD.htseq_counts.tsv&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-6"><a href="rna-data-preprocessing.html#cb17-6" tabindex="-1"></a>  <span class="fu">XenaQuery</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb17-7"><a href="rna-data-preprocessing.html#cb17-7" tabindex="-1"></a>  <span class="fu">XenaDownload</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb17-8"><a href="rna-data-preprocessing.html#cb17-8" tabindex="-1"></a>  <span class="fu">XenaPrepare</span>()</span>
-<span id="cb17-9"><a href="rna-data-preprocessing.html#cb17-9" tabindex="-1"></a>eset_stad[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+</div>
+<div id="download-rnaseq-data-using-ucscxenatools" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Download RNAseq data using <code>UCSCXenaTools</code><a href="rna-data-preprocessing.html#download-rnaseq-data-using-ucscxenatools" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="rna-data-preprocessing.html#cb12-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;UCSCXenaTools&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))   BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;UCSCXenaTools&quot;</span>)</span>
+<span id="cb12-2"><a href="rna-data-preprocessing.html#cb12-2" tabindex="-1"></a><span class="fu">library</span>(UCSCXenaTools)</span>
+<span id="cb12-3"><a href="rna-data-preprocessing.html#cb12-3" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
+<span id="cb12-4"><a href="rna-data-preprocessing.html#cb12-4" tabindex="-1"></a>eset_stad<span class="ot">&lt;-</span><span class="fu">XenaGenerate</span>(<span class="at">subset =</span> XenaCohorts <span class="sc">==</span><span class="st">&quot;GDC TCGA Stomach Cancer (STAD)&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-5"><a href="rna-data-preprocessing.html#cb12-5" tabindex="-1"></a>  <span class="fu">XenaFilter</span>(<span class="at">filterDatasets    =</span> <span class="st">&quot;TCGA-STAD.htseq_counts.tsv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-6"><a href="rna-data-preprocessing.html#cb12-6" tabindex="-1"></a>  <span class="fu">XenaQuery</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="rna-data-preprocessing.html#cb12-7" tabindex="-1"></a>  <span class="fu">XenaDownload</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb12-8"><a href="rna-data-preprocessing.html#cb12-8" tabindex="-1"></a>  <span class="fu">XenaPrepare</span>()</span>
+<span id="cb12-9"><a href="rna-data-preprocessing.html#cb12-9" tabindex="-1"></a>eset_stad[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+</div>
+<div id="normalization-and-gene-annotation" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Normalization and Gene annotation<a href="rna-data-preprocessing.html#normalization-and-gene-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Transform gene expression matrix into TPM format, and conduct subsequent annotation.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="rna-data-preprocessing.html#cb18-1" tabindex="-1"></a><span class="co"># Remove the version numbers in Ensembl ID.</span></span>
-<span id="cb18-2"><a href="rna-data-preprocessing.html#cb18-2" tabindex="-1"></a>eset_stad<span class="sc">$</span>Ensembl_ID<span class="ot">&lt;-</span><span class="fu">substring</span>(eset_stad<span class="sc">$</span>Ensembl_ID, <span class="dv">1</span>, <span class="dv">15</span>)</span>
-<span id="cb18-3"><a href="rna-data-preprocessing.html#cb18-3" tabindex="-1"></a>eset_stad<span class="ot">&lt;-</span><span class="fu">column_to_rownames</span>(eset_stad, <span class="at">var =</span> <span class="st">&quot;Ensembl_ID&quot;</span>)</span>
-<span id="cb18-4"><a href="rna-data-preprocessing.html#cb18-4" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="rna-data-preprocessing.html#cb18-5" tabindex="-1"></a><span class="co"># Revert back to original format because the data from UCSC was log2(x+1)transformed.</span></span>
-<span id="cb18-6"><a href="rna-data-preprocessing.html#cb18-6" tabindex="-1"></a>eset_stad<span class="ot">&lt;-</span>(<span class="dv">2</span><span class="sc">^</span>eset_stad)<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb18-7"><a href="rna-data-preprocessing.html#cb18-7" tabindex="-1"></a></span>
-<span id="cb18-8"><a href="rna-data-preprocessing.html#cb18-8" tabindex="-1"></a>eset_stad<span class="ot">&lt;-</span><span class="fu">count2tpm</span>(<span class="at">countMat =</span> eset_stad, <span class="at">idType =</span> <span class="st">&quot;Ensembl&quot;</span>, <span class="at">org=</span><span class="st">&quot;hsa&quot;</span>, <span class="at">source =</span> <span class="st">&quot;local&quot;</span> )</span>
-<span id="cb18-9"><a href="rna-data-preprocessing.html#cb18-9" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="rna-data-preprocessing.html#cb18-10" tabindex="-1"></a>eset_stad[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="rna-data-preprocessing.html#cb13-1" tabindex="-1"></a><span class="co"># Remove the version numbers in Ensembl ID.</span></span>
+<span id="cb13-2"><a href="rna-data-preprocessing.html#cb13-2" tabindex="-1"></a>eset_stad<span class="sc">$</span>Ensembl_ID<span class="ot">&lt;-</span><span class="fu">substring</span>(eset_stad<span class="sc">$</span>Ensembl_ID, <span class="dv">1</span>, <span class="dv">15</span>)</span>
+<span id="cb13-3"><a href="rna-data-preprocessing.html#cb13-3" tabindex="-1"></a>eset_stad<span class="ot">&lt;-</span><span class="fu">column_to_rownames</span>(eset_stad, <span class="at">var =</span> <span class="st">&quot;Ensembl_ID&quot;</span>)</span>
+<span id="cb13-4"><a href="rna-data-preprocessing.html#cb13-4" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="rna-data-preprocessing.html#cb13-5" tabindex="-1"></a><span class="co"># Revert back to original format because the data from UCSC was log2(x+1)transformed.</span></span>
+<span id="cb13-6"><a href="rna-data-preprocessing.html#cb13-6" tabindex="-1"></a>eset_stad<span class="ot">&lt;-</span>(<span class="dv">2</span><span class="sc">^</span>eset_stad)<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb13-7"><a href="rna-data-preprocessing.html#cb13-7" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="rna-data-preprocessing.html#cb13-8" tabindex="-1"></a>eset_stad<span class="ot">&lt;-</span><span class="fu">count2tpm</span>(<span class="at">countMat =</span> eset_stad, <span class="at">idType =</span> <span class="st">&quot;Ensembl&quot;</span>, <span class="at">org=</span><span class="st">&quot;hsa&quot;</span>, <span class="at">source =</span> <span class="st">&quot;local&quot;</span> )</span>
+<span id="cb13-9"><a href="rna-data-preprocessing.html#cb13-9" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="rna-data-preprocessing.html#cb13-10" tabindex="-1"></a>eset_stad[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 </div>
-</div>
-<div id="identifying-outlier-samples" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> Identifying outlier samples<a href="rna-data-preprocessing.html#identifying-outlier-samples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="identifying-outlier-samples" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Identifying outlier samples<a href="rna-data-preprocessing.html#identifying-outlier-samples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Take ACRG microarray data for example</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="rna-data-preprocessing.html#cb19-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">find_outlier_samples</span>(<span class="at">eset =</span> eset, <span class="at">project =</span> <span class="st">&quot;ACRG&quot;</span>, <span class="at">show_plot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="rna-data-preprocessing.html#cb14-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">find_outlier_samples</span>(<span class="at">eset =</span> eset, <span class="at">project =</span> <span class="st">&quot;ACRG&quot;</span>, <span class="at">show_plot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="data-preprocessing_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>## [1] &quot;GSM1523817&quot; &quot;GSM1523858&quot; &quot;GSM1523984&quot; &quot;GSM1523988&quot; &quot;GSM1524030&quot;</code></pre>
 <p>Removing potential outlier samples</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="rna-data-preprocessing.html#cb21-1" tabindex="-1"></a>eset1 <span class="ot">&lt;-</span> eset[, <span class="sc">!</span><span class="fu">colnames</span>(eset)<span class="sc">%in%</span>res]</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="rna-data-preprocessing.html#cb16-1" tabindex="-1"></a>eset1 <span class="ot">&lt;-</span> eset[, <span class="sc">!</span><span class="fu">colnames</span>(eset)<span class="sc">%in%</span>res]</span></code></pre></div>
 </div>
-<div id="pca-analysis-of-molecular-subtypes" class="section level2 hasAnchor" number="2.5">
-<h2><span class="header-section-number">2.5</span> PCA analysis of molecular subtypes<a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="rna-data-preprocessing.html#cb22-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;pdata_acrg&quot;</span>)</span>
-<span id="cb22-2"><a href="rna-data-preprocessing.html#cb22-2" tabindex="-1"></a>res<span class="ot">&lt;-</span> <span class="fu">iobr_pca</span>(<span class="at">data       =</span> eset1,</span>
-<span id="cb22-3"><a href="rna-data-preprocessing.html#cb22-3" tabindex="-1"></a>              <span class="at">is.matrix   =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb22-4"><a href="rna-data-preprocessing.html#cb22-4" tabindex="-1"></a>              <span class="at">scale       =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb22-5"><a href="rna-data-preprocessing.html#cb22-5" tabindex="-1"></a>              <span class="at">is.log      =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb22-6"><a href="rna-data-preprocessing.html#cb22-6" tabindex="-1"></a>              <span class="at">pdata       =</span> pdata_acrg, </span>
-<span id="cb22-7"><a href="rna-data-preprocessing.html#cb22-7" tabindex="-1"></a>              <span class="at">id_pdata    =</span> <span class="st">&quot;ID&quot;</span>, </span>
-<span id="cb22-8"><a href="rna-data-preprocessing.html#cb22-8" tabindex="-1"></a>              <span class="at">group       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
-<span id="cb22-9"><a href="rna-data-preprocessing.html#cb22-9" tabindex="-1"></a>              <span class="at">geom.ind    =</span> <span class="st">&quot;point&quot;</span>, </span>
-<span id="cb22-10"><a href="rna-data-preprocessing.html#cb22-10" tabindex="-1"></a>              <span class="at">cols        =</span> <span class="st">&quot;normal&quot;</span>,</span>
-<span id="cb22-11"><a href="rna-data-preprocessing.html#cb22-11" tabindex="-1"></a>              <span class="at">palette     =</span> <span class="st">&quot;jama&quot;</span>, </span>
-<span id="cb22-12"><a href="rna-data-preprocessing.html#cb22-12" tabindex="-1"></a>              <span class="at">repel       =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb22-13"><a href="rna-data-preprocessing.html#cb22-13" tabindex="-1"></a>              <span class="at">ncp         =</span> <span class="dv">5</span>,</span>
-<span id="cb22-14"><a href="rna-data-preprocessing.html#cb22-14" tabindex="-1"></a>              <span class="at">axes        =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
-<span id="cb22-15"><a href="rna-data-preprocessing.html#cb22-15" tabindex="-1"></a>              <span class="at">addEllipses =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div id="pca-analysis-of-molecular-subtypes" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> PCA analysis of molecular subtypes<a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="rna-data-preprocessing.html#cb17-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;pdata_acrg&quot;</span>)</span>
+<span id="cb17-2"><a href="rna-data-preprocessing.html#cb17-2" tabindex="-1"></a>res<span class="ot">&lt;-</span> <span class="fu">iobr_pca</span>(<span class="at">data       =</span> eset1,</span>
+<span id="cb17-3"><a href="rna-data-preprocessing.html#cb17-3" tabindex="-1"></a>              <span class="at">is.matrix   =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb17-4"><a href="rna-data-preprocessing.html#cb17-4" tabindex="-1"></a>              <span class="at">scale       =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb17-5"><a href="rna-data-preprocessing.html#cb17-5" tabindex="-1"></a>              <span class="at">is.log      =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb17-6"><a href="rna-data-preprocessing.html#cb17-6" tabindex="-1"></a>              <span class="at">pdata       =</span> pdata_acrg, </span>
+<span id="cb17-7"><a href="rna-data-preprocessing.html#cb17-7" tabindex="-1"></a>              <span class="at">id_pdata    =</span> <span class="st">&quot;ID&quot;</span>, </span>
+<span id="cb17-8"><a href="rna-data-preprocessing.html#cb17-8" tabindex="-1"></a>              <span class="at">group       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
+<span id="cb17-9"><a href="rna-data-preprocessing.html#cb17-9" tabindex="-1"></a>              <span class="at">geom.ind    =</span> <span class="st">&quot;point&quot;</span>, </span>
+<span id="cb17-10"><a href="rna-data-preprocessing.html#cb17-10" tabindex="-1"></a>              <span class="at">cols        =</span> <span class="st">&quot;normal&quot;</span>,</span>
+<span id="cb17-11"><a href="rna-data-preprocessing.html#cb17-11" tabindex="-1"></a>              <span class="at">palette     =</span> <span class="st">&quot;jama&quot;</span>, </span>
+<span id="cb17-12"><a href="rna-data-preprocessing.html#cb17-12" tabindex="-1"></a>              <span class="at">repel       =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb17-13"><a href="rna-data-preprocessing.html#cb17-13" tabindex="-1"></a>              <span class="at">ncp         =</span> <span class="dv">5</span>,</span>
+<span id="cb17-14"><a href="rna-data-preprocessing.html#cb17-14" tabindex="-1"></a>              <span class="at">axes        =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb17-15"><a href="rna-data-preprocessing.html#cb17-15" tabindex="-1"></a>              <span class="at">addEllipses =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##       CIN       EBV       EMT        GS       MSI MSS/TP53- MSS/TP53+ 
 ##         0         0        42         0        68       106        79 
 ## [1] &quot;&gt;&gt;-- colors for PCA: #374E55FF&quot; &quot;&gt;&gt;-- colors for PCA: #DF8F44FF&quot;
 ## [3] &quot;&gt;&gt;-- colors for PCA: #00A1D5FF&quot; &quot;&gt;&gt;-- colors for PCA: #B24745FF&quot;</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="rna-data-preprocessing.html#cb24-1" tabindex="-1"></a>res</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="rna-data-preprocessing.html#cb19-1" tabindex="-1"></a>res</span></code></pre></div>
 <p><img src="data-preprocessing_files/figure-html/unnamed-chunk-11-1.png" width="729.6" style="display: block; margin: auto;" /></p>
 </div>
-<div id="batch-effect-correction" class="section level2 hasAnchor" number="2.6">
-<h2><span class="header-section-number">2.6</span> Batch effect correction<a href="rna-data-preprocessing.html#batch-effect-correction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="batch-effect-correction" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Batch effect correction<a href="rna-data-preprocessing.html#batch-effect-correction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="for-microarray-data" class="section level3 hasAnchor" number="2.8.1">
+<h3><span class="header-section-number">2.8.1</span> For microarray data<a href="rna-data-preprocessing.html#for-microarray-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Obtaining another data set from GEO <a href="https://www.ncbi.nlm.nih.gov/pubmed/24935174/">Gastric cancer: GSE57303</a> using <code>GEOquery</code> R package.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="rna-data-preprocessing.html#cb25-1" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
-<span id="cb25-2"><a href="rna-data-preprocessing.html#cb25-2" tabindex="-1"></a>eset_geo<span class="ot">&lt;-</span><span class="fu">getGEO</span>(<span class="at">GEO     =</span> <span class="st">&quot;GSE57303&quot;</span>, <span class="at">getGPL  =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
-<span id="cb25-3"><a href="rna-data-preprocessing.html#cb25-3" tabindex="-1"></a>eset2    <span class="ot">&lt;-</span>eset_geo[[<span class="dv">1</span>]]</span>
-<span id="cb25-4"><a href="rna-data-preprocessing.html#cb25-4" tabindex="-1"></a>eset2    <span class="ot">&lt;-</span><span class="fu">exprs</span>(eset2)</span>
-<span id="cb25-5"><a href="rna-data-preprocessing.html#cb25-5" tabindex="-1"></a>eset2[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="rna-data-preprocessing.html#cb20-1" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
+<span id="cb20-2"><a href="rna-data-preprocessing.html#cb20-2" tabindex="-1"></a>eset_geo<span class="ot">&lt;-</span><span class="fu">getGEO</span>(<span class="at">GEO     =</span> <span class="st">&quot;GSE57303&quot;</span>, <span class="at">getGPL  =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
+<span id="cb20-3"><a href="rna-data-preprocessing.html#cb20-3" tabindex="-1"></a>eset2    <span class="ot">&lt;-</span>eset_geo[[<span class="dv">1</span>]]</span>
+<span id="cb20-4"><a href="rna-data-preprocessing.html#cb20-4" tabindex="-1"></a>eset2    <span class="ot">&lt;-</span><span class="fu">exprs</span>(eset2)</span>
+<span id="cb20-5"><a href="rna-data-preprocessing.html#cb20-5" tabindex="-1"></a>eset2[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>##           GSM1379261 GSM1379262 GSM1379263 GSM1379264 GSM1379265
 ## 1007_s_at    8.34746    9.67994    8.62643    8.59301    8.63046
 ## 1053_at      5.07972    4.46377    5.29685    5.78983    4.33359
@@ -413,30 +422,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 121_at       5.95123    7.09056    6.19903    5.89872    5.91323
 ## 1255_g_at    1.66923    1.98758    1.73083    1.56687    1.63332</code></pre>
 <p>Annotation of genes in the expression matrix and removal of duplicate genes.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="rna-data-preprocessing.html#cb27-1" tabindex="-1"></a>eset2<span class="ot">&lt;-</span><span class="fu">anno_eset</span>(<span class="at">eset       =</span> eset2,</span>
-<span id="cb27-2"><a href="rna-data-preprocessing.html#cb27-2" tabindex="-1"></a>                 <span class="at">annotation =</span> anno_hug133plus2,</span>
-<span id="cb27-3"><a href="rna-data-preprocessing.html#cb27-3" tabindex="-1"></a>                 <span class="at">symbol     =</span> <span class="st">&quot;symbol&quot;</span>,</span>
-<span id="cb27-4"><a href="rna-data-preprocessing.html#cb27-4" tabindex="-1"></a>                 <span class="at">probe      =</span> <span class="st">&quot;probe_id&quot;</span>,</span>
-<span id="cb27-5"><a href="rna-data-preprocessing.html#cb27-5" tabindex="-1"></a>                 <span class="at">method     =</span> <span class="st">&quot;mean&quot;</span>)</span>
-<span id="cb27-6"><a href="rna-data-preprocessing.html#cb27-6" tabindex="-1"></a>eset2[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="rna-data-preprocessing.html#cb22-1" tabindex="-1"></a>eset2<span class="ot">&lt;-</span><span class="fu">anno_eset</span>(<span class="at">eset       =</span> eset2,</span>
+<span id="cb22-2"><a href="rna-data-preprocessing.html#cb22-2" tabindex="-1"></a>                 <span class="at">annotation =</span> anno_hug133plus2,</span>
+<span id="cb22-3"><a href="rna-data-preprocessing.html#cb22-3" tabindex="-1"></a>                 <span class="at">symbol     =</span> <span class="st">&quot;symbol&quot;</span>,</span>
+<span id="cb22-4"><a href="rna-data-preprocessing.html#cb22-4" tabindex="-1"></a>                 <span class="at">probe      =</span> <span class="st">&quot;probe_id&quot;</span>,</span>
+<span id="cb22-5"><a href="rna-data-preprocessing.html#cb22-5" tabindex="-1"></a>                 <span class="at">method     =</span> <span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb22-6"><a href="rna-data-preprocessing.html#cb22-6" tabindex="-1"></a>eset2[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>##         GSM1379261 GSM1379262 GSM1379263 GSM1379264 GSM1379265
 ## ND4        13.1695    13.1804    13.0600    12.4544    13.0457
 ## ATP6       13.1433    13.0814    13.0502    12.4831    13.1168
 ## SH3KBP1    12.9390    13.1620    12.9773    12.8745    13.1169
 ## COX2       13.0184    13.0489    12.8621    12.7489    12.9732
 ## RPL41      13.0201    12.6034    12.7929    13.0153    12.9404</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="rna-data-preprocessing.html#cb29-1" tabindex="-1"></a>eset_com <span class="ot">&lt;-</span> <span class="fu">remove_batcheffect</span>( <span class="at">eset1       =</span> eset1,  </span>
-<span id="cb29-2"><a href="rna-data-preprocessing.html#cb29-2" tabindex="-1"></a>                                <span class="at">eset2       =</span> eset2,   </span>
-<span id="cb29-3"><a href="rna-data-preprocessing.html#cb29-3" tabindex="-1"></a>                                <span class="at">eset3       =</span> <span class="cn">NULL</span>,</span>
-<span id="cb29-4"><a href="rna-data-preprocessing.html#cb29-4" tabindex="-1"></a>                                <span class="at">id_type     =</span> <span class="st">&quot;symbol&quot;</span>,</span>
-<span id="cb29-5"><a href="rna-data-preprocessing.html#cb29-5" tabindex="-1"></a>                                <span class="at">data_type   =</span> <span class="st">&quot;array&quot;</span>, </span>
-<span id="cb29-6"><a href="rna-data-preprocessing.html#cb29-6" tabindex="-1"></a>                                <span class="at">cols        =</span> <span class="st">&quot;normal&quot;</span>, </span>
-<span id="cb29-7"><a href="rna-data-preprocessing.html#cb29-7" tabindex="-1"></a>                                <span class="at">palette     =</span> <span class="st">&quot;jama&quot;</span>, </span>
-<span id="cb29-8"><a href="rna-data-preprocessing.html#cb29-8" tabindex="-1"></a>                                <span class="at">log2        =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb29-9"><a href="rna-data-preprocessing.html#cb29-9" tabindex="-1"></a>                                <span class="at">check_eset  =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb29-10"><a href="rna-data-preprocessing.html#cb29-10" tabindex="-1"></a>                                <span class="at">adjust_eset =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb29-11"><a href="rna-data-preprocessing.html#cb29-11" tabindex="-1"></a>                                <span class="at">repel       =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb29-12"><a href="rna-data-preprocessing.html#cb29-12" tabindex="-1"></a>                                <span class="at">path        =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="rna-data-preprocessing.html#cb24-1" tabindex="-1"></a>eset_com <span class="ot">&lt;-</span> <span class="fu">remove_batcheffect</span>( <span class="at">eset1       =</span> eset1,  </span>
+<span id="cb24-2"><a href="rna-data-preprocessing.html#cb24-2" tabindex="-1"></a>                                <span class="at">eset2       =</span> eset2,   </span>
+<span id="cb24-3"><a href="rna-data-preprocessing.html#cb24-3" tabindex="-1"></a>                                <span class="at">eset3       =</span> <span class="cn">NULL</span>,</span>
+<span id="cb24-4"><a href="rna-data-preprocessing.html#cb24-4" tabindex="-1"></a>                                <span class="at">id_type     =</span> <span class="st">&quot;symbol&quot;</span>,</span>
+<span id="cb24-5"><a href="rna-data-preprocessing.html#cb24-5" tabindex="-1"></a>                                <span class="at">data_type   =</span> <span class="st">&quot;array&quot;</span>, </span>
+<span id="cb24-6"><a href="rna-data-preprocessing.html#cb24-6" tabindex="-1"></a>                                <span class="at">cols        =</span> <span class="st">&quot;normal&quot;</span>, </span>
+<span id="cb24-7"><a href="rna-data-preprocessing.html#cb24-7" tabindex="-1"></a>                                <span class="at">palette     =</span> <span class="st">&quot;jama&quot;</span>, </span>
+<span id="cb24-8"><a href="rna-data-preprocessing.html#cb24-8" tabindex="-1"></a>                                <span class="at">log2        =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb24-9"><a href="rna-data-preprocessing.html#cb24-9" tabindex="-1"></a>                                <span class="at">check_eset  =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb24-10"><a href="rna-data-preprocessing.html#cb24-10" tabindex="-1"></a>                                <span class="at">adjust_eset =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb24-11"><a href="rna-data-preprocessing.html#cb24-11" tabindex="-1"></a>                                <span class="at">repel       =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb24-12"><a href="rna-data-preprocessing.html#cb24-12" tabindex="-1"></a>                                <span class="at">path        =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## eset1 eset2 
 ##   295    70 
@@ -446,12 +455,107 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   295    70 
 ## [1] &quot;&gt;&gt;-- colors for PCA: #374E55FF&quot; &quot;&gt;&gt;-- colors for PCA: #DF8F44FF&quot;</code></pre>
 <p><img src="data-preprocessing_files/figure-html/unnamed-chunk-14-1.png" width="1056" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="rna-data-preprocessing.html#cb31-1" tabindex="-1"></a><span class="fu">dim</span>(eset_com)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="rna-data-preprocessing.html#cb26-1" tabindex="-1"></a><span class="fu">dim</span>(eset_com)</span></code></pre></div>
 <pre><code>## [1] 21752   365</code></pre>
-<p>Waiting for updates: Removing batch effect of RNAseq datasets: count, combat-seq</p>
 </div>
-<div id="references" class="section level2 hasAnchor" number="2.7">
-<h2><span class="header-section-number">2.7</span> References<a href="rna-data-preprocessing.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="for-rnaseq-count-data" class="section level3 hasAnchor" number="2.8.2">
+<h3><span class="header-section-number">2.8.2</span> For RNAseq count data<a href="rna-data-preprocessing.html#for-rnaseq-count-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="rna-data-preprocessing.html#cb28-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;eset_stad&quot;</span>, <span class="at">package =</span> <span class="st">&quot;IOBR&quot;</span>)</span>
+<span id="cb28-2"><a href="rna-data-preprocessing.html#cb28-2" tabindex="-1"></a><span class="fu">head</span>(eset_stad)</span></code></pre></div>
+<pre><code>##                 TCGA-BR-6455 TCGA-BR-7196 TCGA-BR-8371 TCGA-BR-8380
+## ENSG00000000003         8006         2114          767         1556
+## ENSG00000000005            1            0            5            5
+## ENSG00000000419         3831         2600         1729         1760
+## ENSG00000000457         1126          745         1040         1260
+## ENSG00000000460          857          463          231          432
+## ENSG00000000938          758         1126          557          557
+##                 TCGA-BR-8592 TCGA-BR-8686 TCGA-BR-A4IV TCGA-BR-A4J4
+## ENSG00000000003         2806         2923         1524         7208
+## ENSG00000000005           60            1           22            2
+## ENSG00000000419         2273         1934         2838         4418
+## ENSG00000000457         1814          707         1683         1335
+## ENSG00000000460          635          323          270          423
+## ENSG00000000938          828          666          760          597
+##                 TCGA-BR-A4J9 TCGA-FP-7916
+## ENSG00000000003          711         2747
+## ENSG00000000005            0            3
+## ENSG00000000419         2426         2824
+## ENSG00000000457         1590         1672
+## ENSG00000000460          276          773
+## ENSG00000000938          370          688</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="rna-data-preprocessing.html#cb30-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;eset_blca&quot;</span>, <span class="at">package =</span> <span class="st">&quot;IOBR&quot;</span>)</span>
+<span id="cb30-2"><a href="rna-data-preprocessing.html#cb30-2" tabindex="-1"></a><span class="fu">head</span>(eset_blca)</span></code></pre></div>
+<pre><code>##                 TCGA-2F-A9KO TCGA-2F-A9KP TCGA-2F-A9KQ TCGA-2F-A9KR
+## ENSG00000000003         6092        11652         5426         4383
+## ENSG00000000005            0            4            1            1
+## ENSG00000000419         3072         2656         1983         2061
+## ENSG00000000457         1302          984         1134         1092
+## ENSG00000000460          779          924          421          386
+## ENSG00000000938          436          116          312          590
+##                 TCGA-2F-A9KT
+## ENSG00000000003         3334
+## ENSG00000000005            0
+## ENSG00000000419         2930
+## ENSG00000000457          496
+## ENSG00000000460          318
+## ENSG00000000938          362</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="rna-data-preprocessing.html#cb32-1" tabindex="-1"></a>eset_com <span class="ot">&lt;-</span> <span class="fu">remove_batcheffect</span>(eset_stad, eset_blca, <span class="at">id_type =</span> <span class="st">&quot;ensembl&quot;</span>, <span class="at">data_type =</span> <span class="st">&quot;count&quot;</span>)</span></code></pre></div>
+<pre><code>## Found 2 batches
+## Using null model in ComBat-seq.
+## Adjusting for 0 covariate(s) or covariate level(s)
+## Estimating dispersions
+## Fitting the GLM model
+## Shrinkage off - using GLM estimates for parameters
+## Adjusting the data</code></pre>
+<pre><code>## Warning in count2tpm(countMat = combined.expr.combat, idType = id_type, :
+## &gt;&gt;&gt;--- Omit 1263 genes of which length is not available !</code></pre>
+<pre><code>## 
+## eset1 eset2 
+##    10     5 
+## [1] &quot;&gt;&gt;-- colors for PCA: #374E55FF&quot; &quot;&gt;&gt;-- colors for PCA: #DF8F44FF&quot;
+## 
+## eset1 eset2 
+##    10     5 
+## [1] &quot;&gt;&gt;-- colors for PCA: #374E55FF&quot; &quot;&gt;&gt;-- colors for PCA: #DF8F44FF&quot;
+## 
+## eset1 eset2 
+##    10     5 
+## [1] &quot;&gt;&gt;-- colors for PCA: #374E55FF&quot; &quot;&gt;&gt;-- colors for PCA: #DF8F44FF&quot;</code></pre>
+<p><img src="data-preprocessing_files/figure-html/unnamed-chunk-15-1.png" width="1056" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="rna-data-preprocessing.html#cb36-1" tabindex="-1"></a><span class="co"># The returned matrix is the count matrix after removing the batches.</span></span>
+<span id="cb36-2"><a href="rna-data-preprocessing.html#cb36-2" tabindex="-1"></a><span class="fu">head</span>(eset_com)</span></code></pre></div>
+<pre><code>##                 TCGA-BR-6455 TCGA-BR-7196 TCGA-BR-8371 TCGA-BR-8380
+## ENSG00000000003        10264         3536         1710         2964
+## ENSG00000000005            1            0            4            5
+## ENSG00000000419         4500         3099         2111         2167
+## ENSG00000000457         1203          707         1106         1353
+## ENSG00000000460         1059          590          310          560
+## ENSG00000000938          731         1202          507          485
+##                 TCGA-BR-8592 TCGA-BR-8686 TCGA-BR-A4IV TCGA-BR-A4J4
+## ENSG00000000003         4761         3964         3115         9565
+## ENSG00000000005           33            1           14            3
+## ENSG00000000419         2782         2270         3444         5176
+## ENSG00000000457         2089          817         1845         1469
+## ENSG00000000460          810          405          368          548
+## ENSG00000000938          769          723          677          532
+##                 TCGA-BR-A4J9 TCGA-FP-7916 TCGA-2F-A9KO TCGA-2F-A9KP
+## ENSG00000000003         1739         4371         2812         6796
+## ENSG00000000005            0            3            0           10
+## ENSG00000000419         2943         3362         2189         1849
+## ENSG00000000457         1804         2044          994          817
+## ENSG00000000460          371          959          495          584
+## ENSG00000000938          281          654          456          156
+##                 TCGA-2F-A9KQ TCGA-2F-A9KR TCGA-2F-A9KT
+## ENSG00000000003         1971         1429         1057
+## ENSG00000000005            1            1            0
+## ENSG00000000419         1355         1420         2094
+## ENSG00000000457          916          876          438
+## ENSG00000000460          251          230          190
+## ENSG00000000938          353          604          383</code></pre>
+</div>
+</div>
+<div id="references" class="section level2 hasAnchor" number="2.9">
+<h2><span class="header-section-number">2.9</span> References<a href="rna-data-preprocessing.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. Journal of Open Source Software, 4(40), 1627, <a href="https://doi.org/10.21105/joss.01627" class="uri">https://doi.org/10.21105/joss.01627</a></p>
 <p>Yuqing Zhang and others, ComBat-seq: batch effect adjustment for RNA-seq count data, NAR Genomics and Bioinformatics, Volume 2, Issue 3, September 2020, lqaa078, <a href="https://doi.org/10.1093/nargab/lqaa078" class="uri">https://doi.org/10.1093/nargab/lqaa078</a></p>
 <p>Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., &amp; Storey, J. D. (2012). The sva package for removing batch effects and other unwanted variation in high-throughput experiments. Bioinformatics, 28(6), 882-883.</p>

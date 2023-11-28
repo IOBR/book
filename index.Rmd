@@ -1,6 +1,6 @@
 --- 
 title: "IOBR (Immuno-Oncology Biological Research)"
-author: "Dongqiang Zeng"
+author: "Dongqiang Zeng, Yiran Fang"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book

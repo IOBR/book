@@ -128,9 +128,8 @@ eset[1:5, 1:3]
 ## LOC101928826   4.219303   4.219670   4.213252
 ```
 
-### For RNAseq data
+## Download RNAseq data using `UCSCXenaTools`
 
-Download RNAseq data using `UCSCXenaTools`
 
 ```r
 if (!requireNamespace("UCSCXenaTools", quietly = TRUE))   BiocManager::install("UCSCXenaTools")
@@ -144,6 +143,7 @@ eset_stad<-XenaGenerate(subset = XenaCohorts =="GDC TCGA Stomach Cancer (STAD)")
 eset_stad[1:5, 1:3]
 ```
 
+## Normalization and Gene annotation
 Transform gene expression matrix into TPM format, and conduct subsequent annotation. 
 
 ```r
@@ -217,6 +217,7 @@ res
 
 ## Batch effect correction
 
+### For microarray data
 Obtaining another data set from GEO [Gastric cancer: GSE57303](https://www.ncbi.nlm.nih.gov/pubmed/24935174/) using `GEOquery` R package.
 
 ```r
@@ -294,7 +295,132 @@ dim(eset_com)
 ## [1] 21752   365
 ```
 
-Waiting for updates: Removing batch effect of RNAseq datasets: count, combat-seq
+
+### For RNAseq count data
+
+
+```r
+data("eset_stad", package = "IOBR")
+head(eset_stad)
+```
+
+```
+##                 TCGA-BR-6455 TCGA-BR-7196 TCGA-BR-8371 TCGA-BR-8380
+## ENSG00000000003         8006         2114          767         1556
+## ENSG00000000005            1            0            5            5
+## ENSG00000000419         3831         2600         1729         1760
+## ENSG00000000457         1126          745         1040         1260
+## ENSG00000000460          857          463          231          432
+## ENSG00000000938          758         1126          557          557
+##                 TCGA-BR-8592 TCGA-BR-8686 TCGA-BR-A4IV TCGA-BR-A4J4
+## ENSG00000000003         2806         2923         1524         7208
+## ENSG00000000005           60            1           22            2
+## ENSG00000000419         2273         1934         2838         4418
+## ENSG00000000457         1814          707         1683         1335
+## ENSG00000000460          635          323          270          423
+## ENSG00000000938          828          666          760          597
+##                 TCGA-BR-A4J9 TCGA-FP-7916
+## ENSG00000000003          711         2747
+## ENSG00000000005            0            3
+## ENSG00000000419         2426         2824
+## ENSG00000000457         1590         1672
+## ENSG00000000460          276          773
+## ENSG00000000938          370          688
+```
+
+```r
+data("eset_blca", package = "IOBR")
+head(eset_blca)
+```
+
+```
+##                 TCGA-2F-A9KO TCGA-2F-A9KP TCGA-2F-A9KQ TCGA-2F-A9KR
+## ENSG00000000003         6092        11652         5426         4383
+## ENSG00000000005            0            4            1            1
+## ENSG00000000419         3072         2656         1983         2061
+## ENSG00000000457         1302          984         1134         1092
+## ENSG00000000460          779          924          421          386
+## ENSG00000000938          436          116          312          590
+##                 TCGA-2F-A9KT
+## ENSG00000000003         3334
+## ENSG00000000005            0
+## ENSG00000000419         2930
+## ENSG00000000457          496
+## ENSG00000000460          318
+## ENSG00000000938          362
+```
+
+```r
+eset_com <- remove_batcheffect(eset_stad, eset_blca, id_type = "ensembl", data_type = "count")
+```
+
+```
+## Found 2 batches
+## Using null model in ComBat-seq.
+## Adjusting for 0 covariate(s) or covariate level(s)
+## Estimating dispersions
+## Fitting the GLM model
+## Shrinkage off - using GLM estimates for parameters
+## Adjusting the data
+```
+
+```
+## Warning in count2tpm(countMat = combined.expr.combat, idType = id_type, :
+## >>>--- Omit 1263 genes of which length is not available !
+```
+
+```
+## 
+## eset1 eset2 
+##    10     5 
+## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
+## 
+## eset1 eset2 
+##    10     5 
+## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
+## 
+## eset1 eset2 
+##    10     5 
+## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
+```
+
+<img src="data-preprocessing_files/figure-html/unnamed-chunk-15-1.png" width="1056" style="display: block; margin: auto;" />
+
+```r
+# The returned matrix is the count matrix after removing the batches.
+head(eset_com)
+```
+
+```
+##                 TCGA-BR-6455 TCGA-BR-7196 TCGA-BR-8371 TCGA-BR-8380
+## ENSG00000000003        10264         3536         1710         2964
+## ENSG00000000005            1            0            4            5
+## ENSG00000000419         4500         3099         2111         2167
+## ENSG00000000457         1203          707         1106         1353
+## ENSG00000000460         1059          590          310          560
+## ENSG00000000938          731         1202          507          485
+##                 TCGA-BR-8592 TCGA-BR-8686 TCGA-BR-A4IV TCGA-BR-A4J4
+## ENSG00000000003         4761         3964         3115         9565
+## ENSG00000000005           33            1           14            3
+## ENSG00000000419         2782         2270         3444         5176
+## ENSG00000000457         2089          817         1845         1469
+## ENSG00000000460          810          405          368          548
+## ENSG00000000938          769          723          677          532
+##                 TCGA-BR-A4J9 TCGA-FP-7916 TCGA-2F-A9KO TCGA-2F-A9KP
+## ENSG00000000003         1739         4371         2812         6796
+## ENSG00000000005            0            3            0           10
+## ENSG00000000419         2943         3362         2189         1849
+## ENSG00000000457         1804         2044          994          817
+## ENSG00000000460          371          959          495          584
+## ENSG00000000938          281          654          456          156
+##                 TCGA-2F-A9KQ TCGA-2F-A9KR TCGA-2F-A9KT
+## ENSG00000000003         1971         1429         1057
+## ENSG00000000005            1            1            0
+## ENSG00000000419         1355         1420         2094
+## ENSG00000000457          916          876          438
+## ENSG00000000460          251          230          190
+## ENSG00000000938          353          604          383
+```
 
 ## References
 

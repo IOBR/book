@@ -55,9 +55,8 @@ eset<-anno_eset(eset       = eset,
 eset[1:5, 1:3]
 ```
 
-### For RNAseq data
+## Download RNAseq data using `UCSCXenaTools`
 
-Download RNAseq data using `UCSCXenaTools`
 ```{r, eval=FALSE}
 if (!requireNamespace("UCSCXenaTools", quietly = TRUE))   BiocManager::install("UCSCXenaTools")
 library(UCSCXenaTools)
@@ -70,6 +69,7 @@ eset_stad<-XenaGenerate(subset = XenaCohorts =="GDC TCGA Stomach Cancer (STAD)")
 eset_stad[1:5, 1:3]
 ```
 
+## Normalization and Gene annotation
 Transform gene expression matrix into TPM format, and conduct subsequent annotation. 
 ```{r, eval=FALSE}
 
@@ -122,6 +122,7 @@ res
 
 ## Batch effect correction
 
+### For microarray data
 Obtaining another data set from GEO [Gastric cancer: GSE57303](https://www.ncbi.nlm.nih.gov/pubmed/24935174/) using `GEOquery` R package.
 ```{r,message=FALSE,warning=FALSE}
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
@@ -158,7 +159,22 @@ eset_com <- remove_batcheffect( eset1       = eset1,
 dim(eset_com)
 ```
 
-Waiting for updates: Removing batch effect of RNAseq datasets: count, combat-seq
+
+### For RNAseq count data
+
+```{r, message=FALSE, fig.width= 11, fig.height = 5, fig.align='center'}
+
+data("eset_stad", package = "IOBR")
+head(eset_stad)
+
+data("eset_blca", package = "IOBR")
+head(eset_blca)
+
+eset_com <- remove_batcheffect(eset_stad, eset_blca, id_type = "ensembl", data_type = "count")
+
+# The returned matrix is the count matrix after removing the batches.
+head(eset_com)
+```
 
 ## References
 
