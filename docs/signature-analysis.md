@@ -306,22 +306,23 @@ res<- res[nchar(res$ID)<=28, ]
 p1<- sig_forest(res, signature = "ID", n = 20)
 ```
 
-<img src="signature-analysis_files/figure-epub3/unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
+<img src="signature-analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" />
 
 ## Visulization using heatmap
 
-Signatures和分子分型之间的关系
-使用`IOBR`的`sig_heatmap`进行热图的可视化
+Relationship between Signatures and molecular typing.
+Heatmap visualisation using `IOBR`'s `sig_heatmap`
 
 ```r
 p2 <- sig_heatmap(input         = input, 
                   features      = res$ID[1:20],
                   group         = "Subtype", 
                   palette_group = "jama", 
-                  palette       = 6)
+                  palette       = 6,
+                  path          = "result" )
 ```
 
-<img src="signature-analysis_files/figure-epub3/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
+<img src="signature-analysis_files/figure-html/unnamed-chunk-14-1.png" width="864" style="display: block; margin: auto;" />
 
 ## Focus on target signatures
 
@@ -382,7 +383,7 @@ p2 <- sig_box(data           = input,
 p3 <- sig_box(data           = input, 
               signature      = "Immune_Checkpoint",
               variable       = "Subtype",
-              jitter          = TRUE,
+              jitter          = FALSE,
               cols           = NULL,
               palette        = "jama",
               show_pvalue    = TRUE,
@@ -410,17 +411,17 @@ p3 <- sig_box(data           = input,
 p1|p2|p3
 ```
 
-<img src="signature-analysis_files/figure-epub3/unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
+<img src="signature-analysis_files/figure-html/unnamed-chunk-16-1.png" width="1344" style="display: block; margin: auto;" />
 
 
 ## Survival analysis
-Signature的多种分层下的生存分析
+The efficacy of this metric in predicting patient survival was judged by multiple stratifications of signature
 
 ```r
 res <-       sig_surv_plot(input_pdata       = input, 
                            signature         = "Glycogen_Biosynthesis",
                            cols              = NULL, 
-                           palette           = "jco",
+                           palette           = "jama",
                            project           = "ACRG",
                            time              = "OS_time",
                            status            = "OS_status",
@@ -446,10 +447,10 @@ res <-       sig_surv_plot(input_pdata       = input,
 res$plots
 ```
 
-![](signature-analysis_files/figure-epub3/unnamed-chunk-17-1.png)<!-- -->
+<img src="signature-analysis_files/figure-html/unnamed-chunk-17-1.png" width="1536" />
 
 
-Signature在预测生存上的ROC
+Signature's ROC on predicting survival
 
 ```r
 p1<- roc_time(input      = input,  
@@ -503,7 +504,7 @@ p2<- roc_time(input      = input,
 p1|p2
 ```
 
-![](signature-analysis_files/figure-epub3/unnamed-chunk-18-1.png)<!-- -->
+<img src="signature-analysis_files/figure-html/unnamed-chunk-18-1.png" width="1152" />
 
 
 ## Batch correlation analysis 
@@ -511,6 +512,19 @@ p1|p2
 
 ```r
 res <- batch_cor(data = input, target = "Glycogen_Biosynthesis", feature = colnames(input)[69:ncol(input)])
+```
+
+```
+##                               sig_names      p.value   statistic
+## CD_8_T_effector.rho     CD_8_T_effector 4.852189e-01 -0.04044756
+## DDR.rho                             DDR 1.678463e-24 -0.54394827
+## APM.rho                             APM 1.681208e-04 -0.21557706
+## Immune_Checkpoint.rho Immune_Checkpoint 6.470746e-01 -0.02653896
+## CellCycle_Reg.rho         CellCycle_Reg 4.465875e-01 -0.04410582
+## Pan_F_TBRs.rho               Pan_F_TBRs 5.989600e-31  0.60185558
+```
+
+```r
 head(res)
 ```
 
@@ -528,7 +542,8 @@ head(res)
 
 
 ```r
-p1<- get_cor(eset = sig_tme, pdata = pdata_acrg, var1 = "Glycogen_Biosynthesis", var2 = "TMEscore_CIR", subtype = "Subtype", palette = "aaas")
+p1<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glycogen_Biosynthesis", 
+             var2 = "TMEscore_CIR", subtype = "Subtype", palette = "aaas", path = "result")
 ```
 
 ```
@@ -548,7 +563,8 @@ p1<- get_cor(eset = sig_tme, pdata = pdata_acrg, var1 = "Glycogen_Biosynthesis",
 ```
 
 ```r
-p2<- get_cor(eset = sig_tme, pdata = pdata_acrg, var1 = "Glycogen_Biosynthesis", var2 = "TGFb.myCAF", subtype = "Subtype", palette = "aaas")
+p2<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glycogen_Biosynthesis", 
+             var2 = "TGFb.myCAF", subtype = "Subtype", palette = "aaas", path = "result")
 ```
 
 ```
@@ -572,7 +588,7 @@ p2<- get_cor(eset = sig_tme, pdata = pdata_acrg, var1 = "Glycogen_Biosynthesis",
 p1|p2
 ```
 
-![](signature-analysis_files/figure-epub3/unnamed-chunk-21-1.png)<!-- -->
+<img src="signature-analysis_files/figure-html/unnamed-chunk-21-1.png" width="1152" />
 
 
 
@@ -586,10 +602,11 @@ p <- get_cor_matrix(data           = input,
                     font.size.star = 8, 
                     font.size      = 15, 
                     fill_by_cor    = FALSE, 
-                    round.num      = 1)
+                    round.num      = 1, 
+                    path           = "result")
 ```
 
-![](signature-analysis_files/figure-epub3/unnamed-chunk-22-1.png)<!-- -->
+<img src="signature-analysis_files/figure-html/unnamed-chunk-22-1.png" width="960" />
 
 
 ## Visulization of correlations 
@@ -614,11 +631,12 @@ p <- get_cor_matrix(data           = input2,
                     font.size.star = 8, 
                     font.size      = 15, 
                     fill_by_cor    = FALSE, 
-                    round.num      = 1)
+                    round.num      = 1,
+                    path           = "result")
 ```
 
-![](signature-analysis_files/figure-epub3/unnamed-chunk-23-1.png)<!-- -->
-
+<img src="signature-analysis_files/figure-html/unnamed-chunk-23-1.png" width="1056" />
+The user can personalise the image with parameters
 
 ```r
 p <- get_cor_matrix(data           = input2, 
@@ -629,8 +647,9 @@ p <- get_cor_matrix(data           = input2,
                     font.size.star = 8, 
                     font.size      = 15, 
                     fill_by_cor    = TRUE, 
-                    round.num      = 2)
+                    round.num      = 2,
+                    path           = "result")
 ```
 
-![](signature-analysis_files/figure-epub3/unnamed-chunk-24-1.png)<!-- -->
+<img src="signature-analysis_files/figure-html/unnamed-chunk-24-1.png" width="1056" />
 

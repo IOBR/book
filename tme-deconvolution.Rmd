@@ -100,7 +100,7 @@ head(timer)
 ```{r,fig.width= 8, fig.height=6}
 quantiseq<-deconvo_tme(eset = eset_acrg, tumor = TRUE, arrays = TRUE, scale_mrna = TRUE, method = "quantiseq")
 head(quantiseq)
-res<-cell_bar_plot(input = quantiseq[1:12, ], title = "quanTIseq Cell Fraction")
+res<-cell_bar_plot(input = quantiseq[1:12, ], id = "ID", features = colnames(quantiseq)[2:12], title = "quanTIseq Cell Fraction")
 ```
 
 ## Method 8: IPS

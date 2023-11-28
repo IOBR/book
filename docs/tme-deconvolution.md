@@ -138,7 +138,7 @@ res<-cell_bar_plot(input = cibersort[1:12,], title = "CIBERSORT Cell Fraction")
 ## >>>>=== Palette option for random: 1: palette1; 2: palette2; 3: palette3;  4: palette4
 ```
 
-![](tme-deconvolution_files/figure-epub3/unnamed-chunk-7-1.png)<!-- -->
+<img src="tme-deconvolution_files/figure-html/unnamed-chunk-7-1.png" width="816" />
 
 ## Method 2: EPIC
 
@@ -159,10 +159,10 @@ epic<-deconvo_tme(eset = eset_acrg, method = "epic", arrays = TRUE)
 ```
 
 ```
-## Warning in IOBR::EPIC(bulk = eset, reference = ref, mRNA_cell = NULL, scaleExprs
-## = TRUE): mRNA_cell value unknown for some cell types: CAFs, Endothelial - using
-## the default value of 0.4 for these but this might bias the true cell proportions
-## from all cell types.
+## Warning in IOBR::EPIC(bulk = eset, reference = ref, mRNA_cell = NULL,
+## scaleExprs = TRUE): mRNA_cell value unknown for some cell types: CAFs,
+## Endothelial - using the default value of 0.4 for these but this might bias the
+## true cell proportions from all cell types.
 ```
 
 ```r
@@ -353,7 +353,7 @@ head(quantiseq)
 ```
 
 ```r
-res<-cell_bar_plot(input = quantiseq[1:12, ], title = "quanTIseq Cell Fraction")
+res<-cell_bar_plot(input = quantiseq[1:12, ], id = "ID", features = colnames(quantiseq)[2:12], title = "quanTIseq Cell Fraction")
 ```
 
 ```
@@ -364,7 +364,7 @@ res<-cell_bar_plot(input = quantiseq[1:12, ], title = "quanTIseq Cell Fraction")
 ## >>>>=== Palette option for random: 1: palette1; 2: palette2; 3: palette3;  4: palette4
 ```
 
-![](tme-deconvolution_files/figure-epub3/unnamed-chunk-14-1.png)<!-- -->
+<img src="tme-deconvolution_files/figure-html/unnamed-chunk-14-1.png" width="768" />
 
 ## Method 8: IPS
 

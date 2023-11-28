@@ -60,7 +60,7 @@ deg  <-   iobr_deg(eset         = eset,
                    array        = TRUE,
                    method       = "limma",
                    contrast     = c("IA","IE"),
-                   path         = NULL,
+                   path         = "result",
                    padj_cutoff  = 0.01,
                    logfc_cutoff = 0.5)
 ```
@@ -80,7 +80,7 @@ sig_list
 ```{r, eval=FALSE}
 gsea<-     sig_gsea(deg,
                     genesets          = sig_list,
-                    path              = "GSEA",
+                    path              = "result",
                     gene_symbol       = "symbol",
                     logfc             = "log2FoldChange",
                     org               = "hsa",
@@ -126,7 +126,7 @@ res <- find_markers_in_bulk(pdata      = tme,
                             eset       = eset, 
                             group      = "TMEcluster", 
                             nfeatures  = 2000, 
-                            top_n      = 20, 
+                            top_n      = 50, 
                             thresh.use = 0.15, 
                             only.pos   = TRUE, 
                             min.pct    = 0.10)
@@ -150,7 +150,7 @@ input <- combine_pd_eset(eset = eset, pdata = tme, feas = top15$gene, scale = T)
 p2 <- sig_box(input, variable = "TMEcluster", signature = "IFNG", jitter = TRUE,
               cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
 
-p3 <- sig_box(input, variable = "TMEcluster", signature = "IL1A",  
+p3 <- sig_box(input, variable = "TMEcluster", signature = "IL1A", 
               jitter = TRUE, cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
 ```
 
@@ -189,10 +189,10 @@ p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols)+
 
 可视化结果：选择特征变量
 ```{r,fig.show= 'hide', message=FALSE}
-top15$gene  <- gsub(top15$gene, pattern = "\\-", replacement = "\\_")
+top15$gene  <- gsub(top15$gene, pattern = "-", replacement = "\\_")
 input <- combine_pd_eset(eset = sig_tme, pdata = tme, feas = top15$gene, scale = T)
 
-p2 <- sig_box(input, variable = "TMEcluster", signature = "IFNG_signature_Ayers_et_al", jitter = TRUE,
+p2 <- sig_box(input, variable = "TMEcluster", signature = "CD_8_T_effector", jitter = TRUE,
               cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4, size_of_font = 6)
 
 p3 <- sig_box(input, variable = "TMEcluster", signature = "Neutrophils_Bindea_et_al",  

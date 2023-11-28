@@ -1,7 +1,7 @@
 --- 
 title: "IOBR (Immuno-Oncology Biological Research)"
 author: "Dongqiang Zeng"
-date: "2023-09-08"
+date: "2023-11-28"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -40,10 +40,11 @@ This R package integrates 8 published methodologies for decoding tumor microenvi
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
 
 
-## 🏆 Publishment
+## 🏆 Previous publication
 
 Zeng D, Ye Z, Shen R, Yu G, Wu J, Xiong Y,..., Liao W (2021) **IOBR**: Multi-Omics Immuno-Oncology Biological Research to Decode Tumor Microenvironment and Signatures. *Frontiers in Immunology*. 12:687975. [doi: 10.3389/fimmu.2021.687975](https://www.frontiersin.org/articles/10.3389/fimmu.2021.687975/full)
 
+Zeng D, Fang Y, ..., Liao W (2023) **IOBR2**: Decoding Tumor Microenvironment for Clinical Translation in Immuno-Oncology. *bioRxiv*. 
 
 ## ⏳ Major Updates
 

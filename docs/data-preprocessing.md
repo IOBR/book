@@ -167,7 +167,7 @@ Take ACRG microarray data for example
 res <- find_outlier_samples(eset = eset, project = "ACRG", show_plot = TRUE)
 ```
 
-<img src="data-preprocessing_files/figure-epub3/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+<img src="data-preprocessing_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
 
 ```
 ## [1] "GSM1523817" "GSM1523858" "GSM1523984" "GSM1523988" "GSM1524030"
@@ -212,7 +212,7 @@ res<- iobr_pca(data       = eset1,
 res
 ```
 
-<img src="data-preprocessing_files/figure-epub3/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
+<img src="data-preprocessing_files/figure-html/unnamed-chunk-11-1.png" width="729.6" style="display: block; margin: auto;" />
 
 
 ## Batch effect correction
@@ -284,7 +284,7 @@ eset_com <- remove_batcheffect( eset1       = eset1,
 ## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
 ```
 
-<img src="data-preprocessing_files/figure-epub3/unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
+<img src="data-preprocessing_files/figure-html/unnamed-chunk-14-1.png" width="1056" style="display: block; margin: auto;" />
 
 ```r
 dim(eset_com)

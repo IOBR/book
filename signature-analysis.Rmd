@@ -144,14 +144,15 @@ p1<- sig_forest(res, signature = "ID", n = 20)
 
 ## Visulization using heatmap
 
-Signatures和分子分型之间的关系
-使用`IOBR`的`sig_heatmap`进行热图的可视化
+Relationship between Signatures and molecular typing.
+Heatmap visualisation using `IOBR`'s `sig_heatmap`
 ```{r, message=FALSE, fig.width= 9, fig.height = 6, fig.align='center'}
 p2 <- sig_heatmap(input         = input, 
                   features      = res$ID[1:20],
                   group         = "Subtype", 
                   palette_group = "jama", 
-                  palette       = 6)
+                  palette       = 6,
+                  path          = "result" )
 ```
 
 ## Focus on target signatures
@@ -184,7 +185,7 @@ p2 <- sig_box(data           = input,
 p3 <- sig_box(data           = input, 
               signature      = "Immune_Checkpoint",
               variable       = "Subtype",
-              jitter          = TRUE,
+              jitter          = FALSE,
               cols           = NULL,
               palette        = "jama",
               show_pvalue    = TRUE,
@@ -201,12 +202,12 @@ p1|p2|p3
 
 
 ## Survival analysis
-Signature的多种分层下的生存分析
+The efficacy of this metric in predicting patient survival was judged by multiple stratifications of signature
 ```{r, message = F, warning = F, fig.width= 16, fig.height=8}
 res <-       sig_surv_plot(input_pdata       = input, 
                            signature         = "Glycogen_Biosynthesis",
                            cols              = NULL, 
-                           palette           = "jco",
+                           palette           = "jama",
                            project           = "ACRG",
                            time              = "OS_time",
                            status            = "OS_status",
@@ -216,7 +217,7 @@ res$plots
 ```
 
 
-Signature在预测生存上的ROC
+Signature's ROC on predicting survival
 ```{r, message = F, warning = F, fig.width= 12, fig.height=6.2}
 p1<- roc_time(input      = input,  
              vars       = "Glycogen_Biosynthesis", 
@@ -263,8 +264,10 @@ head(res)
 ```
 
 ```{r, fig.show= 'hide', fig.width= 12, fig.height=9, message = F, warning = F}
-p1<- get_cor(eset = sig_tme, pdata = pdata_acrg, var1 = "Glycogen_Biosynthesis", var2 = "TMEscore_CIR", subtype = "Subtype", palette = "aaas")
-p2<- get_cor(eset = sig_tme, pdata = pdata_acrg, var1 = "Glycogen_Biosynthesis", var2 = "TGFb.myCAF", subtype = "Subtype", palette = "aaas")
+p1<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glycogen_Biosynthesis", 
+             var2 = "TMEscore_CIR", subtype = "Subtype", palette = "aaas", path = "result")
+p2<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glycogen_Biosynthesis", 
+             var2 = "TGFb.myCAF", subtype = "Subtype", palette = "aaas", path = "result")
 ```
 
 ```{r, fig.width= 12, fig.height=6, message = F, warning = F}
@@ -272,7 +275,7 @@ p1|p2
 ```
 
 
-```{r, fig.width= 12, fig.height=4, message = F, warning = F}
+```{r, fig.width= 10, fig.height=4, message = F, warning = F}
 feas1 <- c("Glycogen_Biosynthesis", "Ferroptosis")
 feas2 <- c("Glutathione_Metabolism", "TMEscore_CIR", "Purine_Metabolism", "ICB_resistance_Peng_et_al", "Interleukins_Li_et_al", "TLS_Nature")
 p <- get_cor_matrix(data           = input, 
@@ -282,12 +285,13 @@ p <- get_cor_matrix(data           = input,
                     font.size.star = 8, 
                     font.size      = 15, 
                     fill_by_cor    = FALSE, 
-                    round.num      = 1)
+                    round.num      = 1, 
+                    path           = "result")
 ```
 
 
 ## Visulization of correlations 
-```{r, fig.width= 12, fig.height=4, message = F, warning = F}
+```{r, fig.width= 11, fig.height=4, message = F, warning = F}
 input2 <- combine_pd_eset(eset = eset, pdata =  input[, c("ID", "Glycogen_Biosynthesis", "TLS_Nature", "Ferroptosis")])
 feas1 <- c("Glycogen_Biosynthesis","TLS_Nature", "Ferroptosis")
 feas2 <- signature_collection$CD_8_T_effector
@@ -300,10 +304,11 @@ p <- get_cor_matrix(data           = input2,
                     font.size.star = 8, 
                     font.size      = 15, 
                     fill_by_cor    = FALSE, 
-                    round.num      = 1)
+                    round.num      = 1,
+                    path           = "result")
 ```
-
-```{r, fig.width= 12, fig.height=4, message = F, warning = F}
+The user can personalise the image with parameters
+```{r, fig.width= 11, fig.height=4, message = F, warning = F}
 p <- get_cor_matrix(data           = input2, 
                     feas1          = feas2, 
                     feas2          = feas1,
@@ -312,6 +317,7 @@ p <- get_cor_matrix(data           = input2,
                     font.size.star = 8, 
                     font.size      = 15, 
                     fill_by_cor    = TRUE, 
-                    round.num      = 2)
+                    round.num      = 2,
+                    path           = "result")
 ```
 
