@@ -127,7 +127,7 @@ cibersort<-deconvo_tme(eset = eset_acrg, method = "cibersort", arrays = TRUE, pe
 
 ```r
 # head(cibersort)
-res<-cell_bar_plot(input = cibersort[1:12,], title = "CIBERSORT Cell Fraction")
+res<-cell_bar_plot(input = cibersort[1:12,], pattern = "CIBERSORT", title = "CIBERSORT Cell Fraction")
 ```
 
 ```

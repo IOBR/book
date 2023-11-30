@@ -59,7 +59,7 @@ Check detail parameters of the function
 ```{r,fig.width= 8.5, fig.height=6}
 cibersort<-deconvo_tme(eset = eset_acrg, method = "cibersort", arrays = TRUE, perm = 100 )
 # head(cibersort)
-res<-cell_bar_plot(input = cibersort[1:12,], title = "CIBERSORT Cell Fraction")
+res<-cell_bar_plot(input = cibersort[1:12,], pattern = "CIBERSORT", title = "CIBERSORT Cell Fraction")
 ```
 
 ## Method 2: EPIC
