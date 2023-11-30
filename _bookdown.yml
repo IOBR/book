@@ -12,6 +12,8 @@ rmd_files:
     "index.Rmd",
 
     "install-iobr.Rmd",
+    
+    "how-to-use.Rmd",
 
     "data-preprocessing.Rmd",
 
