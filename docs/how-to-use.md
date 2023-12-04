@@ -8,7 +8,7 @@
 <p class="caption">(\#fig:flowchart)The main pipeline of IOBR</p>
 </div>
 
-## 👈 Main Functions of IOBR
+## 👇 Main Functions of IOBR
 
 * <div style="color:green">**Data Preparation: data annotation and transformation**</div> 
    * `count2tpm()`: transform gene expression count data into Transcripts Per Million (TPM) values. This function supports gene IDs of type "Ensembl", "Entrez", or "Symbol", and retrieves gene length information using either an online connection to the bioMart database or a local dataset (specified by the source parameter).
@@ -68,7 +68,7 @@
 </br>
 
 
-## 🗺 Current working environment
+## 🌎 Current working environment
 
 
 ```r
