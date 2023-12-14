@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 TME Interaction analysis | IOBR (Immuno-Oncology Biological Research)</title>
+  <meta name="description" content="The tutorial of IOBR package" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 TME Interaction analysis | IOBR (Immuno-Oncology Biological Research)" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://iobr.github.io/book/./fig/cover.png" />
+  <meta property="og:description" content="The tutorial of IOBR package" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 TME Interaction analysis | IOBR (Immuno-Oncology Biological Research)" />
+  
+  <meta name="twitter:description" content="The tutorial of IOBR package" />
+  <meta name="twitter:image" content="https://iobr.github.io/book/./fig/cover.png" />
+
+<meta name="author" content="Dongqiang Zeng, Yiran Fang" />
+
+
+<meta name="date" content="2023-12-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="signature-score-and-relevant-phenotypes.html"/>
+<link rel="next" href="tumor-ecosystem-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The tutorial of IOBR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>Introduction</strong></a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#introduction-1"><i class="fa fa-check"></i><b>0.1</b> 📚 Introduction</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>0.2</b> 💿 License</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#previous-publication"><i class="fa fa-check"></i><b>0.3</b> 🏆 Previous publication</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#major-updates"><i class="fa fa-check"></i><b>0.4</b> ⏳ Major Updates</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#reporting-bugs"><i class="fa fa-check"></i><b>0.5</b> ✉️ Reporting bugs</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html"><i class="fa fa-check"></i><b>1</b> <strong>How to install IOBR</strong></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-dependency-packages"><i class="fa fa-check"></i><b>1.1</b> ⏳ Install Dependency Packages</a></li>
+<li class="chapter" data-level="1.2" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-iobr-package"><i class="fa fa-check"></i><b>1.2</b> 💻 Install IOBR package</a></li>
+<li class="chapter" data-level="1.3" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#how-to-update-iobr"><i class="fa fa-check"></i><b>1.3</b> 📌 How to update IOBR</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 📇 Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌐 Current working environment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#loading-packages"><i class="fa fa-check"></i><b>3.1</b> Loading packages</a></li>
+<li class="chapter" data-level="3.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-array-data-using-geoquery"><i class="fa fa-check"></i><b>3.2</b> Download array data using <code>GEOquery</code></a></li>
+<li class="chapter" data-level="3.3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#gene-annotation"><i class="fa fa-check"></i><b>3.3</b> Gene Annotation</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-array-data-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>3.3.1</b> For Array data: HGU133PLUS-2 (Affaymetrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-rnaseq-data-using-ucscxenatools"><i class="fa fa-check"></i><b>3.4</b> Download RNAseq data using <code>UCSCXenaTools</code></a></li>
+<li class="chapter" data-level="3.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#normalization-and-gene-annotation"><i class="fa fa-check"></i><b>3.5</b> Normalization and Gene annotation</a></li>
+<li class="chapter" data-level="3.6" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>3.6</b> Identifying outlier samples</a></li>
+<li class="chapter" data-level="3.7" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>3.7</b> PCA analysis of molecular subtypes</a></li>
+<li class="chapter" data-level="3.8" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>3.8</b> Batch effect correction</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-microarray-data"><i class="fa fa-check"></i><b>3.8.1</b> For microarray data</a></li>
+<li class="chapter" data-level="3.8.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-rnaseq-count-data"><i class="fa fa-check"></i><b>3.8.2</b> For RNAseq count data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#references"><i class="fa fa-check"></i><b>3.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html"><i class="fa fa-check"></i><b>4</b> <strong>Signature Score Calculation</strong></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#loading-packages-1"><i class="fa fa-check"></i><b>4.1</b> Loading packages</a></li>
+<li class="chapter" data-level="4.2" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#downloading-data-for-example"><i class="fa fa-check"></i><b>4.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="4.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#signature-score-estimation"><i class="fa fa-check"></i><b>4.3</b> Signature score estimation</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#signature-collection-of-iobr"><i class="fa fa-check"></i><b>4.3.1</b> Signature collection of IOBR</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#estimation-of-signature-using-pca-method"><i class="fa fa-check"></i><b>4.4</b> Estimation of signature using PCA method</a></li>
+<li class="chapter" data-level="4.5" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#estimated-using-the-ssgsea-methodology"><i class="fa fa-check"></i><b>4.5</b> Estimated using the ssGSEA methodology</a></li>
+<li class="chapter" data-level="4.6" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#calculated-using-the-z-score-function."><i class="fa fa-check"></i><b>4.6</b> Calculated using the z-score function.</a></li>
+<li class="chapter" data-level="4.7" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#calculated-using-all-three-methods-at-the-same-time"><i class="fa fa-check"></i><b>4.7</b> Calculated using all three methods at the same time</a></li>
+<li class="chapter" data-level="4.8" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#how-to-customise-the-signature-gene-list-for-calculate_signature_score"><i class="fa fa-check"></i><b>4.8</b> How to customise the signature gene list for <code>calculate_signature_score</code></a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-1-use-excel-for-storage-and-construction"><i class="fa fa-check"></i><b>4.8.1</b> Method-1: Use excel for storage and construction</a></li>
+<li class="chapter" data-level="4.8.2" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-2-build-the-list-structure-directly"><i class="fa fa-check"></i><b>4.8.2</b> Method-2: Build the list structure directly</a></li>
+<li class="chapter" data-level="4.8.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method3-add-the-new-signature-to-the-existing-gene-list"><i class="fa fa-check"></i><b>4.8.3</b> Method3: Add the new signature to the existing gene list</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#how-to-export-gene-signature"><i class="fa fa-check"></i><b>4.9</b> How to export gene signature</a></li>
+<li class="chapter" data-level="4.10" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#references-1"><i class="fa fa-check"></i><b>4.10</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html"><i class="fa fa-check"></i><b>5</b> <strong>TME deconvolution</strong></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#loading-packages-2"><i class="fa fa-check"></i><b>5.1</b> Loading packages</a></li>
+<li class="chapter" data-level="5.2" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#downloading-data-for-example-1"><i class="fa fa-check"></i><b>5.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="5.3" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#available-methods-to-decode-tme-contexture"><i class="fa fa-check"></i><b>5.3</b> Available Methods to Decode TME Contexture</a></li>
+<li class="chapter" data-level="5.4" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-1-cibersort"><i class="fa fa-check"></i><b>5.4</b> Method 1: CIBERSORT</a></li>
+<li class="chapter" data-level="5.5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-2-epic"><i class="fa fa-check"></i><b>5.5</b> Method 2: EPIC</a></li>
+<li class="chapter" data-level="5.6" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-3-mcpcounter"><i class="fa fa-check"></i><b>5.6</b> Method 3: MCPcounter</a></li>
+<li class="chapter" data-level="5.7" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-4-xcell"><i class="fa fa-check"></i><b>5.7</b> Method 4: xCELL</a></li>
+<li class="chapter" data-level="5.8" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-5-estimate"><i class="fa fa-check"></i><b>5.8</b> Method 5: ESTIMATE</a></li>
+<li class="chapter" data-level="5.9" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-6-timer"><i class="fa fa-check"></i><b>5.9</b> Method 6: TIMER</a></li>
+<li class="chapter" data-level="5.10" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-7-quantiseq"><i class="fa fa-check"></i><b>5.10</b> Method 7: quanTIseq</a></li>
+<li class="chapter" data-level="5.11" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-8-ips"><i class="fa fa-check"></i><b>5.11</b> Method 8: IPS</a></li>
+<li class="chapter" data-level="5.12" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#combination-of-above-deconvolution-results"><i class="fa fa-check"></i><b>5.12</b> Combination of above deconvolution results</a></a></li>
+<li class="chapter" data-level="5.13" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#how-to-customise-the-signature-matrix-for-svr-and-lesi-algorithm"><i class="fa fa-check"></i><b>5.13</b> How to customise the signature matrix for <code>SVR</code> and <code>lesi</code> algorithm</a></li>
+<li class="chapter" data-level="5.14" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#references-2"><i class="fa fa-check"></i><b>5.14</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html"><i class="fa fa-check"></i><b>6</b> <strong>Signature Score and Relevant phenotypes</strong></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#loading-packages-3"><i class="fa fa-check"></i><b>6.1</b> Loading packages</a></li>
+<li class="chapter" data-level="6.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#downloading-data-for-example-2"><i class="fa fa-check"></i><b>6.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="6.3" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#gene-annotation-1"><i class="fa fa-check"></i><b>6.3</b> Gene Annotation</a></li>
+<li class="chapter" data-level="6.4" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#estimation-of-signatures"><i class="fa fa-check"></i><b>6.4</b> Estimation of signatures</a></li>
+<li class="chapter" data-level="6.5" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#combining-score-data-and-phenotype-data"><i class="fa fa-check"></i><b>6.5</b> Combining score data and phenotype data</a></li>
+<li class="chapter" data-level="6.6" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#identifying-features-associated-with-survival"><i class="fa fa-check"></i><b>6.6</b> Identifying features associated with survival</a></li>
+<li class="chapter" data-level="6.7" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#visulization-using-heatmap"><i class="fa fa-check"></i><b>6.7</b> Visulization using heatmap</a></li>
+<li class="chapter" data-level="6.8" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#focus-on-target-signatures"><i class="fa fa-check"></i><b>6.8</b> Focus on target signatures</a></li>
+<li class="chapter" data-level="6.9" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#survival-analysis-and-visulization"><i class="fa fa-check"></i><b>6.9</b> Survival analysis and visulization</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#kaplan-meier-plot"><i class="fa fa-check"></i><b>6.9.1</b> Kaplan-Meier plot</a></li>
+<li class="chapter" data-level="6.9.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#time-dependent-roc-curve"><i class="fa fa-check"></i><b>6.9.2</b> Time-Dependent ROC curve</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#batch-correlation-analysis"><i class="fa fa-check"></i><b>6.10</b> Batch correlation analysis</a>
+<ul>
+<li class="chapter" data-level="6.10.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#finding-continuity-variables-associated-with-signatures"><i class="fa fa-check"></i><b>6.10.1</b> Finding continuity variables associated with signatures</a></li>
+<li class="chapter" data-level="6.10.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#identifying-category-variables-linked-to-signatures"><i class="fa fa-check"></i><b>6.10.2</b> Identifying Category Variables Linked to Signatures</a></li>
+<li class="chapter" data-level="6.10.3" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#for-multicategorical-variables-2-subgroups"><i class="fa fa-check"></i><b>6.10.3</b> For multicategorical variables (&gt;2 subgroups)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#reference"><i class="fa fa-check"></i><b>6.11</b> Reference</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html"><i class="fa fa-check"></i><b>7</b> <strong>TME Interaction analysis</strong></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#loading-packages-4"><i class="fa fa-check"></i><b>7.1</b> Loading packages</a></li>
+<li class="chapter" data-level="7.2" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#downloading-data-for-example-3"><i class="fa fa-check"></i><b>7.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="7.3" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#gene-annotation-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>7.3</b> Gene Annotation: HGU133PLUS-2 (Affaymetrix)</a></li>
+<li class="chapter" data-level="7.4" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#tme-deconvolution-using-cibersort-algorithm"><i class="fa fa-check"></i><b>7.4</b> TME deconvolution using CIBERSORT algorithm</a></li>
+<li class="chapter" data-level="7.5" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-tme-patterns"><i class="fa fa-check"></i><b>7.5</b> Identifying TME patterns</a></li>
+<li class="chapter" data-level="7.6" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#cell-abundance-of-each-cluster"><i class="fa fa-check"></i><b>7.6</b> Cell abundance of each cluster</a></li>
+<li class="chapter" data-level="7.7" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#deg-analysis-between-tme-subtypes"><i class="fa fa-check"></i><b>7.7</b> DEG analysis between TME subtypes</a></li>
+<li class="chapter" data-level="7.8" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>7.8</b> Identifying signatures associated with TME clusters</a></li>
+<li class="chapter" data-level="7.9" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#references-3"><i class="fa fa-check"></i><b>7.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html"><i class="fa fa-check"></i><b>8</b> <strong>Tumor ecosystem analysis</strong></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#loading-packages-5"><i class="fa fa-check"></i><b>8.1</b> Loading packages</a></li>
+<li class="chapter" data-level="8.2" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#downloading-data-for-example-4"><i class="fa fa-check"></i><b>8.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="8.3" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gene-annotation-hgu133plus-2-affaymetrix-1"><i class="fa fa-check"></i><b>8.3</b> Gene Annotation: HGU133PLUS-2 (Affaymetrix)</a></li>
+<li class="chapter" data-level="8.4" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#determine-tme-subtype-of-gastric-cancer-using-tmeclassifier-r-package"><i class="fa fa-check"></i><b>8.4</b> Determine TME subtype of gastric cancer using TMEclassifier R package</a></li>
+<li class="chapter" data-level="8.5" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis-method1"><i class="fa fa-check"></i><b>8.5</b> DEG analysis: method1</a></li>
+<li class="chapter" data-level="8.6" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gsea-analysis-based-on-differential-express-gene-analysis-results"><i class="fa fa-check"></i><b>8.6</b> GSEA analysis based on differential express gene analysis results</a></li>
+<li class="chapter" data-level="8.7" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis-method2"><i class="fa fa-check"></i><b>8.7</b> DEG analysis: method2</a></li>
+<li class="chapter" data-level="8.8" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#identifying-signatures-associated-with-tme-clusters-1"><i class="fa fa-check"></i><b>8.8</b> Identifying signatures associated with TME clusters</a></li>
+<li class="chapter" data-level="8.9" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#references-4"><i class="fa fa-check"></i><b>8.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="references-5.html"><a href="references-5.html"><i class="fa fa-check"></i><b>9</b> <strong>References</strong></a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="references-5.html"><a href="references-5.html#tme-deconvolution-1"><i class="fa fa-check"></i><b>9.1</b> TME deconvolution</a></li>
+<li class="chapter" data-level="9.2" data-path="references-5.html"><a href="references-5.html#tme-signatures"><i class="fa fa-check"></i><b>9.2</b> TME Signatures</a></li>
+<li class="chapter" data-level="9.3" data-path="references-5.html"><a href="references-5.html#data-sets"><i class="fa fa-check"></i><b>9.3</b> Data sets</a></li>
+<li class="chapter" data-level="9.4" data-path="references-5.html"><a href="references-5.html#others"><i class="fa fa-check"></i><b>9.4</b> Others</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/DongqiangZeng0808" target="blank">Welcome to my GitHub</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">IOBR (Immuno-Oncology Biological Research)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tme-interaction-analysis" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> <strong>TME Interaction analysis</strong><a href="tme-interaction-analysis.html#tme-interaction-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="loading-packages-4" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Loading packages<a href="tme-interaction-analysis.html#loading-packages-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="tme-interaction-analysis.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span></code></pre></div>
+</div>
+<div id="downloading-data-for-example-3" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Downloading data for example<a href="tme-interaction-analysis.html#downloading-data-for-example-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Obtaining data set from GEO <a href="https://pubmed.ncbi.nlm.nih.gov/25894828/">Gastric cancer: GSE62254</a> using <code>GEOquery</code> R package.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="tme-interaction-analysis.html#cb2-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;GEOquery&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
+<span id="cb2-2"><a href="tme-interaction-analysis.html#cb2-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
+<span id="cb2-3"><a href="tme-interaction-analysis.html#cb2-3" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
+<span id="cb2-4"><a href="tme-interaction-analysis.html#cb2-4" tabindex="-1"></a>eset_geo<span class="ot">&lt;-</span> <span class="fu">getGEO</span>(<span class="at">GEO     =</span> <span class="st">&quot;GSE62254&quot;</span>, <span class="at">getGPL  =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
+<span id="cb2-5"><a href="tme-interaction-analysis.html#cb2-5" tabindex="-1"></a>eset    <span class="ot">&lt;-</span> eset_geo[[<span class="dv">1</span>]]</span>
+<span id="cb2-6"><a href="tme-interaction-analysis.html#cb2-6" tabindex="-1"></a>eset    <span class="ot">&lt;-</span> <span class="fu">exprs</span>(eset)</span>
+<span id="cb2-7"><a href="tme-interaction-analysis.html#cb2-7" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>##           GSM1523727 GSM1523728 GSM1523729 GSM1523744 GSM1523745
+## 1007_s_at  3.2176645  3.0624323  3.0279131   2.921683  2.8456013
+## 1053_at    2.4050109  2.4394879  2.2442708   2.345916  2.4328582
+## 117_at     1.4933412  1.8067380  1.5959665   1.839822  1.8326058
+## 121_at     2.1965561  2.2812181  2.1865556   2.258599  2.1874363
+## 1255_g_at  0.8698382  0.9502466  0.8125414   1.012860  0.9441993</code></pre>
+</div>
+<div id="gene-annotation-hgu133plus-2-affaymetrix" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Gene Annotation: HGU133PLUS-2 (Affaymetrix)<a href="tme-interaction-analysis.html#gene-annotation-hgu133plus-2-affaymetrix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="tme-interaction-analysis.html#cb4-1" tabindex="-1"></a><span class="co"># Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. </span></span>
+<span id="cb4-2"><a href="tme-interaction-analysis.html#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="tme-interaction-analysis.html#cb4-3" tabindex="-1"></a>eset<span class="ot">&lt;-</span><span class="fu">anno_eset</span>(<span class="at">eset       =</span> eset,</span>
+<span id="cb4-4"><a href="tme-interaction-analysis.html#cb4-4" tabindex="-1"></a>                <span class="at">annotation =</span> anno_hug133plus2,</span>
+<span id="cb4-5"><a href="tme-interaction-analysis.html#cb4-5" tabindex="-1"></a>                <span class="at">symbol     =</span> <span class="st">&quot;symbol&quot;</span>,</span>
+<span id="cb4-6"><a href="tme-interaction-analysis.html#cb4-6" tabindex="-1"></a>                <span class="at">probe      =</span> <span class="st">&quot;probe_id&quot;</span>,</span>
+<span id="cb4-7"><a href="tme-interaction-analysis.html#cb4-7" tabindex="-1"></a>                <span class="at">method     =</span> <span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb4-8"><a href="tme-interaction-analysis.html#cb4-8" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>##              GSM1523727 GSM1523728 GSM1523729
+## SH3KBP1        4.327974   4.316195   4.351425
+## RPL41          4.246149   4.246808   4.257940
+## EEF1A1         4.293762   4.291038   4.262199
+## COX2           4.250288   4.283714   4.270508
+## LOC101928826   4.219303   4.219670   4.213252</code></pre>
+</div>
+<div id="tme-deconvolution-using-cibersort-algorithm" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> TME deconvolution using CIBERSORT algorithm<a href="tme-interaction-analysis.html#tme-deconvolution-using-cibersort-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="tme-interaction-analysis.html#cb6-1" tabindex="-1"></a>cell <span class="ot">&lt;-</span> <span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset, <span class="at">method =</span> <span class="st">&quot;cibersort&quot;</span>, <span class="at">arrays =</span> <span class="cn">TRUE</span>, <span class="at">perm =</span> <span class="dv">1000</span>, <span class="at">absolute.mode =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-2"><a href="tme-interaction-analysis.html#cb6-2" tabindex="-1"></a><span class="fu">head</span>(cell)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 27
+##   ID        B_cells_naive_CIBERS…¹ B_cells_memory_CIBER…² Plasma_cells_CIBERSORT
+##   &lt;chr&gt;                      &lt;dbl&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;
+## 1 GSM15237…                0.00610                0.0136                  0.149 
+## 2 GSM15237…                0                      0.0339                  0.0765
+## 3 GSM15237…                0.00335                0.0183                  0.0939
+## 4 GSM15237…                0                      0.0594                  0.0773
+## 5 GSM15237…                0                      0.00738                 0.109 
+## 6 GSM15237…                0.0118                 0.0115                  0.138 
+## # ℹ abbreviated names: ¹​B_cells_naive_CIBERSORT, ²​B_cells_memory_CIBERSORT
+## # ℹ 23 more variables: T_cells_CD8_CIBERSORT &lt;dbl&gt;,
+## #   T_cells_CD4_naive_CIBERSORT &lt;dbl&gt;,
+## #   T_cells_CD4_memory_resting_CIBERSORT &lt;dbl&gt;,
+## #   T_cells_CD4_memory_activated_CIBERSORT &lt;dbl&gt;,
+## #   T_cells_follicular_helper_CIBERSORT &lt;dbl&gt;,
+## #   `T_cells_regulatory_(Tregs)_CIBERSORT` &lt;dbl&gt;, …</code></pre>
+</div>
+<div id="identifying-tme-patterns" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Identifying TME patterns<a href="tme-interaction-analysis.html#identifying-tme-patterns" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Identification of optimal clustering based on cellular infiltration patterns in the microenvironment.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="tme-interaction-analysis.html#cb8-1" tabindex="-1"></a>tme <span class="ot">&lt;-</span> <span class="fu">tme_cluster</span>(<span class="at">input =</span> cell, <span class="at">features =</span> <span class="fu">colnames</span>(cell)[<span class="dv">2</span><span class="sc">:</span><span class="dv">23</span>], <span class="at">id =</span> <span class="st">&quot;ID&quot;</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>, <span class="at">method =</span> <span class="st">&quot;kmeans&quot;</span>, <span class="at">max.nc =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;&gt;&gt;&gt;== Best number of TME clusters is: &quot;
+## Number_clusters     Value_Index 
+##          3.0000          2.7266 
+## [1] &quot;&gt;&gt;&gt;== Cluster of samples: &quot;
+## TME1 TME2 TME3 
+##   85   96  119</code></pre>
+<p>Use of heatmaps to reflect cellular differences between TME subtypes</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="tme-interaction-analysis.html#cb10-1" tabindex="-1"></a><span class="fu">colnames</span>(tme) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="fu">colnames</span>(tme), <span class="at">pattern =</span> <span class="st">&quot;_CIBERSORT&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb10-2"><a href="tme-interaction-analysis.html#cb10-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">sig_heatmap</span>(<span class="at">input =</span> tme, <span class="at">features =</span> <span class="fu">colnames</span>(tme)[<span class="dv">3</span><span class="sc">:</span><span class="fu">ncol</span>(tme)], <span class="at">group =</span> <span class="st">&quot;cluster&quot;</span>, <span class="at">path =</span> <span class="st">&quot;result&quot;</span>, <span class="at">palette =</span> <span class="dv">6</span>)</span></code></pre></div>
+<p><img src="tme-interactions_files/figure-html/unnamed-chunk-6-1.png" width="576" /></p>
+</div>
+<div id="cell-abundance-of-each-cluster" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Cell abundance of each cluster<a href="tme-interaction-analysis.html#cell-abundance-of-each-cluster" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="tme-interaction-analysis.html#cb11-1" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#2692a4&#39;</span>,<span class="st">&#39;#fc0d3a&#39;</span>,<span class="st">&#39;#ffbe0b&#39;</span>)</span>
+<span id="cb11-2"><a href="tme-interaction-analysis.html#cb11-2" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(tme, <span class="at">variable =</span> <span class="st">&quot;cluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;Macrophages_M1&quot;</span>, <span class="at">jitter =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-3"><a href="tme-interaction-analysis.html#cb11-3" tabindex="-1"></a>              <span class="at">cols =</span>  cols, <span class="at">show_pvalue =</span> <span class="cn">TRUE</span>, <span class="at">size_of_pvalue =</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 8
+##   .y.       group1 group2        p    p.adj p.format p.signif method  
+##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+## 1 signature TME3   TME2   2.25e-17 4.50e-17 &lt; 2e-16  ****     Wilcoxon
+## 2 signature TME3   TME1   3.48e- 6 3.5 e- 6 3.5e-06  ****     Wilcoxon
+## 3 signature TME2   TME1   6.50e-24 2   e-23 &lt; 2e-16  ****     Wilcoxon</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="tme-interaction-analysis.html#cb13-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(tme, <span class="at">variable =</span> <span class="st">&quot;cluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;Mast_cells_activated&quot;</span>, </span>
+<span id="cb13-2"><a href="tme-interaction-analysis.html#cb13-2" tabindex="-1"></a>              <span class="at">jitter =</span> <span class="cn">TRUE</span>, <span class="at">cols =</span>  cols, <span class="at">show_pvalue =</span> <span class="cn">TRUE</span>, <span class="at">size_of_pvalue =</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 8
+##   .y.       group1 group2        p    p.adj p.format p.signif method  
+##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+## 1 signature TME3   TME2   1.89e- 1 1.9 e- 1 0.19     ns       Wilcoxon
+## 2 signature TME3   TME1   6.89e-33 2.10e-32 &lt;2e-16   ****     Wilcoxon
+## 3 signature TME2   TME1   1.12e-25 2.20e-25 &lt;2e-16   ****     Wilcoxon</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="tme-interaction-analysis.html#cb15-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(tme, <span class="at">variable =</span> <span class="st">&quot;cluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;Macrophages_M2&quot;</span>, </span>
+<span id="cb15-2"><a href="tme-interaction-analysis.html#cb15-2" tabindex="-1"></a>              <span class="at">jitter =</span> <span class="cn">TRUE</span>, <span class="at">cols =</span>  cols, <span class="at">show_pvalue =</span> <span class="cn">TRUE</span>, <span class="at">size_of_pvalue =</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 8
+##   .y.       group1 group2        p  p.adj p.format p.signif method  
+##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+## 1 signature TME3   TME2   0.101    0.1    0.10063  ns       Wilcoxon
+## 2 signature TME3   TME1   0.000513 0.0015 0.00051  ***      Wilcoxon
+## 3 signature TME2   TME1   0.0520   0.1    0.05203  ns       Wilcoxon</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="tme-interaction-analysis.html#cb17-1" tabindex="-1"></a>p1<span class="sc">|</span>p2<span class="sc">|</span>p3</span></code></pre></div>
+<p><img src="tme-interactions_files/figure-html/unnamed-chunk-8-1.png" width="1056" /></p>
+</div>
+<div id="deg-analysis-between-tme-subtypes" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> DEG analysis between TME subtypes<a href="tme-interaction-analysis.html#deg-analysis-between-tme-subtypes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Identifing TME subtype-related differential genes using <code>find_markers_in_bulk</code>.</p>
+<p>We have developed a reliable classifier for the tumour microenvironment in gastric cancer using the same analysis pipeline<a href="https://github.com/LiaoWJLab/TMEclassifier">TMEclassifier</a>. The classifier was constructed by identifying the most robust gastric cancer TME classification through parsing the tumour microenvironment using the <code>tme_cluster</code> method. Next, genes specifically expressed by each microenvironmental subtype are obtained using the <code>find_markers_in_bulk method</code>. Finally, a machine learning approach was used to construct the classifier model.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="tme-interaction-analysis.html#cb18-1" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb18-2"><a href="tme-interaction-analysis.html#cb18-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">find_markers_in_bulk</span>(<span class="at">pdata      =</span> tme, </span>
+<span id="cb18-3"><a href="tme-interaction-analysis.html#cb18-3" tabindex="-1"></a>                            <span class="at">eset       =</span> eset, </span>
+<span id="cb18-4"><a href="tme-interaction-analysis.html#cb18-4" tabindex="-1"></a>                            <span class="at">group      =</span> <span class="st">&quot;cluster&quot;</span>, </span>
+<span id="cb18-5"><a href="tme-interaction-analysis.html#cb18-5" tabindex="-1"></a>                            <span class="at">nfeatures  =</span> <span class="dv">2000</span>, </span>
+<span id="cb18-6"><a href="tme-interaction-analysis.html#cb18-6" tabindex="-1"></a>                            <span class="at">top_n      =</span> <span class="dv">50</span>, </span>
+<span id="cb18-7"><a href="tme-interaction-analysis.html#cb18-7" tabindex="-1"></a>                            <span class="at">thresh.use =</span> <span class="fl">0.15</span>, </span>
+<span id="cb18-8"><a href="tme-interaction-analysis.html#cb18-8" tabindex="-1"></a>                            <span class="at">only.pos   =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb18-9"><a href="tme-interaction-analysis.html#cb18-9" tabindex="-1"></a>                            <span class="at">min.pct    =</span> <span class="fl">0.10</span>)</span></code></pre></div>
+<pre><code>## 
+## TME3 TME2 TME1 
+##  119   96   85 
+## # A tibble: 150 × 7
+## # Groups:   cluster [3]
+##       p_val avg_log2FC pct.1 pct.2 p_val_adj cluster gene    
+##       &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;   &lt;chr&gt;   
+##  1 3.05e-22      0.896     1     1  6.63e-18 TME3    TMEM100 
+##  2 7.92e-22      1.13      1     1  1.72e-17 TME3    ADH1B   
+##  3 1.61e-20      0.691     1     1  3.51e-16 TME3    HHIP    
+##  4 1.93e-20      0.985     1     1  4.19e-16 TME3    ABCA8   
+##  5 5.73e-20      0.701     1     1  1.25e-15 TME3    FCER1A  
+##  6 9.42e-19      0.927     1     1  2.05e-14 TME3    MAMDC2  
+##  7 1.61e-18      0.773     1     1  3.49e-14 TME3    C1QTNF7 
+##  8 1.77e-18      0.718     1     1  3.85e-14 TME3    C16orf89
+##  9 3.91e-18      0.729     1     1  8.51e-14 TME3    FHL1    
+## 10 5.87e-18      0.684     1     1  1.28e-13 TME3    ITGA8   
+## # ℹ 140 more rows</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="tme-interaction-analysis.html#cb20-1" tabindex="-1"></a>top15 <span class="ot">&lt;-</span>  res<span class="sc">$</span>top_markers <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span> <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span>  dplyr<span class="sc">::</span><span class="fu">top_n</span>(<span class="dv">15</span>, avg_log2FC)</span>
+<span id="cb20-2"><a href="tme-interaction-analysis.html#cb20-2" tabindex="-1"></a>top15<span class="sc">$</span>gene</span></code></pre></div>
+<pre><code>##  [1] &quot;TMEM100&quot;        &quot;ADH1B&quot;          &quot;ABCA8&quot;          &quot;MAMDC2&quot;        
+##  [5] &quot;SCN7A&quot;          &quot;LIPF&quot;           &quot;C7&quot;             &quot;C2orf40&quot;       
+##  [9] &quot;PGA4&quot;           &quot;OGN&quot;            &quot;GKN2&quot;           &quot;GHRL&quot;          
+## [13] &quot;C6orf58&quot;        &quot;SCRG1&quot;          &quot;GIF&quot;            &quot;IFNG&quot;          
+## [17] &quot;WARS&quot;           &quot;CXCL10&quot;         &quot;IDO1&quot;           &quot;GZMB&quot;          
+## [21] &quot;CXCL11&quot;         &quot;GBP4&quot;           &quot;CXCL9&quot;          &quot;GNLY&quot;          
+## [25] &quot;GBP5&quot;           &quot;AIM2&quot;           &quot;RTEL1-TNFRSF6B&quot; &quot;COL11A1&quot;       
+## [29] &quot;S100A2&quot;         &quot;SLCO1B3&quot;        &quot;IL1A&quot;           &quot;IL1B&quot;          
+## [33] &quot;PPBP&quot;           &quot;IL11&quot;           &quot;CXCL6&quot;          &quot;CCL3L3&quot;        
+## [37] &quot;TREM1&quot;          &quot;PROK2&quot;          &quot;IL24&quot;           &quot;PI15&quot;          
+## [41] &quot;HCAR3&quot;          &quot;CLEC5A&quot;         &quot;MAGEA6&quot;         &quot;MAGEA12&quot;       
+## [45] &quot;REG1B&quot;</code></pre>
+<p>Heatmap visualisation using <code>Seurat</code>’s <code>DoHeatmap</code></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="tme-interaction-analysis.html#cb22-1" tabindex="-1"></a><span class="co">#定义分型对应的颜色</span></span>
+<span id="cb22-2"><a href="tme-interaction-analysis.html#cb22-2" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#2692a4&#39;</span>,<span class="st">&#39;#fc0d3a&#39;</span>,<span class="st">&#39;#ffbe0b&#39;</span>)</span>
+<span id="cb22-3"><a href="tme-interaction-analysis.html#cb22-3" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">DoHeatmap</span>(res<span class="sc">$</span>sce, top15<span class="sc">$</span>gene, <span class="at">group.colors =</span> cols )<span class="sc">+</span></span>
+<span id="cb22-4"><a href="tme-interaction-analysis.html#cb22-4" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> <span class="fu">rev</span>(<span class="fu">colorRampPalette</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">11</span>,<span class="st">&quot;RdBu&quot;</span>))(<span class="dv">256</span>)))</span></code></pre></div>
+<p>Extracting variables from the expression matrix to merge with TME subtype</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="tme-interaction-analysis.html#cb23-1" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">combine_pd_eset</span>(<span class="at">eset =</span> eset, <span class="at">pdata =</span> tme, <span class="at">feas =</span> top15<span class="sc">$</span>gene, <span class="at">scale =</span> T)</span>
+<span id="cb23-2"><a href="tme-interaction-analysis.html#cb23-2" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(input, <span class="at">variable =</span> <span class="st">&quot;cluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;IFNG&quot;</span>, <span class="at">jitter =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-3"><a href="tme-interaction-analysis.html#cb23-3" tabindex="-1"></a>              <span class="at">cols =</span>  cols, <span class="at">show_pvalue =</span> <span class="cn">TRUE</span>, <span class="at">size_of_pvalue =</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 8
+##   .y.       group1 group2        p    p.adj p.format p.signif method  
+##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+## 1 signature TME3   TME2   1.11e-16 3.30e-16 &lt; 2e-16  ****     Wilcoxon
+## 2 signature TME3   TME1   6.70e- 1 6.7 e- 1 0.67     ns       Wilcoxon
+## 3 signature TME2   TME1   5.60e-14 1.10e-13 5.6e-14  ****     Wilcoxon</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="tme-interaction-analysis.html#cb25-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(input, <span class="at">variable =</span> <span class="st">&quot;cluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;IL1A&quot;</span>, </span>
+<span id="cb25-2"><a href="tme-interaction-analysis.html#cb25-2" tabindex="-1"></a>              <span class="at">jitter =</span> <span class="cn">TRUE</span>, <span class="at">cols =</span>  cols, <span class="at">show_pvalue =</span> <span class="cn">TRUE</span>, <span class="at">size_of_pvalue =</span> <span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 8
+##   .y.       group1 group2        p    p.adj p.format p.signif method  
+##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+## 1 signature TME3   TME2   5.94e- 9 1.20e- 8 5.9e-09  ****     Wilcoxon
+## 2 signature TME3   TME1   7.96e-18 2.40e-17 &lt; 2e-16  ****     Wilcoxon
+## 3 signature TME2   TME1   2.60e- 5 2.6 e- 5 2.6e-05  ****     Wilcoxon</code></pre>
+<p>Combining the results obtained above</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="tme-interaction-analysis.html#cb27-1" tabindex="-1"></a><span class="co"># if (!requireNamespace(&quot;patchwork&quot;, quietly = TRUE))   install.packages(&quot;patchwork&quot;)</span></span>
+<span id="cb27-2"><a href="tme-interaction-analysis.html#cb27-2" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb27-3"><a href="tme-interaction-analysis.html#cb27-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> (p1<span class="sc">|</span>p2<span class="sc">/</span>p3) <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">widths =</span> <span class="fu">c</span>(<span class="fl">2.3</span>,<span class="dv">1</span>))</span>
+<span id="cb27-4"><a href="tme-interaction-analysis.html#cb27-4" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">&#39;A&#39;</span>)</span></code></pre></div>
+<p><img src="tme-interactions_files/figure-html/unnamed-chunk-12-1.png" width="1152" /></p>
+</div>
+<div id="identifying-signatures-associated-with-tme-clusters" class="section level2 hasAnchor" number="7.8">
+<h2><span class="header-section-number">7.8</span> Identifying signatures associated with TME clusters<a href="tme-interaction-analysis.html#identifying-signatures-associated-with-tme-clusters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Calculate TME associated signatures-(through PCA method).</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="tme-interaction-analysis.html#cb28-1" tabindex="-1"></a>sig_tme<span class="ot">&lt;-</span><span class="fu">calculate_sig_score</span>(<span class="at">pdata           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb28-2"><a href="tme-interaction-analysis.html#cb28-2" tabindex="-1"></a>                             <span class="at">eset            =</span> eset,</span>
+<span id="cb28-3"><a href="tme-interaction-analysis.html#cb28-3" tabindex="-1"></a>                             <span class="at">signature       =</span> signature_collection,</span>
+<span id="cb28-4"><a href="tme-interaction-analysis.html#cb28-4" tabindex="-1"></a>                             <span class="at">method          =</span> <span class="st">&quot;pca&quot;</span>,</span>
+<span id="cb28-5"><a href="tme-interaction-analysis.html#cb28-5" tabindex="-1"></a>                             <span class="at">mini_gene_count =</span> <span class="dv">2</span>)</span>
+<span id="cb28-6"><a href="tme-interaction-analysis.html#cb28-6" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">column_to_rownames</span>(sig_tme, <span class="at">var =</span> <span class="st">&quot;ID&quot;</span>))</span>
+<span id="cb28-7"><a href="tme-interaction-analysis.html#cb28-7" tabindex="-1"></a>sig_tme[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>##                   GSM1523727 GSM1523728 GSM1523729
+## CD_8_T_effector   -2.5513794  0.7789141 -2.1770675
+## DDR               -0.8747614  0.7425162 -1.3272054
+## APM                1.1098368  2.1988688 -0.9516419
+## Immune_Checkpoint -2.3701787  0.9455120 -1.4844104
+## CellCycle_Reg      0.1063358  0.7583302 -0.3649795</code></pre>
+<p>Finding characteristic variables associated with TME clusters</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="tme-interaction-analysis.html#cb30-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">find_markers_in_bulk</span>(<span class="at">pdata =</span> tme, <span class="at">eset =</span> sig_tme, <span class="at">group =</span> <span class="st">&quot;cluster&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">1000</span>, <span class="at">top_n =</span> <span class="dv">20</span>, <span class="at">min.pct =</span> <span class="fl">0.10</span>)</span></code></pre></div>
+<pre><code>## 
+## TME3 TME2 TME1 
+##  119   96   85 
+## # A tibble: 59 × 7
+## # Groups:   cluster [3]
+##       p_val avg_log2FC pct.1 pct.2 p_val_adj cluster gene                       
+##       &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt; &lt;fct&gt;   &lt;chr&gt;                      
+##  1 1.05e-25       5.03 0.832 0.287  2.70e-23 TME3    Glycolysis                 
+##  2 1.15e-23       3.76 0.79  0.238  2.93e-21 TME3    Tyrosine-Metabolism        
+##  3 8.38e-18       4.07 0.756 0.32   2.15e-15 TME3    Drug-Metabolism-by-Cytochr…
+##  4 8.59e-14       4.10 0.689 0.359  2.20e-11 TME3    Retinol-Metabolism         
+##  5 2.59e-13       3.55 0.723 0.348  6.64e-11 TME3    Metabolism-of-Xenobiotics-…
+##  6 5.99e-11      10.0  0.546 0.227  1.53e- 8 TME3    detox.iCAF                 
+##  7 7.25e-11      10.6  0.571 0.26   1.86e- 8 TME3    Normal.Fibroblast          
+##  8 2.32e-10       3.71 0.664 0.343  5.94e- 8 TME3    Ether-Lipid-Metabolism     
+##  9 1.99e- 9       5.12 0.555 0.276  5.10e- 7 TME3    TMEscoreB-CIR              
+## 10 2.23e- 8       3.43 0.664 0.387  5.71e- 6 TME3    Drug-Metabolism-by-other-e…
+## # ℹ 49 more rows</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="tme-interaction-analysis.html#cb32-1" tabindex="-1"></a>top15 <span class="ot">&lt;-</span>  res<span class="sc">$</span>top_markers <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span> <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span>  dplyr<span class="sc">::</span><span class="fu">top_n</span>(<span class="dv">15</span>, avg_log2FC)</span>
+<span id="cb32-2"><a href="tme-interaction-analysis.html#cb32-2" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="tme-interaction-analysis.html#cb32-3" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">DoHeatmap</span>(res<span class="sc">$</span>sce, top15<span class="sc">$</span>gene, <span class="at">group.colors =</span> cols)<span class="sc">+</span></span>
+<span id="cb32-4"><a href="tme-interaction-analysis.html#cb32-4" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> <span class="fu">rev</span>(<span class="fu">colorRampPalette</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">11</span>,<span class="st">&quot;RdBu&quot;</span>))(<span class="dv">256</span>)))</span></code></pre></div>
+<p>可视化结果：选择特征变量</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="tme-interaction-analysis.html#cb33-1" tabindex="-1"></a>top15<span class="sc">$</span>gene  <span class="ot">&lt;-</span> <span class="fu">gsub</span>(top15<span class="sc">$</span>gene, <span class="at">pattern =</span> <span class="st">&quot;-&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">_&quot;</span>)</span>
+<span id="cb33-2"><a href="tme-interaction-analysis.html#cb33-2" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">combine_pd_eset</span>(<span class="at">eset =</span> sig_tme, <span class="at">pdata =</span> tme, <span class="at">feas =</span> top15<span class="sc">$</span>gene, <span class="at">scale =</span> T)</span>
+<span id="cb33-3"><a href="tme-interaction-analysis.html#cb33-3" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="tme-interaction-analysis.html#cb33-4" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(input, <span class="at">variable =</span> <span class="st">&quot;cluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;CD_8_T_effector&quot;</span>, <span class="at">jitter =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb33-5"><a href="tme-interaction-analysis.html#cb33-5" tabindex="-1"></a>              <span class="at">cols =</span>  cols, <span class="at">show_pvalue =</span> <span class="cn">TRUE</span>, <span class="at">size_of_pvalue =</span> <span class="dv">4</span>, <span class="at">size_of_font =</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 8
+##   .y.       group1 group2        p    p.adj p.format p.signif method  
+##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+## 1 signature TME3   TME2   3.18e-12 6.40e-12 3.2e-12  ****     Wilcoxon
+## 2 signature TME3   TME1   1.01e- 1 1   e- 1 0.1      ns       Wilcoxon
+## 3 signature TME2   TME1   4.53e-13 1.4 e-12 4.5e-13  ****     Wilcoxon</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="tme-interaction-analysis.html#cb35-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(input, <span class="at">variable =</span> <span class="st">&quot;cluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;Neutrophils_Bindea_et_al&quot;</span>,  </span>
+<span id="cb35-2"><a href="tme-interaction-analysis.html#cb35-2" tabindex="-1"></a>              <span class="at">jitter =</span> <span class="cn">TRUE</span>, <span class="at">cols =</span>  cols, <span class="at">show_pvalue =</span> <span class="cn">TRUE</span>, <span class="at">size_of_pvalue =</span> <span class="dv">4</span>, <span class="at">size_of_font =</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 8
+##   .y.       group1 group2         p    p.adj p.format p.signif method  
+##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+## 1 signature TME3   TME2   0.0000416 0.000097 4.2e-05  ****     Wilcoxon
+## 2 signature TME3   TME1   0.0000323 0.000097 3.2e-05  ****     Wilcoxon
+## 3 signature TME2   TME1   0.149     0.15     0.15     ns       Wilcoxon</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="tme-interaction-analysis.html#cb37-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> (p1<span class="sc">|</span>p2<span class="sc">/</span>p3) <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">widths =</span> <span class="fu">c</span>(<span class="fl">2.3</span>,<span class="dv">1</span>))</span>
+<span id="cb37-2"><a href="tme-interaction-analysis.html#cb37-2" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">&#39;A&#39;</span>)</span></code></pre></div>
+<p><img src="tme-interactions_files/figure-html/unnamed-chunk-16-1.png" width="1152" /></p>
+<p>Survival differences between tumour microenvironment subtypes</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="tme-interaction-analysis.html#cb38-1" tabindex="-1"></a><span class="fu">library</span>(survminer)</span>
+<span id="cb38-2"><a href="tme-interaction-analysis.html#cb38-2" tabindex="-1"></a><span class="fu">data</span>(pdata_acrg, <span class="at">package =</span> <span class="st">&quot;IOBR&quot;</span>)</span>
+<span id="cb38-3"><a href="tme-interaction-analysis.html#cb38-3" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">merge</span>(pdata_acrg, input, <span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span>
+<span id="cb38-4"><a href="tme-interaction-analysis.html#cb38-4" tabindex="-1"></a>p1<span class="ot">&lt;-</span><span class="fu">surv_group</span>(<span class="at">input_pdata       =</span> input,</span>
+<span id="cb38-5"><a href="tme-interaction-analysis.html#cb38-5" tabindex="-1"></a>               <span class="at">target_group      =</span> <span class="st">&quot;cluster&quot;</span>,</span>
+<span id="cb38-6"><a href="tme-interaction-analysis.html#cb38-6" tabindex="-1"></a>               <span class="at">ID                =</span> <span class="st">&quot;ID&quot;</span>,</span>
+<span id="cb38-7"><a href="tme-interaction-analysis.html#cb38-7" tabindex="-1"></a>               <span class="at">reference_group   =</span> <span class="st">&quot;High&quot;</span>,</span>
+<span id="cb38-8"><a href="tme-interaction-analysis.html#cb38-8" tabindex="-1"></a>               <span class="at">project           =</span> <span class="st">&quot;ACRG&quot;</span>,</span>
+<span id="cb38-9"><a href="tme-interaction-analysis.html#cb38-9" tabindex="-1"></a>               <span class="at">cols              =</span> cols, </span>
+<span id="cb38-10"><a href="tme-interaction-analysis.html#cb38-10" tabindex="-1"></a>               <span class="at">time              =</span> <span class="st">&quot;OS_time&quot;</span>,</span>
+<span id="cb38-11"><a href="tme-interaction-analysis.html#cb38-11" tabindex="-1"></a>               <span class="at">status            =</span> <span class="st">&quot;OS_status&quot;</span>,</span>
+<span id="cb38-12"><a href="tme-interaction-analysis.html#cb38-12" tabindex="-1"></a>               <span class="at">time_type         =</span> <span class="st">&quot;month&quot;</span>,</span>
+<span id="cb38-13"><a href="tme-interaction-analysis.html#cb38-13" tabindex="-1"></a>               <span class="at">save_path         =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
+<pre><code>## &gt;&gt;&gt; Dataset&#39;s survival follow up time is range between 1 to 105.7 months</code></pre>
+<pre><code>## TME1 TME2 TME3 
+##   85   96  119</code></pre>
+<pre><code>## 8596119</code></pre>
+<pre><code>##   Maximum of follow up time is 105.7 months; and will be divided into 6 sections;</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="tme-interaction-analysis.html#cb43-1" tabindex="-1"></a>p1</span></code></pre></div>
+<p><img src="tme-interactions_files/figure-html/unnamed-chunk-17-1.png" width="480" /></p>
+<p>Relationship between tumour microenvironmental subtypes and other subtypes</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="tme-interaction-analysis.html#cb44-1" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">percent_bar_plot</span>(input, <span class="at">x =</span> <span class="st">&quot;cluster&quot;</span> , <span class="at">y =</span> <span class="st">&quot;Subtype&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;jama&quot;</span>, <span class="at">axis_angle =</span> <span class="dv">60</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 12 × 5
+## # Groups:   cluster [3]
+##    cluster Subtype    Freq  Prop count
+##    &lt;chr&gt;   &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 TME1    EMT          14  0.16    85
+##  2 TME1    MSI          12  0.14    85
+##  3 TME1    MSS/TP53-    34  0.4     85
+##  4 TME1    MSS/TP53+    25  0.29    85
+##  5 TME2    EMT           6  0.06    96
+##  6 TME2    MSI          47  0.49    96
+##  7 TME2    MSS/TP53-    22  0.23    96
+##  8 TME2    MSS/TP53+    21  0.22    96
+##  9 TME3    EMT          26  0.22   119
+## 10 TME3    MSI           9  0.08   119
+## 11 TME3    MSS/TP53-    51  0.43   119
+## 12 TME3    MSS/TP53+    33  0.28   119
+## [1] &quot;&#39;#374E55FF&#39;, &#39;#DF8F44FF&#39;, &#39;#00A1D5FF&#39;, &#39;#B24745FF&#39;, &#39;#79AF97FF&#39;, &#39;#6A6599FF&#39;, &#39;#80796BFF&#39;&quot;</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="tme-interaction-analysis.html#cb46-1" tabindex="-1"></a>p2<span class="ot">&lt;-</span> <span class="fu">percent_bar_plot</span>(input, <span class="at">x =</span> <span class="st">&quot;cluster&quot;</span> , <span class="at">y =</span> <span class="st">&quot;Lauren&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;jama&quot;</span>, <span class="at">axis_angle =</span> <span class="dv">60</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 9 × 5
+## # Groups:   cluster [3]
+##   cluster Lauren      Freq  Prop count
+##   &lt;chr&gt;   &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 TME1    Diffuse       37  0.44    85
+## 2 TME1    Intestinal    47  0.55    85
+## 3 TME1    Mixed          1  0.01    85
+## 4 TME2    Diffuse       31  0.32    96
+## 5 TME2    Intestinal    54  0.56    96
+## 6 TME2    Mixed         11  0.11    96
+## 7 TME3    Diffuse       67  0.56   119
+## 8 TME3    Intestinal    45  0.38   119
+## 9 TME3    Mixed          7  0.06   119
+## [1] &quot;&#39;#374E55FF&#39;, &#39;#DF8F44FF&#39;, &#39;#00A1D5FF&#39;, &#39;#B24745FF&#39;, &#39;#79AF97FF&#39;, &#39;#6A6599FF&#39;, &#39;#80796BFF&#39;&quot;</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="tme-interaction-analysis.html#cb48-1" tabindex="-1"></a>p3<span class="ot">&lt;-</span> <span class="fu">percent_bar_plot</span>(input, <span class="at">x =</span> <span class="st">&quot;cluster&quot;</span> , <span class="at">y =</span> <span class="st">&quot;TMEscore_binary&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;jama&quot;</span>, <span class="at">axis_angle =</span> <span class="dv">60</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 7 × 5
+## # Groups:   cluster [3]
+##   cluster TMEscore_binary  Freq  Prop count
+##   &lt;chr&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 TME1    High                5  0.06    85
+## 2 TME1    Low                79  0.93    85
+## 3 TME1    &lt;NA&gt;                1  0.01    85
+## 4 TME2    High               59  0.61    96
+## 5 TME2    Low                37  0.39    96
+## 6 TME3    High                7  0.06   119
+## 7 TME3    Low               112  0.94   119
+## [1] &quot;&#39;#374E55FF&#39;, &#39;#DF8F44FF&#39;, &#39;#00A1D5FF&#39;, &#39;#B24745FF&#39;, &#39;#79AF97FF&#39;, &#39;#6A6599FF&#39;, &#39;#80796BFF&#39;&quot;</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="tme-interaction-analysis.html#cb50-1" tabindex="-1"></a>p1<span class="sc">|</span>p2<span class="sc">|</span>p3</span></code></pre></div>
+<p><img src="tme-interactions_files/figure-html/unnamed-chunk-19-1.png" width="1152" /></p>
+</div>
+<div id="references-3" class="section level2 hasAnchor" number="7.9">
+<h2><span class="header-section-number">7.9</span> References<a href="tme-interaction-analysis.html#references-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cristescu, R., Lee, J., Nebozhyn, M. et al. Molecular analysis of gastric cancer identifies subtypes associated with distinct clinical outcomes. Nat Med 21, 449–456 (2015). <a href="https://doi.org/10.1038/nm.3850" class="uri">https://doi.org/10.1038/nm.3850</a></p>
+<p><a href="https://cibersort.stanford.edu/">CIBERSORT</a>; Newman, A. M., Liu, C. L., Green, M. R., Gentles, A. J., Feng, W., Xu, Y., … Alizadeh, A. A. (2015). Robust enumeration of cell subsets from tissue expression profiles. Nature Methods, 12(5), 453–457. <a href="https://doi.org/10.1038/nmeth.3337" class="uri">https://doi.org/10.1038/nmeth.3337</a>;</p>
+<p>Seurat: Hao and Hao et al. Integrated analysis of multimodal single-cell data. Cell (2021)</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="signature-score-and-relevant-phenotypes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tumor-ecosystem-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/DongqiangZeng0808/tme-interactions.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

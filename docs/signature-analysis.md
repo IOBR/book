@@ -214,7 +214,7 @@ signature_collection_citation[1:20, ]
 
 The evaluation of signature scores involved three methodologies: Single-sample Gene Set Enrichment Analysis (ssGSEA), Principal Component Analysis (PCA), and Z-score.
 
-### Estimation of signature using PCA method
+## Estimation of signature using PCA method
 The PCA method is ideal for gene sets with co-expression. Heatmaps and correlation matrices can be used to determine if co-expression is present in the applicable gene set.
 
 ```r
@@ -237,7 +237,7 @@ sig_tme[1:5, 1:3]
 ## CellCycle_Reg      0.1063358  0.7583302 -0.3649795
 ```
 
-### Estimated using the ssGSEA methodology
+## Estimated using the ssGSEA methodology
 
 This method is appropriate for gene sets that contain a large number of genes (> 30 genes), such as those of [GO, KEGG, REACTOME gene sets](https://www.gsea-msigdb.org/gsea/msigdb).
 
@@ -255,7 +255,7 @@ sig_tme<-calculate_sig_score(pdata           = NULL,
                              mini_gene_count = 2)
 ```
 
-### Calculated using the z-score function.
+## Calculated using the z-score function.
 
 
 ```r
@@ -266,7 +266,7 @@ sig_tme<-calculate_sig_score(pdata           = NULL,
                              mini_gene_count = 2)
 ```
 
-### Calculated using all three methods at the same time
+## Calculated using all three methods at the same time
 
 
 ```r
@@ -290,11 +290,176 @@ colnames(sig_tme_pca)[grep(colnames(sig_tme_pca), pattern = "CD_8_T_effector")]
 ```
 
 
-### How to customise the signature gene list
+## How to customise the signature gene list for `calculate_signature_score`
+
+### Method-1: Use excel for storage and construction
+Users can collect gene signatures using either an `Excel` or `CSV` file. The format should have the name of the signature in the first row, followed by the genes contained in each signature from the second row onwards. Once imported, the function `format_signature` can be used to transform the data into a gene list of signatures required for `calculate_signature_score`. To import the file into R, users can use the functions read.csv or read_excel. It is important to note here that the user needs to use the longest signature as a criterion and then replace all the vacant grids using NA, otherwise an error may be reported when reading into R.
+
+Here we provide a sample data `sig_excel`, please refer to this format to construct the required csv or excel files.
+
+```r
+data("sig_excel", package = "IOBR")
+sig <- format_signatures(sig_excel)
+print(sig[1:5])
+```
+
+```
+## $Tcell_co_inhibitors
+##  [1] "ADORA2A"  "BTLA"     "BTN2A2"   "BTN3A1"   "BTN3A2"   "BTNL2"   
+##  [7] "C10orf54" "CSF1R"    "HAVCR2"   "IDO1"     "IL10"     "IL10RB"  
+## [13] "KDR"      "KIR2DL1"  "SLAMF7"   "TGFB1"    "TIGIT"    "VRCN1"   
+## [19] "VTCN1"    "CD247"    "CTLA4"    "CD160"    "CD244"    "CD274"   
+## [25] "CD276"    "CD48"     "CD96"     "KIR2DL2"  "KIR2DL3"  "LAG3"    
+## [31] "LAIR1"    "LGALS9"   "PVRL2"    "PDCD1"    "PDCD1LG2"
+## 
+## $Tcell_co_stimuiations
+##  [1] "BTNL8"     "CD226"     "CD27"      "CD28"      "CD40"      "CD58"     
+##  [7] "CD70"      "SLAMF1"    "TMIGD2"    "TNFRSF13B" "TNFRSF13C" "TNFRSF14" 
+## [13] "TNFRSF4"   "TNFRSF8"   "TNFSF8"    "TNFSF9"    "ENTPD1"    "NT5E"     
+## [19] "ICOS"      "TNFSF4"    "TNFSF15"   "CD80"      "CD86"      "EGFR"     
+## [25] "HAVCR1"    "TNFSF18"   "ICOSLG"    "TNFSF13B"  "TNFRSF9"   "TNFSF13"  
+## 
+## $Tcell_function
+## [1] "CD3E"  "CD4"   "CD8B"  "FOXP3" "GZMB"  "PRF1"  "TBX21" "IL2RA" "IKZF2"
+## 
+## $Tcell_checkpoint
+##  [1] "CD274"    "CTLA4"    "LAG3"     "TIM3"     "TNFRSF9"  "TIGIT"   
+##  [7] "CD226"    "CD7"      "GZMB"     "PRF1"     "TNFRSF18" "TNFRSF4" 
+## [13] "HAVCR2"   "NLG1"     "CD4"      "CD8A"     "CD8B"     "FOXP3"   
+## [19] "IL2"      "CXCL8"    "PDCD1"    "IFNG"    
+## 
+## $Teffctore_score
+## [1] "CD8A"   "CXCL10" "CXCL9"  "GZMA"   "GZMB"   "IFNG"   "PRF1"   "TBX21"
+```
+For simple structures or when the number of signatures to be added is relatively small, the following two methods can also be used.
+
+### Method-2: Build the list structure directly
 
 
+```r
+sig <- list("CD8" = c("CD8A",  "CXCL10", "CXCL9",  "GZMA",   "GZMB",   "IFNG",   "PRF1",   "TBX21"),
+            "ICB" = c("CD274",   "PDCD1LG2", "CTLA4",    "PDCD1",    "LAG3",     "HAVCR2",   "TIGIT" ))
+sig
+```
 
-### References
+```
+## $CD8
+## [1] "CD8A"   "CXCL10" "CXCL9"  "GZMA"   "GZMB"   "IFNG"   "PRF1"   "TBX21" 
+## 
+## $ICB
+## [1] "CD274"    "PDCD1LG2" "CTLA4"    "PDCD1"    "LAG3"     "HAVCR2"   "TIGIT"
+```
+### Method3: Add the new signature to the existing gene list
+
+
+```r
+sig<- signature_tumor
+sig$CD8 <- c("CD8A",  "CXCL10", "CXCL9",  "GZMA",   "GZMB",   "IFNG",   "PRF1",   "TBX21")
+sig
+```
+
+```
+## $Nature_metabolism_Hypoxia
+##  [1] "ACOT7"  "SLC2A1" "ALDOA"  "CDKN3"  "ENO1"   "LDHA"   "MIF"    "MRPS17"
+##  [9] "NDRG1"  "P4HA1"  "PGAM1"  "TPI1"   "TUBB6"  "VEGFA"  "ADM"   
+## 
+## $Winter_hypoxia_signature
+## [1] "VEGF"  "GLUT1" "PDK-1" "EN01"  "HK2"   "CA9"   "AK3"   "CCNG2" "PFKB3"
+## 
+## $Hu_hypoxia_signature
+##  [1] "FABP5"     "UCHL1"     "GAL"       "PLODDDIT4" "VEGF"      "ADM"      
+##  [7] "ANGPTL4"   "NDRG1"     "NP"        "SLC16A3"   "C14ORF58"  "RRAGD"    
+## 
+## $Molecular_Cancer_m6A
+##  [1] "METTL3"    "METTL14"   "RBM15"     "RBM15B"    "WTAP"      "KIAA1429" 
+##  [7] "CBLL1"     "ZC3H13"    "ALKBH5"    "FTO"       "YTHDC1"    "YTHDC2"   
+## [13] "YTHDF1"    "YTHDF2"    "YTHDF3"    "IGF2BP1"   "HNRNPA2B1" "HNRNPC"   
+## [19] "FMR1"      "LRPPRC"    "ELAVL1"   
+## 
+## $MT_exosome
+##  [1] "YWHAG"  "YWHAQ"  "CLTC"   "NCKAP1" "CFL1"   "ACTB"   "CCT4"   "RDX"   
+##  [9] "GNA13"  "CTNNB1"
+## 
+## $SR_exosome
+## [1] "HSP70" "HSP90" "CD9"   "CD63"  "CD81"  "CD82" 
+## 
+## $Positive_regulation_of_exosomal_secretion
+##  [1] "ATP13A2" "CHMP2A"  "HGS"     "MYO5B"   "PDCD6IP" "RAB7"    "SDC1"   
+##  [8] "SDC4"    "SDCBP"   "SMPD3"   "SNF8"    "STAM"    "TSG101"  "VPS4A"  
+## 
+## $Negative_regulation_of_exosomal_secretion
+## [1] "VPS4B" "PRKN"  "RAB7" 
+## 
+## $Exosomal_secretion
+## [1] "STEAP3" "TSG101" "RAB11A" "RAB27A" "COPS5" 
+## 
+## $Exosome_assembly
+## [1] "CD34"    "PDCD6IP" "SDC1"    "SDC4"    "SDCBP"   "STAM"    "TSG101" 
+## 
+## $Extracellular_vesicle_biogenesis
+##  [1] "ARRDC1"  "ARRDC4"  "ATP13A2" "CD34"    "CHMP2A"  "COPS5"   "HGS"    
+##  [8] "MYO5B"   "PDCD6IP" "PRKN"    "RAB7"    "RAB11A"  "RAB27A"  "SDC1"   
+## [15] "SDC4"    "SDCBP"   "SMPD3"   "SNF8"    "STAM"    "STEAP3"  "TSG101" 
+## [22] "VPS4B"  
+## 
+## $MC_Review_Exosome1
+##  [1] "TSG101"  "CD9"     "CD81"    "CD63"    "FLOT1"   "ITGB1"   "ITGA1"  
+##  [8] "HSP70"   "AIP1"    "ALIX"    "PDCD6IP"
+## 
+## $MC_Review_Exosome2
+##  [1] "RAB27A"  "RAB27B"  "PIKFYVE" "HRS"     "SYT7"    "CTTN"    "STAT3"  
+##  [8] "PKM2"    "UNC13D"  "miR-155" "EGFR"    "RAS"     "EIF3C"   "LKB1"   
+## [15] "STK11"  
+## 
+## $CMLS_Review_Exosome
+##  [1] "HRS"      "STAM1"    "TSG101"   "CHMP4C"   "ALIX"     "VAT1"    
+##  [7] "VPS4"     "CD9"      "CD82"     "CD63"     "LMP1"     "TSPAN8"  
+## [13] "VAMP7"    "YKT6"     "PKM2"     "SNAP-23"  "RALA"     "RALB"    
+## [19] "RAB2B"    "RAB5A"    "RAB9A"    "RAB7"     "RAB11"    "RAB27A"  
+## [25] "RAB27B"   "RAB35"    "DGKA"     "PLD2"     "ARF6"     "ATG12"   
+## [31] "ATG7"     "PIKFYVE"  "BST2"     "ATP6V0A4"
+## 
+## $Ferroptosis
+##  [1] "ACSL4"      "AKR1C1-3"   "ALOXs"      "ATP5G3"     "CARS"      
+##  [6] "CBS"        "CD44v"      "CHAC1"      "CISD1"      "CS"        
+## [11] "DPP4"       "FANCD2"     "GCLC/GCLM"  "GLS2"       "GPX4"      
+## [16] "GSS"        "HMGCR"      "HSPB1/5"    "KOD"        "LPCAT3"    
+## [21] "MT1G"       "NCOA4"      "NFE2L2"     "PTGS2"      "RPL8"      
+## [26] "SAT1"       "SLC7A11"    "SQS"        "TFRC"       "TP53"      
+## [31] "TTC35/EMC2" "MESH1"     
+## 
+## $EV_Cell_2020
+##  [1] "HSP90AB1" "HSP90AA1" "CD9"      "ALIX"     "FLOT1"    "FLOT2"   
+##  [7] "TSG101"   "HSPA8"    "CD81"     "CD63"     "HBB"      "JCHAIN"  
+## [13] "A2M"      "B2M"      "FN1"      "RAP1B"    "LGALS3BP" "GSN"     
+## [19] "MSN"      "FLNA"     "ACTB"     "STOM"     "PRDX2"   
+## 
+## $CD8
+## [1] "CD8A"   "CXCL10" "CXCL9"  "GZMA"   "GZMB"   "IFNG"   "PRF1"   "TBX21"
+```
+
+## How to export gene signature
+
+Using the `output_sig` function, user can export the signatures of the list structure to a csv file for other purposes. This step is exactly the reverse of `format_signatures`.
+
+```r
+sig <- output_sig(signatures = signature_sc, format = "csv", file.name = "sc_signature")
+sig[1:8, 1:5]
+```
+
+```
+##   CD4_c0_Tcm CD4_c1_Treg CD4_c10_Tn_LEF1_ANKRD55 CD4_c11_Tisg CD4_c2_Tn
+## 1      ANXA1       FOXP3                 ANKRD55        ISG15    NBEAL1
+## 2       LMNA       IL2RA                    LEF1         IFI6      CCR7
+## 3        VIM     TNFRSF4                    TCF7       IFI44L   GLTSCR2
+## 4      KLRB1       TIGIT                   NOSIP          MX1      TCF7
+## 5       IL7R      CARD16                    SELL        IFIT3    GNB2L1
+## 6      ZFP36    TNFRSF18                   IL6ST        IFIT1      SELL
+## 7    ZFP36L2        BATF                 LDLRAP1        RSAD2   C6orf48
+## 8     GPR183       CTLA4                  RIPOR2        STAT1    TMEM66
+```
+
+## References
 
 **ssgsea**: Barbie, D.A. et al (2009). Systematic RNA interference reveals that oncogenic KRAS-driven cancers require TBK1. Nature, 462(5):108-112.
 

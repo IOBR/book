@@ -1,0 +1,51 @@
+
+
+
+# **TME and genomic interaction**
+
+## Loading packages
+
+```{r, eval=TRUE, warning=FALSE, message=FALSE}
+library(IOBR)
+```
+
+## Genomic data prepare
+
+MAF data was download from [UCSC Xena hub](https://xenabrowser.net/datapages/)
+In this example, we used the maf file of TCGA-STAD to extract the SNPs in it,and then transformed it into a non-negative matrix.
+```{r,message=FALSE,warning=FALSE}
+maf_file <-"./TCGA.STAD.mutect.c06465a3-50e7-46f7-b2dd-7bd654ca206b.DR-10.0.somatic.maf"
+mut_list <- make_mut_matrix(maf = maf_file, isTCGA   = T, category = "multi")
+mut <- mut_list$snp
+```
+
+## Identifying Mutations Associated with TME
+The microenvironmental data from the TCGA-STAD expression matrix was merged. The Cuzick or Wilcoxon test was used to identify genetic variants associated with microenvironmental factors. CD_8_T_effector was used as the target variable in this example.
+```{r, fig.show= 'hide'}
+data("tcga_stad_sig", package = "IOBR")
+res<-find_mutations(mutation_matrix     = mut, 
+                    signature_matrix    = tcga_stad_sig, 
+                    id_signature_matrix = "ID", 
+                    signature           = "CD_8_T_effector",
+                    min_mut_freq        = 0.01, 
+                    plot                = TRUE, 
+                    jitter              = TRUE, 
+                    point.alpha         = 0.25)
+```
+
+## OncoPrint of result
+```{r echo=FALSE, fig.cap='OncoPrint', out.width='95%', fig.asp=.85, fig.align='center'}
+knitr::include_graphics(rep("./fig/0-OncoPrint-CD_8_T_effector.png", 1))
+```
+
+## Boxplot of top 10 mutated genes
+```{r echo=FALSE, fig.cap='Top 10 mutated genes', out.width='95%', fig.asp=.85, fig.align='center'}
+knitr::include_graphics(rep("./fig/4-Relevant_mutations_binary.png", 1))
+```
+
+
+## References
+
+Gu, Z. (2022) Complex Heatmap Visualization. iMeta.
+
+Anand Mayakonda et al., (2018) Maftools: efficient and comprehensive analysis of somatic variants in cancer. Genome Research

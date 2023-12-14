@@ -127,10 +127,12 @@ dim(tme_combine)
 
 The recent surge in single-cell RNA sequencing has enabled us to identify novel microenvironmental cells, tumour microenvironmental characteristics, and tumour clonal signatures with high resolution. It is necessary to scrutinize, confirm and depict these features attained from high-dimensional single-cell information in bulk-seq with extended specimen sizes for clinical phenotyping. This is a demonstration using the results of 10X single-cell sequencing data of PBMC to construct gene signature matrix for `deconvo_tme` function and estimate the abundance of these cell types in bulk transcriptome data.
 
+Download PBMC dataset through: https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz
+
 Initialize the Seurat object with the raw (non-normalized data).
 ```{r,message=FALSE, warning=FALSE}
 library(Seurat)
-pbmc.data <- Read10X(data.dir = "E:/12-pkg-dev/IOBR-Project/8-IOBR2-Vignette/0-data/pbmc/filtered_gene_bc_matrices/hg19")
+pbmc.data <- Read10X(data.dir = "./pbmc3k_filtered_gene_bc_matrices/filtered_gene_bc_matrices/hg19")
 pbmc <- CreateSeuratObject(counts = pbmc.data, project = "pbmc3k", min.cells = 3, min.features = 200)
 ```
 
@@ -142,30 +144,33 @@ pbmc <- ScaleData(pbmc, features =  rownames(pbmc), verbose = FALSE)
 pbmc <- RunPCA(pbmc, features = VariableFeatures(object = pbmc), verbose = FALSE)
 pbmc <- FindNeighbors(pbmc, dims = 1:10, verbose = FALSE)
 pbmc <- FindClusters(pbmc, resolution = 0.5, verbose = FALSE)
-pbmc$celltype <- paste0("celltype_", pbmc$seurat_clusters)
+# Annotate cells according to seurat's tutorials
+# https://satijalab.org/seurat/articles/pbmc3k_tutorial
+new.cluster.ids <- c("Naive_CD4_T", "CD14_Mono", "Memory_CD4_T", "Bcells", "CD8_Tcell", "FCGR3A_Mono", "NK", "DC", "Platelet")
+names(new.cluster.ids) <- levels(pbmc$seurat_clusters)
+pbmc <- RenameIdents(pbmc, new.cluster.ids)
+pbmc$celltype <- Idents(pbmc)
 ```
 
 Generate reference matrix using `generateRef_seurat` function.
 ```{r,message=FALSE, warning=FALSE}
 sm<- generateRef_seurat(sce = pbmc, celltype = "celltype", slot_out = "data")
-
-#load the bulk-seq data
-data(eset_stad, package = "IOBR")
-eset <- count2tpm(countMat = eset_stad, source = "local", idType = "ensembl")
-svr <- deconvo_tme(eset = eset, reference  = sm,  method = "svr", arrays  = FALSE, absolute.mode = FALSE, perm = 100)
 ```
 
 Load the bulk RNA-seq data
-```{r,message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE}
 data(eset_stad, package = "IOBR")
 eset <- count2tpm(countMat = eset_stad, source = "local", idType = "ensembl")
 svr<- deconvo_tme(eset = eset, reference  = sm,  method = "svr", arrays  = FALSE, absolute.mode = FALSE, perm = 100)
 head(svr)
 ```
 
-```{r, fig.width= 8.5, fig.height = 4.5}
+```{r, fig.width= 8.5, fig.height = 4.5, message=FALSE, warning=FALSE}
 res<-cell_bar_plot(input = svr, features = colnames(svr)[2:10], title = "SVR Cell Fraction")
 ```
+
+
+## References
 
 **If you use this package in your work, please cite both our package and the method(s) you are using.**
 

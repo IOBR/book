@@ -73,7 +73,7 @@ signature_collection_citation[1:20, ]
 
 The evaluation of signature scores involved three methodologies: Single-sample Gene Set Enrichment Analysis (ssGSEA), Principal Component Analysis (PCA), and Z-score.
 
-### Estimation of signature using PCA method
+## Estimation of signature using PCA method
 The PCA method is ideal for gene sets with co-expression. Heatmaps and correlation matrices can be used to determine if co-expression is present in the applicable gene set.
 ```{r, message = F, warning = F}
 
@@ -87,7 +87,7 @@ sig_tme <- t(column_to_rownames(sig_tme, var = "ID"))
 sig_tme[1:5, 1:3]
 ```
 
-### Estimated using the ssGSEA methodology
+## Estimated using the ssGSEA methodology
 
 This method is appropriate for gene sets that contain a large number of genes (> 30 genes), such as those of [GO, KEGG, REACTOME gene sets](https://www.gsea-msigdb.org/gsea/msigdb).
 
@@ -105,7 +105,7 @@ sig_tme<-calculate_sig_score(pdata           = NULL,
 
 ```
 
-### Calculated using the z-score function.
+## Calculated using the z-score function.
 
 ```{r, message = F, warning = F, eval=FALSE}
 
@@ -117,7 +117,7 @@ sig_tme<-calculate_sig_score(pdata           = NULL,
 
 ```
 
-### Calculated using all three methods at the same time
+## Calculated using all three methods at the same time
 
 ```{r, message = F, warning = F, eval=FALSE}
 
@@ -140,11 +140,43 @@ colnames(sig_tme_pca)[grep(colnames(sig_tme_pca), pattern = "CD_8_T_effector")]
 ```
 
 
-### How to customise the signature gene list
+## How to customise the signature gene list for `calculate_signature_score`
 
+### Method-1: Use excel for storage and construction
+Users can collect gene signatures using either an `Excel` or `CSV` file. The format should have the name of the signature in the first row, followed by the genes contained in each signature from the second row onwards. Once imported, the function `format_signature` can be used to transform the data into a gene list of signatures required for `calculate_signature_score`. To import the file into R, users can use the functions read.csv or read_excel. It is important to note here that the user needs to use the longest signature as a criterion and then replace all the vacant grids using NA, otherwise an error may be reported when reading into R.
 
+Here we provide a sample data `sig_excel`, please refer to this format to construct the required csv or excel files.
+```{r, message = F, warning = F}
+data("sig_excel", package = "IOBR")
+sig <- format_signatures(sig_excel)
+print(sig[1:5])
+```
+For simple structures or when the number of signatures to be added is relatively small, the following two methods can also be used.
 
-### References
+### Method-2: Build the list structure directly
+
+```{r, message = F, warning = F}
+sig <- list("CD8" = c("CD8A",  "CXCL10", "CXCL9",  "GZMA",   "GZMB",   "IFNG",   "PRF1",   "TBX21"),
+            "ICB" = c("CD274",   "PDCD1LG2", "CTLA4",    "PDCD1",    "LAG3",     "HAVCR2",   "TIGIT" ))
+sig
+```
+### Method3: Add the new signature to the existing gene list
+
+```{r, warning = F}
+sig<- signature_tumor
+sig$CD8 <- c("CD8A",  "CXCL10", "CXCL9",  "GZMA",   "GZMB",   "IFNG",   "PRF1",   "TBX21")
+sig
+```
+
+## How to export gene signature
+
+Using the `output_sig` function, user can export the signatures of the list structure to a csv file for other purposes. This step is exactly the reverse of `format_signatures`.
+```{r, warning = F}
+sig <- output_sig(signatures = signature_sc, format = "csv", file.name = "sc_signature")
+sig[1:8, 1:5]
+```
+
+## References
 
 **ssgsea**: Barbie, D.A. et al (2009). Systematic RNA interference reveals that oncogenic KRAS-driven cancers require TBK1. Nature, 462(5):108-112.
 

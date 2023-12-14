@@ -1,6 +1,4 @@
 
-
-
 # **TME Interaction analysis**
 
 ## Loading packages
@@ -34,31 +32,53 @@ eset<-anno_eset(eset       = eset,
 eset[1:5, 1:3]
 ```
 
-## TME deconvolution using xCell methodology
+## TME deconvolution using CIBERSORT algorithm
 ```{r, message=FALSE, warning=FALSE}
-cell <- deconvo_tme(eset = eset, method = "cibersort", arrays = TRUE, perm = 500)
+cell <- deconvo_tme(eset = eset, method = "cibersort", arrays = TRUE, perm = 1000, absolute.mode = TRUE)
 head(cell)
 ```
 ## Identifying TME patterns
-Identification of optimal clustering based on cellular infiltration patterns in the microenvironment
+Identification of optimal clustering based on cellular infiltration patterns in the microenvironment.
+
 ```{r, message=FALSE, warning=FALSE}
-tme <- tme_cluster(input = cell, features = colnames(cell)[2:23], scale = TRUE, method = "kmeans", max.nc = 3)
-```
-## Use of heatmaps to reflect cellular differences between TME subtypes
-```{r, message = F, warning = F}
-
-sig_heatmap(input = tme, features = colnames(tme)[3:ncol(tme)], group = "cluster", path = "result", palette = 6)
+tme <- tme_cluster(input = cell, features = colnames(cell)[2:23], id = "ID", scale = TRUE, method = "kmeans", max.nc = 5)
 ```
 
+Use of heatmaps to reflect cellular differences between TME subtypes
+```{r, message = F, warning = F, fig.width=6, fig.height=4}
+colnames(tme) <- gsub(colnames(tme), pattern = "_CIBERSORT", replacement = "")
+res <- sig_heatmap(input = tme, features = colnames(tme)[3:ncol(tme)], group = "cluster", path = "result", palette = 6)
+```
 
-## DEG analysis: method2
+## Cell abundance of each cluster
 
-Identifing TME subtype-related differential genes using `find_markers_in_bulk`
+```{r,fig.show= 'hide', message=FALSE, warning=FALSE}
+cols <- c('#2692a4','#fc0d3a','#ffbe0b')
+p1 <- sig_box(tme, variable = "cluster", signature = "Macrophages_M1", jitter = TRUE,
+              cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
+
+p2 <- sig_box(tme, variable = "cluster", signature = "Mast_cells_activated", 
+              jitter = TRUE, cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
+
+p3 <- sig_box(tme, variable = "cluster", signature = "Macrophages_M2", 
+              jitter = TRUE, cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
+```
+
+```{r,fig.width= 11, fig.height=4.5}
+p1|p2|p3
+```
+
+## DEG analysis between TME subtypes
+
+Identifing TME subtype-related differential genes using `find_markers_in_bulk`.
+
+We have developed a reliable classifier for the tumour microenvironment in gastric cancer using the same analysis pipeline[TMEclassifier](https://github.com/LiaoWJLab/TMEclassifier). The classifier was constructed by identifying the most robust gastric cancer TME classification through parsing the tumour microenvironment using the `tme_cluster` method. Next, genes specifically expressed by each microenvironmental subtype are obtained using the `find_markers_in_bulk method`. Finally, a machine learning approach was used to construct the classifier model.
+
 ```{r, message = F, warning = F}
 library(Seurat)
 res <- find_markers_in_bulk(pdata      = tme, 
                             eset       = eset, 
-                            group      = "TMEcluster", 
+                            group      = "cluster", 
                             nfeatures  = 2000, 
                             top_n      = 50, 
                             thresh.use = 0.15, 
@@ -78,20 +98,20 @@ p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols )+
 ```
 
 Extracting variables from the expression matrix to merge with TME subtype
-```{r,fig.show= 'hide',message=FALSE}
+```{r,fig.show= 'hide', message=FALSE}
 
 input <- combine_pd_eset(eset = eset, pdata = tme, feas = top15$gene, scale = T)
-p2 <- sig_box(input, variable = "TMEcluster", signature = "IFNG", jitter = TRUE,
+p2 <- sig_box(input, variable = "cluster", signature = "IFNG", jitter = TRUE,
               cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
 
-p3 <- sig_box(input, variable = "TMEcluster", signature = "IL1A", 
+p3 <- sig_box(input, variable = "cluster", signature = "IL1A", 
               jitter = TRUE, cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
 ```
 
-合并以上获得的结果图
+Combining the results obtained above
 ```{r, fig.width= 12, fig.height=9, message = F, warning = F}
 
-if (!requireNamespace("patchwork", quietly = TRUE))   install.packages("patchwork")
+# if (!requireNamespace("patchwork", quietly = TRUE))   install.packages("patchwork")
 library(patchwork)
 p <- (p1|p2/p3) + plot_layout(widths = c(2.3,1))
 p + plot_annotation(tag_levels = 'A')
@@ -111,9 +131,9 @@ sig_tme <- t(column_to_rownames(sig_tme, var = "ID"))
 sig_tme[1:5, 1:3]
 ```
 
-寻找与TMEcluster相关的特征变量
+Finding characteristic variables associated with TME clusters
 ```{r, message = F, warning = F}
-res <- find_markers_in_bulk(pdata = tme, eset = sig_tme, group = "TMEcluster", nfeatures = 1000, top_n = 20, min.pct = 0.10)
+res <- find_markers_in_bulk(pdata = tme, eset = sig_tme, group = "cluster", nfeatures = 1000, top_n = 20, min.pct = 0.10)
 
 top15 <-  res$top_markers %>% dplyr:: group_by(cluster) %>%  dplyr::top_n(15, avg_log2FC)
 
@@ -126,10 +146,10 @@ p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols)+
 top15$gene  <- gsub(top15$gene, pattern = "-", replacement = "\\_")
 input <- combine_pd_eset(eset = sig_tme, pdata = tme, feas = top15$gene, scale = T)
 
-p2 <- sig_box(input, variable = "TMEcluster", signature = "CD_8_T_effector", jitter = TRUE,
+p2 <- sig_box(input, variable = "cluster", signature = "CD_8_T_effector", jitter = TRUE,
               cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4, size_of_font = 6)
 
-p3 <- sig_box(input, variable = "TMEcluster", signature = "Neutrophils_Bindea_et_al",  
+p3 <- sig_box(input, variable = "cluster", signature = "Neutrophils_Bindea_et_al",  
               jitter = TRUE, cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4, size_of_font = 6)
 ```
 
@@ -140,12 +160,14 @@ p + plot_annotation(tag_levels = 'A')
 ```
 
 
+Survival differences between tumour microenvironment subtypes
+
 ```{r, fig.width= 5, fig.height=8}
 library(survminer)
 data(pdata_acrg, package = "IOBR")
 input <- merge(pdata_acrg, input, by = "ID")
 p1<-surv_group(input_pdata       = input,
-               target_group      = "TMEcluster",
+               target_group      = "cluster",
                ID                = "ID",
                reference_group   = "High",
                project           = "ACRG",
@@ -157,12 +179,24 @@ p1<-surv_group(input_pdata       = input,
 p1
 ```
 
+Relationship between tumour microenvironmental subtypes and other subtypes
+
 ```{r,fig.show= 'hide',message=FALSE}
-p1<- percent_bar_plot(input, x = "TMEcluster" , y = "Subtype", palette = "jama")
-p2<- percent_bar_plot(input, x = "TMEcluster" , y = "Lauren", palette = "jama")
-p3<- percent_bar_plot(input, x = "TMEcluster" , y = "TMEscore_binary", palette = "jama")
+p1<- percent_bar_plot(input, x = "cluster" , y = "Subtype", palette = "jama", axis_angle = 60)
+p2<- percent_bar_plot(input, x = "cluster" , y = "Lauren", palette = "jama", axis_angle = 60)
+p3<- percent_bar_plot(input, x = "cluster" , y = "TMEscore_binary", palette = "jama", axis_angle = 60)
 ```
 
-```{r,fig.width= 12, fig.height=8}
+```{r,fig.width= 12, fig.height=6}
 p1|p2|p3
 ```
+
+## References
+
+Cristescu, R., Lee, J., Nebozhyn, M. et al. Molecular analysis of gastric cancer identifies subtypes associated with distinct clinical outcomes. Nat Med 21, 449–456 (2015). https://doi.org/10.1038/nm.3850
+
+[CIBERSORT](https://cibersort.stanford.edu/); Newman, A. M., Liu, C. L., Green, M. R., Gentles, A. J., Feng, W., Xu, Y., … Alizadeh, A. A. (2015). Robust enumeration of cell subsets from tissue expression profiles. Nature Methods, 12(5), 453–457.  https://doi.org/10.1038/nmeth.3337; 
+
+Seurat: Hao and Hao et al. Integrated analysis of multimodal single-cell data. Cell (2021)
+
+

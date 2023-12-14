@@ -61,7 +61,7 @@ Zeng D, Fang Y, ..., Liao W (2023) **IOBR2**: Multidimensional Decoding of Tumor
 ## ✉️ Reporting bugs
 Please report bugs to the [Github issues page](https://github.com/IOBR/IOBR/issues)
 
-E-mail any questions to <fyr_nate@163.com> or <interlaken@smu.edu.cn>
+E-mail any questions to  Dr. Fang <fyr_nate@163.com> or Dr. Zeng <interlaken@smu.edu.cn>
 
 
 

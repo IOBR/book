@@ -17,13 +17,19 @@ rmd_files:
 
     "data-preprocessing.Rmd",
 
-    "tme-deg-gsea.Rmd",
-
     "signature-analysis.Rmd",
 
     "tme-deconvolution.Rmd",
     
     "Feature-selections.Rmd",
+    
+    "tme-interactions.Rmd",
+    
+    "tme-deg-gsea.Rmd",
+    
+    "tme-genomic-interaction.Rmd",
+    
+    "tme-modeling.Rmd",
 
     "references.Rmd",
   ]
