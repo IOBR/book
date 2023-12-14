@@ -1,6 +1,6 @@
 
 
-# **Signature and relevant phenotypes**
+# **Signature Score Calculation**
 
 ## Loading packages
 Load the IOBR package in your R session after the installation is complete:
@@ -135,9 +135,9 @@ names(signature_metabolism)[1:20]
 ## [20] "Glycogen_Degradation"
 ```
 
+Signatures associated with basic biomedical research, such as m6A, TLS, ferroptosis and exosomes.
 
 ```r
-#Signatures associated with biomedical basic research: such as m6A and exosomes
 names(signature_tumor)
 ```
 
@@ -160,9 +160,9 @@ names(signature_tumor)
 ## [16] "EV_Cell_2020"
 ```
 
+`signature_collection` including all aforementioned signatures 
 
 ```r
-#signature collection including all aforementioned signatures 
 names(signature_collection)[1:20]
 ```
 
@@ -212,9 +212,10 @@ signature_collection_citation[1:20, ]
 ## 20 TMEscoreB_CIR                          2019 Cancer Immunol… Tumo… 3084… 10.1…
 ```
 
-Three methodologies were adopted in the process of signature score evaluation, comprising Single-sample Gene Set Enrichment Analysis (ssGSEA), Principal component analysis (PCA), and Z-score.
+The evaluation of signature scores involved three methodologies: Single-sample Gene Set Enrichment Analysis (ssGSEA), Principal Component Analysis (PCA), and Z-score.
 
-### Estimated by PCA method
+### Estimation of signature using PCA method
+The PCA method is ideal for gene sets with co-expression. Heatmaps and correlation matrices can be used to determine if co-expression is present in the applicable gene set.
 
 ```r
 sig_tme<-calculate_sig_score(pdata           = NULL,
@@ -236,9 +237,9 @@ sig_tme[1:5, 1:3]
 ## CellCycle_Reg      0.1063358  0.7583302 -0.3649795
 ```
 
-### Estimated by ssGSEA methodology
+### Estimated using the ssGSEA methodology
 
-This method is suitable for gene sets with a large number of genes, such as those of [GO, KEGG, REACTOME gene sets](https://www.gsea-msigdb.org/gsea/msigdb).
+This method is appropriate for gene sets that contain a large number of genes (> 30 genes), such as those of [GO, KEGG, REACTOME gene sets](https://www.gsea-msigdb.org/gsea/msigdb).
 
 <div class="figure" style="text-align: center">
 <img src="./fig/gsea.png" alt="Gene sets of MSigDb" width="95%" />
@@ -254,7 +255,7 @@ sig_tme<-calculate_sig_score(pdata           = NULL,
                              mini_gene_count = 2)
 ```
 
-### Estimated by zscore function
+### Calculated using the z-score function.
 
 
 ```r
@@ -265,7 +266,35 @@ sig_tme<-calculate_sig_score(pdata           = NULL,
                              mini_gene_count = 2)
 ```
 
-### Reference
+### Calculated using all three methods at the same time
+
+
+```r
+sig_tme<-calculate_sig_score(pdata           = NULL,
+                             eset            = eset,
+                             signature       = signature_collection,
+                             method          = "integration",
+                             mini_gene_count = 2)
+```
+The same SIGNATURE in this case will be scored using all three methods simultaneously.
+
+```r
+colnames(sig_tme)[grep(colnames(sig_tme), pattern = "CD_8_T_effector")]
+```
+
+The `select_method()` function allows the user to extract data using various methods.
+
+```r
+sig_tme_pca <- select_method(data = sig_tme, method = "pca")
+colnames(sig_tme_pca)[grep(colnames(sig_tme_pca), pattern = "CD_8_T_effector")]
+```
+
+
+### How to customise the signature gene list
+
+
+
+### References
 
 **ssgsea**: Barbie, D.A. et al (2009). Systematic RNA interference reveals that oncogenic KRAS-driven cancers require TBK1. Nature, 462(5):108-112.
 
@@ -275,381 +304,5 @@ sig_tme<-calculate_sig_score(pdata           = NULL,
 
 **PCA method**: Mariathasan S, Turley SJ, Nickles D, et al. TGFβ attenuates tumour response to PD-L1 blockade by contributing to exclusion of T cells. Nature. 2018 Feb 22;554(7693):544-548.
 
-
-## Identifying features associated with survival
-
-
-```r
-data("pdata_acrg")
-input <- combine_pd_eset(eset = sig_tme, pdata = pdata_acrg, scale = T)
-res<- batch_surv(pdata    = input,
-                 time     = "OS_time", 
-                 status   = "OS_status", 
-                 variable = colnames(input)[69:ncol(input)])
-head(res)
-```
-
-```
-## # A tibble: 6 × 5
-##   ID                           P    HR CI_low_0.95 CI_up_0.95
-##   <chr>                    <dbl> <dbl>       <dbl>      <dbl>
-## 1 Folate_biosynthesis   1.00e-10 0.579       0.490      0.683
-## 2 TMEscore_CIR          1.32e- 9 0.640       0.554      0.739
-## 3 Glycogen_Biosynthesis 3.24e- 9 1.52        1.32       1.74 
-## 4 Pan_F_TBRs            6.33e- 9 1.55        1.34       1.80 
-## 5 TMEscoreB_CIR         7.17e- 9 1.52        1.32       1.75 
-## 6 TMEscore_plus         8.08e- 9 0.638       0.547      0.743
-```
-
-```r
-res<- res[nchar(res$ID)<=28, ]
-p1<- sig_forest(res, signature = "ID", n = 20)
-```
-
-<img src="signature-analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" />
-
-## Visulization using heatmap
-
-Relationship between Signatures and molecular typing.
-Heatmap visualisation using `IOBR`'s `sig_heatmap`
-
-```r
-p2 <- sig_heatmap(input         = input, 
-                  features      = res$ID[1:20],
-                  group         = "Subtype", 
-                  palette_group = "jama", 
-                  palette       = 6,
-                  path          = "result" )
-```
-
-<img src="signature-analysis_files/figure-html/unnamed-chunk-14-1.png" width="864" style="display: block; margin: auto;" />
-
-## Focus on target signatures
-
-
-```r
-p1 <- sig_box(data           = input, 
-              signature      = "Glycogen_Biosynthesis",
-              variable       = "Subtype",
-              jitter         = FALSE,
-              cols           =  NULL,
-              palette        = "jama",
-              show_pvalue    = TRUE,
-              size_of_pvalue = 5,
-              hjust          = 1, 
-              angle_x_text   = 60, 
-              size_of_font   = 8)
-```
-
-```
-## # A tibble: 6 × 8
-##   .y.       group1    group2           p    p.adj p.format p.signif method  
-##   <chr>     <chr>     <chr>        <dbl>    <dbl> <chr>    <chr>    <chr>   
-## 1 signature EMT       MSI       5.39e-15 3.20e-14 5.4e-15  ****     Wilcoxon
-## 2 signature EMT       MSS/TP53- 5.53e-13 2.8 e-12 5.5e-13  ****     Wilcoxon
-## 3 signature EMT       MSS/TP53+ 1.90e-12 7.6 e-12 1.9e-12  ****     Wilcoxon
-## 4 signature MSI       MSS/TP53- 1.14e- 3 3.4 e- 3 0.0011   **       Wilcoxon
-## 5 signature MSI       MSS/TP53+ 7.05e- 3 1.4 e- 2 0.0071   **       Wilcoxon
-## 6 signature MSS/TP53- MSS/TP53+ 7.16e- 1 7.2 e- 1 0.7161   ns       Wilcoxon
-```
-
-```r
-p2 <- sig_box(data           = input, 
-              signature      = "Pan_F_TBRs",
-              variable       = "Subtype",
-              jitter         = FALSE,
-              cols           = NULL,
-              palette        = "jama",
-              show_pvalue    = TRUE,
-              angle_x_text   = 60, 
-              hjust          = 1, 
-              size_of_pvalue = 5, 
-              size_of_font   = 8)
-```
-
-```
-## # A tibble: 6 × 8
-##   .y.       group1    group2           p    p.adj p.format p.signif method  
-##   <chr>     <chr>     <chr>        <dbl>    <dbl> <chr>    <chr>    <chr>   
-## 1 signature EMT       MSI       7.98e-17 3.20e-16 <2e-16   ****     Wilcoxon
-## 2 signature EMT       MSS/TP53- 1.70e-17 1   e-16 <2e-16   ****     Wilcoxon
-## 3 signature EMT       MSS/TP53+ 2.57e-17 1.3 e-16 <2e-16   ****     Wilcoxon
-## 4 signature MSI       MSS/TP53- 1.32e- 2 4   e- 2 0.013    *        Wilcoxon
-## 5 signature MSI       MSS/TP53+ 6.99e- 2 1.4 e- 1 0.070    ns       Wilcoxon
-## 6 signature MSS/TP53- MSS/TP53+ 4.02e- 1 4   e- 1 0.402    ns       Wilcoxon
-```
-
-```r
-p3 <- sig_box(data           = input, 
-              signature      = "Immune_Checkpoint",
-              variable       = "Subtype",
-              jitter          = FALSE,
-              cols           = NULL,
-              palette        = "jama",
-              show_pvalue    = TRUE,
-              angle_x_text   = 60, 
-              hjust          = 1, 
-              size_of_pvalue = 5, 
-              size_of_font   = 8)
-```
-
-```
-## # A tibble: 6 × 8
-##   .y.       group1    group2           p        p.adj p.format p.signif method  
-##   <chr>     <chr>     <chr>        <dbl>        <dbl> <chr>    <chr>    <chr>   
-## 1 signature EMT       MSI       2.20e- 2 0.044        0.0220   *        Wilcoxon
-## 2 signature EMT       MSS/TP53- 2.11e- 3 0.0085       0.0021   **       Wilcoxon
-## 3 signature EMT       MSS/TP53+ 4.03e- 1 0.4          0.4026   ns       Wilcoxon
-## 4 signature MSI       MSS/TP53- 9.13e-10 0.0000000055 9.1e-10  ****     Wilcoxon
-## 5 signature MSI       MSS/TP53+ 5.03e- 4 0.0025       0.0005   ***      Wilcoxon
-## 6 signature MSS/TP53- MSS/TP53+ 4.82e- 3 0.014        0.0048   **       Wilcoxon
-```
-
-
-
-```r
-p1|p2|p3
-```
-
-<img src="signature-analysis_files/figure-html/unnamed-chunk-16-1.png" width="1344" style="display: block; margin: auto;" />
-
-
-## Survival analysis
-The efficacy of this metric in predicting patient survival was judged by multiple stratifications of signature
-
-```r
-res <-       sig_surv_plot(input_pdata       = input, 
-                           signature         = "Glycogen_Biosynthesis",
-                           cols              = NULL, 
-                           palette           = "jama",
-                           project           = "ACRG",
-                           time              = "OS_time",
-                           status            = "OS_status",
-                           time_type         = "month",
-                           save_path         = "result")
-```
-
-```
-##           ID   time status Glycogen_Biosynthesis group3 group2 bestcutoff
-## 1 GSM1523727  88.73      0            -0.3612213 Middle    Low        Low
-## 2 GSM1523728  88.23      0            -0.6926726    Low    Low        Low
-## 3 GSM1523729  88.23      0            -0.9388531    Low    Low        Low
-## 4 GSM1523744 105.70      0            -1.1825136    Low    Low        Low
-## 5 GSM1523745 105.53      0            -0.3034304 Middle    Low        Low
-## 6 GSM1523746  25.50      1             0.7517934   High   High       High
-```
-
-```
-## [1] ">>>>>>>>>"
-```
-
-```r
-res$plots
-```
-
-<img src="signature-analysis_files/figure-html/unnamed-chunk-17-1.png" width="1536" />
-
-
-Signature's ROC on predicting survival
-
-```r
-p1<- roc_time(input      = input,  
-             vars       = "Glycogen_Biosynthesis", 
-             time       = "OS_time",
-             status     = "OS_status", 
-             time_point = c(12, 24, 36), 
-             time_type  = "month",
-             palette    = "jama",
-             cols       = "normal",
-             seed       = 1234, 
-             show_col   = FALSE, 
-             path       = "result", 
-             main       = "OS",
-             index      = 1,
-             fig.type   = "pdf",
-             width      = 5,
-             height     = 5.2)
-```
-
-```
-## [1] ">>>-- Range of Time: "
-## [1]   1.0 105.7
-```
-
-```r
-p2<- roc_time(input      = input,  
-             vars       = "Glycogen_Biosynthesis", 
-             time       = "RFS_time",
-             status     = "RFS_status", 
-             time_point = c(12, 24, 36), 
-             time_type  = "month",
-             palette    = "jama",
-             cols       = "normal",
-             seed       = 1234, 
-             show_col   = FALSE, 
-             path       = "result", 
-             main       = "OS",
-             index      = 1,
-             fig.type   = "pdf",
-             width      = 5,
-             height     = 5.2)
-```
-
-```
-## [1] ">>>-- Range of Time: "
-## [1]   0.10 100.87
-```
-
-```r
-p1|p2
-```
-
-<img src="signature-analysis_files/figure-html/unnamed-chunk-18-1.png" width="1152" />
-
-
-## Batch correlation analysis 
-寻找与目标signature相关的基因或者signatures
-
-```r
-res <- batch_cor(data = input, target = "Glycogen_Biosynthesis", feature = colnames(input)[69:ncol(input)])
-```
-
-```
-##                               sig_names      p.value   statistic
-## CD_8_T_effector.rho     CD_8_T_effector 4.852189e-01 -0.04044756
-## DDR.rho                             DDR 1.678463e-24 -0.54394827
-## APM.rho                             APM 1.681208e-04 -0.21557706
-## Immune_Checkpoint.rho Immune_Checkpoint 6.470746e-01 -0.02653896
-## CellCycle_Reg.rho         CellCycle_Reg 4.465875e-01 -0.04410582
-## Pan_F_TBRs.rho               Pan_F_TBRs 5.989600e-31  0.60185558
-```
-
-```r
-head(res)
-```
-
-```
-## # A tibble: 6 × 6
-##   sig_names                         p.value statistic    p.adj log10pvalue stars
-##   <chr>                               <dbl>     <dbl>    <dbl>       <dbl> <fct>
-## 1 TMEscoreB_CIR                    8.89e-42     0.678 2.27e-39        41.1 **** 
-## 2 Glycine__Serine_and_Threonine_M… 7.49e-40    -0.666 9.54e-38        39.1 **** 
-## 3 Ether_Lipid_Metabolism           3.84e-39     0.662 3.27e-37        38.4 **** 
-## 4 MDSC_Peng_et_al                  1.13e-38     0.659 7.21e-37        37.9 **** 
-## 5 Glycerophospholipid_Metabolism   8.72e-38    -0.653 4.44e-36        37.1 **** 
-## 6 TIP_Release_of_cancer_cell_anti… 2.32e-37    -0.650 9.86e-36        36.6 ****
-```
-
-
-```r
-p1<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glycogen_Biosynthesis", 
-             var2 = "TMEscore_CIR", subtype = "Subtype", palette = "aaas", path = "result")
-```
-
-```
-## 
-## 	Spearman's rank correlation rho
-## 
-## data:  data[, var1] and data[, var2]
-## S = 7282858, p-value < 2.2e-16
-## alternative hypothesis: true rho is not equal to 0
-## sample estimates:
-##        rho 
-## -0.6184309 
-## 
-## [1] ">>>--- The exact p value is: 4.78971420439895e-33"
-##       EMT       MSI MSS/TP53- MSS/TP53+ 
-##        46        68       107        79
-```
-
-```r
-p2<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glycogen_Biosynthesis", 
-             var2 = "TGFb.myCAF", subtype = "Subtype", palette = "aaas", path = "result")
-```
-
-```
-## 
-## 	Spearman's rank correlation rho
-## 
-## data:  data[, var1] and data[, var2]
-## S = 2471758, p-value < 2.2e-16
-## alternative hypothesis: true rho is not equal to 0
-## sample estimates:
-##       rho 
-## 0.4507143 
-## 
-## [1] ">>>--- The exact p value is: 2.04505761057615e-16"
-##       EMT       MSI MSS/TP53- MSS/TP53+ 
-##        46        68       107        79
-```
-
-
-```r
-p1|p2
-```
-
-<img src="signature-analysis_files/figure-html/unnamed-chunk-21-1.png" width="1152" />
-
-
-
-```r
-feas1 <- c("Glycogen_Biosynthesis", "Ferroptosis")
-feas2 <- c("Glutathione_Metabolism", "TMEscore_CIR", "Purine_Metabolism", "ICB_resistance_Peng_et_al", "Interleukins_Li_et_al", "TLS_Nature")
-p <- get_cor_matrix(data           = input, 
-                    feas1          = feas2, 
-                    feas2          = feas1,
-                    method         = "pearson",
-                    font.size.star = 8, 
-                    font.size      = 15, 
-                    fill_by_cor    = FALSE, 
-                    round.num      = 1, 
-                    path           = "result")
-```
-
-<img src="signature-analysis_files/figure-html/unnamed-chunk-22-1.png" width="960" />
-
-
-## Visulization of correlations 
-
-```r
-input2 <- combine_pd_eset(eset = eset, pdata =  input[, c("ID", "Glycogen_Biosynthesis", "TLS_Nature", "Ferroptosis")])
-feas1 <- c("Glycogen_Biosynthesis","TLS_Nature", "Ferroptosis")
-feas2 <- signature_collection$CD_8_T_effector
-feas2
-```
-
-```
-## [1] "CD8A"   "GZMA"   "GZMB"   "IFNG"   "CXCL9"  "CXCL10" "PRF1"   "TBX21"
-```
-
-```r
-p <- get_cor_matrix(data           = input2, 
-                    feas1          = feas2, 
-                    feas2          = feas1,
-                    method         = "pearson",
-                    scale          = T, 
-                    font.size.star = 8, 
-                    font.size      = 15, 
-                    fill_by_cor    = FALSE, 
-                    round.num      = 1,
-                    path           = "result")
-```
-
-<img src="signature-analysis_files/figure-html/unnamed-chunk-23-1.png" width="1056" />
-The user can personalise the image with parameters
-
-```r
-p <- get_cor_matrix(data           = input2, 
-                    feas1          = feas2, 
-                    feas2          = feas1,
-                    method         = "pearson",
-                    scale          = T, 
-                    font.size.star = 8, 
-                    font.size      = 15, 
-                    fill_by_cor    = TRUE, 
-                    round.num      = 2,
-                    path           = "result")
-```
-
-<img src="signature-analysis_files/figure-html/unnamed-chunk-24-1.png" width="1056" />
+**MSigDB**:Dolgalev I (2022). msigdbr: MSigDB Gene Sets for Multiple Organisms in a Tidy Data Format. R  package version 7.5.1. (https://www.gsea-msigdb.org/gsea/msigdb/)
 

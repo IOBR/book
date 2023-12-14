@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Signature Score Calculation | IOBR (Immuno-Oncology Biological Research)</title>
+  <meta name="description" content="The tutorial of IOBR package" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Signature Score Calculation | IOBR (Immuno-Oncology Biological Research)" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://iobr.github.io/book/./fig/cover.png" />
+  <meta property="og:description" content="The tutorial of IOBR package" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Signature Score Calculation | IOBR (Immuno-Oncology Biological Research)" />
+  
+  <meta name="twitter:description" content="The tutorial of IOBR package" />
+  <meta name="twitter:image" content="https://iobr.github.io/book/./fig/cover.png" />
+
+<meta name="author" content="Dongqiang Zeng, Yiran Fang" />
+
+
+<meta name="date" content="2023-12-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tumor-ecosystem-analysis.html"/>
+<link rel="next" href="tme-deconvolution.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The tutorial of IOBR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>Introduction</strong></a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#introduction-1"><i class="fa fa-check"></i><b>0.1</b> 📚 Introduction</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>0.2</b> 💿 License</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#previous-publication"><i class="fa fa-check"></i><b>0.3</b> 🏆 Previous publication</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#major-updates"><i class="fa fa-check"></i><b>0.4</b> ⏳ Major Updates</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#reporting-bugs"><i class="fa fa-check"></i><b>0.5</b> ✉️ Reporting bugs</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html"><i class="fa fa-check"></i><b>1</b> <strong>How to install IOBR</strong></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-dependency-packages"><i class="fa fa-check"></i><b>1.1</b> ⏳ Install Dependency Packages</a></li>
+<li class="chapter" data-level="1.2" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-iobr-package"><i class="fa fa-check"></i><b>1.2</b> 💻 Install IOBR package</a></li>
+<li class="chapter" data-level="1.3" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#how-to-update-iobr"><i class="fa fa-check"></i><b>1.3</b> 📌 How to update IOBR</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 👆 Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌏 Current working environment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#loading-packages"><i class="fa fa-check"></i><b>3.1</b> Loading packages</a></li>
+<li class="chapter" data-level="3.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-array-data-using-geoquery"><i class="fa fa-check"></i><b>3.2</b> Download array data using <code>GEOquery</code></a></li>
+<li class="chapter" data-level="3.3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#gene-annotation"><i class="fa fa-check"></i><b>3.3</b> Gene Annotation</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-array-data-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>3.3.1</b> For Array data: HGU133PLUS-2 (Affaymetrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-rnaseq-data-using-ucscxenatools"><i class="fa fa-check"></i><b>3.4</b> Download RNAseq data using <code>UCSCXenaTools</code></a></li>
+<li class="chapter" data-level="3.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#normalization-and-gene-annotation"><i class="fa fa-check"></i><b>3.5</b> Normalization and Gene annotation</a></li>
+<li class="chapter" data-level="3.6" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>3.6</b> Identifying outlier samples</a></li>
+<li class="chapter" data-level="3.7" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>3.7</b> PCA analysis of molecular subtypes</a></li>
+<li class="chapter" data-level="3.8" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>3.8</b> Batch effect correction</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-microarray-data"><i class="fa fa-check"></i><b>3.8.1</b> For microarray data</a></li>
+<li class="chapter" data-level="3.8.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-rnaseq-count-data"><i class="fa fa-check"></i><b>3.8.2</b> For RNAseq count data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#references"><i class="fa fa-check"></i><b>3.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html"><i class="fa fa-check"></i><b>4</b> <strong>Tumor ecosystem analysis</strong></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#loading-packages-1"><i class="fa fa-check"></i><b>4.1</b> Loading packages</a></li>
+<li class="chapter" data-level="4.2" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#downloading-data-for-example"><i class="fa fa-check"></i><b>4.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="4.3" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gene-annotation-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>4.3</b> Gene Annotation: HGU133PLUS-2 (Affaymetrix)</a></li>
+<li class="chapter" data-level="4.4" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#determine-tme-subtype-of-gastric-cancer-using-tmeclassifier-r-package"><i class="fa fa-check"></i><b>4.4</b> Determine TME subtype of gastric cancer using TMEclassifier R package</a></li>
+<li class="chapter" data-level="4.5" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis-method1"><i class="fa fa-check"></i><b>4.5</b> DEG analysis: method1</a></li>
+<li class="chapter" data-level="4.6" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gsea-analysis-based-on-differential-express-gene-analysis-results"><i class="fa fa-check"></i><b>4.6</b> GSEA analysis based on differential express gene analysis results</a></li>
+<li class="chapter" data-level="4.7" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis-method2"><i class="fa fa-check"></i><b>4.7</b> DEG analysis: method2</a></li>
+<li class="chapter" data-level="4.8" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>4.8</b> Identifying signatures associated with TME clusters</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html"><i class="fa fa-check"></i><b>5</b> <strong>Signature Score Calculation</strong></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#loading-packages-2"><i class="fa fa-check"></i><b>5.1</b> Loading packages</a></li>
+<li class="chapter" data-level="5.2" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#downloading-data-for-example-1"><i class="fa fa-check"></i><b>5.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="5.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#signature-score-estimation"><i class="fa fa-check"></i><b>5.3</b> Signature score estimation</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#signature-collection-of-iobr"><i class="fa fa-check"></i><b>5.3.1</b> Signature collection of IOBR</a></li>
+<li class="chapter" data-level="5.3.2" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#estimation-of-signature-using-pca-method"><i class="fa fa-check"></i><b>5.3.2</b> Estimation of signature using PCA method</a></li>
+<li class="chapter" data-level="5.3.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#estimated-using-the-ssgsea-methodology"><i class="fa fa-check"></i><b>5.3.3</b> Estimated using the ssGSEA methodology</a></li>
+<li class="chapter" data-level="5.3.4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#calculated-using-the-z-score-function."><i class="fa fa-check"></i><b>5.3.4</b> Calculated using the z-score function.</a></li>
+<li class="chapter" data-level="5.3.5" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#calculated-using-all-three-methods-at-the-same-time"><i class="fa fa-check"></i><b>5.3.5</b> Calculated using all three methods at the same time</a></li>
+<li class="chapter" data-level="5.3.6" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#how-to-customise-the-signature-gene-list"><i class="fa fa-check"></i><b>5.3.6</b> How to customise the signature gene list</a></li>
+<li class="chapter" data-level="5.3.7" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#references-1"><i class="fa fa-check"></i><b>5.3.7</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html"><i class="fa fa-check"></i><b>6</b> <strong>TME deconvolution</strong></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#loading-packages-3"><i class="fa fa-check"></i><b>6.1</b> Loading packages</a></li>
+<li class="chapter" data-level="6.2" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#downloading-data-for-example-2"><i class="fa fa-check"></i><b>6.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="6.3" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#available-methods-to-decode-tme-contexture"><i class="fa fa-check"></i><b>6.3</b> Available Methods to Decode TME Contexture</a></li>
+<li class="chapter" data-level="6.4" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-1-cibersort"><i class="fa fa-check"></i><b>6.4</b> Method 1: CIBERSORT</a></li>
+<li class="chapter" data-level="6.5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-2-epic"><i class="fa fa-check"></i><b>6.5</b> Method 2: EPIC</a></li>
+<li class="chapter" data-level="6.6" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-3-mcpcounter"><i class="fa fa-check"></i><b>6.6</b> Method 3: MCPcounter</a></li>
+<li class="chapter" data-level="6.7" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-4-xcell"><i class="fa fa-check"></i><b>6.7</b> Method 4: xCELL</a></li>
+<li class="chapter" data-level="6.8" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-5-estimate"><i class="fa fa-check"></i><b>6.8</b> Method 5: ESTIMATE</a></li>
+<li class="chapter" data-level="6.9" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-6-timer"><i class="fa fa-check"></i><b>6.9</b> Method 6: TIMER</a></li>
+<li class="chapter" data-level="6.10" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-7-quantiseq"><i class="fa fa-check"></i><b>6.10</b> Method 7: quanTIseq</a></li>
+<li class="chapter" data-level="6.11" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-8-ips"><i class="fa fa-check"></i><b>6.11</b> Method 8: IPS</a></li>
+<li class="chapter" data-level="6.12" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#combination-of-above-deconvolution-results"><i class="fa fa-check"></i><b>6.12</b> Combination of above deconvolution results</a></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html"><i class="fa fa-check"></i><b>7</b> <strong>Signature Score and Relevant phenotypes</strong></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#loading-packages-4"><i class="fa fa-check"></i><b>7.1</b> Loading packages</a></li>
+<li class="chapter" data-level="7.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#downloading-data-for-example-3"><i class="fa fa-check"></i><b>7.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="7.3" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#gene-annotation-1"><i class="fa fa-check"></i><b>7.3</b> Gene Annotation</a></li>
+<li class="chapter" data-level="7.4" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#estimation-of-signatures"><i class="fa fa-check"></i><b>7.4</b> Estimation of signatures</a></li>
+<li class="chapter" data-level="7.5" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#combining-score-data-and-phenotype-data"><i class="fa fa-check"></i><b>7.5</b> Combining score data and phenotype data</a></li>
+<li class="chapter" data-level="7.6" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#identifying-features-associated-with-survival"><i class="fa fa-check"></i><b>7.6</b> Identifying features associated with survival</a></li>
+<li class="chapter" data-level="7.7" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#visulization-using-heatmap"><i class="fa fa-check"></i><b>7.7</b> Visulization using heatmap</a></li>
+<li class="chapter" data-level="7.8" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#focus-on-target-signatures"><i class="fa fa-check"></i><b>7.8</b> Focus on target signatures</a></li>
+<li class="chapter" data-level="7.9" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#survival-analysis-and-visulization"><i class="fa fa-check"></i><b>7.9</b> Survival analysis and visulization</a>
+<ul>
+<li class="chapter" data-level="7.9.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#kaplan-meier-plot"><i class="fa fa-check"></i><b>7.9.1</b> Kaplan-Meier plot</a></li>
+<li class="chapter" data-level="7.9.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#time-dependent-roc-curve"><i class="fa fa-check"></i><b>7.9.2</b> Time-Dependent ROC curve</a></li>
+</ul></li>
+<li class="chapter" data-level="7.10" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#batch-correlation-analysis"><i class="fa fa-check"></i><b>7.10</b> Batch correlation analysis</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#finding-continuity-variables-associated-with-signatures"><i class="fa fa-check"></i><b>7.10.1</b> Finding continuity variables associated with signatures</a></li>
+<li class="chapter" data-level="7.10.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#identifying-category-variables-linked-to-signatures"><i class="fa fa-check"></i><b>7.10.2</b> Identifying Category Variables Linked to Signatures</a></li>
+<li class="chapter" data-level="7.10.3" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#for-multicategorical-variables-2-subgroups"><i class="fa fa-check"></i><b>7.10.3</b> For multicategorical variables (&gt;2 subgroups)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#reference"><i class="fa fa-check"></i><b>7.11</b> Reference</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="references-2.html"><a href="references-2.html"><i class="fa fa-check"></i><b>8</b> <strong>References</strong></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="references-2.html"><a href="references-2.html#tme-deconvolution-1"><i class="fa fa-check"></i><b>8.1</b> TME deconvolution</a></li>
+<li class="chapter" data-level="8.2" data-path="references-2.html"><a href="references-2.html#tme-signatures"><i class="fa fa-check"></i><b>8.2</b> TME Signatures</a></li>
+<li class="chapter" data-level="8.3" data-path="references-2.html"><a href="references-2.html#data-sets"><i class="fa fa-check"></i><b>8.3</b> Data sets</a></li>
+<li class="chapter" data-level="8.4" data-path="references-2.html"><a href="references-2.html#others"><i class="fa fa-check"></i><b>8.4</b> Others</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/DongqiangZeng0808" target="blank">Welcome to my GitHub</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">IOBR (Immuno-Oncology Biological Research)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="signature-score-calculation" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> <strong>Signature Score Calculation</strong><a href="signature-score-calculation.html#signature-score-calculation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="loading-packages-2" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Loading packages<a href="signature-score-calculation.html#loading-packages-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Load the IOBR package in your R session after the installation is complete:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="signature-score-calculation.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span>
+<span id="cb1-2"><a href="signature-score-calculation.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(survminer)</span>
+<span id="cb1-3"><a href="signature-score-calculation.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+</div>
+<div id="downloading-data-for-example-1" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Downloading data for example<a href="signature-score-calculation.html#downloading-data-for-example-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Obtaining data set from GEO <a href="https://pubmed.ncbi.nlm.nih.gov/25894828/">Gastric cancer: GSE62254</a> using <code>GEOquery</code> R package.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="signature-score-calculation.html#cb2-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;GEOquery&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
+<span id="cb2-2"><a href="signature-score-calculation.html#cb2-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
+<span id="cb2-3"><a href="signature-score-calculation.html#cb2-3" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
+<span id="cb2-4"><a href="signature-score-calculation.html#cb2-4" tabindex="-1"></a>eset_geo <span class="ot">&lt;-</span> <span class="fu">getGEO</span>(<span class="at">GEO =</span> <span class="st">&quot;GSE62254&quot;</span>, <span class="at">getGPL  =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
+<span id="cb2-5"><a href="signature-score-calculation.html#cb2-5" tabindex="-1"></a>eset    <span class="ot">&lt;-</span>eset_geo[[<span class="dv">1</span>]]</span>
+<span id="cb2-6"><a href="signature-score-calculation.html#cb2-6" tabindex="-1"></a>eset    <span class="ot">&lt;-</span><span class="fu">exprs</span>(eset)</span>
+<span id="cb2-7"><a href="signature-score-calculation.html#cb2-7" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>##           GSM1523727 GSM1523728 GSM1523729 GSM1523744 GSM1523745
+## 1007_s_at  3.2176645  3.0624323  3.0279131   2.921683  2.8456013
+## 1053_at    2.4050109  2.4394879  2.2442708   2.345916  2.4328582
+## 117_at     1.4933412  1.8067380  1.5959665   1.839822  1.8326058
+## 121_at     2.1965561  2.2812181  2.1865556   2.258599  2.1874363
+## 1255_g_at  0.8698382  0.9502466  0.8125414   1.012860  0.9441993</code></pre>
+<p>Annotation of genes in the expression matrix and removal of duplicate genes.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="signature-score-calculation.html#cb4-1" tabindex="-1"></a><span class="co"># Load the annotation file `anno_hug133plus2` in IOBR.</span></span>
+<span id="cb4-2"><a href="signature-score-calculation.html#cb4-2" tabindex="-1"></a><span class="fu">head</span>(anno_hug133plus2)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##   probe_id  symbol 
+##   &lt;fct&gt;     &lt;fct&gt;  
+## 1 1007_s_at MIR4640
+## 2 1053_at   RFC2   
+## 3 117_at    HSPA6  
+## 4 121_at    PAX8   
+## 5 1255_g_at GUCA1A 
+## 6 1294_at   MIR5193</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="signature-score-calculation.html#cb6-1" tabindex="-1"></a><span class="co"># Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. </span></span>
+<span id="cb6-2"><a href="signature-score-calculation.html#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="signature-score-calculation.html#cb6-3" tabindex="-1"></a>eset<span class="ot">&lt;-</span><span class="fu">anno_eset</span>(<span class="at">eset       =</span> eset,</span>
+<span id="cb6-4"><a href="signature-score-calculation.html#cb6-4" tabindex="-1"></a>                <span class="at">annotation =</span> anno_hug133plus2,</span>
+<span id="cb6-5"><a href="signature-score-calculation.html#cb6-5" tabindex="-1"></a>                <span class="at">symbol     =</span> <span class="st">&quot;symbol&quot;</span>,</span>
+<span id="cb6-6"><a href="signature-score-calculation.html#cb6-6" tabindex="-1"></a>                <span class="at">probe      =</span> <span class="st">&quot;probe_id&quot;</span>,</span>
+<span id="cb6-7"><a href="signature-score-calculation.html#cb6-7" tabindex="-1"></a>                <span class="at">method     =</span> <span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb6-8"><a href="signature-score-calculation.html#cb6-8" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>##              GSM1523727 GSM1523728 GSM1523729
+## SH3KBP1        4.327974   4.316195   4.351425
+## RPL41          4.246149   4.246808   4.257940
+## EEF1A1         4.293762   4.291038   4.262199
+## COX2           4.250288   4.283714   4.270508
+## LOC101928826   4.219303   4.219670   4.213252</code></pre>
+</div>
+<div id="signature-score-estimation" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Signature score estimation<a href="signature-score-calculation.html#signature-score-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="signature-collection-of-iobr" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Signature collection of IOBR<a href="signature-score-calculation.html#signature-collection-of-iobr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="signature-score-calculation.html#cb8-1" tabindex="-1"></a><span class="co"># Return available parameter options of signature estimation.</span></span>
+<span id="cb8-2"><a href="signature-score-calculation.html#cb8-2" tabindex="-1"></a>signature_score_calculation_methods</span></code></pre></div>
+<pre><code>##           PCA        ssGSEA       z-score   Integration 
+##         &quot;pca&quot;      &quot;ssgsea&quot;      &quot;zscore&quot; &quot;integration&quot;</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="signature-score-calculation.html#cb10-1" tabindex="-1"></a><span class="co">#TME associated signatures</span></span>
+<span id="cb10-2"><a href="signature-score-calculation.html#cb10-2" tabindex="-1"></a><span class="fu">names</span>(signature_tme)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
+<pre><code>##  [1] &quot;CD_8_T_effector&quot;            &quot;DDR&quot;                       
+##  [3] &quot;APM&quot;                        &quot;Immune_Checkpoint&quot;         
+##  [5] &quot;CellCycle_Reg&quot;              &quot;Pan_F_TBRs&quot;                
+##  [7] &quot;Histones&quot;                   &quot;EMT1&quot;                      
+##  [9] &quot;EMT2&quot;                       &quot;EMT3&quot;                      
+## [11] &quot;WNT_target&quot;                 &quot;FGFR3_related&quot;             
+## [13] &quot;Cell_cycle&quot;                 &quot;Mismatch_Repair&quot;           
+## [15] &quot;Homologous_recombination&quot;   &quot;Nucleotide_excision_repair&quot;
+## [17] &quot;DNA_replication&quot;            &quot;Base_excision_repair&quot;      
+## [19] &quot;TMEscoreA_CIR&quot;              &quot;TMEscoreB_CIR&quot;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="signature-score-calculation.html#cb12-1" tabindex="-1"></a><span class="co">#Metabolism related signatures</span></span>
+<span id="cb12-2"><a href="signature-score-calculation.html#cb12-2" tabindex="-1"></a><span class="fu">names</span>(signature_metabolism)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
+<pre><code>##  [1] &quot;Cardiolipin_Metabolism&quot;                    
+##  [2] &quot;Cardiolipin_Biosynthesis&quot;                  
+##  [3] &quot;Cholesterol_Biosynthesis&quot;                  
+##  [4] &quot;Citric_Acid_Cycle&quot;                         
+##  [5] &quot;Cyclooxygenase_Arachidonic_Acid_Metabolism&quot;
+##  [6] &quot;Prostaglandin_Biosynthesis&quot;                
+##  [7] &quot;Purine_Biosynthesis&quot;                       
+##  [8] &quot;Pyrimidine_Biosynthesis&quot;                   
+##  [9] &quot;Dopamine_Biosynthesis&quot;                     
+## [10] &quot;Epinephrine_Biosynthesis&quot;                  
+## [11] &quot;Norepinephrine_Biosynthesis&quot;               
+## [12] &quot;Fatty_Acid_Degradation&quot;                    
+## [13] &quot;Fatty_Acid_Elongation&quot;                     
+## [14] &quot;Fatty_Acid_Biosynthesis&quot;                   
+## [15] &quot;Folate_One_Carbon_Metabolism&quot;              
+## [16] &quot;Folate_biosynthesis&quot;                       
+## [17] &quot;Gluconeogenesis&quot;                           
+## [18] &quot;Glycolysis&quot;                                
+## [19] &quot;Glycogen_Biosynthesis&quot;                     
+## [20] &quot;Glycogen_Degradation&quot;</code></pre>
+<p>Signatures associated with basic biomedical research, such as m6A, TLS, ferroptosis and exosomes.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="signature-score-calculation.html#cb14-1" tabindex="-1"></a><span class="fu">names</span>(signature_tumor)</span></code></pre></div>
+<pre><code>##  [1] &quot;Nature_metabolism_Hypoxia&quot;                
+##  [2] &quot;Winter_hypoxia_signature&quot;                 
+##  [3] &quot;Hu_hypoxia_signature&quot;                     
+##  [4] &quot;Molecular_Cancer_m6A&quot;                     
+##  [5] &quot;MT_exosome&quot;                               
+##  [6] &quot;SR_exosome&quot;                               
+##  [7] &quot;Positive_regulation_of_exosomal_secretion&quot;
+##  [8] &quot;Negative_regulation_of_exosomal_secretion&quot;
+##  [9] &quot;Exosomal_secretion&quot;                       
+## [10] &quot;Exosome_assembly&quot;                         
+## [11] &quot;Extracellular_vesicle_biogenesis&quot;         
+## [12] &quot;MC_Review_Exosome1&quot;                       
+## [13] &quot;MC_Review_Exosome2&quot;                       
+## [14] &quot;CMLS_Review_Exosome&quot;                      
+## [15] &quot;Ferroptosis&quot;                              
+## [16] &quot;EV_Cell_2020&quot;</code></pre>
+<p><code>signature_collection</code> including all aforementioned signatures</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="signature-score-calculation.html#cb16-1" tabindex="-1"></a><span class="fu">names</span>(signature_collection)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
+<pre><code>##  [1] &quot;CD_8_T_effector&quot;            &quot;DDR&quot;                       
+##  [3] &quot;APM&quot;                        &quot;Immune_Checkpoint&quot;         
+##  [5] &quot;CellCycle_Reg&quot;              &quot;Pan_F_TBRs&quot;                
+##  [7] &quot;Histones&quot;                   &quot;EMT1&quot;                      
+##  [9] &quot;EMT2&quot;                       &quot;EMT3&quot;                      
+## [11] &quot;WNT_target&quot;                 &quot;FGFR3_related&quot;             
+## [13] &quot;Cell_cycle&quot;                 &quot;Mismatch_Repair&quot;           
+## [15] &quot;Homologous_recombination&quot;   &quot;Nucleotide_excision_repair&quot;
+## [17] &quot;DNA_replication&quot;            &quot;Base_excision_repair&quot;      
+## [19] &quot;TMEscoreA_CIR&quot;              &quot;TMEscoreB_CIR&quot;</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="signature-score-calculation.html#cb18-1" tabindex="-1"></a><span class="co">#citation of signatures</span></span>
+<span id="cb18-2"><a href="signature-score-calculation.html#cb18-2" tabindex="-1"></a>signature_collection_citation[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, ]</span></code></pre></div>
+<pre><code>## # A tibble: 20 × 6
+##    Signatures                 `Published year` Journal         Title PMID  DOI  
+##    &lt;chr&gt;                                 &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+##  1 CD_8_T_effector                        2018 Nature          TGFβ… 2944… 10.1…
+##  2 DDR                                    2018 Nature          TGFβ… 2944… 10.1…
+##  3 APM                                    2018 Nature          TGFβ… 2944… 10.1…
+##  4 Immune_Checkpoint                      2018 Nature          TGFβ… 2944… 10.1…
+##  5 CellCycle_Reg                          2018 Nature          TGFβ… 2944… 10.1…
+##  6 Pan_F_TBRs                             2018 Nature          TGFβ… 2944… 10.1…
+##  7 Histones                               2018 Nature          TGFβ… 2944… 10.1…
+##  8 EMT1                                   2018 Nature          TGFβ… 2944… 10.1…
+##  9 EMT2                                   2018 Nature          TGFβ… 2944… 10.1…
+## 10 EMT3                                   2018 Nature          TGFβ… 2944… 10.1…
+## 11 WNT_target                             2018 Nature          TGFβ… 2944… 10.1…
+## 12 FGFR3_related                          2018 Nature          TGFβ… 2944… 10.1…
+## 13 Cell_cycle                             2018 Nature          TGFβ… 2944… 10.1…
+## 14 Mismatch_Repair                        2018 Nature          TGFβ… 2944… 10.1…
+## 15 Homologous_recombination               2018 Nature          TGFβ… 2944… 10.1…
+## 16 Nucleotide_excision_repair             2018 Nature          TGFβ… 2944… 10.1…
+## 17 DNA_replication                        2018 Nature          TGFβ… 2944… 10.1…
+## 18 Base_excision_repair                   2018 Nature          TGFβ… 2944… 10.1…
+## 19 TMEscoreA_CIR                          2019 Cancer Immunol… Tumo… 3084… 10.1…
+## 20 TMEscoreB_CIR                          2019 Cancer Immunol… Tumo… 3084… 10.1…</code></pre>
+<p>The evaluation of signature scores involved three methodologies: Single-sample Gene Set Enrichment Analysis (ssGSEA), Principal Component Analysis (PCA), and Z-score.</p>
+</div>
+<div id="estimation-of-signature-using-pca-method" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Estimation of signature using PCA method<a href="signature-score-calculation.html#estimation-of-signature-using-pca-method" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The PCA method is ideal for gene sets with co-expression. Heatmaps and correlation matrices can be used to determine if co-expression is present in the applicable gene set.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="signature-score-calculation.html#cb20-1" tabindex="-1"></a>sig_tme<span class="ot">&lt;-</span><span class="fu">calculate_sig_score</span>(<span class="at">pdata           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb20-2"><a href="signature-score-calculation.html#cb20-2" tabindex="-1"></a>                             <span class="at">eset            =</span> eset,</span>
+<span id="cb20-3"><a href="signature-score-calculation.html#cb20-3" tabindex="-1"></a>                             <span class="at">signature       =</span> signature_collection,</span>
+<span id="cb20-4"><a href="signature-score-calculation.html#cb20-4" tabindex="-1"></a>                             <span class="at">method          =</span> <span class="st">&quot;pca&quot;</span>,</span>
+<span id="cb20-5"><a href="signature-score-calculation.html#cb20-5" tabindex="-1"></a>                             <span class="at">mini_gene_count =</span> <span class="dv">2</span>)</span>
+<span id="cb20-6"><a href="signature-score-calculation.html#cb20-6" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="signature-score-calculation.html#cb20-7" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">column_to_rownames</span>(sig_tme, <span class="at">var =</span> <span class="st">&quot;ID&quot;</span>))</span>
+<span id="cb20-8"><a href="signature-score-calculation.html#cb20-8" tabindex="-1"></a>sig_tme[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>##                   GSM1523727 GSM1523728 GSM1523729
+## CD_8_T_effector   -2.5513794  0.7789141 -2.1770675
+## DDR               -0.8747614  0.7425162 -1.3272054
+## APM                1.1098368  2.1988688 -0.9516419
+## Immune_Checkpoint -2.3701787  0.9455120 -1.4844104
+## CellCycle_Reg      0.1063358  0.7583302 -0.3649795</code></pre>
+</div>
+<div id="estimated-using-the-ssgsea-methodology" class="section level3 hasAnchor" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Estimated using the ssGSEA methodology<a href="signature-score-calculation.html#estimated-using-the-ssgsea-methodology" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This method is appropriate for gene sets that contain a large number of genes (&gt; 30 genes), such as those of <a href="https://www.gsea-msigdb.org/gsea/msigdb">GO, KEGG, REACTOME gene sets</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
+<img src="fig/gsea.png" alt="Gene sets of MSigDb" width="95%" />
+<p class="caption">
+Figure 5.1: Gene sets of MSigDb
+</p>
+</div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="signature-score-calculation.html#cb22-1" tabindex="-1"></a>sig_tme<span class="ot">&lt;-</span><span class="fu">calculate_sig_score</span>(<span class="at">pdata           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb22-2"><a href="signature-score-calculation.html#cb22-2" tabindex="-1"></a>                             <span class="at">eset            =</span> eset,</span>
+<span id="cb22-3"><a href="signature-score-calculation.html#cb22-3" tabindex="-1"></a>                             <span class="at">signature       =</span> go_bp,</span>
+<span id="cb22-4"><a href="signature-score-calculation.html#cb22-4" tabindex="-1"></a>                             <span class="at">method          =</span> <span class="st">&quot;ssgsea&quot;</span>,</span>
+<span id="cb22-5"><a href="signature-score-calculation.html#cb22-5" tabindex="-1"></a>                             <span class="at">mini_gene_count =</span> <span class="dv">2</span>)</span></code></pre></div>
+</div>
+<div id="calculated-using-the-z-score-function." class="section level3 hasAnchor" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Calculated using the z-score function.<a href="signature-score-calculation.html#calculated-using-the-z-score-function." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="signature-score-calculation.html#cb23-1" tabindex="-1"></a>sig_tme<span class="ot">&lt;-</span><span class="fu">calculate_sig_score</span>(<span class="at">pdata           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb23-2"><a href="signature-score-calculation.html#cb23-2" tabindex="-1"></a>                             <span class="at">eset            =</span> eset,</span>
+<span id="cb23-3"><a href="signature-score-calculation.html#cb23-3" tabindex="-1"></a>                             <span class="at">signature       =</span> signature_collection,</span>
+<span id="cb23-4"><a href="signature-score-calculation.html#cb23-4" tabindex="-1"></a>                             <span class="at">method          =</span> <span class="st">&quot;zscore&quot;</span>,</span>
+<span id="cb23-5"><a href="signature-score-calculation.html#cb23-5" tabindex="-1"></a>                             <span class="at">mini_gene_count =</span> <span class="dv">2</span>)</span></code></pre></div>
+</div>
+<div id="calculated-using-all-three-methods-at-the-same-time" class="section level3 hasAnchor" number="5.3.5">
+<h3><span class="header-section-number">5.3.5</span> Calculated using all three methods at the same time<a href="signature-score-calculation.html#calculated-using-all-three-methods-at-the-same-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="signature-score-calculation.html#cb24-1" tabindex="-1"></a>sig_tme<span class="ot">&lt;-</span><span class="fu">calculate_sig_score</span>(<span class="at">pdata           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb24-2"><a href="signature-score-calculation.html#cb24-2" tabindex="-1"></a>                             <span class="at">eset            =</span> eset,</span>
+<span id="cb24-3"><a href="signature-score-calculation.html#cb24-3" tabindex="-1"></a>                             <span class="at">signature       =</span> signature_collection,</span>
+<span id="cb24-4"><a href="signature-score-calculation.html#cb24-4" tabindex="-1"></a>                             <span class="at">method          =</span> <span class="st">&quot;integration&quot;</span>,</span>
+<span id="cb24-5"><a href="signature-score-calculation.html#cb24-5" tabindex="-1"></a>                             <span class="at">mini_gene_count =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>The same SIGNATURE in this case will be scored using all three methods simultaneously.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="signature-score-calculation.html#cb25-1" tabindex="-1"></a><span class="fu">colnames</span>(sig_tme)[<span class="fu">grep</span>(<span class="fu">colnames</span>(sig_tme), <span class="at">pattern =</span> <span class="st">&quot;CD_8_T_effector&quot;</span>)]</span></code></pre></div>
+<p>The <code>select_method()</code> function allows the user to extract data using various methods.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="signature-score-calculation.html#cb26-1" tabindex="-1"></a>sig_tme_pca <span class="ot">&lt;-</span> <span class="fu">select_method</span>(<span class="at">data =</span> sig_tme, <span class="at">method =</span> <span class="st">&quot;pca&quot;</span>)</span>
+<span id="cb26-2"><a href="signature-score-calculation.html#cb26-2" tabindex="-1"></a><span class="fu">colnames</span>(sig_tme_pca)[<span class="fu">grep</span>(<span class="fu">colnames</span>(sig_tme_pca), <span class="at">pattern =</span> <span class="st">&quot;CD_8_T_effector&quot;</span>)]</span></code></pre></div>
+</div>
+<div id="how-to-customise-the-signature-gene-list" class="section level3 hasAnchor" number="5.3.6">
+<h3><span class="header-section-number">5.3.6</span> How to customise the signature gene list<a href="signature-score-calculation.html#how-to-customise-the-signature-gene-list" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="references-1" class="section level3 hasAnchor" number="5.3.7">
+<h3><span class="header-section-number">5.3.7</span> References<a href="signature-score-calculation.html#references-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>ssgsea</strong>: Barbie, D.A. et al (2009). Systematic RNA interference reveals that oncogenic KRAS-driven cancers require TBK1. Nature, 462(5):108-112.</p>
+<p><strong>gsva</strong>: Hänzelmann, S., Castelo, R. and Guinney, J. (2013). GSVA: Gene set variation analysis for microarray and RNA-Seq data. BMC Bioinformatics, 14(1):7.</p>
+<p><strong>zscore</strong>: Lee, E. et al (2008). Inferring pathway activity toward precise disease classification. PLoS Comp Biol, 4(11):e1000217.</p>
+<p><strong>PCA method</strong>: Mariathasan S, Turley SJ, Nickles D, et al. TGFβ attenuates tumour response to PD-L1 blockade by contributing to exclusion of T cells. Nature. 2018 Feb 22;554(7693):544-548.</p>
+<p><strong>MSigDB</strong>:Dolgalev I (2022). msigdbr: MSigDB Gene Sets for Multiple Organisms in a Tidy Data Format. R package version 7.5.1. (<a href="https://www.gsea-msigdb.org/gsea/msigdb/" class="uri">https://www.gsea-msigdb.org/gsea/msigdb/</a>)</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tumor-ecosystem-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tme-deconvolution.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/DongqiangZeng0808/signature-analysis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

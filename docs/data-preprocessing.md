@@ -204,8 +204,7 @@ res<- iobr_pca(data       = eset1,
 ## 
 ##       CIN       EBV       EMT        GS       MSI MSS/TP53- MSS/TP53+ 
 ##         0         0        42         0        68       106        79 
-## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
-## [3] ">>-- colors for PCA: #00A1D5FF" ">>-- colors for PCA: #B24745FF"
+## [1] ">>-- colors for PCA: "
 ```
 
 ```r
@@ -278,11 +277,11 @@ eset_com <- remove_batcheffect( eset1       = eset1,
 ## 
 ## eset1 eset2 
 ##   295    70 
-## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
+## [1] ">>-- colors for PCA: "
 ## 
 ## eset1 eset2 
 ##   295    70 
-## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
+## [1] ">>-- colors for PCA: "
 ```
 
 <img src="data-preprocessing_files/figure-html/unnamed-chunk-14-1.png" width="1056" style="display: block; margin: auto;" />
@@ -373,15 +372,15 @@ eset_com <- remove_batcheffect(eset_stad, eset_blca, id_type = "ensembl", data_t
 ## 
 ## eset1 eset2 
 ##    10     5 
-## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
+## [1] ">>-- colors for PCA: "
 ## 
 ## eset1 eset2 
 ##    10     5 
-## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
+## [1] ">>-- colors for PCA: "
 ## 
 ## eset1 eset2 
 ##    10     5 
-## [1] ">>-- colors for PCA: #374E55FF" ">>-- colors for PCA: #DF8F44FF"
+## [1] ">>-- colors for PCA: "
 ```
 
 <img src="data-preprocessing_files/figure-html/unnamed-chunk-15-1.png" width="1056" style="display: block; margin: auto;" />
@@ -426,8 +425,8 @@ head(eset_com)
 
 Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. Journal of Open Source Software, 4(40), 1627, https://doi.org/10.21105/joss.01627
 
-Yuqing Zhang and others, ComBat-seq: batch effect adjustment for RNA-seq count data, NAR Genomics and Bioinformatics, Volume 2, Issue 3, September 2020, lqaa078, https://doi.org/10.1093/nargab/lqaa078
+Zhang et al., ComBat-seq: batch effect adjustment for RNA-seq count data, NAR Genomics and Bioinformatics, Volume 2, Issue 3, September 2020, lqaa078, https://doi.org/10.1093/nargab/lqaa078
 
-Leek, J. T., Johnson, W. E., Parker, H. S., Jaffe, A. E., & Storey, J. D. (2012). The sva package for removing batch effects and other unwanted variation in high-throughput experiments. Bioinformatics, 28(6), 882-883.
+Leek, J. T., et al., (2012). The sva package for removing batch effects and other unwanted variation in high-throughput experiments. Bioinformatics, 28(6), 882-883.
 
 

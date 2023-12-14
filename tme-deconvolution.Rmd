@@ -1,9 +1,11 @@
 
 # **TME deconvolution**
 
+This section demonstrates various algorithms for parsing the tumour microenvironment using data from the bulk transcriptome. We also describe how to construct the reference signature matrix for the popular SVR algorithm (CIBERSORT) from single-cell data.
+
 ## Loading packages
 Load the IOBR package in your R session after the installation is complete:
-  ```{r, eval=TRUE, warning=FALSE, message=FALSE}
+```{r, eval=TRUE, warning=FALSE, message=FALSE}
 library(IOBR)
 library(survminer)
 library(tidyverse)
@@ -11,14 +13,14 @@ library(tidyverse)
 
 ## Downloading data for example
 Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.nih.gov/25894828/) using `GEOquery` R package.
-```{r,message=FALSE,warning=FALSE}
+```{r,message=FALSE, warning=FALSE}
 if (!requireNamespace("GEOquery", quietly = TRUE))  BiocManager::install("GEOquery")
 library("GEOquery")
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
-eset_geo<-getGEO(GEO     = "GSE62254", getGPL  = F, destdir = "./")
-eset    <-eset_geo[[1]]
-eset    <-exprs(eset)
-eset[1:5,1:5]
+eset_geo <- getGEO(GEO = "GSE62254", getGPL  = F, destdir = "./")
+eset    <- eset_geo[[1]]
+eset    <- exprs(eset)
+eset[1:5, 1:5]
 ```
 
 Annotation of genes in the expression matrix and removal of duplicate genes.
@@ -59,7 +61,7 @@ Check detail parameters of the function
 ```{r,fig.width= 8.5, fig.height=6}
 cibersort<-deconvo_tme(eset = eset_acrg, method = "cibersort", arrays = TRUE, perm = 100 )
 # head(cibersort)
-res<-cell_bar_plot(input = cibersort[1:12,], pattern = "CIBERSORT", title = "CIBERSORT Cell Fraction")
+res<-cell_bar_plot(input = cibersort[1:12,], features = colnames(cibersort)[3:24], title = "CIBERSORT Cell Fraction")
 ```
 
 ## Method 2: EPIC
@@ -83,7 +85,6 @@ xcell<-deconvo_tme(eset = eset_acrg, method = "xcell", arrays = TRUE)
 head(xcell)
 ```
 
-
 ## Method 5: ESTIMATE
 ```{r,message=FALSE,warning=FALSE}
 estimate<-deconvo_tme(eset = eset_acrg, method = "estimate")
@@ -104,7 +105,7 @@ res<-cell_bar_plot(input = quantiseq[1:12, ], id = "ID", features = colnames(qua
 ```
 
 ## Method 8: IPS
-```{r,message=FALSE}
+```{r,message=FALSE, warning=FALSE}
 ips<-deconvo_tme(eset = eset_acrg, method = "ips", plot= FALSE)
 head(ips)
 ```
@@ -120,6 +121,50 @@ tme_combine<-cibersort %>%
   inner_join(.,quantiseq,by = "ID") %>% 
   inner_join(.,ips,by       = "ID")
 dim(tme_combine)
+```
+
+## How to customise the signature matrix for `SVR` and `lesi` algorithm
+
+The recent surge in single-cell RNA sequencing has enabled us to identify novel microenvironmental cells, tumour microenvironmental characteristics, and tumour clonal signatures with high resolution. It is necessary to scrutinize, confirm and depict these features attained from high-dimensional single-cell information in bulk-seq with extended specimen sizes for clinical phenotyping. This is a demonstration using the results of 10X single-cell sequencing data of PBMC to construct gene signature matrix for `deconvo_tme` function and estimate the abundance of these cell types in bulk transcriptome data.
+
+Initialize the Seurat object with the raw (non-normalized data).
+```{r,message=FALSE, warning=FALSE}
+library(Seurat)
+pbmc.data <- Read10X(data.dir = "E:/12-pkg-dev/IOBR-Project/8-IOBR2-Vignette/0-data/pbmc/filtered_gene_bc_matrices/hg19")
+pbmc <- CreateSeuratObject(counts = pbmc.data, project = "pbmc3k", min.cells = 3, min.features = 200)
+```
+
+Data prepare using Seurat's standard pipeline.
+```{r,message=FALSE, warning=FALSE}
+pbmc <- FindVariableFeatures(pbmc, selection.method = "vst", nfeatures = 2000, verbose = FALSE)
+pbmc <- NormalizeData(pbmc, normalization.method = "LogNormalize", scale.factor = 10000, verbose = FALSE)
+pbmc <- ScaleData(pbmc, features =  rownames(pbmc), verbose = FALSE)
+pbmc <- RunPCA(pbmc, features = VariableFeatures(object = pbmc), verbose = FALSE)
+pbmc <- FindNeighbors(pbmc, dims = 1:10, verbose = FALSE)
+pbmc <- FindClusters(pbmc, resolution = 0.5, verbose = FALSE)
+pbmc$celltype <- paste0("celltype_", pbmc$seurat_clusters)
+```
+
+Generate reference matrix using `generateRef_seurat` function.
+```{r,message=FALSE, warning=FALSE}
+sm<- generateRef_seurat(sce = pbmc, celltype = "celltype", slot_out = "data")
+
+#load the bulk-seq data
+data(eset_stad, package = "IOBR")
+eset <- count2tpm(countMat = eset_stad, source = "local", idType = "ensembl")
+svr <- deconvo_tme(eset = eset, reference  = sm,  method = "svr", arrays  = FALSE, absolute.mode = FALSE, perm = 100)
+```
+
+Load the bulk RNA-seq data
+```{r,message=FALSE, warning=FALSE}
+data(eset_stad, package = "IOBR")
+eset <- count2tpm(countMat = eset_stad, source = "local", idType = "ensembl")
+svr<- deconvo_tme(eset = eset, reference  = sm,  method = "svr", arrays  = FALSE, absolute.mode = FALSE, perm = 100)
+head(svr)
+```
+
+```{r, fig.width= 8.5, fig.height = 4.5}
+res<-cell_bar_plot(input = svr, features = colnames(svr)[2:10], title = "SVR Cell Fraction")
 ```
 
 **If you use this package in your work, please cite both our package and the method(s) you are using.**

@@ -22,6 +22,8 @@ rmd_files:
     "signature-analysis.Rmd",
 
     "tme-deconvolution.Rmd",
+    
+    "Feature-selections.Rmd",
 
     "references.Rmd",
   ]
