@@ -52,7 +52,7 @@ prognostic_result <- PrognosticModel(x           = imvigor210_sig,
                                      seed        = 123456, 
                                      train_ratio = 0.7, 
                                      nfold       = 8,
-                                     plot        = FALSE)
+                                     plot        = TRUE)
 ```
 
 ```
@@ -60,6 +60,8 @@ prognostic_result <- PrognosticModel(x           = imvigor210_sig,
 ## NULL
 ## NULL
 ```
+
+<img src="tme-modeling_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="tme-modeling_files/figure-html/unnamed-chunk-4-2.png" width="672" />
 
 
 ## Input data (Response) prepare

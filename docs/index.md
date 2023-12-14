@@ -3,6 +3,7 @@ title: "IOBR (Immuno-Oncology Biological Research)"
 author: "Dongqiang Zeng, Yiran Fang"
 date: "2023-12-14"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
 documentclass: book

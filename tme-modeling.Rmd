@@ -36,7 +36,7 @@ prognostic_result <- PrognosticModel(x           = imvigor210_sig,
                                      seed        = 123456, 
                                      train_ratio = 0.7, 
                                      nfold       = 8,
-                                     plot        = FALSE)
+                                     plot        = TRUE)
 ```
 
 
