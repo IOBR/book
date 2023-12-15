@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 11 References | IOBR (Immuno-Oncology Biological Research)</title>
+  <meta name="description" content="The tutorial of IOBR package" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 11 References | IOBR (Immuno-Oncology Biological Research)" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://iobr.github.io/book/./fig/cover.png" />
+  <meta property="og:description" content="The tutorial of IOBR package" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 11 References | IOBR (Immuno-Oncology Biological Research)" />
+  
+  <meta name="twitter:description" content="The tutorial of IOBR package" />
+  <meta name="twitter:image" content="https://iobr.github.io/book/./fig/cover.png" />
+
+<meta name="author" content="Dongqiang Zeng, Yiran Fang" />
+
+
+<meta name="date" content="2023-12-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tme-modeling.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The tutorial of IOBR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>Introduction</strong></a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#introduction-1"><i class="fa fa-check"></i><b>0.1</b> 📚 Introduction</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>0.2</b> 💿 License</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#previous-publication"><i class="fa fa-check"></i><b>0.3</b> 🏆 Previous publication</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#major-updates"><i class="fa fa-check"></i><b>0.4</b> ⏳ Major Updates</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#reporting-bugs"><i class="fa fa-check"></i><b>0.5</b> ✉️ Reporting bugs</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html"><i class="fa fa-check"></i><b>1</b> <strong>How to install IOBR</strong></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-dependency-packages"><i class="fa fa-check"></i><b>1.1</b> ⏳ Install Dependency Packages</a></li>
+<li class="chapter" data-level="1.2" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-iobr-package"><i class="fa fa-check"></i><b>1.2</b> 💻 Install IOBR package</a></li>
+<li class="chapter" data-level="1.3" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#how-to-update-iobr"><i class="fa fa-check"></i><b>1.3</b> 📌 How to update IOBR</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 🗂 Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌐 Current working environment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#loading-packages"><i class="fa fa-check"></i><b>3.1</b> Loading packages</a></li>
+<li class="chapter" data-level="3.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-array-data-using-geoquery"><i class="fa fa-check"></i><b>3.2</b> Download array data using <code>GEOquery</code></a></li>
+<li class="chapter" data-level="3.3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#gene-annotation"><i class="fa fa-check"></i><b>3.3</b> Gene Annotation</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-array-data-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>3.3.1</b> For Array data: HGU133PLUS-2 (Affaymetrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-rnaseq-data-using-ucscxenatools"><i class="fa fa-check"></i><b>3.4</b> Download RNAseq data using <code>UCSCXenaTools</code></a></li>
+<li class="chapter" data-level="3.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#normalization-and-gene-annotation"><i class="fa fa-check"></i><b>3.5</b> Normalization and Gene annotation</a></li>
+<li class="chapter" data-level="3.6" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>3.6</b> Identifying outlier samples</a></li>
+<li class="chapter" data-level="3.7" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>3.7</b> PCA analysis of molecular subtypes</a></li>
+<li class="chapter" data-level="3.8" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>3.8</b> Batch effect correction</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-microarray-data"><i class="fa fa-check"></i><b>3.8.1</b> For microarray data</a></li>
+<li class="chapter" data-level="3.8.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-rnaseq-count-data"><i class="fa fa-check"></i><b>3.8.2</b> For RNAseq count data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#references"><i class="fa fa-check"></i><b>3.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html"><i class="fa fa-check"></i><b>4</b> <strong>Signature Score Calculation</strong></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#loading-packages-1"><i class="fa fa-check"></i><b>4.1</b> Loading packages</a></li>
+<li class="chapter" data-level="4.2" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#downloading-data-for-example"><i class="fa fa-check"></i><b>4.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="4.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#signature-score-estimation"><i class="fa fa-check"></i><b>4.3</b> Signature score estimation</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#signature-collection-of-iobr"><i class="fa fa-check"></i><b>4.3.1</b> Signature collection of IOBR</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#estimation-of-signature-using-pca-method"><i class="fa fa-check"></i><b>4.4</b> Estimation of signature using PCA method</a></li>
+<li class="chapter" data-level="4.5" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#estimated-using-the-ssgsea-methodology"><i class="fa fa-check"></i><b>4.5</b> Estimated using the ssGSEA methodology</a></li>
+<li class="chapter" data-level="4.6" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#calculated-using-the-z-score-function."><i class="fa fa-check"></i><b>4.6</b> Calculated using the z-score function.</a></li>
+<li class="chapter" data-level="4.7" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#calculated-using-all-three-methods-at-the-same-time"><i class="fa fa-check"></i><b>4.7</b> Calculated using all three methods at the same time</a></li>
+<li class="chapter" data-level="4.8" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#how-to-customise-the-signature-gene-list-for-calculate_signature_score"><i class="fa fa-check"></i><b>4.8</b> How to customise the signature gene list for <code>calculate_signature_score</code></a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-1-use-excel-for-storage-and-construction"><i class="fa fa-check"></i><b>4.8.1</b> Method-1: Use excel for storage and construction</a></li>
+<li class="chapter" data-level="4.8.2" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-2-build-the-list-structure-directly"><i class="fa fa-check"></i><b>4.8.2</b> Method-2: Build the list structure directly</a></li>
+<li class="chapter" data-level="4.8.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method3-add-the-new-signature-to-the-existing-gene-list"><i class="fa fa-check"></i><b>4.8.3</b> Method3: Add the new signature to the existing gene list</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#how-to-export-gene-signature"><i class="fa fa-check"></i><b>4.9</b> How to export gene signature</a></li>
+<li class="chapter" data-level="4.10" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#references-1"><i class="fa fa-check"></i><b>4.10</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html"><i class="fa fa-check"></i><b>5</b> <strong>TME deconvolution</strong></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#loading-packages-2"><i class="fa fa-check"></i><b>5.1</b> Loading packages</a></li>
+<li class="chapter" data-level="5.2" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#downloading-data-for-example-1"><i class="fa fa-check"></i><b>5.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="5.3" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#available-methods-to-decode-tme-contexture"><i class="fa fa-check"></i><b>5.3</b> Available Methods to Decode TME Contexture</a></li>
+<li class="chapter" data-level="5.4" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-1-cibersort"><i class="fa fa-check"></i><b>5.4</b> Method 1: CIBERSORT</a></li>
+<li class="chapter" data-level="5.5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-2-epic"><i class="fa fa-check"></i><b>5.5</b> Method 2: EPIC</a></li>
+<li class="chapter" data-level="5.6" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-3-mcpcounter"><i class="fa fa-check"></i><b>5.6</b> Method 3: MCPcounter</a></li>
+<li class="chapter" data-level="5.7" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-4-xcell"><i class="fa fa-check"></i><b>5.7</b> Method 4: xCELL</a></li>
+<li class="chapter" data-level="5.8" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-5-estimate"><i class="fa fa-check"></i><b>5.8</b> Method 5: ESTIMATE</a></li>
+<li class="chapter" data-level="5.9" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-6-timer"><i class="fa fa-check"></i><b>5.9</b> Method 6: TIMER</a></li>
+<li class="chapter" data-level="5.10" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-7-quantiseq"><i class="fa fa-check"></i><b>5.10</b> Method 7: quanTIseq</a></li>
+<li class="chapter" data-level="5.11" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-8-ips"><i class="fa fa-check"></i><b>5.11</b> Method 8: IPS</a></li>
+<li class="chapter" data-level="5.12" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#combination-of-above-deconvolution-results"><i class="fa fa-check"></i><b>5.12</b> Combination of above deconvolution results</a></a></li>
+<li class="chapter" data-level="5.13" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#how-to-customise-the-signature-matrix-for-svr-and-lesi-algorithm"><i class="fa fa-check"></i><b>5.13</b> How to customise the signature matrix for <code>SVR</code> and <code>lesi</code> algorithm</a></li>
+<li class="chapter" data-level="5.14" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#references-2"><i class="fa fa-check"></i><b>5.14</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html"><i class="fa fa-check"></i><b>6</b> <strong>Signature Score and Relevant phenotypes</strong></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#loading-packages-3"><i class="fa fa-check"></i><b>6.1</b> Loading packages</a></li>
+<li class="chapter" data-level="6.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#downloading-data-for-example-2"><i class="fa fa-check"></i><b>6.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="6.3" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#gene-annotation-1"><i class="fa fa-check"></i><b>6.3</b> Gene Annotation</a></li>
+<li class="chapter" data-level="6.4" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#estimation-of-signatures"><i class="fa fa-check"></i><b>6.4</b> Estimation of signatures</a></li>
+<li class="chapter" data-level="6.5" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#combining-score-data-and-phenotype-data"><i class="fa fa-check"></i><b>6.5</b> Combining score data and phenotype data</a></li>
+<li class="chapter" data-level="6.6" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#identifying-features-associated-with-survival"><i class="fa fa-check"></i><b>6.6</b> Identifying features associated with survival</a></li>
+<li class="chapter" data-level="6.7" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#visulization-using-heatmap"><i class="fa fa-check"></i><b>6.7</b> Visulization using heatmap</a></li>
+<li class="chapter" data-level="6.8" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#focus-on-target-signatures"><i class="fa fa-check"></i><b>6.8</b> Focus on target signatures</a></li>
+<li class="chapter" data-level="6.9" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#survival-analysis-and-visulization"><i class="fa fa-check"></i><b>6.9</b> Survival analysis and visulization</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#kaplan-meier-plot"><i class="fa fa-check"></i><b>6.9.1</b> Kaplan-Meier plot</a></li>
+<li class="chapter" data-level="6.9.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#time-dependent-roc-curve"><i class="fa fa-check"></i><b>6.9.2</b> Time-Dependent ROC curve</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#batch-correlation-analysis"><i class="fa fa-check"></i><b>6.10</b> Batch correlation analysis</a>
+<ul>
+<li class="chapter" data-level="6.10.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#finding-continuity-variables-associated-with-signatures"><i class="fa fa-check"></i><b>6.10.1</b> Finding continuity variables associated with signatures</a></li>
+<li class="chapter" data-level="6.10.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#identifying-category-variables-linked-to-signatures"><i class="fa fa-check"></i><b>6.10.2</b> Identifying Category Variables Linked to Signatures</a></li>
+<li class="chapter" data-level="6.10.3" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#for-multicategorical-variables-2-subgroups"><i class="fa fa-check"></i><b>6.10.3</b> For multicategorical variables (&gt;2 subgroups)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#reference"><i class="fa fa-check"></i><b>6.11</b> Reference</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html"><i class="fa fa-check"></i><b>7</b> <strong>TME Interaction analysis</strong></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#loading-packages-4"><i class="fa fa-check"></i><b>7.1</b> Loading packages</a></li>
+<li class="chapter" data-level="7.2" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#downloading-data-for-example-3"><i class="fa fa-check"></i><b>7.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="7.3" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#gene-annotation-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>7.3</b> Gene Annotation: HGU133PLUS-2 (Affaymetrix)</a></li>
+<li class="chapter" data-level="7.4" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#tme-deconvolution-using-cibersort-algorithm"><i class="fa fa-check"></i><b>7.4</b> TME deconvolution using CIBERSORT algorithm</a></li>
+<li class="chapter" data-level="7.5" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-tme-patterns"><i class="fa fa-check"></i><b>7.5</b> Identifying TME patterns</a></li>
+<li class="chapter" data-level="7.6" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#cell-abundance-of-each-cluster"><i class="fa fa-check"></i><b>7.6</b> Cell abundance of each cluster</a></li>
+<li class="chapter" data-level="7.7" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#deg-analysis-between-tme-subtypes"><i class="fa fa-check"></i><b>7.7</b> DEG analysis between TME subtypes</a></li>
+<li class="chapter" data-level="7.8" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>7.8</b> Identifying signatures associated with TME clusters</a></li>
+<li class="chapter" data-level="7.9" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#references-3"><i class="fa fa-check"></i><b>7.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html"><i class="fa fa-check"></i><b>8</b> <strong>Tumor ecosystem analysis</strong></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#loading-packages-5"><i class="fa fa-check"></i><b>8.1</b> Loading packages</a></li>
+<li class="chapter" data-level="8.2" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#downloading-data-for-example-4"><i class="fa fa-check"></i><b>8.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="8.3" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gene-annotation-hgu133plus-2-affaymetrix-1"><i class="fa fa-check"></i><b>8.3</b> Gene Annotation: HGU133PLUS-2 (Affaymetrix)</a></li>
+<li class="chapter" data-level="8.4" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#determine-tme-subtype-of-gastric-cancer-using-tmeclassifier-r-package"><i class="fa fa-check"></i><b>8.4</b> Determine TME subtype of gastric cancer using TMEclassifier R package</a></li>
+<li class="chapter" data-level="8.5" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis-method1"><i class="fa fa-check"></i><b>8.5</b> DEG analysis: method1</a></li>
+<li class="chapter" data-level="8.6" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gsea-analysis-based-on-differential-express-gene-analysis-results"><i class="fa fa-check"></i><b>8.6</b> GSEA analysis based on differential express gene analysis results</a></li>
+<li class="chapter" data-level="8.7" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis-method2"><i class="fa fa-check"></i><b>8.7</b> DEG analysis: method2</a></li>
+<li class="chapter" data-level="8.8" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#identifying-signatures-associated-with-tme-clusters-1"><i class="fa fa-check"></i><b>8.8</b> Identifying signatures associated with TME clusters</a></li>
+<li class="chapter" data-level="8.9" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#references-4"><i class="fa fa-check"></i><b>8.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html"><i class="fa fa-check"></i><b>9</b> <strong>TME and genomic interaction</strong></a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#loading-packages-6"><i class="fa fa-check"></i><b>9.1</b> Loading packages</a></li>
+<li class="chapter" data-level="9.2" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#genomic-data-prepare"><i class="fa fa-check"></i><b>9.2</b> Genomic data prepare</a></li>
+<li class="chapter" data-level="9.3" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#identifying-mutations-associated-with-tme"><i class="fa fa-check"></i><b>9.3</b> Identifying Mutations Associated with TME</a></li>
+<li class="chapter" data-level="9.4" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#oncoprint-of-result"><i class="fa fa-check"></i><b>9.4</b> OncoPrint of result</a></li>
+<li class="chapter" data-level="9.5" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#boxplot-of-top-10-mutated-genes"><i class="fa fa-check"></i><b>9.5</b> Boxplot of top 10 mutated genes</a></li>
+<li class="chapter" data-level="9.6" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#references-5"><i class="fa fa-check"></i><b>9.6</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tme-modeling.html"><a href="tme-modeling.html"><i class="fa fa-check"></i><b>10</b> <strong>TME Modeling</strong></a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="tme-modeling.html"><a href="tme-modeling.html#loading-packages-7"><i class="fa fa-check"></i><b>10.1</b> Loading packages</a></li>
+<li class="chapter" data-level="10.2" data-path="tme-modeling.html"><a href="tme-modeling.html#data-prepare"><i class="fa fa-check"></i><b>10.2</b> Data prepare</a></li>
+<li class="chapter" data-level="10.3" data-path="tme-modeling.html"><a href="tme-modeling.html#input-data-overall-survival-prepare"><i class="fa fa-check"></i><b>10.3</b> Input data (overall survival) prepare</a></li>
+<li class="chapter" data-level="10.4" data-path="tme-modeling.html"><a href="tme-modeling.html#constructing-survival-prediction-models"><i class="fa fa-check"></i><b>10.4</b> Constructing survival prediction models</a></li>
+<li class="chapter" data-level="10.5" data-path="tme-modeling.html"><a href="tme-modeling.html#input-data-response-prepare"><i class="fa fa-check"></i><b>10.5</b> Input data (Response) prepare</a></li>
+<li class="chapter" data-level="10.6" data-path="tme-modeling.html"><a href="tme-modeling.html#constructing-prediction-models-for-response"><i class="fa fa-check"></i><b>10.6</b> Constructing prediction models for response</a></li>
+<li class="chapter" data-level="10.7" data-path="tme-modeling.html"><a href="tme-modeling.html#references-6"><i class="fa fa-check"></i><b>10.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="references-7.html"><a href="references-7.html"><i class="fa fa-check"></i><b>11</b> <strong>References</strong></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="references-7.html"><a href="references-7.html#tme-deconvolution-1"><i class="fa fa-check"></i><b>11.1</b> TME deconvolution</a></li>
+<li class="chapter" data-level="11.2" data-path="references-7.html"><a href="references-7.html#tme-signatures"><i class="fa fa-check"></i><b>11.2</b> TME Signatures</a></li>
+<li class="chapter" data-level="11.3" data-path="references-7.html"><a href="references-7.html#data-sets"><i class="fa fa-check"></i><b>11.3</b> Data sets</a></li>
+<li class="chapter" data-level="11.4" data-path="references-7.html"><a href="references-7.html#others"><i class="fa fa-check"></i><b>11.4</b> Others</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/DongqiangZeng0808" target="blank">Welcome to my GitHub</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">IOBR (Immuno-Oncology Biological Research)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="references-7" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> <strong>References</strong><a href="references-7.html#references-7" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>If IOBR R package is utilized in your published research, please cite:</p>
+<p>Zeng D, Ye Z, Shen R, Yu G, Wu J, Xiong Y,…, Liao W (2021) <strong>IOBR</strong>: Multi-Omics Immuno-Oncology Biological Research to Decode Tumor Microenvironment and Signatures. <em>Frontiers in Immunology</em>. 12:687975. <a href="https://www.frontiersin.org/articles/10.3389/fimmu.2021.687975/full">doi: 10.3389/fimmu.2021.687975</a></p>
+<div id="tme-deconvolution-1" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> TME deconvolution<a href="references-7.html#tme-deconvolution-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Please cite the following papers appropriately for TME deconvolution algorithm if used:</p>
+<p><strong>CIBERSORT</strong>: Newman, A. M., Liu, C. L., Green, M. R., Gentles, A. J., Feng, W., Xu, Y., … Alizadeh, A. A. (2015). Robust enumeration of cell subsets from tissue expression profiles. Nature Methods, 12(5), 453–457. <a href="https://doi.org/10.1038/nmeth.3337" class="uri">https://doi.org/10.1038/nmeth.3337</a></p>
+<p><strong>ESTIMATE</strong>: Vegesna R, Kim H, Torres-Garcia W, …, Verhaak R.*(2013). Inferring tumour purity and stromal and immune cell admixture from expression data. Nature Communications 4, 2612. <a href="http://doi.org/10.1038/ncomms3612" class="uri">http://doi.org/10.1038/ncomms3612</a></p>
+<p><strong>quanTIseq</strong>: Finotello, F., Mayer, C., Plattner, C., Laschober, G., Rieder, D., Hackl, H., …, Sopper, S.* (2019). Molecular and pharmacological modulators of the tumor immune contexture revealed by deconvolution of RNA-seq data. Genome medicine, 11(1), 34. <a href="https://doi.org/10.1186/s13073-019-0638-6" class="uri">https://doi.org/10.1186/s13073-019-0638-6</a></p>
+<p><strong>TIMER</strong>: Li, B., Severson, E., Pignon, J.-C., Zhao, H., Li, T., Novak, J., … Liu, X. S.* (2016). Comprehensive analyses of tumor immunity: implications for cancer immunotherapy. Genome Biology, 17(1), 174.</p>
+<p><strong>IPS</strong>: P. Charoentong et al.*, Pan-cancer Immunogenomic Analyses Reveal Genotype-Immunophenotype Relationships and Predictors of Response to Checkpoint Blockade. Cell Reports 18, 248-262 (2017). <a href="https://doi.org/10.1016/j.celrep.2016.12.019" class="uri">https://doi.org/10.1016/j.celrep.2016.12.019</a></p>
+<p><strong>MCPCounter</strong>: Becht, E., Giraldo, N. A., Lacroix, L., Buttard, B., Elarouci, N., Petitprez, F., … de Reyniès, A*. (2016). Estimating the population abundance of tissue-infiltrating immune and stromal cell populations using gene expression. Genome Biology, 17(1), 218. <a href="https://doi.org/10.1186/s13059-016-1070-5" class="uri">https://doi.org/10.1186/s13059-016-1070-5</a></p>
+<p><strong>xCell</strong>: Aran, D., Hu, Z., &amp; Butte, A. J.* (2017). xCell: digitally portraying the tissue cellular heterogeneity landscape. Genome Biology, 18(1), 220. <a href="https://doi.org/10.1186/s13059-017-1349-1" class="uri">https://doi.org/10.1186/s13059-017-1349-1</a></p>
+<p><strong>EPIC</strong>: Racle, J., de Jonge, K., Baumgaertner, P., Speiser, D. E., &amp; Gfeller, D*. (2017). Simultaneous enumeration of cancer and immune cell types from bulk tumor gene expression data. ELife, 6, e26476. <a href="https://doi.org/10.7554/eLife.26476" class="uri">https://doi.org/10.7554/eLife.26476</a></p>
+</div>
+<div id="tme-signatures" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> TME Signatures<a href="references-7.html#tme-signatures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For signature score estimation, please cite corresponding literature below:</p>
+<p><strong>ssgsea</strong>: Barbie, D.A. et al (2009). Systematic RNA interference reveals that oncogenic KRAS-driven cancers require TBK1. Nature, 462(5):108-112.</p>
+<p><strong>gsva</strong>: Hänzelmann, S., Castelo, R. and Guinney, J. (2013). GSVA: Gene set variation analysis for microarray and RNA-Seq data. BMC Bioinformatics, 14(1):7.</p>
+<p><strong>zscore</strong>: Lee, E. et al (2008). Inferring pathway activity toward precise disease classification. PLoS Comp Biol, 4(11):e1000217.</p>
+</div>
+<div id="data-sets" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Data sets<a href="references-7.html#data-sets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For the datasets enrolled in IOBR, please cite the data sources:</p>
+<p><strong>UCSCXena</strong>: Wang et al.,et al (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. Journal of Open Source Software, 4(40), 1627</p>
+<p><strong>TLSscore</strong>: Helmink BA, Reddy SM, Gao J, et al. B cells and tertiary lymphoid structures promote immunotherapy response. Nature. 2020 Jan;577(7791):549-555.</p>
+<p><strong>IMvigor210 immuntherapy cohort</strong>: Mariathasan S, Turley SJ, Nickles D, et al. TGFβ attenuates tumour response to PD-L1 blockade by contributing to exclusion of T cells. Nature. 2018 Feb 22;554(7693):544-548.
+<strong>HCP5</strong>: Kulski, J.K. Long Noncoding RNA HCP5, a Hybrid HLA Class I Endogenous Retroviral Gene: Structure, Expression, and Disease Associations. Cells 2019, 8, 480.</p>
+<p><strong>HCP5</strong>: Li, Y., Jiang, T., Zhou, W. et al. Pan-cancer characterization of immune-related lncRNAs identifies potential oncogenic biomarkers. Nat Commun 11, 1000 (2020).
+HCP5: Sun J, Zhang Z, Bao S, et alIdentification of tumor immune infiltration-associated lncRNAs for improving prognosis and immunotherapy response of patients with non-small cell lung cancerJournal for ImmunoTherapy of Cancer 2020;8:e000110.</p>
+<p><strong>LINC00657</strong>: Feng Q, Zhang H, Yao D, Chen WD, Wang YD. Emerging Role of Non-Coding RNAs in Esophageal Squamous Cell Carcinoma. Int J Mol Sci. 2019 Dec 30;21(1):258. doi: 10.3390/ijms21010258.</p>
+<p><strong>LINC00657</strong>: Qin X, Zhou M, Lv H, Mao X, Li X, Guo H, Li L, Xing H. Long noncoding RNA LINC00657 inhibits cervical cancer development by sponging miR-20a-5p and targeting RUNX3. Cancer Lett. 2020 Oct 28:S0304-3835(20)30578-4. doi: 10.1016/j.canlet.2020.10.044.
+<strong>LINC00657</strong>: Zhang XM, Wang J, Liu ZL, Liu H, Cheng YF, Wang T. LINC00657/miR-26a-5p/CKS2 ceRNA network promotes the growth of esophageal cancer cells via the MDM2/p53/Bcl2/Bax pathway. Biosci Rep. 2020;40(6):BSR20200525.</p>
+<p><strong>TCGA-STAD</strong>: Cancer Genome Atlas Research Network. Comprehensive molecular characterization of gastric adenocarcinoma. Nature. 2014 Sep 11;513(7517):202-9. doi: 10.1038/nature13480.
+TCGA.STAD MAF data: <a href="https://api.gdc.cancer.gov/data/c06465a3-50e7-46f7-b2dd-7bd654ca206b" class="uri">https://api.gdc.cancer.gov/data/c06465a3-50e7-46f7-b2dd-7bd654ca206b</a></p>
+</div>
+<div id="others" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Others<a href="references-7.html#others" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Newman, A. M., Liu, C. L., Green, M. R., Gentles, A. J., Feng, W., Xu, Y., … Alizadeh, A. A. (2015). Robust enumeration of cell subsets from tissue expression profiles. Nature Methods, 12(5), 453–457.</p></li>
+<li><p>Vegesna R, Kim H, Torres-Garcia W, …, Verhaak R.*(2013). Inferring tumour purity and stromal and immune cell admixture from expression data. Nature Communications 4, 2612.</p></li>
+<li><p>Rieder, D., Hackl, H., …, Sopper, S.* (2019). Molecular and pharmacological modulators of the tumor immune contexture revealed by deconvolution of RNA-seq data. Genome medicine, 11(1), 34.</p></li>
+<li><p>Li, B., Severson, E., Pignon, J.-C., Zhao, H., Li, T., Novak, J., … Liu, X. S.* (2016). Comprehensive analyses of tumor immunity: implications for cancer immunotherapy. Genome Biology, 17(1), 174.</p></li>
+<li><p>P. Charoentong et al.*, Pan-cancer Immunogenomic Analyses Reveal Genotype-Immunophenotype Relationships and Predictors of Response to Checkpoint Blockade. Cell Reports 18, 248-262 (2017).</p></li>
+<li><p>Becht, E., Giraldo, N. A., Lacroix, L., Buttard, B., Elarouci, N., Petitprez, F., … de Reyniès, A*. (2016). Estimating the population abundance of tissue-infiltrating immune and stromal cell populations using gene expression. Genome Biology, 17(1), 218.</p></li>
+<li><p>Aran, D., Hu, Z., &amp; Butte, A. J.* (2017). xCell: digitally portraying the tissue cellular heterogeneity landscape. Genome Biology, 18(1), 220.</p></li>
+<li><p>Racle, J., de Jonge, K., Baumgaertner, P., Speiser, D. E., &amp; Gfeller, D*. (2017). Simultaneous enumeration of cancer and immune cell types from bulk tumor gene expression data. ELife, 6, e26476.</p></li>
+<li><p>Barbie, D.A. et al (2009). Systematic RNA interference reveals that oncogenic KRAS-driven cancers require TBK1. Nature, 462(5):108-112.</p></li>
+<li><p>Hänzelmann, S., Castelo, R. and Guinney, J. (2013). GSVA: Gene set variation analysis for microarray and RNA-Seq data. BMC Bioinformatics, 14(1):7.</p></li>
+<li><p>Lee, E. et al (2008). Inferring pathway activity toward precise disease classification. PLoS Comp Biol, 4(11):e1000217.</p></li>
+<li><p>Wang et al.,et al (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. Journal of Open Source Software, 4(40), 1627</p></li>
+<li><p>Helmink BA, Reddy SM, Gao J, et al. B cells and tertiary lymphoid structures promote immunotherapy response. Nature. 2020 Jan;577(7791):549-555.</p></li>
+<li><p>Mariathasan S, Turley SJ, Nickles D, et al. TGFβ attenuates tumour response to PD-L1 blockade by contributing to exclusion of T cells. Nature. 2018 Feb 22;554(7693):544-548.</p></li>
+<li><p>Kulski, J.K. Long Noncoding RNA HCP5, a Hybrid HLA Class I Endogenous Retroviral Gene: Structure, Expression, and Disease Associations. Cells 2019, 8, 480.</p></li>
+<li><p>Li, Y., Jiang, T., Zhou, W. et al. Pan-cancer characterization of immune-related lncRNAs identifies potential oncogenic biomarkers. Nat Commun 11, 1000 (2020).</p></li>
+<li><p>Sun J, Zhang Z, Bao S, et alIdentification of tumor immune infiltration-associated lncRNAs for improving prognosis and immunotherapy response of patients with non-small cell lung cancerJournal for ImmunoTherapy of Cancer 2020;8:e000110.</p></li>
+<li><p>Feng Q, Zhang H, Yao D, Chen WD, Wang YD. Emerging Role of Non-Coding RNAs in Esophageal Squamous Cell Carcinoma. Int J Mol Sci. 2019 Dec 30;21(1):258. doi: 10.3390/ijms21010258.</p></li>
+<li><p>Qin X, Zhou M, Lv H, Mao X, Li X, Guo H, Li L, Xing H. Long noncoding RNA LINC00657 inhibits cervical cancer development by sponging miR-20a-5p and targeting RUNX3. Cancer Lett. 2020 Oct</p></li>
+<li><p>Zhang XM, Wang J, Liu ZL, Liu H, Cheng YF, Wang T. LINC00657/miR-26a-5p/CKS2 ceRNA network promotes the growth of esophageal cancer cells via the MDM2/p53/Bcl2/Bax pathway. Biosci Rep. 2020;40(6):BSR20200525.</p></li>
+<li><p>Cancer Genome Atlas Research Network. Comprehensive molecular characterization of gastric adenocarcinoma. Nature. 2014 Sep 11;513(7517):202-9. doi: 10.1038/nature13480.</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tme-modeling.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/DongqiangZeng0808/references.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
