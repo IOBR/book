@@ -130,9 +130,79 @@ eset[1:5, 1:3]
 
 ## Download RNAseq data using `UCSCXenaTools`
 
+In this section, we are going to download RNA-seq data from The Cancer Genome Atlas (TCGA) for applying the downstream analysis workflow of **IOBR**. Particularly, we will use the convenient R package [**UCSCXenaTools**](https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html) to query and download the RNA-seq data of TCGA stomach cancer cohort.
+
+Use the following code to check and install **UCSCXenaTools**.
+
 
 ```r
-if (!requireNamespace("UCSCXenaTools", quietly = TRUE))   BiocManager::install("UCSCXenaTools")
+if (!requireNamespace("UCSCXenaTools", quietly = TRUE))  
+  BiocManager::install("UCSCXenaTools")
+```
+
+**UCSCXenaTools** provides an R interface to access public cancer datasets from [UCSC Xena data hubs](https://xenabrowser.net/datapages/), including multiple pan-cancer studies like TCGA and PCAWG. You can directly access information of all datasets in R.
+
+
+```r
+library(UCSCXenaTools)
+```
+
+```
+## Warning: package 'UCSCXenaTools' was built under R version 4.2.1
+```
+
+```
+## =========================================================================================
+## UCSCXenaTools version 1.4.8
+## Project URL: https://github.com/ropensci/UCSCXenaTools
+## Usages: https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html
+## 
+## If you use it in published research, please cite:
+## Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data
+##   from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq.
+##   Journal of Open Source Software, 4(40), 1627, https://doi.org/10.21105/joss.01627
+## =========================================================================================
+##                               --Enjoy it--
+```
+
+```
+## 
+## Attaching package: 'UCSCXenaTools'
+```
+
+```
+## The following object is masked from 'package:Biobase':
+## 
+##     samples
+```
+
+```r
+head(XenaData)
+```
+
+```
+## # A tibble: 6 × 17
+##   XenaHosts XenaHostNames XenaCohorts XenaDatasets SampleCount DataSubtype Label
+##   <chr>     <chr>         <chr>       <chr>              <int> <chr>       <chr>
+## 1 https://… publicHub     Breast Can… ucsfNeve_pu…          51 gene expre… Neve…
+## 2 https://… publicHub     Breast Can… ucsfNeve_pu…          57 phenotype   Phen…
+## 3 https://… publicHub     Glioma (Ko… kotliarov20…         194 copy number Kotl…
+## 4 https://… publicHub     Glioma (Ko… kotliarov20…         194 phenotype   Phen…
+## 5 https://… publicHub     Lung Cance… weir2007_pu…         383 copy number CGH  
+## 6 https://… publicHub     Lung Cance… weir2007_pu…         383 phenotype   Phen…
+## # ℹ 10 more variables: Type <chr>, AnatomicalOrigin <chr>, SampleType <chr>,
+## #   Tags <chr>, ProbeMap <chr>, LongTitle <chr>, Citation <chr>, Version <chr>,
+## #   Unit <chr>, Platform <chr>
+```
+
+```r
+# You can use view(XenaData) to find your dataset of interest
+```
+
+**UCSCXenaTools** provides [workflow functions](https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html#workflow) to generate object, filter, query, download and load the dataset(s) of interest. The following code show a standardized **UCSCXenaTools** data workflow to query the data from UCSC Xena data hub and load it into R.
+
+
+```r
 library(UCSCXenaTools)
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
 eset_stad<-XenaGenerate(subset = XenaCohorts =="GDC TCGA Stomach Cancer (STAD)") %>% 
@@ -142,6 +212,15 @@ eset_stad<-XenaGenerate(subset = XenaCohorts =="GDC TCGA Stomach Cancer (STAD)")
   XenaPrepare()
 eset_stad[1:5, 1:3]
 ```
+
+As the metadata of this dataset have been stored in the `XeneData` data.frame. You can easily recheck the dataset with code.
+
+
+```r
+dplyr::filter(XenaData, XenaDatasets == "TCGA-STAD.htseq_counts.tsv") |> 
+  as.list()
+```
+
 
 ## Normalization and Gene annotation
 Transform gene expression matrix into TPM format, and conduct subsequent annotation. 
@@ -167,7 +246,7 @@ Take ACRG microarray data for example
 res <- find_outlier_samples(eset = eset, project = "ACRG", show_plot = TRUE)
 ```
 
-<img src="data-preprocessing_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
+<img src="data-preprocessing_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" />
 
 ```
 ## [1] "GSM1523817" "GSM1523858" "GSM1523984" "GSM1523988" "GSM1524030"
@@ -183,7 +262,7 @@ eset1 <- eset[, !colnames(eset)%in%res]
 
 
 ```r
-data("pdata_acrg")
+data("pdata_acrg", package = "IOBR")
 res<- iobr_pca(data       = eset1,
               is.matrix   = TRUE,
               scale       = TRUE,
@@ -211,7 +290,7 @@ res<- iobr_pca(data       = eset1,
 res
 ```
 
-<img src="data-preprocessing_files/figure-html/unnamed-chunk-11-1.png" width="729.6" style="display: block; margin: auto;" />
+<img src="data-preprocessing_files/figure-html/unnamed-chunk-14-1.png" width="729.6" style="display: block; margin: auto;" />
 
 
 ## Batch effect correction
@@ -284,7 +363,7 @@ eset_com <- remove_batcheffect( eset1       = eset1,
 ## [1] ">>-- colors for PCA: "
 ```
 
-<img src="data-preprocessing_files/figure-html/unnamed-chunk-14-1.png" width="1056" style="display: block; margin: auto;" />
+<img src="data-preprocessing_files/figure-html/unnamed-chunk-17-1.png" width="1056" style="display: block; margin: auto;" />
 
 ```r
 dim(eset_com)
@@ -383,7 +462,7 @@ eset_com <- remove_batcheffect(eset_stad, eset_blca, id_type = "ensembl", data_t
 ## [1] ">>-- colors for PCA: "
 ```
 
-<img src="data-preprocessing_files/figure-html/unnamed-chunk-15-1.png" width="1056" style="display: block; margin: auto;" />
+<img src="data-preprocessing_files/figure-html/unnamed-chunk-18-1.png" width="1056" style="display: block; margin: auto;" />
 
 ```r
 # The returned matrix is the count matrix after removing the batches.

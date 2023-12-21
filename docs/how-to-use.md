@@ -68,7 +68,7 @@
 </br>
 
 
-## 🌐 Current working environment
+## 🌍 Current working environment
 
 
 ```r

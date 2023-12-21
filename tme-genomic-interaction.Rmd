@@ -11,11 +11,36 @@ library(IOBR)
 
 ## Genomic data prepare
 
-MAF data was download from [UCSC Xena hub](https://xenabrowser.net/datapages/)
+In this section, we are going to use the MAF data of TCGA-STAD cohort as an example dataset. This dataset could be found in multiple places, here we show two ways to get it.
+
+### Using TCGAbiolinks to download genomic data
+R Bioconductor package **[TCGAbiolinks](https://bioconductor.org/packages/TCGAbiolinks/)** provides an R interface of [GDC data portal](https://portal.gdc.cancer.gov/), which stores updating TCGA data. You can check and install this package with the following code.
+
+```{r, eval=FALSE}
+if (!requireNamespace("TCGAbiolinks", quietly = TRUE))
+  BiocManager::install("TCGAbiolinks")
+```
+
+Then you can query, download and prepare the required dataset.
+
+```{r, eval=FALSE}
+library(TCGAbiolinks)
+query <- GDCquery(
+  project = "TCGA-STAD", 
+  data.category = "Simple Nucleotide Variation", 
+  access = "open",
+  data.type = "Masked Somatic Mutation", 
+  workflow.type = "Aliquot Ensemble Somatic Variant Merging and Masking"
+)
+GDCdownload(query)
+maf <- GDCprepare(query)
+```
+This `maf` object is a `data.frame`, you can use `read.maf()` from R package **[Maftools](https://github.com/PoisonAlien/maftools)** to convert it to a MAF object.
+
 In this example, we used the maf file of TCGA-STAD to extract the SNPs in it,and then transformed it into a non-negative matrix.
 ```{r,message=FALSE,warning=FALSE}
-maf_file <-"./TCGA.STAD.mutect.c06465a3-50e7-46f7-b2dd-7bd654ca206b.DR-10.0.somatic.maf"
-mut_list <- make_mut_matrix(maf = maf_file, isTCGA   = T, category = "multi")
+(load("TCGA-STAD.maf.RData"))
+mut_list <- make_mut_matrix(maf = maf, isTCGA   = T, category = "multi")
 mut <- mut_list$snp
 ```
 
@@ -27,6 +52,7 @@ res<-find_mutations(mutation_matrix     = mut,
                     signature_matrix    = tcga_stad_sig, 
                     id_signature_matrix = "ID", 
                     signature           = "CD_8_T_effector",
+                    palette             = "nrc",
                     min_mut_freq        = 0.01, 
                     plot                = TRUE, 
                     jitter              = TRUE, 
@@ -43,9 +69,48 @@ knitr::include_graphics(rep("./fig/0-OncoPrint-CD_8_T_effector.png", 1))
 knitr::include_graphics(rep("./fig/4-Relevant_mutations_binary.png", 1))
 ```
 
+## Other methods to obtaind genomic data
+
+### Using TCGAmutations
+
+As its name, the R package **[TCGAmutations](https://github.com/PoisonAlien/TCGAmutations)** provides pre-compiled, curated somatic mutations from 33 TCGA cohorts along with relevant clinical information for all sequenced samples. You can install it similar to the **TCGAbiolinks**.
+
+```{r, eval=FALSE}
+if (!requireNamespace("TCGAmutations", quietly = TRUE))
+  BiocManager::install("PoisonAlien/TCGAmutations")
+```
+
+It's quite simple to use:
+
+```{r, eval=FALSE}
+maf = TCGAmutations::tcga_load(study = "STAD")
+# Change `source` argument to Firehose for MAF files from Broad Firehose
+# maf = TCGAmutations::tcga_load(study = "STAD", source = "Firehose")
+```
+
+### Using maftools
+If you are a user of R package **[Maftools](https://github.com/PoisonAlien/maftools)**, you can access and load the data in a similar way (because the author of **TCGAmutations** and **Maftools** is the same person).
+
+```{r, eval=FALSE}
+# The following github can be changed to gitee
+# it maybe fast in China mainland
+maftools::tcgaAvailable(repo = "github")
+maftools::tcgaLoad("STAD", repo = "github")
+```
+
+MAF data transformation
+To prepare the data for the downstream analysis. We need to extract the SNV data in it and transform it into a non-negative matrix.
+
+```{r, eval=FALSE}
+mut_list <- make_mut_matrix(maf = maf, isTCGA = TRUE, category = "multi")
+```
 
 ## References
+
+Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. Journal of Open Source Software, 4(40), 1627, https://doi.org/10.21105/joss.01627
 
 Gu, Z. (2022) Complex Heatmap Visualization. iMeta.
 
 Anand Mayakonda et al., (2018) Maftools: efficient and comprehensive analysis of somatic variants in cancer. Genome Research
+
+

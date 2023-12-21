@@ -4,8 +4,8 @@ fig:flowchart
 fig:unnamed-chunk-10
 fig:unnamed-chunk-9
 fig:unnamed-chunk-11
-fig:unnamed-chunk-4
-fig:unnamed-chunk-5
+fig:unnamed-chunk-6
+fig:unnamed-chunk-7
 introduction-1
 license
 previous-publication
@@ -105,9 +105,13 @@ references-4
 tme-and-genomic-interaction
 loading-packages-6
 genomic-data-prepare
+using-tcgabiolinks-to-download-genomic-data
 identifying-mutations-associated-with-tme
 oncoprint-of-result
 boxplot-of-top-10-mutated-genes
+other-methods-to-obtaind-genomic-data
+using-tcgamutations
+using-maftools
 references-5
 tme-modeling
 loading-packages-7
