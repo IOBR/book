@@ -41,6 +41,7 @@ estimation-of-signature-using-pca-method
 estimated-using-the-ssgsea-methodology
 calculated-using-the-z-score-function.
 calculated-using-all-three-methods-at-the-same-time
+classification-of-signatures
 how-to-customise-the-signature-gene-list-for-calculate_signature_score
 method-1-use-excel-for-storage-and-construction
 method-2-build-the-list-structure-directly
@@ -121,6 +122,12 @@ constructing-survival-prediction-models
 input-data-response-prepare
 constructing-prediction-models-for-response
 references-6
+some-tips-about-iobr
+loading-packages-8
+colour-configuration
+categorical-variable
+higher-number-of-subgroups
+gradient-colour-or-heatmap-colour-scheme
 references-7
 tme-deconvolution-1
 tme-signatures

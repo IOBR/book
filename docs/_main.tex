@@ -123,7 +123,7 @@
 
 \title{IOBR (Immuno-Oncology Biological Research)}
 \author{Dongqiang Zeng, Yiran Fang}
-\date{2023-12-15}
+\date{2024-01-11}
 
 \begin{document}
 \maketitle
@@ -258,17 +258,17 @@ When the dependent environments are built, users are able to install IOBR from g
   \begin{itemize}
   \tightlist
   \item
-    \texttt{count2tpm()}: transform gene expression count data into Transcripts Per Million (TPM) values. This function supports gene IDs of type ``Ensembl'', ``Entrez'', or ``Symbol'', and retrieves gene length information using either an online connection to the bioMart database or a local dataset (specified by the source parameter).
+    \textbf{count2tpm()}: transform gene expression count data into Transcripts Per Million (TPM) values. This function supports gene IDs of type ``Ensembl'', ``Entrez'', or ``Symbol'', and retrieves gene length information using either an online connection to the bioMart database or a local dataset (specified by the source parameter).
   \item
-    \texttt{anno\_eset()}: annotate an ExpressionSet object (eset) with gene symbols using the provided annotation data. It retains only the rows with probes that have matching identifiers in the annotation data. The function handles duplicates according to the specified method. The output is an annotated and cleaned expression set.
+    \textbf{anno\_eset()}: annotate an ExpressionSet object (eset) with gene symbols using the provided annotation data. It retains only the rows with probes that have matching identifiers in the annotation data. The function handles duplicates according to the specified method. The output is an annotated and cleaned expression set.
   \item
-    \texttt{remove\_duplicate\_genes()}: remove duplicate gene symbols from gene expression data. The retention of gene symbols is based either on their mean values (if method is set as ``mean'') or standard deviation values (if method is set as ``sd'').
+    \textbf{remove\_duplicate\_genes()}: remove duplicate gene symbols from gene expression data. The retention of gene symbols is based either on their mean values (if method is set as ``mean'') or standard deviation values (if method is set as ``sd'').
   \item
-    \texttt{mouse2human\_eset()}: convert mouse gene symbols to human gene symbols of expression set.
+    \textbf{mouse2human\_eset()}: convert mouse gene symbols to human gene symbols of expression set.
   \item
-    \texttt{find\_outlier\_samples()}: analyze gene expression data and identify potential outlier samples based on connectivity analysis. By utilizing the ``WGCNA'' package, this function calculates the normalized adjacency and connectivity z-scores for each sample. It also offers multiple parameters to customize analysis and visualization.
+    \textbf{find\_outlier\_samples()}: analyze gene expression data and identify potential outlier samples based on connectivity analysis. By utilizing the ``WGCNA'' package, this function calculates the normalized adjacency and connectivity z-scores for each sample. It also offers multiple parameters to customize analysis and visualization.
   \item
-    \texttt{remove\_batcheffect()}: remove batch effects from given expression datasets and visualize the corrected data using principal component analysis (PCA). It takes three expression datasets as input and performs batch effect correction using the ``sva::ComBat'' or ``sva::ComBat\_seq'' methods. The function then generates PCA plots to compare the data before and after correction.
+    \textbf{remove\_batcheffect()}: remove batch effects from given expression datasets and visualize the corrected data using principal component analysis (PCA). It takes three expression datasets as input and performs batch effect correction using the ``sva::ComBat'' or ``sva::ComBat\_seq'' methods. The function then generates PCA plots to compare the data before and after correction.
   \end{itemize}
 \item
   \textbf{TME Deconvolution Module: integrate multiple algorithms to decode immune contexture}
@@ -276,29 +276,29 @@ When the dependent environments are built, users are able to install IOBR from g
   \begin{itemize}
   \tightlist
   \item
-    \texttt{deconvo\_tme()}: decode the TME infiltration using various deconvolution methodologies, based on bulk RNAseq, microarray or single cell RNAseq data. It currently supports methods include ``CIBERSORT'', ``MCPcounter'', ``EPIC'', ``xCell'', ``IPS'', ``estimate'', ``quanTIseq'', ``TIMER'', ``SVR'' and ``lsei''.
+    \textbf{deconvo\_tme()}: decode the TME infiltration using various deconvolution methodologies, based on bulk RNAseq, microarray or single cell RNAseq data. It currently supports methods include ``CIBERSORT'', ``MCPcounter'', ``EPIC'', ``xCell'', ``IPS'', ``estimate'', ``quanTIseq'', ``TIMER'', ``SVR'' and ``lsei''.
   \item
-    \texttt{generateRef()}: generate a novel gene reference data for specific feature deconvolution, such as infiltrating cell, utilizing different methods to identify differentially expressed genes (DEGs) . The function supports both ``limma'' and ``DESeq2'' methods.The resulting gene reference data can be used for \texttt{deconvo\_tme()} with the ``SVR'' and ``lsei'' algorithms.
+    \textbf{generateRef()}: generate a novel gene reference data for specific feature deconvolution, such as infiltrating cell, utilizing different methods to identify differentially expressed genes (DEGs) . The function supports both ``limma'' and ``DESeq2'' methods.The resulting gene reference data can be used for \textbf{deconvo\_tme()} with the ``svr'' and ``lsei'' algorithms.
   \item
-    \texttt{generateRef\_seurat()}: take a Seurat object ``sce'' and additional parameters to perform various operations for generating reference gene expression data. It allows for specifying cell types, proportions, assays, preprocessing options, and statistical testing parameters.The resulting gene reference data can be used for \texttt{deconvo\_tme()} with the ``svr'' and ``lsei'' algorithms.
+    \textbf{generateRef\_seurat()}: take a Seurat object ``sce'' and additional parameters to perform various operations for generating reference gene expression data. It allows for specifying cell types, proportions, assays, preprocessing options, and statistical testing parameters.The resulting gene reference data can be used for \textbf{deconvo\_tme()} with the ``svr'' and ``lsei'' algorithms.
   \end{itemize}
 \item
-  \textbf{Signature Module: calculatint signature scores, estimate phenotype related signatures and corresponding genes, and evaluate signatures generated from single-cell RNA sequencing data }
+  \textbf{Signature Module: calculating signature scores, estimate phenotype related signatures and corresponding genes, and evaluate signatures generated from single-cell RNA sequencing data }
 
   \begin{itemize}
   \tightlist
   \item
-    \texttt{calculate\_sig\_score()}: estimate the interested signatures enrolled in IOBR R package, which involves TME-associated, tumor-metabolism, and tumor-intrinsic signatures.The supported methods for signature score calculation include ``PCA'', ``ssGSEA'', ``z-score'', and Integration.
+    \textbf{calculate\_sig\_score()}: estimate the interested signatures enrolled in IOBR R package, which involves TME-associated, tumor-metabolism, and tumor-intrinsic signatures.The supported methods for signature score calculation include ``PCA'', ``ssGSEA'', ``z-score'', and Integration.
   \item
-    \texttt{feature\_manipulation()}: manipulate features including the cell fraction and signatures generated from multi-omics data for latter analysis and model construction. Remove missing values, outliers and variables without significant variance.
+    \textbf{feature\_manipulation()}: manipulate features including the cell fraction and signatures generated from multi-omics data for latter analysis and model construction. Remove missing values, outliers and variables without significant variance.
   \item
-    \texttt{format\_signatures()}: generate the object for \texttt{calculate\_sig\_score()} function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.
+    \textbf{format\_signatures()}: generate the object for \textbf{calculate\_sig\_score()} function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.
   \item
-    \texttt{format\_msigdb()}: transform the signature gene sets data with gmt format, which is not included in the signature collection and might be downloaded in the MSgiDB website, into the object of \texttt{calculate\_sig\_score()}function.
+    \textbf{format\_msigdb()}: transform the signature gene sets data with gmt format, which is not included in the signature collection and might be downloaded in the MSgiDB website, into the object of \textbf{calculate\_sig\_score()} function.
   \item
-    \texttt{sig\_gsea()}: conduct Gene Set Enrichment Analysis (GSEA) to identify significant gene sets based on differential gene expression data. This function performs GSEA using the fgsea package and provides visualizations and results in the form of tables and plots. It supports the utilization of user-defined gene sets or the use of predefined gene sets from MSigDB.
+    \textbf{sig\_gsea()}: conduct Gene Set Enrichment Analysis (GSEA) to identify significant gene sets based on differential gene expression data. This function performs GSEA using the fgsea package and provides visualizations and results in the form of tables and plots. It supports the utilization of user-defined gene sets or the use of predefined gene sets from MSigDB.
   \item
-    \texttt{get\_sig\_sc()}: get top gene signatures from single-cell differential analysis for \texttt{calculate\_sig\_score()} function. The input is a matrix containing a ranked list of putative markers, and associated statistics (p-values, ROC score, etc.)
+    \textbf{get\_sig\_sc()}: get top gene signatures from single-cell differential analysis for \textbf{calculate\_sig\_score()} function. The input is a matrix containing a ranked list of putative markers, and associated statistics (p-values, ROC score, etc.)
   \end{itemize}
 \item
   \textbf{Batch Analysis and Visualization: batch survival analysis and batch correlation analysis and other batch statistical analyses }
@@ -306,41 +306,41 @@ When the dependent environments are built, users are able to install IOBR from g
   \begin{itemize}
   \tightlist
   \item
-    \texttt{batch\_surv()}: perform batch survival analysis. It calculates hazard ratios and confidence intervals for the specified variables based on the given data containing time-related information.
+    \textbf{batch\_surv()}: perform batch survival analysis. It calculates hazard ratios and confidence intervals for the specified variables based on the given data containing time-related information.
   \item
-    \texttt{subgroup\_survival()}: extract hazard ratio and confidence intervals from a coxph object of subgroup analysis.
+    \textbf{subgroup\_survival()}: extract hazard ratio and confidence intervals from a coxph object of subgroup analysis.
   \item
-    \texttt{batch\_cor()}: batch analysis of correlation between two continuous variables using Pearson correlation coefficient or Spearman's rank correlation coefficient.
+    \textbf{batch\_cor()}: batch analysis of correlation between two continuous variables using Pearson correlation coefficient or Spearman's rank correlation coefficient.
   \item
-    \texttt{batch\_wilcoxon()}: perform Wilcoxon rank-sum tests on a given data set to compare the distribution of a specified feature between two groups. It computes the p-values and ranks the significant features based on the p-values. It returns a data frame with the feature names, p-values, adjusted p-values, logarithm of p-values, and a star rating based on the p-value ranges.
+    \textbf{batch\_wilcoxon()}: perform Wilcoxon rank-sum tests on a given data set to compare the distribution of a specified feature between two groups. It computes the p-values and ranks the significant features based on the p-values. It returns a data frame with the feature names, p-values, adjusted p-values, logarithm of p-values, and a star rating based on the p-value ranges.
   \item
-    \texttt{batch\_pcc()}: provide a batch way to calculate the partial correlation coefficient between feature and others when controlling a third variable.
+    \textbf{batch\_pcc()}: provide a batch way to calculate the partial correlation coefficient between feature and others when controlling a third variable.
   \item
-    \texttt{iobr\_cor\_plot()}: visualization of batch correlation analysis of signatures from ``sig\_group''. Visualize the correlation between signature or phenotype with expression of gene sets in target signature is also supported.
+    \textbf{iobr\_cor\_plot()}: visualization of batch correlation analysis of signatures from ``sig\_group''. Visualize the correlation between signature or phenotype with expression of gene sets in target signature is also supported.
   \item
-    \texttt{cell\_bar\_plot()}: batch visualization of TME cell fraction, supporting input of deconvolution results from ``CIBERSORT'', ``EPIC'' and ``quanTIseq'' methodologies to further compare the TME cell distributions within one sample or among different samples.
+    \textbf{cell\_bar\_plot()}: batch visualization of TME cell fraction, supporting input of deconvolution results from ``CIBERSORT'', ``EPIC'' and ``quanTIseq'' methodologies to further compare the TME cell distributions within one sample or among different samples.
   \item
-    \texttt{iobr\_pca()}: perform Principal Component Analysis (PCA), which reduces the dimensionality of data while maintaining most of the original variance, and visualizes the PCA results on a scatter plot.
+    \textbf{iobr\_pca()}: perform Principal Component Analysis (PCA), which reduces the dimensionality of data while maintaining most of the original variance, and visualizes the PCA results on a scatter plot.
   \item
-    \texttt{iobr\_deg()}: perform differential expression analysis on gene expression data using the DESeq2 or limma method. It filters low count data, calculates fold changes and adjusted p-values, and identifies DEGs based on specified cutoffs. It also provides optional visualization tools such as volcano plots and heatmaps.
+    \textbf{iobr\_deg()}: perform differential expression analysis on gene expression data using the DESeq2 or limma method. It filters low count data, calculates fold changes and adjusted p-values, and identifies DEGs based on specified cutoffs. It also provides optional visualization tools such as volcano plots and heatmaps.
   \item
-    \texttt{get\_cor()}: calculate and visualize the correlation between two variables in a dataset. It provides options to scale the data, handle missing values, and incorporate additional data. The function supports various correlation methods. It generates a correlation plot with optional subtypes or categories, including a regression line.
+    \textbf{get\_cor()}: calculate and visualize the correlation between two variables in a dataset. It provides options to scale the data, handle missing values, and incorporate additional data. The function supports various correlation methods. It generates a correlation plot with optional subtypes or categories, including a regression line.
   \item
-    \texttt{get\_cor\_matrix()}: calculate and visualize the correlation matrix between two sets of variables in a dataset. It provides flexibility in defining correlation methods, handling missing values, and incorporating additional data. The function supports various correlation methods, such as Pearson correlation, and displays the correlation result in a customizable plot.
+    \textbf{get\_cor\_matrix()}: calculate and visualize the correlation matrix between two sets of variables in a dataset. It provides flexibility in defining correlation methods, handling missing values, and incorporating additional data. The function supports various correlation methods, such as Pearson correlation, and displays the correlation result in a customizable plot.
   \item
-    \texttt{roc\_time()}: generate a Receiver Operating Characteristic (ROC) plot over time to assess the predictive performance of one or more variables in survival analysis. It calculates the Area Under the Curve (AUC) for each specified time point and variable combination, and creates a multi-line ROC plot with corresponding AUC values annotated.
+    \textbf{roc\_time()}: generate a Receiver Operating Characteristic (ROC) plot over time to assess the predictive performance of one or more variables in survival analysis. It calculates the Area Under the Curve (AUC) for each specified time point and variable combination, and creates a multi-line ROC plot with corresponding AUC values annotated.
   \item
-    \texttt{sig\_box()}: generate a boxplot with optional statistical comparisons. It takes in various parameters such as data, signature, variable, and more to customize the plot. It can be used to visualize and analyze data in a Seurat object or any other data frame.
+    \textbf{sig\_box()}: generate a boxplot with optional statistical comparisons. It takes in various parameters such as data, signature, variable, and more to customize the plot. It can be used to visualize and analyze data in a Seurat object or any other data frame.
   \item
-    \texttt{sig\_heatmap()}: generate a heatmap plot based on input data, grouping variables, and optional conditions. The function allows customization of various parameters such as palette selection, scaling, color boxes, plot dimensions, and more. It provides flexibility in visualizing relationships between variables and groups in a concise and informative manner.
+    \textbf{sig\_heatmap()}: generate a heatmap plot based on input data, grouping variables, and optional conditions. The function allows customization of various parameters such as palette selection, scaling, color boxes, plot dimensions, and more. It provides flexibility in visualizing relationships between variables and groups in a concise and informative manner.
   \item
-    \texttt{sig\_forest()}: create a forest plot for visualizing survival analysis results generated by ``batch\_surv''.
+    \textbf{sig\_forest()}: create a forest plot for visualizing survival analysis results generated by ``batch\_surv''.
   \item
-    \texttt{sig\_roc()}: plot multiple ROC curves in a single graph, facilitating the comparison of different variables in terms of their ability to predict a binary response.
+    \textbf{sig\_roc()}: plot multiple ROC curves in a single graph, facilitating the comparison of different variables in terms of their ability to predict a binary response.
   \item
-    \texttt{sig\_surv\_plot()}: generat multiple Kaplan-Meier (KM) survival plots for a given signature or gene. It allows for detailed customization and is structured to handle various aspects of survival analysis.
+    \textbf{sig\_surv\_plot()}: generat multiple Kaplan-Meier (KM) survival plots for a given signature or gene. It allows for detailed customization and is structured to handle various aspects of survival analysis.
   \item
-    \texttt{find\_markers\_in\_bulk()}: find relevant results from the given gene expression data and meta information. It leverages the ``Seurat'' package to identify significant markers across multiple groups within the given data. The supported methods for comparison include ``bootstrap'', ``delong'' and ``venkatraman''.
+    \textbf{find\_markers\_in\_bulk()}: find relevant results from the given gene expression data and meta information. It leverages the ``Seurat'' package to identify significant markers across multiple groups within the given data. The supported methods for comparison include ``bootstrap'', ``delong'' and ``venkatraman''.
   \end{itemize}
 \item
   \textbf{Signature Associated Mutation Module: identify and analyze mutations relevant to targeted signatures}
@@ -348,9 +348,9 @@ When the dependent environments are built, users are able to install IOBR from g
   \begin{itemize}
   \tightlist
   \item
-    \texttt{make\_mut\_matrix()}: transform the mutation data with MAF format(contain the columns of gene ID and the corresponding gene alterations which including SNP, indel and frameshift) into a mutation matrix in a suitable manner for further investigating signature relevant mutations.
+    \textbf{make\_mut\_matrix()}: transform the mutation data with MAF format(contain the columns of gene ID and the corresponding gene alterations which including SNP, indel and frameshift) into a mutation matrix in a suitable manner for further investigating signature relevant mutations.
   \item
-    \texttt{find\_mutations()}: identify mutations associated with a distinct phenotype or signature. The function conducts the Cuzick test, Wilcoxon test, or both (when the method is set to ``multi''). It generates box plots for the top genes identified through these statistical tests and creates oncoprints to graphically represent the mutation landscape across samples.
+    \textbf{find\_mutations()}: identify mutations associated with a distinct phenotype or signature. The function conducts the Cuzick test, Wilcoxon test, or both (when the method is set to ``multi''). It generates box plots for the top genes identified through these statistical tests and creates oncoprints to graphically represent the mutation landscape across samples.
   \end{itemize}
 \item
   \textbf{Model Construction Module: feature selection and fast model construct to predict clinical phenotype}
@@ -358,18 +358,233 @@ When the dependent environments are built, users are able to install IOBR from g
   \begin{itemize}
   \tightlist
   \item
-    \texttt{BinomialModel()}: select features and construct a model to predict a binary phenotype. It accepts a dataset (x and y) as input and performs data processing, splitting into training and testing sets, and model fitting using both Lasso and Ridge regression techniques.
+    \textbf{BinomialModel()}: select features and construct a model to predict a binary phenotype. It accepts a dataset (x and y) as input and performs data processing, splitting into training and testing sets, and model fitting using both Lasso and Ridge regression techniques.
   \item
-    \texttt{PrognosticMode()}: select features and construct a model to predict clinical survival outcome. It primarily focuses on developing Lasso and Ridge regression models within the Cox proportional hazards framework.
+    \textbf{PrognosticMode()}: select features and construct a model to predict clinical survival outcome. It primarily focuses on developing Lasso and Ridge regression models within the Cox proportional hazards framework.
   \item
-    \texttt{combine\_pd\_eset()}: combine the expression set (eset) with phenotype data (pdata).
+    \textbf{combine\_pd\_eset()}: combine the expression set (eset) with phenotype data (pdata).
   \item
-    \texttt{percent\_bar\_plot()}: create a percent bar plot based on the given data. The input is a data frame, with x and y-axis variables specified.
+    \textbf{percent\_bar\_plot()}: create a percent bar plot based on the given data. The input is a data frame, with x and y-axis variables specified.
   \end{itemize}
 \end{itemize}
 
 \hypertarget{current-working-environment}{%
 \section{Current working environment}\label{current-working-environment}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(IOBR)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: tibble
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'tibble' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: dplyr
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: ggplot2
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: ggpubr
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'ggpubr' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: survival
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: ComplexHeatmap
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: grid
+\end{verbatim}
+
+\begin{verbatim}
+## ========================================
+## ComplexHeatmap version 2.15.4
+## Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
+## Github page: https://github.com/jokergoo/ComplexHeatmap
+## Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
+## 
+## If you use it in published research, please cite either one:
+## - Gu, Z. Complex Heatmap Visualization. iMeta 2022.
+## - Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional 
+##     genomic data. Bioinformatics 2016.
+## 
+## 
+## The new InteractiveComplexHeatmap package can directly export static 
+## complex heatmaps into an interactive Shiny app with zero effort. Have a try!
+## 
+## This message can be suppressed by:
+##   suppressPackageStartupMessages(library(ComplexHeatmap))
+## ========================================
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: tidyHeatmap
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'tidyHeatmap' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## ========================================
+## tidyHeatmap version 1.8.1
+## If you use tidyHeatmap in published research, please cite:
+## 1) Mangiola et al. tidyHeatmap: an R package for modular heatmap production 
+##   based on tidy principles. JOSS 2020.
+## 2) Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional 
+##   genomic data. Bioinformatics 2016.
+## This message can be suppressed by:
+##   suppressPackageStartupMessages(library(tidyHeatmap))
+## ========================================
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'tidyHeatmap'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:stats':
+## 
+##     heatmap
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: clusterProfiler
+\end{verbatim}
+
+\begin{verbatim}
+## 
+\end{verbatim}
+
+\begin{verbatim}
+## Registered S3 methods overwritten by 'treeio':
+##   method              from    
+##   MRCA.phylo          tidytree
+##   MRCA.treedata       tidytree
+##   Nnode.treedata      tidytree
+##   Ntip.treedata       tidytree
+##   ancestor.phylo      tidytree
+##   ancestor.treedata   tidytree
+##   child.phylo         tidytree
+##   child.treedata      tidytree
+##   full_join.phylo     tidytree
+##   full_join.treedata  tidytree
+##   groupClade.phylo    tidytree
+##   groupClade.treedata tidytree
+##   groupOTU.phylo      tidytree
+##   groupOTU.treedata   tidytree
+##   is.rooted.treedata  tidytree
+##   nodeid.phylo        tidytree
+##   nodeid.treedata     tidytree
+##   nodelab.phylo       tidytree
+##   nodelab.treedata    tidytree
+##   offspring.phylo     tidytree
+##   offspring.treedata  tidytree
+##   parent.phylo        tidytree
+##   parent.treedata     tidytree
+##   root.treedata       tidytree
+##   rootnode.phylo      tidytree
+##   sibling.phylo       tidytree
+\end{verbatim}
+
+\begin{verbatim}
+## clusterProfiler v4.4.4  For help: https://yulab-smu.top/biomedical-knowledge-mining-book/
+## 
+## If you use clusterProfiler in published research, please cite:
+## T Wu, E Hu, S Xu, M Chen, P Guo, Z Dai, T Feng, L Zhou, W Tang, L Zhan, X Fu, S Liu, X Bo, and G Yu. clusterProfiler 4.0: A universal enrichment tool for interpreting omics data. The Innovation. 2021, 2(3):100141
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'clusterProfiler'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:stats':
+## 
+##     filter
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: patchwork
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'patchwork' was built under R version 4.2.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: survminer
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'survminer'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:survival':
+## 
+##     myeloma
+\end{verbatim}
+
+\begin{verbatim}
+## ==========================================================================
+##   IOBR v0.99.8  Immuno-Oncology Biological Research 
+##   For Tutorial: https://iobr.github.io/book/
+##   For Help: https://github.com/IOBR/IOBR/issues
+## 
+##  If you use IOBR in published research, please cite:
+##  DQ Zeng, ZL Ye, RF Sheng, GC Yu, Y Xiong …, WJ Liao*.
+##  IOBR: Multi-omics Immuno-Oncology Biological Research to decode 
+##   tumor microenvironment and signatures. Frontiers in Immunology. 12:687975,(2021). 
+##  DOI: 10.3389/fimmu.2021.687975
+##  Higly Cited Paper and Hot Paper of WOS
+## ==========================================================================
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -392,13 +607,100 @@ When the dependent environments are built, users are able to install IOBR from g
 ## [5] LC_TIME=Chinese (Simplified)_China.utf8    
 ## 
 ## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## [1] grid      stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+##  [1] IOBR_0.99.8           survminer_0.4.9       patchwork_1.1.3      
+##  [4] clusterProfiler_4.4.4 tidyHeatmap_1.8.1     ComplexHeatmap_2.15.4
+##  [7] survival_3.3-1        ggpubr_0.6.0          ggplot2_3.4.4        
+## [10] dplyr_1.1.2           tibble_3.2.1         
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_4.2.0    fastmap_1.1.1     bookdown_0.36     cli_3.6.1        
-##  [5] htmltools_0.5.6.1 tools_4.2.0       rstudioapi_0.15.0 yaml_2.3.7       
-##  [9] rmarkdown_2.25    knitr_1.45        digest_0.6.29     xfun_0.40        
-## [13] rlang_1.1.1       evaluate_0.22
+##   [1] utf8_1.2.2                  tidyselect_1.2.0           
+##   [3] RSQLite_2.3.2               AnnotationDbi_1.58.0       
+##   [5] BiocParallel_1.30.3         lpSolve_5.6.19             
+##   [7] scatterpie_0.2.1            ScaledMatrix_1.4.1         
+##   [9] munsell_0.5.0               codetools_0.2-19           
+##  [11] preprocessCore_1.58.0       withr_2.5.2                
+##  [13] colorspace_2.0-3            GOSemSim_2.22.0            
+##  [15] Biobase_2.56.0              limSolve_1.5.7             
+##  [17] knitr_1.45                  rstudioapi_0.15.0          
+##  [19] SingleCellExperiment_1.18.1 stats4_4.2.0               
+##  [21] ggsignif_0.6.4              DOSE_3.22.1                
+##  [23] MatrixGenerics_1.8.1        GenomeInfoDbData_1.2.8     
+##  [25] KMsurv_0.1-5                polyclip_1.10-6            
+##  [27] bit64_4.0.5                 farver_2.1.1               
+##  [29] rhdf5_2.40.0                downloader_0.4             
+##  [31] vctrs_0.6.4                 treeio_1.21.2              
+##  [33] generics_0.1.3              xfun_0.40                  
+##  [35] R6_2.5.1                    doParallel_1.0.17          
+##  [37] GenomeInfoDb_1.34.4         clue_0.3-61                
+##  [39] graphlayouts_1.0.1          rsvd_1.0.5                 
+##  [41] locfit_1.5-9.8              rhdf5filters_1.8.0         
+##  [43] bitops_1.0-7                cachem_1.0.6               
+##  [45] fgsea_1.22.0                gridGraphics_0.5-1         
+##  [47] DelayedArray_0.22.0         scales_1.2.1               
+##  [49] ggraph_2.1.0                enrichplot_1.16.2          
+##  [51] gtable_0.3.4                beachmat_2.12.0            
+##  [53] tidygraph_1.2.3             rlang_1.1.1                
+##  [55] genefilter_1.78.0           GlobalOptions_0.1.2        
+##  [57] splines_4.2.0               rstatix_0.7.2              
+##  [59] lazyeval_0.2.2              broom_1.0.5                
+##  [61] yaml_2.3.7                  reshape2_1.4.4             
+##  [63] abind_1.4-5                 backports_1.4.1            
+##  [65] qvalue_2.28.0               tools_4.2.0                
+##  [67] bookdown_0.36               ggplotify_0.1.2            
+##  [69] RColorBrewer_1.1-3          proxy_0.4-27               
+##  [71] BiocGenerics_0.42.0         Rcpp_1.0.9                 
+##  [73] plyr_1.8.7                  sparseMatrixStats_1.8.0    
+##  [75] zlibbioc_1.42.0             purrr_1.0.2                
+##  [77] RCurl_1.98-1.7              GetoptLong_1.0.5           
+##  [79] viridis_0.6.4               cowplot_1.1.1              
+##  [81] S4Vectors_0.34.0            zoo_1.8-10                 
+##  [83] SummarizedExperiment_1.26.1 ggrepel_0.9.1              
+##  [85] cluster_2.1.3               fs_1.5.2                   
+##  [87] magrittr_2.0.3              data.table_1.14.2          
+##  [89] DO.db_2.9                   circlize_0.4.15            
+##  [91] matrixStats_0.62.0          GSVA_1.44.5                
+##  [93] evaluate_0.22               xtable_1.8-4               
+##  [95] XML_3.99-0.14               IRanges_2.30.0             
+##  [97] gridExtra_2.3               shape_1.4.6                
+##  [99] compiler_4.2.0              crayon_1.5.2               
+## [101] shadowtext_0.1.2            htmltools_0.5.6.1          
+## [103] ggfun_0.1.3                 tidyr_1.3.0                
+## [105] geneplotter_1.74.0          aplot_0.2.2                
+## [107] DBI_1.1.3                   tweenr_2.0.2               
+## [109] corrplot_0.92               MASS_7.3-60                
+## [111] Matrix_1.6-3                car_3.1-2                  
+## [113] cli_3.6.1                   quadprog_1.5-8             
+## [115] parallel_4.2.0              igraph_1.3.2               
+## [117] GenomicRanges_1.48.0        pkgconfig_2.0.3            
+## [119] km.ci_0.5-6                 foreach_1.5.2              
+## [121] ggtree_3.4.4                annotate_1.74.0            
+## [123] XVector_0.36.0              yulab.utils_0.1.0          
+## [125] stringr_1.5.0               digest_0.6.29              
+## [127] graph_1.74.0                Biostrings_2.64.0          
+## [129] rmarkdown_2.25              fastmatch_1.1-4            
+## [131] survMisc_0.5.6              tidytree_0.4.5             
+## [133] dendextend_1.17.1           DelayedMatrixStats_1.18.2  
+## [135] GSEABase_1.58.0             rjson_0.2.21               
+## [137] lifecycle_1.0.3             nlme_3.1-157               
+## [139] jsonlite_1.8.0              Rhdf5lib_1.18.2            
+## [141] carData_3.0-5               viridisLite_0.4.2          
+## [143] limma_3.52.4                fansi_1.0.3                
+## [145] pillar_1.9.0                lattice_0.20-45            
+## [147] KEGGREST_1.36.3             fastmap_1.1.1              
+## [149] httr_1.4.7                  GO.db_3.15.0               
+## [151] glue_1.6.2                  png_0.1-7                  
+## [153] iterators_1.0.14            glmnet_4.1-8               
+## [155] bit_4.0.5                   HDF5Array_1.24.2           
+## [157] ggforce_0.4.1               class_7.3-22               
+## [159] stringi_1.7.6               blob_1.2.4                 
+## [161] BiocSingular_1.12.0         DESeq2_1.36.0              
+## [163] memoise_2.0.1               irlba_2.3.5                
+## [165] tidyverse_2.0.0             e1071_1.7-13               
+## [167] ape_5.6-2
 \end{verbatim}
 
 \hypertarget{rna-data-preprocessing}{%
@@ -550,9 +852,85 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 \hypertarget{download-rnaseq-data-using-ucscxenatools}{%
 \section{\texorpdfstring{Download RNAseq data using \texttt{UCSCXenaTools}}{Download RNAseq data using UCSCXenaTools}}\label{download-rnaseq-data-using-ucscxenatools}}
 
+In this section, we are going to download RNA-seq data from The Cancer Genome Atlas (TCGA) for applying the downstream analysis workflow of \textbf{IOBR}. Particularly, we will use the convenient R package \href{https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html}{\textbf{UCSCXenaTools}} to query and download the RNA-seq data of TCGA stomach cancer cohort.
+
+Use the following code to check and install \textbf{UCSCXenaTools}.
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{requireNamespace}\NormalTok{(}\StringTok{"UCSCXenaTools"}\NormalTok{, }\AttributeTok{quietly =} \ConstantTok{TRUE}\NormalTok{))   BiocManager}\SpecialCharTok{::}\FunctionTok{install}\NormalTok{(}\StringTok{"UCSCXenaTools"}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{requireNamespace}\NormalTok{(}\StringTok{"UCSCXenaTools"}\NormalTok{, }\AttributeTok{quietly =} \ConstantTok{TRUE}\NormalTok{))  }
+\NormalTok{  BiocManager}\SpecialCharTok{::}\FunctionTok{install}\NormalTok{(}\StringTok{"UCSCXenaTools"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{UCSCXenaTools} provides an R interface to access public cancer datasets from \href{https://xenabrowser.net/datapages/}{UCSC Xena data hubs}, including multiple pan-cancer studies like TCGA and PCAWG. You can directly access information of all datasets in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(UCSCXenaTools)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'UCSCXenaTools' was built under R version 4.2.1
+\end{verbatim}
+
+\begin{verbatim}
+## =========================================================================================
+## UCSCXenaTools version 1.4.8
+## Project URL: https://github.com/ropensci/UCSCXenaTools
+## Usages: https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html
+## 
+## If you use it in published research, please cite:
+## Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data
+##   from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq.
+##   Journal of Open Source Software, 4(40), 1627, https://doi.org/10.21105/joss.01627
+## =========================================================================================
+##                               --Enjoy it--
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'UCSCXenaTools'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:Biobase':
+## 
+##     samples
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(XenaData)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 17
+##   XenaHosts XenaHostNames XenaCohorts XenaDatasets SampleCount DataSubtype Label
+##   <chr>     <chr>         <chr>       <chr>              <int> <chr>       <chr>
+## 1 https://~ publicHub     Breast Can~ ucsfNeve_pu~          51 gene expre~ Neve~
+## 2 https://~ publicHub     Breast Can~ ucsfNeve_pu~          57 phenotype   Phen~
+## 3 https://~ publicHub     Glioma (Ko~ kotliarov20~         194 copy number Kotl~
+## 4 https://~ publicHub     Glioma (Ko~ kotliarov20~         194 phenotype   Phen~
+## 5 https://~ publicHub     Lung Cance~ weir2007_pu~         383 copy number CGH  
+## 6 https://~ publicHub     Lung Cance~ weir2007_pu~         383 phenotype   Phen~
+## # i 10 more variables: Type <chr>, AnatomicalOrigin <chr>, SampleType <chr>,
+## #   Tags <chr>, ProbeMap <chr>, LongTitle <chr>, Citation <chr>, Version <chr>,
+## #   Unit <chr>, Platform <chr>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# You can use view(XenaData) to find your dataset of interest}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{UCSCXenaTools} provides \href{https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html\#workflow}{workflow functions} to generate object, filter, query, download and load the dataset(s) of interest. The following code show a standardized \textbf{UCSCXenaTools} data workflow to query the data from UCSC Xena data hub and load it into R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(UCSCXenaTools)}
 \CommentTok{\# }\AlertTok{NOTE}\CommentTok{: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.}
 \NormalTok{eset\_stad}\OtherTok{\textless{}{-}}\FunctionTok{XenaGenerate}\NormalTok{(}\AttributeTok{subset =}\NormalTok{ XenaCohorts }\SpecialCharTok{==}\StringTok{"GDC TCGA Stomach Cancer (STAD)"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
@@ -561,6 +939,15 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
   \FunctionTok{XenaDownload}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{XenaPrepare}\NormalTok{()}
 \NormalTok{eset\_stad[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+As the metadata of this dataset have been stored in the \texttt{XeneData} data.frame. You can easily recheck the dataset with code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(XenaData, XenaDatasets }\SpecialCharTok{==} \StringTok{"TCGA{-}STAD.htseq\_counts.tsv"}\NormalTok{) }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{as.list}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -595,7 +982,7 @@ Take ACRG microarray data for example
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-9-1} \end{center}
+\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-12-1} \end{center}
 
 \begin{verbatim}
 ## [1] "GSM1523817" "GSM1523858" "GSM1523984" "GSM1523988" "GSM1524030"
@@ -614,7 +1001,7 @@ Removing potential outlier samples
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{data}\NormalTok{(}\StringTok{"pdata\_acrg"}\NormalTok{)}
+\FunctionTok{data}\NormalTok{(}\StringTok{"pdata\_acrg"}\NormalTok{, }\AttributeTok{package =} \StringTok{"IOBR"}\NormalTok{)}
 \NormalTok{res}\OtherTok{\textless{}{-}} \FunctionTok{iobr\_pca}\NormalTok{(}\AttributeTok{data       =}\NormalTok{ eset1,}
               \AttributeTok{is.matrix   =} \ConstantTok{TRUE}\NormalTok{,}
               \AttributeTok{scale       =} \ConstantTok{TRUE}\NormalTok{,}
@@ -636,7 +1023,7 @@ Removing potential outlier samples
 ## 
 ##       CIN       EBV       EMT        GS       MSI MSS/TP53- MSS/TP53+ 
 ##         0         0        42         0        68       106        79 
-## [1] ">>-- colors for PCA: "
+## [1] ">>== colors for group: "
 \end{verbatim}
 
 \begin{Shaded}
@@ -645,7 +1032,7 @@ Removing potential outlier samples
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-11-1} \end{center}
+\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
 \hypertarget{batch-effect-correction}{%
 \section{Batch effect correction}\label{batch-effect-correction}}
@@ -717,14 +1104,14 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 ## 
 ## eset1 eset2 
 ##   295    70 
-## [1] ">>-- colors for PCA: "
+## [1] ">>== colors for group: "
 ## 
 ## eset1 eset2 
 ##   295    70 
-## [1] ">>-- colors for PCA: "
+## [1] ">>== colors for group: "
 \end{verbatim}
 
-\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-14-1} \end{center}
+\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-17-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -819,18 +1206,18 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 ## 
 ## eset1 eset2 
 ##    10     5 
-## [1] ">>-- colors for PCA: "
+## [1] ">>== colors for group: "
 ## 
 ## eset1 eset2 
 ##    10     5 
-## [1] ">>-- colors for PCA: "
+## [1] ">>== colors for group: "
 ## 
 ## eset1 eset2 
 ##    10     5 
-## [1] ">>-- colors for PCA: "
+## [1] ">>== colors for group: "
 \end{verbatim}
 
-\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-15-1} \end{center}
+\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-18-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1192,7 +1579,7 @@ This method is appropriate for gene sets that contain a large number of genes (\
 \end{Highlighting}
 \end{Shaded}
 
-The same SIGNATURE in this case will be scored using all three methods simultaneously.
+The same signature in this case will be scored using all three methods simultaneously.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1206,6 +1593,17 @@ The \texttt{select\_method()} function allows the user to extract data using var
 \begin{Highlighting}[]
 \NormalTok{sig\_tme\_pca }\OtherTok{\textless{}{-}} \FunctionTok{select\_method}\NormalTok{(}\AttributeTok{data =}\NormalTok{ sig\_tme, }\AttributeTok{method =} \StringTok{"pca"}\NormalTok{)}
 \FunctionTok{colnames}\NormalTok{(sig\_tme\_pca)[}\FunctionTok{grep}\NormalTok{(}\FunctionTok{colnames}\NormalTok{(sig\_tme\_pca), }\AttributeTok{pattern =} \StringTok{"CD\_8\_T\_effector"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{classification-of-signatures}{%
+\section{Classification of signatures}\label{classification-of-signatures}}
+
+As more signatures related to the tumour microenvironment were collected in IOBR, and we may continue to add gene signatures related to the tumour microenvironment in the future, we have made a basic classification of these signatures by combining them with our analysis experience. Users can compare the signatures in the same group during the analysis process to improve the reliability and consistency of the conclusions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sig\_group[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{8}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2519,13 +2917,15 @@ Identifying genes or signatures related to the target signatures
 \end{Shaded}
 
 \begin{verbatim}
-##                               sig_names      p.value   statistic
-## CD_8_T_effector.rho     CD_8_T_effector 4.852189e-01 -0.04044756
-## DDR.rho                             DDR 1.678463e-24 -0.54394827
-## APM.rho                             APM 1.681208e-04 -0.21557706
-## Immune_Checkpoint.rho Immune_Checkpoint 6.470746e-01 -0.02653896
-## CellCycle_Reg.rho         CellCycle_Reg 4.465875e-01 -0.04410582
-## Pan_F_TBRs.rho               Pan_F_TBRs 5.989600e-31  0.60185558
+## # A tibble: 6 x 6
+##   sig_names                         p.value statistic    p.adj log10pvalue stars
+##   <chr>                               <dbl>     <dbl>    <dbl>       <dbl> <fct>
+## 1 TMEscoreB_CIR                    8.89e-42     0.678 2.27e-39        41.1 **** 
+## 2 Glycine__Serine_and_Threonine_M~ 7.49e-40    -0.666 9.54e-38        39.1 **** 
+## 3 Ether_Lipid_Metabolism           3.84e-39     0.662 3.27e-37        38.4 **** 
+## 4 MDSC_Peng_et_al                  1.13e-38     0.659 7.21e-37        37.9 **** 
+## 5 Glycerophospholipid_Metabolism   8.72e-38    -0.653 4.44e-36        37.1 **** 
+## 6 TIP_Release_of_cancer_cell_anti~ 2.32e-37    -0.650 9.86e-36        36.6 ****
 \end{verbatim}
 
 \begin{Shaded}
@@ -3546,7 +3946,7 @@ Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gas
 ## Step-1: Expression data preprocessing...
 ## Step-2: TME deconvolution...
 ## Step-3: Predicting TME phenotypes...
-## [20:18:26] WARNING: src/learner.cc:1203: 
+## [21:37:33] WARNING: src/learner.cc:1203: 
 ##   If you are loading a serialized model (like pickle in Python, RDS in R) generated by
 ##   older XGBoost, please export the model by calling `Booster.save_model` from that version
 ##   first, then load it back in current version. See:
@@ -3555,8 +3955,8 @@ Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gas
 ## 
 ##   for more details about differences between saving model and serializing.
 ## 
-## [20:18:26] WARNING: src/learner.cc:888: Found JSON model saved before XGBoost 1.6, please save the model using current version again. The support for old JSON model will be discontinued in XGBoost 2.3.
-## [20:18:26] WARNING: src/learner.cc:553: 
+## [21:37:33] WARNING: src/learner.cc:888: Found JSON model saved before XGBoost 1.6, please save the model using current version again. The support for old JSON model will be discontinued in XGBoost 2.3.
+## [21:37:33] WARNING: src/learner.cc:553: 
 ##   If you are loading a serialized model (like pickle in Python, RDS in R) generated by
 ##   older XGBoost, please export the model by calling `Booster.save_model` from that version
 ##   first, then load it back in current version. See:
@@ -4260,20 +4660,60 @@ Zeng D, Yu Y, Qiu W, Mao Q, \ldots, Zhang K, Liao W; Tumor microenvironment immu
 \hypertarget{genomic-data-prepare}{%
 \section{Genomic data prepare}\label{genomic-data-prepare}}
 
-MAF data was download from \href{https://xenabrowser.net/datapages/}{UCSC Xena hub}
+In this section, we are going to use the MAF data of TCGA-STAD cohort as an example dataset. This dataset could be found in multiple places, here we show two ways to get it.
+
+\hypertarget{using-tcgabiolinks-to-download-genomic-data}{%
+\subsection{Using TCGAbiolinks to download genomic data}\label{using-tcgabiolinks-to-download-genomic-data}}
+
+R Bioconductor package \textbf{\href{https://bioconductor.org/packages/TCGAbiolinks/}{TCGAbiolinks}} provides an R interface of \href{https://portal.gdc.cancer.gov/}{GDC data portal}, which stores updating TCGA data. You can check and install this package with the following code.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{requireNamespace}\NormalTok{(}\StringTok{"TCGAbiolinks"}\NormalTok{, }\AttributeTok{quietly =} \ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{  BiocManager}\SpecialCharTok{::}\FunctionTok{install}\NormalTok{(}\StringTok{"TCGAbiolinks"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Then you can query, download and prepare the required dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(TCGAbiolinks)}
+\NormalTok{query }\OtherTok{\textless{}{-}} \FunctionTok{GDCquery}\NormalTok{(}
+  \AttributeTok{project =} \StringTok{"TCGA{-}STAD"}\NormalTok{, }
+  \AttributeTok{data.category =} \StringTok{"Simple Nucleotide Variation"}\NormalTok{, }
+  \AttributeTok{access =} \StringTok{"open"}\NormalTok{,}
+  \AttributeTok{data.type =} \StringTok{"Masked Somatic Mutation"}\NormalTok{, }
+  \AttributeTok{workflow.type =} \StringTok{"Aliquot Ensemble Somatic Variant Merging and Masking"}
+\NormalTok{)}
+\FunctionTok{GDCdownload}\NormalTok{(query)}
+\NormalTok{maf }\OtherTok{\textless{}{-}} \FunctionTok{GDCprepare}\NormalTok{(query)}
+\end{Highlighting}
+\end{Shaded}
+
+This \texttt{maf} object is a \texttt{data.frame}, you can use \texttt{read.maf()} from R package \textbf{\href{https://github.com/PoisonAlien/maftools}{Maftools}} to convert it to a MAF object.
+
 In this example, we used the maf file of TCGA-STAD to extract the SNPs in it,and then transformed it into a non-negative matrix.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{maf\_file }\OtherTok{\textless{}{-}}\StringTok{"./TCGA.STAD.mutect.c06465a3{-}50e7{-}46f7{-}b2dd{-}7bd654ca206b.DR{-}10.0.somatic.maf"}
-\NormalTok{mut\_list }\OtherTok{\textless{}{-}} \FunctionTok{make\_mut\_matrix}\NormalTok{(}\AttributeTok{maf =}\NormalTok{ maf\_file, }\AttributeTok{isTCGA   =}\NormalTok{ T, }\AttributeTok{category =} \StringTok{"multi"}\NormalTok{)}
+\NormalTok{(}\FunctionTok{load}\NormalTok{(}\StringTok{"TCGA{-}STAD.maf.RData"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## -Reading
+## [1] "maf"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mut\_list }\OtherTok{\textless{}{-}} \FunctionTok{make\_mut\_matrix}\NormalTok{(}\AttributeTok{maf =}\NormalTok{ maf, }\AttributeTok{isTCGA   =}\NormalTok{ T, }\AttributeTok{category =} \StringTok{"multi"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
 ## -Validating
-## -Silent variants: 70967 
+## -Silent variants: 45460 
 ## -Summarizing
 ## --Possible FLAGS among top ten genes:
 ##   TTN
@@ -4282,15 +4722,15 @@ In this example, we used the maf file of TCGA-STAD to extract the SNPs in it,and
 ##   FLG
 ## -Processing clinical data
 ## --Missing clinical data
-## -Finished in 15.0s elapsed (14.7s cpu) 
+## -Finished in 11.8s elapsed (11.0s cpu) 
 ##        Frame_Shift_Del        Frame_Shift_Ins           In_Frame_Del 
-##                  18418                   4461                    692 
+##                  21547                   4526                   1196 
 ##           In_Frame_Ins      Missense_Mutation      Nonsense_Mutation 
-##                    268                 109669                   6011 
+##                    106                 102137                   5669 
 ##       Nonstop_Mutation            Splice_Site Translation_Start_Site 
-##                    107                   2445                    106 
-##    DEL    INS    SNP 
-##  19387   4900 117890
+##                    117                   2242                    107 
+##    DEL    INS    ONP    SNP 
+##  22997   4675     10 109965
 \end{verbatim}
 
 \begin{Shaded}
@@ -4311,6 +4751,7 @@ The microenvironmental data from the TCGA-STAD expression matrix was merged. The
                     \AttributeTok{signature\_matrix    =}\NormalTok{ tcga\_stad\_sig, }
                     \AttributeTok{id\_signature\_matrix =} \StringTok{"ID"}\NormalTok{, }
                     \AttributeTok{signature           =} \StringTok{"CD\_8\_T\_effector"}\NormalTok{,}
+                    \AttributeTok{palette             =} \StringTok{"nrc"}\NormalTok{,}
                     \AttributeTok{min\_mut\_freq        =} \FloatTok{0.01}\NormalTok{, }
                     \AttributeTok{plot                =} \ConstantTok{TRUE}\NormalTok{, }
                     \AttributeTok{jitter              =} \ConstantTok{TRUE}\NormalTok{, }
@@ -4321,31 +4762,31 @@ The microenvironmental data from the TCGA-STAD expression matrix was merged. The
 \begin{verbatim}
 ## [1] ">>>> Result of Cuzick Test"
 ##             p.value  names statistic adjust_pvalue
-## PIK3CA 3.148160e-09 PIK3CA  5.923680  1.574080e-06
-## SPEG   9.070928e-05   SPEG  3.914187  2.267732e-02
-## TCHH   4.409469e-04   TCHH  3.514281  5.740100e-02
-## PLXNA4 5.420662e-04 PLXNA4  3.459059  5.740100e-02
-## ARID1A 5.805905e-04 ARID1A  3.440523  5.740100e-02
-## WDFY3  6.888120e-04  WDFY3  3.393994  5.740100e-02
-## GTF3C1 8.120095e-04 GTF3C1  3.348668  5.800068e-02
-## DMD    1.675467e-03    DMD  3.142439  6.972915e-02
-## CR1    1.775997e-03    CR1  3.125340  6.972915e-02
-## EP300  2.042083e-03  EP300  3.084043  6.972915e-02
+## PIK3CA 6.279087e-10 PIK3CA  6.183261  3.139543e-07
+## PLXNA4 8.196539e-05 PLXNA4  3.938580  2.049135e-02
+## DMD    3.514677e-04    DMD  3.574075  3.882570e-02
+## SPEG   3.665757e-04   SPEG  3.563047  3.882570e-02
+## AHNAK2 3.882570e-04 AHNAK2  3.547940  3.882570e-02
+## TCHH   6.571311e-04   TCHH  3.406867  5.476093e-02
+## ABCC9  1.043516e-03  ABCC9  3.278524  7.453684e-02
+## ANK3   1.470480e-03   ANK3  3.180447  7.713409e-02
+## WDFY3  1.690248e-03  WDFY3  3.139867  7.713409e-02
+## LRP1   1.762002e-03   LRP1  3.127666  7.713409e-02
 \end{verbatim}
 
 \begin{verbatim}
 ## [1] ">>> Result of Wilcoxon test (top 10)"
 ##             p.value  names statistic adjust_pvalue
-## PIK3CA 1.921035e-10 PIK3CA      4125  9.605174e-08
-## TCHH   1.961642e-05   TCHH      3312  4.904106e-03
-## SPEG   3.532750e-05   SPEG      1947  5.887916e-03
-## LRP1   7.511741e-05   LRP1      2649  9.389676e-03
-## WDFY3  1.257659e-04  WDFY3      2964  1.257659e-02
-## ARID1A 2.468609e-04 ARID1A      4878  2.057174e-02
-## PLXNA4 4.215809e-04 PLXNA4      3638  3.011292e-02
-## ANK3   6.399572e-04   ANK3      4446  3.933979e-02
-## DMD    7.364591e-04    DMD      5311  3.933979e-02
-## PLEC   8.026240e-04   PLEC      5562  3.933979e-02
+## PIK3CA 3.045532e-11 PIK3CA      4006  1.522766e-08
+## TCHH   2.585594e-05   TCHH      2929  6.463985e-03
+## PLXNA4 5.257043e-05 PLXNA4      2904  7.754311e-03
+## LRP1   6.203449e-05   LRP1      2330  7.754311e-03
+## RNF213 1.066555e-04 RNF213      3827  1.066555e-02
+## SPEG   1.809850e-04   SPEG      1854  1.439761e-02
+## WDFY3  2.420595e-04  WDFY3      2626  1.439761e-02
+## DMD    2.430706e-04    DMD      4995  1.439761e-02
+## ANK3   2.591569e-04   ANK3      3845  1.439761e-02
+## AHNAK2 3.456706e-04 AHNAK2      4828  1.728353e-02
 \end{verbatim}
 
 \begin{verbatim}
@@ -4377,7 +4818,7 @@ The microenvironmental data from the TCGA-STAD expression matrix was merged. The
 
 }
 
-\caption{OncoPrint}\label{fig:unnamed-chunk-4}
+\caption{OncoPrint}\label{fig:unnamed-chunk-6}
 \end{figure}
 
 \hypertarget{boxplot-of-top-10-mutated-genes}{%
@@ -4389,11 +4830,61 @@ The microenvironmental data from the TCGA-STAD expression matrix was merged. The
 
 }
 
-\caption{Top 10 mutated genes}\label{fig:unnamed-chunk-5}
+\caption{Top 10 mutated genes}\label{fig:unnamed-chunk-7}
 \end{figure}
+
+\hypertarget{other-methods-to-obtaind-genomic-data}{%
+\section{Other methods to obtaind genomic data}\label{other-methods-to-obtaind-genomic-data}}
+
+\hypertarget{using-tcgamutations}{%
+\subsection{Using TCGAmutations}\label{using-tcgamutations}}
+
+As its name, the R package \textbf{\href{https://github.com/PoisonAlien/TCGAmutations}{TCGAmutations}} provides pre-compiled, curated somatic mutations from 33 TCGA cohorts along with relevant clinical information for all sequenced samples. You can install it similar to the \textbf{TCGAbiolinks}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{requireNamespace}\NormalTok{(}\StringTok{"TCGAmutations"}\NormalTok{, }\AttributeTok{quietly =} \ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{  BiocManager}\SpecialCharTok{::}\FunctionTok{install}\NormalTok{(}\StringTok{"PoisonAlien/TCGAmutations"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+It's quite simple to use:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{maf }\OtherTok{=}\NormalTok{ TCGAmutations}\SpecialCharTok{::}\FunctionTok{tcga\_load}\NormalTok{(}\AttributeTok{study =} \StringTok{"STAD"}\NormalTok{)}
+\CommentTok{\# Change \textasciigrave{}source\textasciigrave{} argument to Firehose for MAF files from Broad Firehose}
+\CommentTok{\# maf = TCGAmutations::tcga\_load(study = "STAD", source = "Firehose")}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{using-maftools}{%
+\subsection{Using maftools}\label{using-maftools}}
+
+If you are a user of R package \textbf{\href{https://github.com/PoisonAlien/maftools}{Maftools}}, you can access and load the data in a similar way (because the author of \textbf{TCGAmutations} and \textbf{Maftools} is the same person).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The following github can be changed to gitee}
+\CommentTok{\# it maybe fast in China mainland}
+\NormalTok{maftools}\SpecialCharTok{::}\FunctionTok{tcgaAvailable}\NormalTok{(}\AttributeTok{repo =} \StringTok{"github"}\NormalTok{)}
+\NormalTok{maftools}\SpecialCharTok{::}\FunctionTok{tcgaLoad}\NormalTok{(}\StringTok{"STAD"}\NormalTok{, }\AttributeTok{repo =} \StringTok{"github"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+MAF data transformation
+To prepare the data for the downstream analysis. We need to extract the SNV data in it and transform it into a non-negative matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mut\_list }\OtherTok{\textless{}{-}} \FunctionTok{make\_mut\_matrix}\NormalTok{(}\AttributeTok{maf =}\NormalTok{ maf, }\AttributeTok{isTCGA =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{category =} \StringTok{"multi"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{references-5}{%
 \section{References}\label{references-5}}
+
+Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. Journal of Open Source Software, 4(40), 1627, \url{https://doi.org/10.21105/joss.01627}
 
 Gu, Z. (2022) Complex Heatmap Visualization. iMeta.
 
@@ -4536,6 +5027,419 @@ Cristescu, R., Lee, J., Nebozhyn, M. et al.~Molecular analysis of gastric cancer
 \href{https://cibersort.stanford.edu/}{CIBERSORT}; Newman, A. M., Liu, C. L., Green, M. R., Gentles, A. J., Feng, W., Xu, Y., \ldots{} Alizadeh, A. A. (2015). Robust enumeration of cell subsets from tissue expression profiles. Nature Methods, 12(5), 453--457. \url{https://doi.org/10.1038/nmeth.3337};
 
 Seurat: Hao and Hao et al.~Integrated analysis of multimodal single-cell data. Cell (2021)
+
+\hypertarget{some-tips-about-iobr}{%
+\chapter{\texorpdfstring{\textbf{Some tips about IOBR}}{Some tips about IOBR}}\label{some-tips-about-iobr}}
+
+In this section, we'll cover some of the tips inside the IOBR package in terms of data processing and visualisation.
+
+\hypertarget{loading-packages-8}{%
+\section{Loading packages}\label{loading-packages-8}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(IOBR)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{colour-configuration}{%
+\section{Colour Configuration}\label{colour-configuration}}
+
+\hypertarget{categorical-variable}{%
+\subsection{categorical variable}\label{categorical-variable}}
+
+In IOBR, we created a function for get\_col.~The user can get the colours with some parameters in it. Please refer to the following example. In order to better suit the requirements of the journal, we have provided some of the more commonly used colour schemes. These include \texttt{nrc}, \texttt{jama}, \texttt{aaas}, \texttt{jco}, \texttt{paired1}, \texttt{paired2}, \texttt{paired3}, \texttt{paired4}, \texttt{accent}, \texttt{set2}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols }\OtherTok{\textless{}{-}} \FunctionTok{get\_cols}\NormalTok{(}\AttributeTok{palette =} \StringTok{"jama"}\NormalTok{, }\AttributeTok{show\_col =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "'#374E55FF', '#DF8F44FF', '#00A1D5FF', '#B24745FF', '#79AF97FF', '#6A6599FF', '#80796BFF'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "#374E55FF" "#DF8F44FF" "#00A1D5FF" "#B24745FF" "#79AF97FF" "#6A6599FF"
+## [7] "#80796BFF"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols }\OtherTok{\textless{}{-}} \FunctionTok{get\_cols}\NormalTok{( }\AttributeTok{palette =} \StringTok{"jco"}\NormalTok{, }\AttributeTok{show\_col =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "'#0073C2FF', '#EFC000FF', '#868686FF', '#CD534CFF', '#7AA6DCFF', '#003C67FF', '#8F7700FF', '#3B3B3BFF', '#A73030FF'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "#0073C2FF" "#EFC000FF" "#868686FF" "#CD534CFF" "#7AA6DCFF" "#003C67FF"
+## [7] "#8F7700FF" "#3B3B3BFF" "#A73030FF"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols }\OtherTok{\textless{}{-}} \FunctionTok{get\_cols}\NormalTok{(}\AttributeTok{palette =} \StringTok{"nrc"}\NormalTok{, }\AttributeTok{show\_col =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "'#E64B35FF', '#4DBBD5FF', '#00A087FF', '#3C5488FF', '#F39B7FFF', '#8491B4FF', '#91D1C2FF', '#DC0000FF', '#7E6148FF'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "#E64B35FF" "#4DBBD5FF" "#00A087FF" "#3C5488FF" "#F39B7FFF" "#8491B4FF"
+## [7] "#91D1C2FF" "#DC0000FF" "#7E6148FF"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols }\OtherTok{\textless{}{-}} \FunctionTok{get\_cols}\NormalTok{(}\AttributeTok{palette =} \StringTok{"aaas"}\NormalTok{, }\AttributeTok{show\_col =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "'#3B4992FF', '#EE0000FF', '#008B45FF', '#631879FF', '#008280FF', '#BB0021FF', '#5F559BFF', '#A20056FF', '#808180FF'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "#3B4992FF" "#EE0000FF" "#008B45FF" "#631879FF" "#008280FF" "#BB0021FF"
+## [7] "#5F559BFF" "#A20056FF" "#808180FF"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols }\OtherTok{\textless{}{-}} \FunctionTok{get\_cols}\NormalTok{(}\AttributeTok{palette =} \StringTok{"paired4"}\NormalTok{, }\AttributeTok{show\_col =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "'#FDBF6F', '#FF7F00', '#CAB2D6', '#6A3D9A', '#FFFF99'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "#FDBF6F" "#FF7F00" "#CAB2D6" "#6A3D9A" "#FFFF99"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols }\OtherTok{\textless{}{-}} \FunctionTok{get\_cols}\NormalTok{(}\AttributeTok{palette =} \StringTok{"set2"}\NormalTok{, }\AttributeTok{show\_col =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "'#66C2A5', '#FC8D62', '#8DA0CB', '#E78AC3', '#A6D854', '#FFD92F', '#E5C494'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "#66C2A5" "#FC8D62" "#8DA0CB" "#E78AC3" "#A6D854" "#FFD92F" "#E5C494"
+\end{verbatim}
+
+\hypertarget{higher-number-of-subgroups}{%
+\subsection{Higher number of subgroups}\label{higher-number-of-subgroups}}
+
+In order to cope with multiple groupings, we have selected some colours that are more identifiable with each other and stored these colourways in the objects palette1-4. The user can obtain them by setting the parameter \texttt{palette}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols }\OtherTok{\textless{}{-}} \FunctionTok{get\_cols}\NormalTok{(}\AttributeTok{palette =} \DecValTok{1}\NormalTok{, }\AttributeTok{show\_col =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## >>>>=== Palette option for random: 1: palette1; 2: palette2; 3: palette3;  4: palette4
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "'#5f75ae', '#64a841', '#e5486e', '#de8e06', '#b5aa0f', '#7ba39d', '#b15928', '#6a3d9a', '#cab2d6', '#374E55FF', '#00A1D5FF', '#6A6599FF', '#80796BFF', '#e31a1c', '#fb9a99', '#1f78b4', '#a6cee3', '#008280FF', '#3C5488FF', '#8F7700FF', '#666666', '#A20056FF', '#fdbf6f', '#E78AC3', '#b2df8a', '#386CB0', '#CD534CFF', '#008B45FF', '#7AA6DCFF', '#00A087FF', '#A73030FF', '#631879FF', '#003C67FF'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cols}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "#5f75ae"   "#64a841"   "#e5486e"   "#de8e06"   "#b5aa0f"   "#7ba39d"  
+##  [7] "#b15928"   "#6a3d9a"   "#cab2d6"   "#374E55FF" "#00A1D5FF" "#6A6599FF"
+## [13] "#80796BFF" "#e31a1c"   "#fb9a99"   "#1f78b4"   "#a6cee3"   "#008280FF"
+## [19] "#3C5488FF" "#8F7700FF" "#666666"   "#A20056FF" "#fdbf6f"   "#E78AC3"  
+## [25] "#b2df8a"   "#386CB0"   "#CD534CFF" "#008B45FF" "#7AA6DCFF" "#00A087FF"
+## [31] "#A73030FF" "#631879FF" "#003C67FF"
+\end{verbatim}
+
+\hypertarget{gradient-colour-or-heatmap-colour-scheme}{%
+\subsection{Gradient colour or heatmap colour scheme}\label{gradient-colour-or-heatmap-colour-scheme}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{palettes}\NormalTok{(}\AttributeTok{category =} \StringTok{"continue"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"puor"}\NormalTok{, }\AttributeTok{show\_col =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{show\_message =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap
+\end{verbatim}
+
+\begin{verbatim}
+## There are four palettes you can choose: rdbu, puor, blues, reds
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "'#7F3B08', '#B35806', '#E08214', '#FDB863', '#FEE0B6', '#F7F7F7', '#D8DAEB', '#B2ABD2', '#8073AC', '#542788', '#2D004B'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{verbatim}
+##  [1] "#7F3B08" "#B35806" "#E08214" "#FDB863" "#FEE0B6" "#F7F7F7" "#D8DAEB"
+##  [8] "#B2ABD2" "#8073AC" "#542788" "#2D004B"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{palettes}\NormalTok{(}\AttributeTok{category =} \StringTok{"continue"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"rdbu"}\NormalTok{, }\AttributeTok{show\_col =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{show\_message =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap
+\end{verbatim}
+
+\begin{verbatim}
+## There are four palettes you can choose: rdbu, puor, blues, reds
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "'#67001F', '#B2182B', '#D6604D', '#F4A582', '#FDDBC7', '#F7F7F7', '#D1E5F0', '#92C5DE', '#4393C3', '#2166AC', '#053061'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{verbatim}
+##  [1] "#67001F" "#B2182B" "#D6604D" "#F4A582" "#FDDBC7" "#F7F7F7" "#D1E5F0"
+##  [8] "#92C5DE" "#4393C3" "#2166AC" "#053061"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{palettes}\NormalTok{(}\AttributeTok{category =} \StringTok{"continue"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"blues"}\NormalTok{, }\AttributeTok{show\_col =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{show\_message =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap
+\end{verbatim}
+
+\begin{verbatim}
+## There are four palettes you can choose: rdbu, puor, blues, reds
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in RColorBrewer::brewer.pal(11, "Blues"): n too large, allowed maximum for palette Blues is 9
+## Returning the palette you asked for with that many colors
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "'#F7FBFF', '#DEEBF7', '#C6DBEF', '#9ECAE1', '#6BAED6', '#4292C6', '#2171B5', '#08519C', '#08306B'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\begin{verbatim}
+## [1] "#F7FBFF" "#DEEBF7" "#C6DBEF" "#9ECAE1" "#6BAED6" "#4292C6" "#2171B5"
+## [8] "#08519C" "#08306B"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{palettes}\NormalTok{(}\AttributeTok{category =} \StringTok{"continue"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"reds"}\NormalTok{, }\AttributeTok{show\_col =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{show\_message =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap
+\end{verbatim}
+
+\begin{verbatim}
+## There are four palettes you can choose: rdbu, puor, blues, reds
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in RColorBrewer::brewer.pal(11, "Reds"): n too large, allowed maximum for palette Reds is 9
+## Returning the palette you asked for with that many colors
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "'#FFF5F0', '#FEE0D2', '#FCBBA1', '#FC9272', '#FB6A4A', '#EF3B2C', '#CB181D', '#A50F15', '#67000D'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\begin{verbatim}
+## [1] "#FFF5F0" "#FEE0D2" "#FCBBA1" "#FC9272" "#FB6A4A" "#EF3B2C" "#CB181D"
+## [8] "#A50F15" "#67000D"
+\end{verbatim}
+
+For heatmap colour configuration, usually more colours are needed. Users can adjust the number of colours to be returned by setting the parameter \texttt{category} to heatmap and by adjusting \texttt{count}. In IOBR, we offer a total of 7 colour schemes. Users can choose the colour scheme by setting the palette.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{palettes}\NormalTok{(}\AttributeTok{category =} \StringTok{"heatmap"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"1"}\NormalTok{, }\AttributeTok{counts =} \DecValTok{20}\NormalTok{, }\AttributeTok{show\_col =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{show\_message =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap
+\end{verbatim}
+
+\begin{verbatim}
+## There are five palettes you can choose: 1 = pheatmap,  2 = peach,  3 = blues, 4 = virids, 5 = reds, 6 = RdBu, 7 = navy_firebrick
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "'#4575B4', '#5D8CC0', '#75A3CC', '#8CBBD8', '#A5CCE2', '#BEDDEB', '#D7EDF4', '#E6F5EC', '#F0F9DA', '#FAFDC8', '#FEFAB7', '#FEF0A8', '#FEE699', '#FDD78A', '#FDBD78', '#FCA267', '#FA8856', '#EE6A46', '#E24D36', '#D73027'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+\begin{verbatim}
+##  [1] "#4575B4" "#5D8CC0" "#75A3CC" "#8CBBD8" "#A5CCE2" "#BEDDEB" "#D7EDF4"
+##  [8] "#E6F5EC" "#F0F9DA" "#FAFDC8" "#FEFAB7" "#FEF0A8" "#FEE699" "#FDD78A"
+## [15] "#FDBD78" "#FCA267" "#FA8856" "#EE6A46" "#E24D36" "#D73027"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{palettes}\NormalTok{(}\AttributeTok{category =} \StringTok{"heatmap"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"2"}\NormalTok{, }\AttributeTok{counts =} \DecValTok{20}\NormalTok{, }\AttributeTok{show\_col =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{show\_message =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap
+\end{verbatim}
+
+\begin{verbatim}
+## There are five palettes you can choose: 1 = pheatmap,  2 = peach,  3 = blues, 4 = virids, 5 = reds, 6 = RdBu, 7 = navy_firebrick
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "'#3182BD', '#468FC3', '#5C9CCA', '#72A9D1', '#87B6D8', '#9DC3DF', '#B3D0E6', '#C8DEED', '#DEEBF4', '#F4F8FB', '#FDF3F7', '#F9DBE9', '#F6C3DB', '#F2ABCC', '#EE93BE', '#EB7BB0', '#E763A1', '#E44B93', '#E03385', '#DD1C77'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\begin{verbatim}
+##  [1] "#3182BD" "#468FC3" "#5C9CCA" "#72A9D1" "#87B6D8" "#9DC3DF" "#B3D0E6"
+##  [8] "#C8DEED" "#DEEBF4" "#F4F8FB" "#FDF3F7" "#F9DBE9" "#F6C3DB" "#F2ABCC"
+## [15] "#EE93BE" "#EB7BB0" "#E763A1" "#E44B93" "#E03385" "#DD1C77"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{palettes}\NormalTok{(}\AttributeTok{category =} \StringTok{"heatmap"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"3"}\NormalTok{, }\AttributeTok{counts =} \DecValTok{20}\NormalTok{, }\AttributeTok{show\_col =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{show\_message =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap
+\end{verbatim}
+
+\begin{verbatim}
+## There are five palettes you can choose: 1 = pheatmap,  2 = peach,  3 = blues, 4 = virids, 5 = reds, 6 = RdBu, 7 = navy_firebrick
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "'#084594', '#1155A0', '#1A65AC', '#2474B6', '#3080BD', '#3C8CC3', '#4A97C9', '#59A2CF', '#68ACD5', '#7BB6D9', '#8DC1DD', '#A0CAE1', '#AED1E6', '#BDD7EC', '#C9DDF0', '#D2E3F3', '#DBE9F6', '#E4EFF9', '#EDF5FC', '#F7FBFF'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\begin{verbatim}
+##  [1] "#084594" "#1155A0" "#1A65AC" "#2474B6" "#3080BD" "#3C8CC3" "#4A97C9"
+##  [8] "#59A2CF" "#68ACD5" "#7BB6D9" "#8DC1DD" "#A0CAE1" "#AED1E6" "#BDD7EC"
+## [15] "#C9DDF0" "#D2E3F3" "#DBE9F6" "#E4EFF9" "#EDF5FC" "#F7FBFF"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{palettes}\NormalTok{(}\AttributeTok{category =} \StringTok{"heatmap"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"7"}\NormalTok{, }\AttributeTok{counts =} \DecValTok{20}\NormalTok{, }\AttributeTok{show\_col =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{show\_message =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap
+\end{verbatim}
+
+\begin{verbatim}
+## There are five palettes you can choose: 1 = pheatmap,  2 = peach,  3 = blues, 4 = virids, 5 = reds, 6 = RdBu, 7 = navy_firebrick
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "'#000080', '#1A1A8D', '#35359A', '#5050A8', '#6B6BB5', '#8686C2', '#A1A1D0', '#BBBBDD', '#D6D6EA', '#F1F1F8', '#FAF3F3', '#F2DCDC', '#EAC4C4', '#E2ADAD', '#DA9696', '#D27F7F', '#CA6767', '#C25050', '#BA3939', '#B22222'"
+\end{verbatim}
+
+\includegraphics{some-tips-for-IOBR_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\begin{verbatim}
+##  [1] "#000080" "#1A1A8D" "#35359A" "#5050A8" "#6B6BB5" "#8686C2" "#A1A1D0"
+##  [8] "#BBBBDD" "#D6D6EA" "#F1F1F8" "#FAF3F3" "#F2DCDC" "#EAC4C4" "#E2ADAD"
+## [15] "#DA9696" "#D27F7F" "#CA6767" "#C25050" "#BA3939" "#B22222"
+\end{verbatim}
 
 \hypertarget{references-7}{%
 \chapter{\texorpdfstring{\textbf{References}}{References}}\label{references-7}}

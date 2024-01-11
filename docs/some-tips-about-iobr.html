@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 11 Some tips about IOBR | IOBR (Immuno-Oncology Biological Research)</title>
+  <meta name="description" content="The tutorial of IOBR package" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 11 Some tips about IOBR | IOBR (Immuno-Oncology Biological Research)" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://iobr.github.io/book/./fig/cover.png" />
+  <meta property="og:description" content="The tutorial of IOBR package" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 11 Some tips about IOBR | IOBR (Immuno-Oncology Biological Research)" />
+  
+  <meta name="twitter:description" content="The tutorial of IOBR package" />
+  <meta name="twitter:image" content="https://iobr.github.io/book/./fig/cover.png" />
+
+<meta name="author" content="Dongqiang Zeng, Yiran Fang" />
+
+
+<meta name="date" content="2024-01-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tme-modeling.html"/>
+<link rel="next" href="references-7.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The tutorial of IOBR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>Introduction</strong></a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#introduction-1"><i class="fa fa-check"></i><b>0.1</b> 📚 Introduction</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>0.2</b> 💿 License</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#previous-publication"><i class="fa fa-check"></i><b>0.3</b> 🏆 Previous publication</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#major-updates"><i class="fa fa-check"></i><b>0.4</b> ⏳ Major Updates</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#reporting-bugs"><i class="fa fa-check"></i><b>0.5</b> ✉️ Reporting bugs</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html"><i class="fa fa-check"></i><b>1</b> <strong>How to install IOBR</strong></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-dependency-packages"><i class="fa fa-check"></i><b>1.1</b> ⏳ Install Dependency Packages</a></li>
+<li class="chapter" data-level="1.2" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-iobr-package"><i class="fa fa-check"></i><b>1.2</b> 💻 Install IOBR package</a></li>
+<li class="chapter" data-level="1.3" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#how-to-update-iobr"><i class="fa fa-check"></i><b>1.3</b> 📍 How to update IOBR</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 🗂 Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌐 Current working environment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#loading-packages"><i class="fa fa-check"></i><b>3.1</b> Loading packages</a></li>
+<li class="chapter" data-level="3.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-array-data-using-geoquery"><i class="fa fa-check"></i><b>3.2</b> Download array data using <code>GEOquery</code></a></li>
+<li class="chapter" data-level="3.3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#gene-annotation"><i class="fa fa-check"></i><b>3.3</b> Gene Annotation</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-array-data-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>3.3.1</b> For Array data: HGU133PLUS-2 (Affaymetrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-rnaseq-data-using-ucscxenatools"><i class="fa fa-check"></i><b>3.4</b> Download RNAseq data using <code>UCSCXenaTools</code></a></li>
+<li class="chapter" data-level="3.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#normalization-and-gene-annotation"><i class="fa fa-check"></i><b>3.5</b> Normalization and Gene annotation</a></li>
+<li class="chapter" data-level="3.6" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>3.6</b> Identifying outlier samples</a></li>
+<li class="chapter" data-level="3.7" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>3.7</b> PCA analysis of molecular subtypes</a></li>
+<li class="chapter" data-level="3.8" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>3.8</b> Batch effect correction</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-microarray-data"><i class="fa fa-check"></i><b>3.8.1</b> For microarray data</a></li>
+<li class="chapter" data-level="3.8.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-rnaseq-count-data"><i class="fa fa-check"></i><b>3.8.2</b> For RNAseq count data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#references"><i class="fa fa-check"></i><b>3.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html"><i class="fa fa-check"></i><b>4</b> <strong>Signature Score Calculation</strong></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#loading-packages-1"><i class="fa fa-check"></i><b>4.1</b> Loading packages</a></li>
+<li class="chapter" data-level="4.2" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#downloading-data-for-example"><i class="fa fa-check"></i><b>4.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="4.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#signature-score-estimation"><i class="fa fa-check"></i><b>4.3</b> Signature score estimation</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#signature-collection-of-iobr"><i class="fa fa-check"></i><b>4.3.1</b> Signature collection of IOBR</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#estimation-of-signature-using-pca-method"><i class="fa fa-check"></i><b>4.4</b> Estimation of signature using PCA method</a></li>
+<li class="chapter" data-level="4.5" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#estimated-using-the-ssgsea-methodology"><i class="fa fa-check"></i><b>4.5</b> Estimated using the ssGSEA methodology</a></li>
+<li class="chapter" data-level="4.6" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#calculated-using-the-z-score-function."><i class="fa fa-check"></i><b>4.6</b> Calculated using the z-score function.</a></li>
+<li class="chapter" data-level="4.7" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#calculated-using-all-three-methods-at-the-same-time"><i class="fa fa-check"></i><b>4.7</b> Calculated using all three methods at the same time</a></li>
+<li class="chapter" data-level="4.8" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#classification-of-signatures"><i class="fa fa-check"></i><b>4.8</b> Classification of signatures</a></li>
+<li class="chapter" data-level="4.9" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#how-to-customise-the-signature-gene-list-for-calculate_signature_score"><i class="fa fa-check"></i><b>4.9</b> How to customise the signature gene list for <code>calculate_signature_score</code></a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-1-use-excel-for-storage-and-construction"><i class="fa fa-check"></i><b>4.9.1</b> Method-1: Use excel for storage and construction</a></li>
+<li class="chapter" data-level="4.9.2" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-2-build-the-list-structure-directly"><i class="fa fa-check"></i><b>4.9.2</b> Method-2: Build the list structure directly</a></li>
+<li class="chapter" data-level="4.9.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method3-add-the-new-signature-to-the-existing-gene-list"><i class="fa fa-check"></i><b>4.9.3</b> Method3: Add the new signature to the existing gene list</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#how-to-export-gene-signature"><i class="fa fa-check"></i><b>4.10</b> How to export gene signature</a></li>
+<li class="chapter" data-level="4.11" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#references-1"><i class="fa fa-check"></i><b>4.11</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html"><i class="fa fa-check"></i><b>5</b> <strong>TME deconvolution</strong></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#loading-packages-2"><i class="fa fa-check"></i><b>5.1</b> Loading packages</a></li>
+<li class="chapter" data-level="5.2" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#downloading-data-for-example-1"><i class="fa fa-check"></i><b>5.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="5.3" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#available-methods-to-decode-tme-contexture"><i class="fa fa-check"></i><b>5.3</b> Available Methods to Decode TME Contexture</a></li>
+<li class="chapter" data-level="5.4" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-1-cibersort"><i class="fa fa-check"></i><b>5.4</b> Method 1: CIBERSORT</a></li>
+<li class="chapter" data-level="5.5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-2-epic"><i class="fa fa-check"></i><b>5.5</b> Method 2: EPIC</a></li>
+<li class="chapter" data-level="5.6" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-3-mcpcounter"><i class="fa fa-check"></i><b>5.6</b> Method 3: MCPcounter</a></li>
+<li class="chapter" data-level="5.7" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-4-xcell"><i class="fa fa-check"></i><b>5.7</b> Method 4: xCELL</a></li>
+<li class="chapter" data-level="5.8" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-5-estimate"><i class="fa fa-check"></i><b>5.8</b> Method 5: ESTIMATE</a></li>
+<li class="chapter" data-level="5.9" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-6-timer"><i class="fa fa-check"></i><b>5.9</b> Method 6: TIMER</a></li>
+<li class="chapter" data-level="5.10" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-7-quantiseq"><i class="fa fa-check"></i><b>5.10</b> Method 7: quanTIseq</a></li>
+<li class="chapter" data-level="5.11" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-8-ips"><i class="fa fa-check"></i><b>5.11</b> Method 8: IPS</a></li>
+<li class="chapter" data-level="5.12" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#combination-of-above-deconvolution-results"><i class="fa fa-check"></i><b>5.12</b> Combination of above deconvolution results</a></a></li>
+<li class="chapter" data-level="5.13" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#how-to-customise-the-signature-matrix-for-svr-and-lesi-algorithm"><i class="fa fa-check"></i><b>5.13</b> How to customise the signature matrix for <code>SVR</code> and <code>lesi</code> algorithm</a></li>
+<li class="chapter" data-level="5.14" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#references-2"><i class="fa fa-check"></i><b>5.14</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html"><i class="fa fa-check"></i><b>6</b> <strong>Signature Score and Relevant phenotypes</strong></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#loading-packages-3"><i class="fa fa-check"></i><b>6.1</b> Loading packages</a></li>
+<li class="chapter" data-level="6.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#downloading-data-for-example-2"><i class="fa fa-check"></i><b>6.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="6.3" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#gene-annotation-1"><i class="fa fa-check"></i><b>6.3</b> Gene Annotation</a></li>
+<li class="chapter" data-level="6.4" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#estimation-of-signatures"><i class="fa fa-check"></i><b>6.4</b> Estimation of signatures</a></li>
+<li class="chapter" data-level="6.5" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#combining-score-data-and-phenotype-data"><i class="fa fa-check"></i><b>6.5</b> Combining score data and phenotype data</a></li>
+<li class="chapter" data-level="6.6" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#identifying-features-associated-with-survival"><i class="fa fa-check"></i><b>6.6</b> Identifying features associated with survival</a></li>
+<li class="chapter" data-level="6.7" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#visulization-using-heatmap"><i class="fa fa-check"></i><b>6.7</b> Visulization using heatmap</a></li>
+<li class="chapter" data-level="6.8" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#focus-on-target-signatures"><i class="fa fa-check"></i><b>6.8</b> Focus on target signatures</a></li>
+<li class="chapter" data-level="6.9" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#survival-analysis-and-visulization"><i class="fa fa-check"></i><b>6.9</b> Survival analysis and visulization</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#kaplan-meier-plot"><i class="fa fa-check"></i><b>6.9.1</b> Kaplan-Meier plot</a></li>
+<li class="chapter" data-level="6.9.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#time-dependent-roc-curve"><i class="fa fa-check"></i><b>6.9.2</b> Time-Dependent ROC curve</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#batch-correlation-analysis"><i class="fa fa-check"></i><b>6.10</b> Batch correlation analysis</a>
+<ul>
+<li class="chapter" data-level="6.10.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#finding-continuity-variables-associated-with-signatures"><i class="fa fa-check"></i><b>6.10.1</b> Finding continuity variables associated with signatures</a></li>
+<li class="chapter" data-level="6.10.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#identifying-category-variables-linked-to-signatures"><i class="fa fa-check"></i><b>6.10.2</b> Identifying Category Variables Linked to Signatures</a></li>
+<li class="chapter" data-level="6.10.3" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#for-multicategorical-variables-2-subgroups"><i class="fa fa-check"></i><b>6.10.3</b> For multicategorical variables (&gt;2 subgroups)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#reference"><i class="fa fa-check"></i><b>6.11</b> Reference</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html"><i class="fa fa-check"></i><b>7</b> <strong>TME Interaction analysis</strong></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#loading-packages-4"><i class="fa fa-check"></i><b>7.1</b> Loading packages</a></li>
+<li class="chapter" data-level="7.2" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#downloading-data-for-example-3"><i class="fa fa-check"></i><b>7.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="7.3" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#gene-annotation-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>7.3</b> Gene Annotation: HGU133PLUS-2 (Affaymetrix)</a></li>
+<li class="chapter" data-level="7.4" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#tme-deconvolution-using-cibersort-algorithm"><i class="fa fa-check"></i><b>7.4</b> TME deconvolution using CIBERSORT algorithm</a></li>
+<li class="chapter" data-level="7.5" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-tme-patterns"><i class="fa fa-check"></i><b>7.5</b> Identifying TME patterns</a></li>
+<li class="chapter" data-level="7.6" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#cell-abundance-of-each-cluster"><i class="fa fa-check"></i><b>7.6</b> Cell abundance of each cluster</a></li>
+<li class="chapter" data-level="7.7" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#deg-analysis-between-tme-subtypes"><i class="fa fa-check"></i><b>7.7</b> DEG analysis between TME subtypes</a></li>
+<li class="chapter" data-level="7.8" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>7.8</b> Identifying signatures associated with TME clusters</a></li>
+<li class="chapter" data-level="7.9" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#references-3"><i class="fa fa-check"></i><b>7.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html"><i class="fa fa-check"></i><b>8</b> <strong>Tumor ecosystem analysis</strong></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#loading-packages-5"><i class="fa fa-check"></i><b>8.1</b> Loading packages</a></li>
+<li class="chapter" data-level="8.2" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#downloading-data-for-example-4"><i class="fa fa-check"></i><b>8.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="8.3" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gene-annotation-hgu133plus-2-affaymetrix-1"><i class="fa fa-check"></i><b>8.3</b> Gene Annotation: HGU133PLUS-2 (Affaymetrix)</a></li>
+<li class="chapter" data-level="8.4" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#determine-tme-subtype-of-gastric-cancer-using-tmeclassifier-r-package"><i class="fa fa-check"></i><b>8.4</b> Determine TME subtype of gastric cancer using TMEclassifier R package</a></li>
+<li class="chapter" data-level="8.5" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis-method1"><i class="fa fa-check"></i><b>8.5</b> DEG analysis: method1</a></li>
+<li class="chapter" data-level="8.6" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gsea-analysis-based-on-differential-express-gene-analysis-results"><i class="fa fa-check"></i><b>8.6</b> GSEA analysis based on differential express gene analysis results</a></li>
+<li class="chapter" data-level="8.7" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis-method2"><i class="fa fa-check"></i><b>8.7</b> DEG analysis: method2</a></li>
+<li class="chapter" data-level="8.8" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#identifying-signatures-associated-with-tme-clusters-1"><i class="fa fa-check"></i><b>8.8</b> Identifying signatures associated with TME clusters</a></li>
+<li class="chapter" data-level="8.9" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#references-4"><i class="fa fa-check"></i><b>8.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html"><i class="fa fa-check"></i><b>9</b> <strong>TME and genomic interaction</strong></a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#loading-packages-6"><i class="fa fa-check"></i><b>9.1</b> Loading packages</a></li>
+<li class="chapter" data-level="9.2" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#genomic-data-prepare"><i class="fa fa-check"></i><b>9.2</b> Genomic data prepare</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#using-tcgabiolinks-to-download-genomic-data"><i class="fa fa-check"></i><b>9.2.1</b> Using TCGAbiolinks to download genomic data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#identifying-mutations-associated-with-tme"><i class="fa fa-check"></i><b>9.3</b> Identifying Mutations Associated with TME</a></li>
+<li class="chapter" data-level="9.4" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#oncoprint-of-result"><i class="fa fa-check"></i><b>9.4</b> OncoPrint of result</a></li>
+<li class="chapter" data-level="9.5" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#boxplot-of-top-10-mutated-genes"><i class="fa fa-check"></i><b>9.5</b> Boxplot of top 10 mutated genes</a></li>
+<li class="chapter" data-level="9.6" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#other-methods-to-obtaind-genomic-data"><i class="fa fa-check"></i><b>9.6</b> Other methods to obtaind genomic data</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#using-tcgamutations"><i class="fa fa-check"></i><b>9.6.1</b> Using TCGAmutations</a></li>
+<li class="chapter" data-level="9.6.2" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#using-maftools"><i class="fa fa-check"></i><b>9.6.2</b> Using maftools</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#references-5"><i class="fa fa-check"></i><b>9.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tme-modeling.html"><a href="tme-modeling.html"><i class="fa fa-check"></i><b>10</b> <strong>TME Modeling</strong></a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="tme-modeling.html"><a href="tme-modeling.html#loading-packages-7"><i class="fa fa-check"></i><b>10.1</b> Loading packages</a></li>
+<li class="chapter" data-level="10.2" data-path="tme-modeling.html"><a href="tme-modeling.html#data-prepare"><i class="fa fa-check"></i><b>10.2</b> Data prepare</a></li>
+<li class="chapter" data-level="10.3" data-path="tme-modeling.html"><a href="tme-modeling.html#input-data-overall-survival-prepare"><i class="fa fa-check"></i><b>10.3</b> Input data (overall survival) prepare</a></li>
+<li class="chapter" data-level="10.4" data-path="tme-modeling.html"><a href="tme-modeling.html#constructing-survival-prediction-models"><i class="fa fa-check"></i><b>10.4</b> Constructing survival prediction models</a></li>
+<li class="chapter" data-level="10.5" data-path="tme-modeling.html"><a href="tme-modeling.html#input-data-response-prepare"><i class="fa fa-check"></i><b>10.5</b> Input data (Response) prepare</a></li>
+<li class="chapter" data-level="10.6" data-path="tme-modeling.html"><a href="tme-modeling.html#constructing-prediction-models-for-response"><i class="fa fa-check"></i><b>10.6</b> Constructing prediction models for response</a></li>
+<li class="chapter" data-level="10.7" data-path="tme-modeling.html"><a href="tme-modeling.html#references-6"><i class="fa fa-check"></i><b>10.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="some-tips-about-iobr.html"><a href="some-tips-about-iobr.html"><i class="fa fa-check"></i><b>11</b> <strong>Some tips about IOBR</strong></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="some-tips-about-iobr.html"><a href="some-tips-about-iobr.html#loading-packages-8"><i class="fa fa-check"></i><b>11.1</b> Loading packages</a></li>
+<li class="chapter" data-level="11.2" data-path="some-tips-about-iobr.html"><a href="some-tips-about-iobr.html#colour-configuration"><i class="fa fa-check"></i><b>11.2</b> Colour Configuration</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="some-tips-about-iobr.html"><a href="some-tips-about-iobr.html#categorical-variable"><i class="fa fa-check"></i><b>11.2.1</b> categorical variable</a></li>
+<li class="chapter" data-level="11.2.2" data-path="some-tips-about-iobr.html"><a href="some-tips-about-iobr.html#higher-number-of-subgroups"><i class="fa fa-check"></i><b>11.2.2</b> Higher number of subgroups</a></li>
+<li class="chapter" data-level="11.2.3" data-path="some-tips-about-iobr.html"><a href="some-tips-about-iobr.html#gradient-colour-or-heatmap-colour-scheme"><i class="fa fa-check"></i><b>11.2.3</b> Gradient colour or heatmap colour scheme</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="references-7.html"><a href="references-7.html"><i class="fa fa-check"></i><b>12</b> <strong>References</strong></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="references-7.html"><a href="references-7.html#tme-deconvolution-1"><i class="fa fa-check"></i><b>12.1</b> TME deconvolution</a></li>
+<li class="chapter" data-level="12.2" data-path="references-7.html"><a href="references-7.html#tme-signatures"><i class="fa fa-check"></i><b>12.2</b> TME Signatures</a></li>
+<li class="chapter" data-level="12.3" data-path="references-7.html"><a href="references-7.html#data-sets"><i class="fa fa-check"></i><b>12.3</b> Data sets</a></li>
+<li class="chapter" data-level="12.4" data-path="references-7.html"><a href="references-7.html#others"><i class="fa fa-check"></i><b>12.4</b> Others</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/DongqiangZeng0808" target="blank">Welcome to my GitHub</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">IOBR (Immuno-Oncology Biological Research)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="some-tips-about-iobr" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> <strong>Some tips about IOBR</strong><a href="some-tips-about-iobr.html#some-tips-about-iobr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this section, we’ll cover some of the tips inside the IOBR package in terms of data processing and visualisation.</p>
+<div id="loading-packages-8" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Loading packages<a href="some-tips-about-iobr.html#loading-packages-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="some-tips-about-iobr.html#cb395-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span></code></pre></div>
+</div>
+<div id="colour-configuration" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Colour Configuration<a href="some-tips-about-iobr.html#colour-configuration" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="categorical-variable" class="section level3 hasAnchor" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> categorical variable<a href="some-tips-about-iobr.html#categorical-variable" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In IOBR, we created a function for get_col. The user can get the colours with some parameters in it. Please refer to the following example. In order to better suit the requirements of the journal, we have provided some of the more commonly used colour schemes. These include <code>nrc</code>, <code>jama</code>, <code>aaas</code>, <code>jco</code>, <code>paired1</code>, <code>paired2</code>, <code>paired3</code>, <code>paired4</code>, <code>accent</code>, <code>set2</code>.</p>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="some-tips-about-iobr.html#cb396-1" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">get_cols</span>(<span class="at">palette =</span> <span class="st">&quot;jama&quot;</span>, <span class="at">show_col =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;&#39;#374E55FF&#39;, &#39;#DF8F44FF&#39;, &#39;#00A1D5FF&#39;, &#39;#B24745FF&#39;, &#39;#79AF97FF&#39;, &#39;#6A6599FF&#39;, &#39;#80796BFF&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="some-tips-about-iobr.html#cb398-1" tabindex="-1"></a>cols</span></code></pre></div>
+<pre><code>## [1] &quot;#374E55FF&quot; &quot;#DF8F44FF&quot; &quot;#00A1D5FF&quot; &quot;#B24745FF&quot; &quot;#79AF97FF&quot; &quot;#6A6599FF&quot;
+## [7] &quot;#80796BFF&quot;</code></pre>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="some-tips-about-iobr.html#cb400-1" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">get_cols</span>( <span class="at">palette =</span> <span class="st">&quot;jco&quot;</span>, <span class="at">show_col =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;&#39;#0073C2FF&#39;, &#39;#EFC000FF&#39;, &#39;#868686FF&#39;, &#39;#CD534CFF&#39;, &#39;#7AA6DCFF&#39;, &#39;#003C67FF&#39;, &#39;#8F7700FF&#39;, &#39;#3B3B3BFF&#39;, &#39;#A73030FF&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="some-tips-about-iobr.html#cb402-1" tabindex="-1"></a>cols</span></code></pre></div>
+<pre><code>## [1] &quot;#0073C2FF&quot; &quot;#EFC000FF&quot; &quot;#868686FF&quot; &quot;#CD534CFF&quot; &quot;#7AA6DCFF&quot; &quot;#003C67FF&quot;
+## [7] &quot;#8F7700FF&quot; &quot;#3B3B3BFF&quot; &quot;#A73030FF&quot;</code></pre>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="some-tips-about-iobr.html#cb404-1" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">get_cols</span>(<span class="at">palette =</span> <span class="st">&quot;nrc&quot;</span>, <span class="at">show_col =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;&#39;#E64B35FF&#39;, &#39;#4DBBD5FF&#39;, &#39;#00A087FF&#39;, &#39;#3C5488FF&#39;, &#39;#F39B7FFF&#39;, &#39;#8491B4FF&#39;, &#39;#91D1C2FF&#39;, &#39;#DC0000FF&#39;, &#39;#7E6148FF&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="some-tips-about-iobr.html#cb406-1" tabindex="-1"></a>cols</span></code></pre></div>
+<pre><code>## [1] &quot;#E64B35FF&quot; &quot;#4DBBD5FF&quot; &quot;#00A087FF&quot; &quot;#3C5488FF&quot; &quot;#F39B7FFF&quot; &quot;#8491B4FF&quot;
+## [7] &quot;#91D1C2FF&quot; &quot;#DC0000FF&quot; &quot;#7E6148FF&quot;</code></pre>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="some-tips-about-iobr.html#cb408-1" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">get_cols</span>(<span class="at">palette =</span> <span class="st">&quot;aaas&quot;</span>, <span class="at">show_col =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;&#39;#3B4992FF&#39;, &#39;#EE0000FF&#39;, &#39;#008B45FF&#39;, &#39;#631879FF&#39;, &#39;#008280FF&#39;, &#39;#BB0021FF&#39;, &#39;#5F559BFF&#39;, &#39;#A20056FF&#39;, &#39;#808180FF&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="some-tips-about-iobr.html#cb410-1" tabindex="-1"></a>cols</span></code></pre></div>
+<pre><code>## [1] &quot;#3B4992FF&quot; &quot;#EE0000FF&quot; &quot;#008B45FF&quot; &quot;#631879FF&quot; &quot;#008280FF&quot; &quot;#BB0021FF&quot;
+## [7] &quot;#5F559BFF&quot; &quot;#A20056FF&quot; &quot;#808180FF&quot;</code></pre>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="some-tips-about-iobr.html#cb412-1" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">get_cols</span>(<span class="at">palette =</span> <span class="st">&quot;paired4&quot;</span>, <span class="at">show_col =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;&#39;#FDBF6F&#39;, &#39;#FF7F00&#39;, &#39;#CAB2D6&#39;, &#39;#6A3D9A&#39;, &#39;#FFFF99&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="some-tips-about-iobr.html#cb414-1" tabindex="-1"></a>cols</span></code></pre></div>
+<pre><code>## [1] &quot;#FDBF6F&quot; &quot;#FF7F00&quot; &quot;#CAB2D6&quot; &quot;#6A3D9A&quot; &quot;#FFFF99&quot;</code></pre>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="some-tips-about-iobr.html#cb416-1" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">get_cols</span>(<span class="at">palette =</span> <span class="st">&quot;set2&quot;</span>, <span class="at">show_col =</span> T)</span></code></pre></div>
+<pre><code>## [1] &quot;&#39;#66C2A5&#39;, &#39;#FC8D62&#39;, &#39;#8DA0CB&#39;, &#39;#E78AC3&#39;, &#39;#A6D854&#39;, &#39;#FFD92F&#39;, &#39;#E5C494&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="some-tips-about-iobr.html#cb418-1" tabindex="-1"></a>cols</span></code></pre></div>
+<pre><code>## [1] &quot;#66C2A5&quot; &quot;#FC8D62&quot; &quot;#8DA0CB&quot; &quot;#E78AC3&quot; &quot;#A6D854&quot; &quot;#FFD92F&quot; &quot;#E5C494&quot;</code></pre>
+</div>
+<div id="higher-number-of-subgroups" class="section level3 hasAnchor" number="11.2.2">
+<h3><span class="header-section-number">11.2.2</span> Higher number of subgroups<a href="some-tips-about-iobr.html#higher-number-of-subgroups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In order to cope with multiple groupings, we have selected some colours that are more identifiable with each other and stored these colourways in the objects palette1-4. The user can obtain them by setting the parameter <code>palette</code>.</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="some-tips-about-iobr.html#cb420-1" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">get_cols</span>(<span class="at">palette =</span> <span class="dv">1</span>, <span class="at">show_col =</span> T)</span></code></pre></div>
+<pre><code>## &gt;&gt;&gt;&gt;=== Palette option for random: 1: palette1; 2: palette2; 3: palette3;  4: palette4</code></pre>
+<pre><code>## [1] &quot;&#39;#5f75ae&#39;, &#39;#64a841&#39;, &#39;#e5486e&#39;, &#39;#de8e06&#39;, &#39;#b5aa0f&#39;, &#39;#7ba39d&#39;, &#39;#b15928&#39;, &#39;#6a3d9a&#39;, &#39;#cab2d6&#39;, &#39;#374E55FF&#39;, &#39;#00A1D5FF&#39;, &#39;#6A6599FF&#39;, &#39;#80796BFF&#39;, &#39;#e31a1c&#39;, &#39;#fb9a99&#39;, &#39;#1f78b4&#39;, &#39;#a6cee3&#39;, &#39;#008280FF&#39;, &#39;#3C5488FF&#39;, &#39;#8F7700FF&#39;, &#39;#666666&#39;, &#39;#A20056FF&#39;, &#39;#fdbf6f&#39;, &#39;#E78AC3&#39;, &#39;#b2df8a&#39;, &#39;#386CB0&#39;, &#39;#CD534CFF&#39;, &#39;#008B45FF&#39;, &#39;#7AA6DCFF&#39;, &#39;#00A087FF&#39;, &#39;#A73030FF&#39;, &#39;#631879FF&#39;, &#39;#003C67FF&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="some-tips-about-iobr.html#cb423-1" tabindex="-1"></a>cols</span></code></pre></div>
+<pre><code>##  [1] &quot;#5f75ae&quot;   &quot;#64a841&quot;   &quot;#e5486e&quot;   &quot;#de8e06&quot;   &quot;#b5aa0f&quot;   &quot;#7ba39d&quot;  
+##  [7] &quot;#b15928&quot;   &quot;#6a3d9a&quot;   &quot;#cab2d6&quot;   &quot;#374E55FF&quot; &quot;#00A1D5FF&quot; &quot;#6A6599FF&quot;
+## [13] &quot;#80796BFF&quot; &quot;#e31a1c&quot;   &quot;#fb9a99&quot;   &quot;#1f78b4&quot;   &quot;#a6cee3&quot;   &quot;#008280FF&quot;
+## [19] &quot;#3C5488FF&quot; &quot;#8F7700FF&quot; &quot;#666666&quot;   &quot;#A20056FF&quot; &quot;#fdbf6f&quot;   &quot;#E78AC3&quot;  
+## [25] &quot;#b2df8a&quot;   &quot;#386CB0&quot;   &quot;#CD534CFF&quot; &quot;#008B45FF&quot; &quot;#7AA6DCFF&quot; &quot;#00A087FF&quot;
+## [31] &quot;#A73030FF&quot; &quot;#631879FF&quot; &quot;#003C67FF&quot;</code></pre>
+</div>
+<div id="gradient-colour-or-heatmap-colour-scheme" class="section level3 hasAnchor" number="11.2.3">
+<h3><span class="header-section-number">11.2.3</span> Gradient colour or heatmap colour scheme<a href="some-tips-about-iobr.html#gradient-colour-or-heatmap-colour-scheme" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="some-tips-about-iobr.html#cb425-1" tabindex="-1"></a><span class="fu">palettes</span>(<span class="at">category =</span> <span class="st">&quot;continue&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;puor&quot;</span>, <span class="at">show_col =</span> <span class="cn">TRUE</span>, <span class="at">show_message =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap</code></pre>
+<pre><code>## There are four palettes you can choose: rdbu, puor, blues, reds</code></pre>
+<pre><code>## [1] &quot;&#39;#7F3B08&#39;, &#39;#B35806&#39;, &#39;#E08214&#39;, &#39;#FDB863&#39;, &#39;#FEE0B6&#39;, &#39;#F7F7F7&#39;, &#39;#D8DAEB&#39;, &#39;#B2ABD2&#39;, &#39;#8073AC&#39;, &#39;#542788&#39;, &#39;#2D004B&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre><code>##  [1] &quot;#7F3B08&quot; &quot;#B35806&quot; &quot;#E08214&quot; &quot;#FDB863&quot; &quot;#FEE0B6&quot; &quot;#F7F7F7&quot; &quot;#D8DAEB&quot;
+##  [8] &quot;#B2ABD2&quot; &quot;#8073AC&quot; &quot;#542788&quot; &quot;#2D004B&quot;</code></pre>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="some-tips-about-iobr.html#cb430-1" tabindex="-1"></a><span class="fu">palettes</span>(<span class="at">category =</span> <span class="st">&quot;continue&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;rdbu&quot;</span>, <span class="at">show_col =</span> <span class="cn">TRUE</span>, <span class="at">show_message =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap</code></pre>
+<pre><code>## There are four palettes you can choose: rdbu, puor, blues, reds</code></pre>
+<pre><code>## [1] &quot;&#39;#67001F&#39;, &#39;#B2182B&#39;, &#39;#D6604D&#39;, &#39;#F4A582&#39;, &#39;#FDDBC7&#39;, &#39;#F7F7F7&#39;, &#39;#D1E5F0&#39;, &#39;#92C5DE&#39;, &#39;#4393C3&#39;, &#39;#2166AC&#39;, &#39;#053061&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre><code>##  [1] &quot;#67001F&quot; &quot;#B2182B&quot; &quot;#D6604D&quot; &quot;#F4A582&quot; &quot;#FDDBC7&quot; &quot;#F7F7F7&quot; &quot;#D1E5F0&quot;
+##  [8] &quot;#92C5DE&quot; &quot;#4393C3&quot; &quot;#2166AC&quot; &quot;#053061&quot;</code></pre>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="some-tips-about-iobr.html#cb435-1" tabindex="-1"></a><span class="fu">palettes</span>(<span class="at">category =</span> <span class="st">&quot;continue&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;blues&quot;</span>, <span class="at">show_col =</span> <span class="cn">TRUE</span>, <span class="at">show_message =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap</code></pre>
+<pre><code>## There are four palettes you can choose: rdbu, puor, blues, reds</code></pre>
+<pre><code>## Warning in RColorBrewer::brewer.pal(11, &quot;Blues&quot;): n too large, allowed maximum for palette Blues is 9
+## Returning the palette you asked for with that many colors</code></pre>
+<pre><code>## [1] &quot;&#39;#F7FBFF&#39;, &#39;#DEEBF7&#39;, &#39;#C6DBEF&#39;, &#39;#9ECAE1&#39;, &#39;#6BAED6&#39;, &#39;#4292C6&#39;, &#39;#2171B5&#39;, &#39;#08519C&#39;, &#39;#08306B&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre><code>## [1] &quot;#F7FBFF&quot; &quot;#DEEBF7&quot; &quot;#C6DBEF&quot; &quot;#9ECAE1&quot; &quot;#6BAED6&quot; &quot;#4292C6&quot; &quot;#2171B5&quot;
+## [8] &quot;#08519C&quot; &quot;#08306B&quot;</code></pre>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="some-tips-about-iobr.html#cb441-1" tabindex="-1"></a><span class="fu">palettes</span>(<span class="at">category =</span> <span class="st">&quot;continue&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;reds&quot;</span>, <span class="at">show_col =</span> <span class="cn">TRUE</span>, <span class="at">show_message =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap</code></pre>
+<pre><code>## There are four palettes you can choose: rdbu, puor, blues, reds</code></pre>
+<pre><code>## Warning in RColorBrewer::brewer.pal(11, &quot;Reds&quot;): n too large, allowed maximum for palette Reds is 9
+## Returning the palette you asked for with that many colors</code></pre>
+<pre><code>## [1] &quot;&#39;#FFF5F0&#39;, &#39;#FEE0D2&#39;, &#39;#FCBBA1&#39;, &#39;#FC9272&#39;, &#39;#FB6A4A&#39;, &#39;#EF3B2C&#39;, &#39;#CB181D&#39;, &#39;#A50F15&#39;, &#39;#67000D&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre><code>## [1] &quot;#FFF5F0&quot; &quot;#FEE0D2&quot; &quot;#FCBBA1&quot; &quot;#FC9272&quot; &quot;#FB6A4A&quot; &quot;#EF3B2C&quot; &quot;#CB181D&quot;
+## [8] &quot;#A50F15&quot; &quot;#67000D&quot;</code></pre>
+<p>For heatmap colour configuration, usually more colours are needed. Users can adjust the number of colours to be returned by setting the parameter <code>category</code> to heatmap and by adjusting <code>count</code>. In IOBR, we offer a total of 7 colour schemes. Users can choose the colour scheme by setting the palette.</p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="some-tips-about-iobr.html#cb447-1" tabindex="-1"></a><span class="fu">palettes</span>(<span class="at">category =</span> <span class="st">&quot;heatmap&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;1&quot;</span>, <span class="at">counts =</span> <span class="dv">20</span>, <span class="at">show_col =</span> <span class="cn">TRUE</span>, <span class="at">show_message =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap</code></pre>
+<pre><code>## There are five palettes you can choose: 1 = pheatmap,  2 = peach,  3 = blues, 4 = virids, 5 = reds, 6 = RdBu, 7 = navy_firebrick</code></pre>
+<pre><code>## [1] &quot;&#39;#4575B4&#39;, &#39;#5D8CC0&#39;, &#39;#75A3CC&#39;, &#39;#8CBBD8&#39;, &#39;#A5CCE2&#39;, &#39;#BEDDEB&#39;, &#39;#D7EDF4&#39;, &#39;#E6F5EC&#39;, &#39;#F0F9DA&#39;, &#39;#FAFDC8&#39;, &#39;#FEFAB7&#39;, &#39;#FEF0A8&#39;, &#39;#FEE699&#39;, &#39;#FDD78A&#39;, &#39;#FDBD78&#39;, &#39;#FCA267&#39;, &#39;#FA8856&#39;, &#39;#EE6A46&#39;, &#39;#E24D36&#39;, &#39;#D73027&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<pre><code>##  [1] &quot;#4575B4&quot; &quot;#5D8CC0&quot; &quot;#75A3CC&quot; &quot;#8CBBD8&quot; &quot;#A5CCE2&quot; &quot;#BEDDEB&quot; &quot;#D7EDF4&quot;
+##  [8] &quot;#E6F5EC&quot; &quot;#F0F9DA&quot; &quot;#FAFDC8&quot; &quot;#FEFAB7&quot; &quot;#FEF0A8&quot; &quot;#FEE699&quot; &quot;#FDD78A&quot;
+## [15] &quot;#FDBD78&quot; &quot;#FCA267&quot; &quot;#FA8856&quot; &quot;#EE6A46&quot; &quot;#E24D36&quot; &quot;#D73027&quot;</code></pre>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="some-tips-about-iobr.html#cb452-1" tabindex="-1"></a><span class="fu">palettes</span>(<span class="at">category =</span> <span class="st">&quot;heatmap&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;2&quot;</span>, <span class="at">counts =</span> <span class="dv">20</span>, <span class="at">show_col =</span> <span class="cn">TRUE</span>, <span class="at">show_message =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap</code></pre>
+<pre><code>## There are five palettes you can choose: 1 = pheatmap,  2 = peach,  3 = blues, 4 = virids, 5 = reds, 6 = RdBu, 7 = navy_firebrick</code></pre>
+<pre><code>## [1] &quot;&#39;#3182BD&#39;, &#39;#468FC3&#39;, &#39;#5C9CCA&#39;, &#39;#72A9D1&#39;, &#39;#87B6D8&#39;, &#39;#9DC3DF&#39;, &#39;#B3D0E6&#39;, &#39;#C8DEED&#39;, &#39;#DEEBF4&#39;, &#39;#F4F8FB&#39;, &#39;#FDF3F7&#39;, &#39;#F9DBE9&#39;, &#39;#F6C3DB&#39;, &#39;#F2ABCC&#39;, &#39;#EE93BE&#39;, &#39;#EB7BB0&#39;, &#39;#E763A1&#39;, &#39;#E44B93&#39;, &#39;#E03385&#39;, &#39;#DD1C77&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre><code>##  [1] &quot;#3182BD&quot; &quot;#468FC3&quot; &quot;#5C9CCA&quot; &quot;#72A9D1&quot; &quot;#87B6D8&quot; &quot;#9DC3DF&quot; &quot;#B3D0E6&quot;
+##  [8] &quot;#C8DEED&quot; &quot;#DEEBF4&quot; &quot;#F4F8FB&quot; &quot;#FDF3F7&quot; &quot;#F9DBE9&quot; &quot;#F6C3DB&quot; &quot;#F2ABCC&quot;
+## [15] &quot;#EE93BE&quot; &quot;#EB7BB0&quot; &quot;#E763A1&quot; &quot;#E44B93&quot; &quot;#E03385&quot; &quot;#DD1C77&quot;</code></pre>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="some-tips-about-iobr.html#cb457-1" tabindex="-1"></a><span class="fu">palettes</span>(<span class="at">category =</span> <span class="st">&quot;heatmap&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;3&quot;</span>, <span class="at">counts =</span> <span class="dv">20</span>, <span class="at">show_col =</span> <span class="cn">TRUE</span>, <span class="at">show_message =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap</code></pre>
+<pre><code>## There are five palettes you can choose: 1 = pheatmap,  2 = peach,  3 = blues, 4 = virids, 5 = reds, 6 = RdBu, 7 = navy_firebrick</code></pre>
+<pre><code>## [1] &quot;&#39;#084594&#39;, &#39;#1155A0&#39;, &#39;#1A65AC&#39;, &#39;#2474B6&#39;, &#39;#3080BD&#39;, &#39;#3C8CC3&#39;, &#39;#4A97C9&#39;, &#39;#59A2CF&#39;, &#39;#68ACD5&#39;, &#39;#7BB6D9&#39;, &#39;#8DC1DD&#39;, &#39;#A0CAE1&#39;, &#39;#AED1E6&#39;, &#39;#BDD7EC&#39;, &#39;#C9DDF0&#39;, &#39;#D2E3F3&#39;, &#39;#DBE9F6&#39;, &#39;#E4EFF9&#39;, &#39;#EDF5FC&#39;, &#39;#F7FBFF&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<pre><code>##  [1] &quot;#084594&quot; &quot;#1155A0&quot; &quot;#1A65AC&quot; &quot;#2474B6&quot; &quot;#3080BD&quot; &quot;#3C8CC3&quot; &quot;#4A97C9&quot;
+##  [8] &quot;#59A2CF&quot; &quot;#68ACD5&quot; &quot;#7BB6D9&quot; &quot;#8DC1DD&quot; &quot;#A0CAE1&quot; &quot;#AED1E6&quot; &quot;#BDD7EC&quot;
+## [15] &quot;#C9DDF0&quot; &quot;#D2E3F3&quot; &quot;#DBE9F6&quot; &quot;#E4EFF9&quot; &quot;#EDF5FC&quot; &quot;#F7FBFF&quot;</code></pre>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="some-tips-about-iobr.html#cb462-1" tabindex="-1"></a><span class="fu">palettes</span>(<span class="at">category =</span> <span class="st">&quot;heatmap&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;7&quot;</span>, <span class="at">counts =</span> <span class="dv">20</span>, <span class="at">show_col =</span> <span class="cn">TRUE</span>, <span class="at">show_message =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap</code></pre>
+<pre><code>## There are five palettes you can choose: 1 = pheatmap,  2 = peach,  3 = blues, 4 = virids, 5 = reds, 6 = RdBu, 7 = navy_firebrick</code></pre>
+<pre><code>## [1] &quot;&#39;#000080&#39;, &#39;#1A1A8D&#39;, &#39;#35359A&#39;, &#39;#5050A8&#39;, &#39;#6B6BB5&#39;, &#39;#8686C2&#39;, &#39;#A1A1D0&#39;, &#39;#BBBBDD&#39;, &#39;#D6D6EA&#39;, &#39;#F1F1F8&#39;, &#39;#FAF3F3&#39;, &#39;#F2DCDC&#39;, &#39;#EAC4C4&#39;, &#39;#E2ADAD&#39;, &#39;#DA9696&#39;, &#39;#D27F7F&#39;, &#39;#CA6767&#39;, &#39;#C25050&#39;, &#39;#BA3939&#39;, &#39;#B22222&#39;&quot;</code></pre>
+<p><img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<pre><code>##  [1] &quot;#000080&quot; &quot;#1A1A8D&quot; &quot;#35359A&quot; &quot;#5050A8&quot; &quot;#6B6BB5&quot; &quot;#8686C2&quot; &quot;#A1A1D0&quot;
+##  [8] &quot;#BBBBDD&quot; &quot;#D6D6EA&quot; &quot;#F1F1F8&quot; &quot;#FAF3F3&quot; &quot;#F2DCDC&quot; &quot;#EAC4C4&quot; &quot;#E2ADAD&quot;
+## [15] &quot;#DA9696&quot; &quot;#D27F7F&quot; &quot;#CA6767&quot; &quot;#C25050&quot; &quot;#BA3939&quot; &quot;#B22222&quot;</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tme-modeling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references-7.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/DongqiangZeng0808/some-tips-for-IOBR.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

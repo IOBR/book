@@ -461,13 +461,15 @@ res <- batch_cor(data = input, target = "Glycogen_Biosynthesis", feature = colna
 ```
 
 ```
-##                               sig_names      p.value   statistic
-## CD_8_T_effector.rho     CD_8_T_effector 4.852189e-01 -0.04044756
-## DDR.rho                             DDR 1.678463e-24 -0.54394827
-## APM.rho                             APM 1.681208e-04 -0.21557706
-## Immune_Checkpoint.rho Immune_Checkpoint 6.470746e-01 -0.02653896
-## CellCycle_Reg.rho         CellCycle_Reg 4.465875e-01 -0.04410582
-## Pan_F_TBRs.rho               Pan_F_TBRs 5.989600e-31  0.60185558
+## # A tibble: 6 × 6
+##   sig_names                         p.value statistic    p.adj log10pvalue stars
+##   <chr>                               <dbl>     <dbl>    <dbl>       <dbl> <fct>
+## 1 TMEscoreB_CIR                    8.89e-42     0.678 2.27e-39        41.1 **** 
+## 2 Glycine__Serine_and_Threonine_M… 7.49e-40    -0.666 9.54e-38        39.1 **** 
+## 3 Ether_Lipid_Metabolism           3.84e-39     0.662 3.27e-37        38.4 **** 
+## 4 MDSC_Peng_et_al                  1.13e-38     0.659 7.21e-37        37.9 **** 
+## 5 Glycerophospholipid_Metabolism   8.72e-38    -0.653 4.44e-36        37.1 **** 
+## 6 TIP_Release_of_cancer_cell_anti… 2.32e-37    -0.650 9.86e-36        36.6 ****
 ```
 
 ```r

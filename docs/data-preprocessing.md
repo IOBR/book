@@ -283,7 +283,7 @@ res<- iobr_pca(data       = eset1,
 ## 
 ##       CIN       EBV       EMT        GS       MSI MSS/TP53- MSS/TP53+ 
 ##         0         0        42         0        68       106        79 
-## [1] ">>-- colors for PCA: "
+## [1] ">>== colors for group: "
 ```
 
 ```r
@@ -356,11 +356,11 @@ eset_com <- remove_batcheffect( eset1       = eset1,
 ## 
 ## eset1 eset2 
 ##   295    70 
-## [1] ">>-- colors for PCA: "
+## [1] ">>== colors for group: "
 ## 
 ## eset1 eset2 
 ##   295    70 
-## [1] ">>-- colors for PCA: "
+## [1] ">>== colors for group: "
 ```
 
 <img src="data-preprocessing_files/figure-html/unnamed-chunk-17-1.png" width="1056" style="display: block; margin: auto;" />
@@ -451,15 +451,15 @@ eset_com <- remove_batcheffect(eset_stad, eset_blca, id_type = "ensembl", data_t
 ## 
 ## eset1 eset2 
 ##    10     5 
-## [1] ">>-- colors for PCA: "
+## [1] ">>== colors for group: "
 ## 
 ## eset1 eset2 
 ##    10     5 
-## [1] ">>-- colors for PCA: "
+## [1] ">>== colors for group: "
 ## 
 ## eset1 eset2 
 ##    10     5 
-## [1] ">>-- colors for PCA: "
+## [1] ">>== colors for group: "
 ```
 
 <img src="data-preprocessing_files/figure-html/unnamed-chunk-18-1.png" width="1056" style="display: block; margin: auto;" />

@@ -30,6 +30,8 @@ rmd_files:
     "tme-genomic-interaction.Rmd",
     
     "tme-modeling.Rmd",
+    
+    "some-tips-for-IOBR.Rmd",
 
     "references.Rmd",
   ]

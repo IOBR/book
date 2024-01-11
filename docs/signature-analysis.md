@@ -276,7 +276,7 @@ sig_tme<-calculate_sig_score(pdata           = NULL,
                              method          = "integration",
                              mini_gene_count = 2)
 ```
-The same SIGNATURE in this case will be scored using all three methods simultaneously.
+The same signature in this case will be scored using all three methods simultaneously.
 
 ```r
 colnames(sig_tme)[grep(colnames(sig_tme), pattern = "CD_8_T_effector")]
@@ -289,6 +289,13 @@ sig_tme_pca <- select_method(data = sig_tme, method = "pca")
 colnames(sig_tme_pca)[grep(colnames(sig_tme_pca), pattern = "CD_8_T_effector")]
 ```
 
+## Classification of signatures
+As more signatures related to the tumour microenvironment were collected in IOBR, and we may continue to add gene signatures related to the tumour microenvironment in the future, we have made a basic classification of these signatures by combining them with our analysis experience. Users can compare the signatures in the same group during the analysis process to improve the reliability and consistency of the conclusions.
+
+
+```r
+sig_group[1:8]
+```
 
 ## How to customise the signature gene list for `calculate_signature_score`
 

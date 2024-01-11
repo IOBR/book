@@ -65,7 +65,7 @@ mut_list <- make_mut_matrix(maf = maf, isTCGA   = T, category = "multi")
 ##   FLG
 ## -Processing clinical data
 ## --Missing clinical data
-## -Finished in 10.3s elapsed (9.730s cpu) 
+## -Finished in 11.4s elapsed (10.4s cpu) 
 ##        Frame_Shift_Del        Frame_Shift_Ins           In_Frame_Del 
 ##                  21547                   4526                   1196 
 ##           In_Frame_Ins      Missense_Mutation      Nonsense_Mutation 

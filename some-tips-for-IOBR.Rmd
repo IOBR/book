@@ -1,0 +1,84 @@
+
+# **Some tips about IOBR**
+
+In this section, we'll cover some of the tips inside the IOBR package in terms of data processing and visualisation.
+
+## Loading packages
+
+```{r, eval=TRUE, warning=FALSE, message=FALSE}
+library(IOBR)
+```
+
+## Colour Configuration
+
+### categorical variable
+In IOBR, we created a function for get_col. The user can get the colours with some parameters in it. Please refer to the following example. In order to better suit the requirements of the journal, we have provided some of the more commonly used colour schemes. These include `nrc`, `jama`, `aaas`, `jco`, `paired1`, `paired2`, `paired3`, `paired4`, `accent`, `set2`.
+
+```{r}
+cols <- get_cols(palette = "jama", show_col = T)
+cols
+```
+```{r}
+cols <- get_cols( palette = "jco", show_col = T)
+cols
+```
+
+```{r}
+cols <- get_cols(palette = "nrc", show_col = T)
+cols
+```
+
+```{r}
+cols <- get_cols(palette = "aaas", show_col = T)
+cols
+```
+```{r}
+cols <- get_cols(palette = "paired4", show_col = T)
+cols
+```
+
+```{r}
+cols <- get_cols(palette = "set2", show_col = T)
+cols
+```
+
+### Higher number of subgroups
+In order to cope with multiple groupings, we have selected some colours that are more identifiable with each other and stored these colourways in the objects palette1-4. The user can obtain them by setting the parameter `palette`.
+
+```{r}
+cols <- get_cols(palette = 1, show_col = T)
+cols
+```
+
+### Gradient colour or heatmap colour scheme
+
+```{r}
+palettes(category = "continue", palette = "puor", show_col = TRUE, show_message = TRUE)
+```
+
+```{r}
+palettes(category = "continue", palette = "rdbu", show_col = TRUE, show_message = TRUE)
+```
+```{r}
+palettes(category = "continue", palette = "blues", show_col = TRUE, show_message = TRUE)
+```
+
+```{r}
+palettes(category = "continue", palette = "reds", show_col = TRUE, show_message = TRUE)
+```
+
+For heatmap colour configuration, usually more colours are needed. Users can adjust the number of colours to be returned by setting the parameter `category` to heatmap and by adjusting `count`. In IOBR, we offer a total of 7 colour schemes. Users can choose the colour scheme by setting the palette.
+```{r}
+palettes(category = "heatmap", palette = "1", counts = 20, show_col = TRUE, show_message = TRUE)
+```
+```{r}
+palettes(category = "heatmap", palette = "2", counts = 20, show_col = TRUE, show_message = TRUE)
+```
+```{r}
+palettes(category = "heatmap", palette = "3", counts = 20, show_col = TRUE, show_message = TRUE)
+```
+```{r}
+palettes(category = "heatmap", palette = "7", counts = 20, show_col = TRUE, show_message = TRUE)
+```
+
+
