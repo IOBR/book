@@ -41,7 +41,7 @@ head(anno_hug133plus2)
 ```
 
 ```
-## # A tibble: 6 × 2
+## # A tibble: 6 x 2
 ##   probe_id  symbol 
 ##   <fct>     <fct>  
 ## 1 1007_s_at MIR4640
@@ -187,29 +187,29 @@ signature_collection_citation[1:20, ]
 ```
 
 ```
-## # A tibble: 20 × 6
+## # A tibble: 20 x 6
 ##    Signatures                 `Published year` Journal         Title PMID  DOI  
 ##    <chr>                                 <dbl> <chr>           <chr> <chr> <chr>
-##  1 CD_8_T_effector                        2018 Nature          TGFβ… 2944… 10.1…
-##  2 DDR                                    2018 Nature          TGFβ… 2944… 10.1…
-##  3 APM                                    2018 Nature          TGFβ… 2944… 10.1…
-##  4 Immune_Checkpoint                      2018 Nature          TGFβ… 2944… 10.1…
-##  5 CellCycle_Reg                          2018 Nature          TGFβ… 2944… 10.1…
-##  6 Pan_F_TBRs                             2018 Nature          TGFβ… 2944… 10.1…
-##  7 Histones                               2018 Nature          TGFβ… 2944… 10.1…
-##  8 EMT1                                   2018 Nature          TGFβ… 2944… 10.1…
-##  9 EMT2                                   2018 Nature          TGFβ… 2944… 10.1…
-## 10 EMT3                                   2018 Nature          TGFβ… 2944… 10.1…
-## 11 WNT_target                             2018 Nature          TGFβ… 2944… 10.1…
-## 12 FGFR3_related                          2018 Nature          TGFβ… 2944… 10.1…
-## 13 Cell_cycle                             2018 Nature          TGFβ… 2944… 10.1…
-## 14 Mismatch_Repair                        2018 Nature          TGFβ… 2944… 10.1…
-## 15 Homologous_recombination               2018 Nature          TGFβ… 2944… 10.1…
-## 16 Nucleotide_excision_repair             2018 Nature          TGFβ… 2944… 10.1…
-## 17 DNA_replication                        2018 Nature          TGFβ… 2944… 10.1…
-## 18 Base_excision_repair                   2018 Nature          TGFβ… 2944… 10.1…
-## 19 TMEscoreA_CIR                          2019 Cancer Immunol… Tumo… 3084… 10.1…
-## 20 TMEscoreB_CIR                          2019 Cancer Immunol… Tumo… 3084… 10.1…
+##  1 CD_8_T_effector                        2018 Nature          TGFβ~ 2944~ 10.1~
+##  2 DDR                                    2018 Nature          TGFβ~ 2944~ 10.1~
+##  3 APM                                    2018 Nature          TGFβ~ 2944~ 10.1~
+##  4 Immune_Checkpoint                      2018 Nature          TGFβ~ 2944~ 10.1~
+##  5 CellCycle_Reg                          2018 Nature          TGFβ~ 2944~ 10.1~
+##  6 Pan_F_TBRs                             2018 Nature          TGFβ~ 2944~ 10.1~
+##  7 Histones                               2018 Nature          TGFβ~ 2944~ 10.1~
+##  8 EMT1                                   2018 Nature          TGFβ~ 2944~ 10.1~
+##  9 EMT2                                   2018 Nature          TGFβ~ 2944~ 10.1~
+## 10 EMT3                                   2018 Nature          TGFβ~ 2944~ 10.1~
+## 11 WNT_target                             2018 Nature          TGFβ~ 2944~ 10.1~
+## 12 FGFR3_related                          2018 Nature          TGFβ~ 2944~ 10.1~
+## 13 Cell_cycle                             2018 Nature          TGFβ~ 2944~ 10.1~
+## 14 Mismatch_Repair                        2018 Nature          TGFβ~ 2944~ 10.1~
+## 15 Homologous_recombination               2018 Nature          TGFβ~ 2944~ 10.1~
+## 16 Nucleotide_excision_repair             2018 Nature          TGFβ~ 2944~ 10.1~
+## 17 DNA_replication                        2018 Nature          TGFβ~ 2944~ 10.1~
+## 18 Base_excision_repair                   2018 Nature          TGFβ~ 2944~ 10.1~
+## 19 TMEscoreA_CIR                          2019 Cancer Immunol~ Tumo~ 3084~ 10.1~
+## 20 TMEscoreB_CIR                          2019 Cancer Immunol~ Tumo~ 3084~ 10.1~
 ```
 
 The evaluation of signature scores involved three methodologies: Single-sample Gene Set Enrichment Analysis (ssGSEA), Principal Component Analysis (PCA), and Z-score.
@@ -241,10 +241,14 @@ sig_tme[1:5, 1:3]
 
 This method is appropriate for gene sets that contain a large number of genes (> 30 genes), such as those of [GO, KEGG, REACTOME gene sets](https://www.gsea-msigdb.org/gsea/msigdb).
 
-<div class="figure" style="text-align: center">
-<img src="./fig/gsea.png" alt="Gene sets of MSigDb" width="95%" />
-<p class="caption">(\#fig:unnamed-chunk-10)Gene sets of MSigDb</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.95\linewidth]{./fig/gsea} 
+
+}
+
+\caption{Gene sets of MSigDb}(\#fig:unnamed-chunk-10)
+\end{figure}
 
 
 ```r

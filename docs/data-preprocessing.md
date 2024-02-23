@@ -42,7 +42,7 @@ head(anno_hug133plus2)
 ```
 
 ```
-## # A tibble: 6 × 2
+## # A tibble: 6 x 2
 ##   probe_id  symbol 
 ##   <fct>     <fct>  
 ## 1 1007_s_at MIR4640
@@ -181,16 +181,16 @@ head(XenaData)
 ```
 
 ```
-## # A tibble: 6 × 17
+## # A tibble: 6 x 17
 ##   XenaHosts XenaHostNames XenaCohorts XenaDatasets SampleCount DataSubtype Label
 ##   <chr>     <chr>         <chr>       <chr>              <int> <chr>       <chr>
-## 1 https://… publicHub     Breast Can… ucsfNeve_pu…          51 gene expre… Neve…
-## 2 https://… publicHub     Breast Can… ucsfNeve_pu…          57 phenotype   Phen…
-## 3 https://… publicHub     Glioma (Ko… kotliarov20…         194 copy number Kotl…
-## 4 https://… publicHub     Glioma (Ko… kotliarov20…         194 phenotype   Phen…
-## 5 https://… publicHub     Lung Cance… weir2007_pu…         383 copy number CGH  
-## 6 https://… publicHub     Lung Cance… weir2007_pu…         383 phenotype   Phen…
-## # ℹ 10 more variables: Type <chr>, AnatomicalOrigin <chr>, SampleType <chr>,
+## 1 https://~ publicHub     Breast Can~ ucsfNeve_pu~          51 gene expre~ Neve~
+## 2 https://~ publicHub     Breast Can~ ucsfNeve_pu~          57 phenotype   Phen~
+## 3 https://~ publicHub     Glioma (Ko~ kotliarov20~         194 copy number Kotl~
+## 4 https://~ publicHub     Glioma (Ko~ kotliarov20~         194 phenotype   Phen~
+## 5 https://~ publicHub     Lung Cance~ weir2007_pu~         383 copy number CGH  
+## 6 https://~ publicHub     Lung Cance~ weir2007_pu~         383 phenotype   Phen~
+## # i 10 more variables: Type <chr>, AnatomicalOrigin <chr>, SampleType <chr>,
 ## #   Tags <chr>, ProbeMap <chr>, LongTitle <chr>, Citation <chr>, Version <chr>,
 ## #   Unit <chr>, Platform <chr>
 ```
@@ -246,7 +246,9 @@ Take ACRG microarray data for example
 res <- find_outlier_samples(eset = eset, project = "ACRG", show_plot = TRUE)
 ```
 
-<img src="data-preprocessing_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-12-1} \end{center}
 
 ```
 ## [1] "GSM1523817" "GSM1523858" "GSM1523984" "GSM1523988" "GSM1524030"
@@ -290,7 +292,9 @@ res<- iobr_pca(data       = eset1,
 res
 ```
 
-<img src="data-preprocessing_files/figure-html/unnamed-chunk-14-1.png" width="729.6" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
 
 ## Batch effect correction
@@ -363,7 +367,9 @@ eset_com <- remove_batcheffect( eset1       = eset1,
 ## [1] ">>== colors for group: "
 ```
 
-<img src="data-preprocessing_files/figure-html/unnamed-chunk-17-1.png" width="1056" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-17-1} \end{center}
 
 ```r
 dim(eset_com)
@@ -462,7 +468,9 @@ eset_com <- remove_batcheffect(eset_stad, eset_blca, id_type = "ensembl", data_t
 ## [1] ">>== colors for group: "
 ```
 
-<img src="data-preprocessing_files/figure-html/unnamed-chunk-18-1.png" width="1056" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{data-preprocessing_files/figure-latex/unnamed-chunk-18-1} \end{center}
 
 ```r
 # The returned matrix is the count matrix after removing the batches.

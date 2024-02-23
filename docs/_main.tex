@@ -123,7 +123,7 @@
 
 \title{IOBR (Immuno-Oncology Biological Research)}
 \author{Dongqiang Zeng, Yiran Fang}
-\date{2024-01-11}
+\date{2024-02-23}
 
 \begin{document}
 \maketitle
@@ -161,12 +161,12 @@ This R package integrates 8 published methods for decoding the tumour microenvir
 
 \textbf{IOBR} was released under the GPL v3.0 license. See \href{https://github.com/IOBR/IOBR/blob/master/LICENSE}{LICENSE} for details. The code contained in this book is simultaneously available under the \href{https://www.gnu.org/licenses/why-not-lgpl.html}{GPL license}; this means that you are free to use it in your packages, as long as you cite the source. The online version of this book is licensed under the \href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.}
 
-\hypertarget{previous-publication}{%
-\section{Previous publication}\label{previous-publication}}
+\hypertarget{citations}{%
+\section{Citations}\label{citations}}
+
+Zeng D, Fang Y, \ldots, Liao W (2024) \textbf{IOBR2}: Multidimensional Decoding of Tumor Microenvironment for Immuno-Oncology Research. \href{https://www.biorxiv.org/content/10.1101/2024.01.13.575484v2.full.pdf}{bioRxiv, 2024.01. 13.575484}
 
 Zeng D, Ye Z, Shen R, Yu G, Wu J, Xiong Y,\ldots, Liao W (2021) \textbf{IOBR}: Multi-Omics Immuno-Oncology Biological Research to Decode Tumor Microenvironment and Signatures. \emph{Frontiers in Immunology}. 12:687975. \href{https://www.frontiersin.org/articles/10.3389/fimmu.2021.687975/full}{doi: 10.3389/fimmu.2021.687975}
-
-Zeng D, Fang Y, \ldots, Liao W (2023) \textbf{IOBR2}: Multidimensional Decoding of Tumor Microenvironment for Immuno-Oncology Research. \emph{bioRxiv}.
 
 \hypertarget{major-updates}{%
 \section{Major Updates}\label{major-updates}}
@@ -376,215 +376,6 @@ When the dependent environments are built, users are able to install IOBR from g
 \FunctionTok{library}\NormalTok{(IOBR)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Loading required package: tibble
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'tibble' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-## Loading required package: dplyr
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'dplyr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Attaching package: 'dplyr'
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-\end{verbatim}
-
-\begin{verbatim}
-## Loading required package: ggplot2
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'ggplot2' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-## Loading required package: ggpubr
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'ggpubr' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-## Loading required package: survival
-\end{verbatim}
-
-\begin{verbatim}
-## Loading required package: ComplexHeatmap
-\end{verbatim}
-
-\begin{verbatim}
-## Loading required package: grid
-\end{verbatim}
-
-\begin{verbatim}
-## ========================================
-## ComplexHeatmap version 2.15.4
-## Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
-## Github page: https://github.com/jokergoo/ComplexHeatmap
-## Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
-## 
-## If you use it in published research, please cite either one:
-## - Gu, Z. Complex Heatmap Visualization. iMeta 2022.
-## - Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional 
-##     genomic data. Bioinformatics 2016.
-## 
-## 
-## The new InteractiveComplexHeatmap package can directly export static 
-## complex heatmaps into an interactive Shiny app with zero effort. Have a try!
-## 
-## This message can be suppressed by:
-##   suppressPackageStartupMessages(library(ComplexHeatmap))
-## ========================================
-\end{verbatim}
-
-\begin{verbatim}
-## Loading required package: tidyHeatmap
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'tidyHeatmap' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-## ========================================
-## tidyHeatmap version 1.8.1
-## If you use tidyHeatmap in published research, please cite:
-## 1) Mangiola et al. tidyHeatmap: an R package for modular heatmap production 
-##   based on tidy principles. JOSS 2020.
-## 2) Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional 
-##   genomic data. Bioinformatics 2016.
-## This message can be suppressed by:
-##   suppressPackageStartupMessages(library(tidyHeatmap))
-## ========================================
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Attaching package: 'tidyHeatmap'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:stats':
-## 
-##     heatmap
-\end{verbatim}
-
-\begin{verbatim}
-## Loading required package: clusterProfiler
-\end{verbatim}
-
-\begin{verbatim}
-## 
-\end{verbatim}
-
-\begin{verbatim}
-## Registered S3 methods overwritten by 'treeio':
-##   method              from    
-##   MRCA.phylo          tidytree
-##   MRCA.treedata       tidytree
-##   Nnode.treedata      tidytree
-##   Ntip.treedata       tidytree
-##   ancestor.phylo      tidytree
-##   ancestor.treedata   tidytree
-##   child.phylo         tidytree
-##   child.treedata      tidytree
-##   full_join.phylo     tidytree
-##   full_join.treedata  tidytree
-##   groupClade.phylo    tidytree
-##   groupClade.treedata tidytree
-##   groupOTU.phylo      tidytree
-##   groupOTU.treedata   tidytree
-##   is.rooted.treedata  tidytree
-##   nodeid.phylo        tidytree
-##   nodeid.treedata     tidytree
-##   nodelab.phylo       tidytree
-##   nodelab.treedata    tidytree
-##   offspring.phylo     tidytree
-##   offspring.treedata  tidytree
-##   parent.phylo        tidytree
-##   parent.treedata     tidytree
-##   root.treedata       tidytree
-##   rootnode.phylo      tidytree
-##   sibling.phylo       tidytree
-\end{verbatim}
-
-\begin{verbatim}
-## clusterProfiler v4.4.4  For help: https://yulab-smu.top/biomedical-knowledge-mining-book/
-## 
-## If you use clusterProfiler in published research, please cite:
-## T Wu, E Hu, S Xu, M Chen, P Guo, Z Dai, T Feng, L Zhou, W Tang, L Zhan, X Fu, S Liu, X Bo, and G Yu. clusterProfiler 4.0: A universal enrichment tool for interpreting omics data. The Innovation. 2021, 2(3):100141
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Attaching package: 'clusterProfiler'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:stats':
-## 
-##     filter
-\end{verbatim}
-
-\begin{verbatim}
-## Loading required package: patchwork
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'patchwork' was built under R version 4.2.3
-\end{verbatim}
-
-\begin{verbatim}
-## Loading required package: survminer
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Attaching package: 'survminer'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:survival':
-## 
-##     myeloma
-\end{verbatim}
-
-\begin{verbatim}
-## ==========================================================================
-##   IOBR v0.99.8  Immuno-Oncology Biological Research 
-##   For Tutorial: https://iobr.github.io/book/
-##   For Help: https://github.com/IOBR/IOBR/issues
-## 
-##  If you use IOBR in published research, please cite:
-##  DQ Zeng, ZL Ye, RF Sheng, GC Yu, Y Xiong …, WJ Liao*.
-##  IOBR: Multi-omics Immuno-Oncology Biological Research to decode 
-##   tumor microenvironment and signatures. Frontiers in Immunology. 12:687975,(2021). 
-##  DOI: 10.3389/fimmu.2021.687975
-##  Higly Cited Paper and Hot Paper of WOS
-## ==========================================================================
-\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3946,7 +3737,7 @@ Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gas
 ## Step-1: Expression data preprocessing...
 ## Step-2: TME deconvolution...
 ## Step-3: Predicting TME phenotypes...
-## [21:37:33] WARNING: src/learner.cc:1203: 
+## [20:23:39] WARNING: src/learner.cc:1203: 
 ##   If you are loading a serialized model (like pickle in Python, RDS in R) generated by
 ##   older XGBoost, please export the model by calling `Booster.save_model` from that version
 ##   first, then load it back in current version. See:
@@ -3955,8 +3746,8 @@ Obtaining data set from GEO \href{https://pubmed.ncbi.nlm.nih.gov/25894828/}{Gas
 ## 
 ##   for more details about differences between saving model and serializing.
 ## 
-## [21:37:33] WARNING: src/learner.cc:888: Found JSON model saved before XGBoost 1.6, please save the model using current version again. The support for old JSON model will be discontinued in XGBoost 2.3.
-## [21:37:33] WARNING: src/learner.cc:553: 
+## [20:23:39] WARNING: src/learner.cc:888: Found JSON model saved before XGBoost 1.6, please save the model using current version again. The support for old JSON model will be discontinued in XGBoost 2.3.
+## [20:23:39] WARNING: src/learner.cc:553: 
 ##   If you are loading a serialized model (like pickle in Python, RDS in R) generated by
 ##   older XGBoost, please export the model by calling `Booster.save_model` from that version
 ##   first, then load it back in current version. See:
@@ -4722,7 +4513,7 @@ In this example, we used the maf file of TCGA-STAD to extract the SNPs in it,and
 ##   FLG
 ## -Processing clinical data
 ## --Missing clinical data
-## -Finished in 11.8s elapsed (11.0s cpu) 
+## -Finished in 10.2s elapsed (8.980s cpu) 
 ##        Frame_Shift_Del        Frame_Shift_Ins           In_Frame_Del 
 ##                  21547                   4526                   1196 
 ##           In_Frame_Ins      Missense_Mutation      Nonsense_Mutation 

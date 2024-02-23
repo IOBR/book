@@ -60,22 +60,22 @@ head(cell)
 ```
 
 ```
-## # A tibble: 6 × 27
-##   ID        B_cells_naive_CIBERS…¹ B_cells_memory_CIBER…² Plasma_cells_CIBERSORT
+## # A tibble: 6 x 27
+##   ID        B_cells_naive_CIBERS~1 B_cells_memory_CIBER~2 Plasma_cells_CIBERSORT
 ##   <chr>                      <dbl>                  <dbl>                  <dbl>
-## 1 GSM15237…                0.00610                0.0136                  0.149 
-## 2 GSM15237…                0                      0.0339                  0.0765
-## 3 GSM15237…                0.00335                0.0183                  0.0939
-## 4 GSM15237…                0                      0.0594                  0.0773
-## 5 GSM15237…                0                      0.00738                 0.109 
-## 6 GSM15237…                0.0118                 0.0115                  0.138 
-## # ℹ abbreviated names: ¹​B_cells_naive_CIBERSORT, ²​B_cells_memory_CIBERSORT
-## # ℹ 23 more variables: T_cells_CD8_CIBERSORT <dbl>,
+## 1 GSM15237~                0.00610                0.0136                  0.149 
+## 2 GSM15237~                0                      0.0339                  0.0765
+## 3 GSM15237~                0.00335                0.0183                  0.0939
+## 4 GSM15237~                0                      0.0594                  0.0773
+## 5 GSM15237~                0                      0.00738                 0.109 
+## 6 GSM15237~                0.0118                 0.0115                  0.138 
+## # i abbreviated names: 1: B_cells_naive_CIBERSORT, 2: B_cells_memory_CIBERSORT
+## # i 23 more variables: T_cells_CD8_CIBERSORT <dbl>,
 ## #   T_cells_CD4_naive_CIBERSORT <dbl>,
 ## #   T_cells_CD4_memory_resting_CIBERSORT <dbl>,
 ## #   T_cells_CD4_memory_activated_CIBERSORT <dbl>,
 ## #   T_cells_follicular_helper_CIBERSORT <dbl>,
-## #   `T_cells_regulatory_(Tregs)_CIBERSORT` <dbl>, …
+## #   `T_cells_regulatory_(Tregs)_CIBERSORT` <dbl>, ...
 ```
 ## Identifying TME patterns
 Identification of optimal clustering based on cellular infiltration patterns in the microenvironment.
@@ -101,7 +101,7 @@ colnames(tme) <- gsub(colnames(tme), pattern = "_CIBERSORT", replacement = "")
 res <- sig_heatmap(input = tme, features = colnames(tme)[3:ncol(tme)], group = "cluster", path = "result", palette = 6)
 ```
 
-<img src="tme-interactions_files/figure-html/unnamed-chunk-6-1.png" width="576" />
+![](tme-interactions_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
 
 ## Cell abundance of each cluster
 
@@ -113,7 +113,7 @@ p1 <- sig_box(tme, variable = "cluster", signature = "Macrophages_M1", jitter = 
 ```
 
 ```
-## # A tibble: 3 × 8
+## # A tibble: 3 x 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   <chr>     <chr>  <chr>     <dbl>    <dbl> <chr>    <chr>    <chr>   
 ## 1 signature TME3   TME2   2.25e-17 4.50e-17 < 2e-16  ****     Wilcoxon
@@ -127,7 +127,7 @@ p2 <- sig_box(tme, variable = "cluster", signature = "Mast_cells_activated",
 ```
 
 ```
-## # A tibble: 3 × 8
+## # A tibble: 3 x 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   <chr>     <chr>  <chr>     <dbl>    <dbl> <chr>    <chr>    <chr>   
 ## 1 signature TME3   TME2   1.89e- 1 1.9 e- 1 0.19     ns       Wilcoxon
@@ -141,7 +141,7 @@ p3 <- sig_box(tme, variable = "cluster", signature = "Macrophages_M2",
 ```
 
 ```
-## # A tibble: 3 × 8
+## # A tibble: 3 x 8
 ##   .y.       group1 group2        p  p.adj p.format p.signif method  
 ##   <chr>     <chr>  <chr>     <dbl>  <dbl> <chr>    <chr>    <chr>   
 ## 1 signature TME3   TME2   0.101    0.1    0.10063  ns       Wilcoxon
@@ -154,7 +154,7 @@ p3 <- sig_box(tme, variable = "cluster", signature = "Macrophages_M2",
 p1|p2|p3
 ```
 
-<img src="tme-interactions_files/figure-html/unnamed-chunk-8-1.png" width="1056" />
+![](tme-interactions_files/figure-latex/unnamed-chunk-8-1.pdf)<!-- --> 
 
 ## DEG analysis between TME subtypes
 
@@ -179,7 +179,7 @@ res <- find_markers_in_bulk(pdata      = tme,
 ## 
 ## TME3 TME2 TME1 
 ##  119   96   85 
-## # A tibble: 150 × 7
+## # A tibble: 150 x 7
 ## # Groups:   cluster [3]
 ##       p_val avg_log2FC pct.1 pct.2 p_val_adj cluster gene    
 ##       <dbl>      <dbl> <dbl> <dbl>     <dbl> <fct>   <chr>   
@@ -193,7 +193,7 @@ res <- find_markers_in_bulk(pdata      = tme,
 ##  8 1.77e-18      0.718     1     1  3.85e-14 TME3    C16orf89
 ##  9 3.91e-18      0.729     1     1  8.51e-14 TME3    FHL1    
 ## 10 5.87e-18      0.684     1     1  1.28e-13 TME3    ITGA8   
-## # ℹ 140 more rows
+## # i 140 more rows
 ```
 
 ```r
@@ -234,7 +234,7 @@ p2 <- sig_box(input, variable = "cluster", signature = "IFNG", jitter = TRUE,
 ```
 
 ```
-## # A tibble: 3 × 8
+## # A tibble: 3 x 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   <chr>     <chr>  <chr>     <dbl>    <dbl> <chr>    <chr>    <chr>   
 ## 1 signature TME3   TME2   1.11e-16 3.30e-16 < 2e-16  ****     Wilcoxon
@@ -248,7 +248,7 @@ p3 <- sig_box(input, variable = "cluster", signature = "IL1A",
 ```
 
 ```
-## # A tibble: 3 × 8
+## # A tibble: 3 x 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   <chr>     <chr>  <chr>     <dbl>    <dbl> <chr>    <chr>    <chr>   
 ## 1 signature TME3   TME2   5.94e- 9 1.20e- 8 5.9e-09  ****     Wilcoxon
@@ -265,7 +265,7 @@ p <- (p1|p2/p3) + plot_layout(widths = c(2.3,1))
 p + plot_annotation(tag_levels = 'A')
 ```
 
-<img src="tme-interactions_files/figure-html/unnamed-chunk-12-1.png" width="1152" />
+![](tme-interactions_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> 
 
 
 ## Identifying signatures associated with TME clusters
@@ -301,21 +301,21 @@ res <- find_markers_in_bulk(pdata = tme, eset = sig_tme, group = "cluster", nfea
 ## 
 ## TME3 TME2 TME1 
 ##  119   96   85 
-## # A tibble: 59 × 7
+## # A tibble: 59 x 7
 ## # Groups:   cluster [3]
 ##       p_val avg_log2FC pct.1 pct.2 p_val_adj cluster gene                       
 ##       <dbl>      <dbl> <dbl> <dbl>     <dbl> <fct>   <chr>                      
 ##  1 1.05e-25       5.03 0.832 0.287  2.70e-23 TME3    Glycolysis                 
 ##  2 1.15e-23       3.76 0.79  0.238  2.93e-21 TME3    Tyrosine-Metabolism        
-##  3 8.38e-18       4.07 0.756 0.32   2.15e-15 TME3    Drug-Metabolism-by-Cytochr…
+##  3 8.38e-18       4.07 0.756 0.32   2.15e-15 TME3    Drug-Metabolism-by-Cytochr~
 ##  4 8.59e-14       4.10 0.689 0.359  2.20e-11 TME3    Retinol-Metabolism         
-##  5 2.59e-13       3.55 0.723 0.348  6.64e-11 TME3    Metabolism-of-Xenobiotics-…
+##  5 2.59e-13       3.55 0.723 0.348  6.64e-11 TME3    Metabolism-of-Xenobiotics-~
 ##  6 5.99e-11      10.0  0.546 0.227  1.53e- 8 TME3    detox.iCAF                 
 ##  7 7.25e-11      10.6  0.571 0.26   1.86e- 8 TME3    Normal.Fibroblast          
 ##  8 2.32e-10       3.71 0.664 0.343  5.94e- 8 TME3    Ether-Lipid-Metabolism     
 ##  9 1.99e- 9       5.12 0.555 0.276  5.10e- 7 TME3    TMEscoreB-CIR              
-## 10 2.23e- 8       3.43 0.664 0.387  5.71e- 6 TME3    Drug-Metabolism-by-other-e…
-## # ℹ 49 more rows
+## 10 2.23e- 8       3.43 0.664 0.387  5.71e- 6 TME3    Drug-Metabolism-by-other-e~
+## # i 49 more rows
 ```
 
 ```r
@@ -336,7 +336,7 @@ p2 <- sig_box(input, variable = "cluster", signature = "CD_8_T_effector", jitter
 ```
 
 ```
-## # A tibble: 3 × 8
+## # A tibble: 3 x 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   <chr>     <chr>  <chr>     <dbl>    <dbl> <chr>    <chr>    <chr>   
 ## 1 signature TME3   TME2   3.18e-12 6.40e-12 3.2e-12  ****     Wilcoxon
@@ -350,7 +350,7 @@ p3 <- sig_box(input, variable = "cluster", signature = "Neutrophils_Bindea_et_al
 ```
 
 ```
-## # A tibble: 3 × 8
+## # A tibble: 3 x 8
 ##   .y.       group1 group2         p    p.adj p.format p.signif method  
 ##   <chr>     <chr>  <chr>      <dbl>    <dbl> <chr>    <chr>    <chr>   
 ## 1 signature TME3   TME2   0.0000416 0.000097 4.2e-05  ****     Wilcoxon
@@ -365,7 +365,7 @@ p <- (p1|p2/p3) + plot_layout(widths = c(2.3,1))
 p + plot_annotation(tag_levels = 'A')
 ```
 
-<img src="tme-interactions_files/figure-html/unnamed-chunk-16-1.png" width="1152" />
+![](tme-interactions_files/figure-latex/unnamed-chunk-16-1.pdf)<!-- --> 
 
 
 Survival differences between tumour microenvironment subtypes
@@ -408,7 +408,7 @@ p1<-surv_group(input_pdata       = input,
 p1
 ```
 
-<img src="tme-interactions_files/figure-html/unnamed-chunk-17-1.png" width="480" />
+![](tme-interactions_files/figure-latex/unnamed-chunk-17-1.pdf)<!-- --> 
 
 Relationship between tumour microenvironmental subtypes and other subtypes
 
@@ -418,7 +418,7 @@ p1<- percent_bar_plot(input, x = "cluster" , y = "Subtype", palette = "jama", ax
 ```
 
 ```
-## # A tibble: 12 × 5
+## # A tibble: 12 x 5
 ## # Groups:   cluster [3]
 ##    cluster Subtype    Freq  Prop count
 ##    <chr>   <fct>     <dbl> <dbl> <dbl>
@@ -442,7 +442,7 @@ p2<- percent_bar_plot(input, x = "cluster" , y = "Lauren", palette = "jama", axi
 ```
 
 ```
-## # A tibble: 9 × 5
+## # A tibble: 9 x 5
 ## # Groups:   cluster [3]
 ##   cluster Lauren      Freq  Prop count
 ##   <chr>   <fct>      <dbl> <dbl> <dbl>
@@ -463,7 +463,7 @@ p3<- percent_bar_plot(input, x = "cluster" , y = "TMEscore_binary", palette = "j
 ```
 
 ```
-## # A tibble: 7 × 5
+## # A tibble: 7 x 5
 ## # Groups:   cluster [3]
 ##   cluster TMEscore_binary  Freq  Prop count
 ##   <chr>   <fct>           <dbl> <dbl> <dbl>
@@ -482,7 +482,7 @@ p3<- percent_bar_plot(input, x = "cluster" , y = "TMEscore_binary", palette = "j
 p1|p2|p3
 ```
 
-<img src="tme-interactions_files/figure-html/unnamed-chunk-19-1.png" width="1152" />
+![](tme-interactions_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
 
 ## References
 

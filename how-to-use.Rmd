@@ -69,7 +69,11 @@ knitr::include_graphics(rep("./fig/IOBR-Package.png", 1))
 
 ## `r if(knitr::is_html_output()) emo::ji("world")` Current working environment
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(IOBR)
+```
+
+```{r, warning=FALSE}
 sessionInfo()
 ```
+

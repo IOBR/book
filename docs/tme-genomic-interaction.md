@@ -65,7 +65,7 @@ mut_list <- make_mut_matrix(maf = maf, isTCGA   = T, category = "multi")
 ##   FLG
 ## -Processing clinical data
 ## --Missing clinical data
-## -Finished in 11.4s elapsed (10.4s cpu) 
+## -Finished in 10.2s elapsed (8.980s cpu) 
 ##        Frame_Shift_Del        Frame_Shift_Ins           In_Frame_Del 
 ##                  21547                   4526                   1196 
 ##           In_Frame_Ins      Missense_Mutation      Nonsense_Mutation 
@@ -147,16 +147,24 @@ res<-find_mutations(mutation_matrix     = mut,
 ```
 
 ## OncoPrint of result
-<div class="figure" style="text-align: center">
-<img src="./fig/0-OncoPrint-CD_8_T_effector.png" alt="OncoPrint" width="95%" />
-<p class="caption">(\#fig:unnamed-chunk-6)OncoPrint</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.95\linewidth]{./fig/0-OncoPrint-CD_8_T_effector} 
+
+}
+
+\caption{OncoPrint}(\#fig:unnamed-chunk-6)
+\end{figure}
 
 ## Boxplot of top 10 mutated genes
-<div class="figure" style="text-align: center">
-<img src="./fig/4-Relevant_mutations_binary.png" alt="Top 10 mutated genes" width="95%" />
-<p class="caption">(\#fig:unnamed-chunk-7)Top 10 mutated genes</p>
-</div>
+\begin{figure}
+
+{\centering \includegraphics[width=0.95\linewidth]{./fig/4-Relevant_mutations_binary} 
+
+}
+
+\caption{Top 10 mutated genes}(\#fig:unnamed-chunk-7)
+\end{figure}
 
 ## Other methods to obtaind genomic data
 

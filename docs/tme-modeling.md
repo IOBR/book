@@ -32,7 +32,7 @@ head(pdata_prog)
 ```
 
 ```
-## # A tibble: 6 × 3
+## # A tibble: 6 x 3
 ##   ID              OS_days OS_status
 ##   <chr>             <dbl>     <dbl>
 ## 1 SAM00b9e5c52da9    57.2         1
@@ -61,7 +61,7 @@ prognostic_result <- PrognosticModel(x           = imvigor210_sig,
 ## NULL
 ```
 
-<img src="tme-modeling_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="tme-modeling_files/figure-html/unnamed-chunk-4-2.png" width="672" />
+![](tme-modeling_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> ![](tme-modeling_files/figure-latex/unnamed-chunk-4-2.pdf)<!-- --> 
 
 
 ## Input data (Response) prepare
@@ -73,7 +73,7 @@ head(pdata_group)
 ```
 
 ```
-## # A tibble: 6 × 2
+## # A tibble: 6 x 2
 ##   ID              BOR_binary
 ##   <chr>                <dbl>
 ## 1 SAM0257bbbbd388          0
@@ -106,7 +106,7 @@ binom_res <- BinomialModel(x           = imvigor210_sig,
 ## NULL
 ```
 
-<img src="tme-modeling_files/figure-html/unnamed-chunk-6-1.png" width="672" /><img src="tme-modeling_files/figure-html/unnamed-chunk-6-2.png" width="672" />
+![](tme-modeling_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> ![](tme-modeling_files/figure-latex/unnamed-chunk-6-2.pdf)<!-- --> 
 
 ```
 ## NULL

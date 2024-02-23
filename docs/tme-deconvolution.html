@@ -23,7 +23,7 @@
 <meta name="author" content="Dongqiang Zeng, Yiran Fang" />
 
 
-<meta name="date" content="2024-01-11" />
+<meta name="date" content="2024-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#introduction-1"><i class="fa fa-check"></i><b>0.1</b> 📚 Introduction</a></li>
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>0.2</b> 💿 License</a></li>
-<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#previous-publication"><i class="fa fa-check"></i><b>0.3</b> 🏆 Previous publication</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#citations"><i class="fa fa-check"></i><b>0.3</b> 🏆 Citations</a></li>
 <li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#major-updates"><i class="fa fa-check"></i><b>0.4</b> ⏳ Major Updates</a></li>
 <li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#reporting-bugs"><i class="fa fa-check"></i><b>0.5</b> ✉️ Reporting bugs</a></li>
 </ul></li>
@@ -157,8 +157,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
-<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 🗂 Main Functions of IOBR</a></li>
-<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌐 Current working environment</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 👆 Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌎 Current working environment</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
 <ul>
@@ -335,20 +335,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="loading-packages-2" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Loading packages<a href="tme-deconvolution.html#loading-packages-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Load the IOBR package in your R session after the installation is complete:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="tme-deconvolution.html#cb121-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span>
-<span id="cb121-2"><a href="tme-deconvolution.html#cb121-2" tabindex="-1"></a><span class="fu">library</span>(survminer)</span>
-<span id="cb121-3"><a href="tme-deconvolution.html#cb121-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="tme-deconvolution.html#cb89-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span>
+<span id="cb89-2"><a href="tme-deconvolution.html#cb89-2" tabindex="-1"></a><span class="fu">library</span>(survminer)</span>
+<span id="cb89-3"><a href="tme-deconvolution.html#cb89-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="downloading-data-for-example-1" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Downloading data for example<a href="tme-deconvolution.html#downloading-data-for-example-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Obtaining data set from GEO <a href="https://pubmed.ncbi.nlm.nih.gov/25894828/">Gastric cancer: GSE62254</a> using <code>GEOquery</code> R package.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="tme-deconvolution.html#cb122-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;GEOquery&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
-<span id="cb122-2"><a href="tme-deconvolution.html#cb122-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
-<span id="cb122-3"><a href="tme-deconvolution.html#cb122-3" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
-<span id="cb122-4"><a href="tme-deconvolution.html#cb122-4" tabindex="-1"></a>eset_geo <span class="ot">&lt;-</span> <span class="fu">getGEO</span>(<span class="at">GEO =</span> <span class="st">&quot;GSE62254&quot;</span>, <span class="at">getGPL  =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
-<span id="cb122-5"><a href="tme-deconvolution.html#cb122-5" tabindex="-1"></a>eset    <span class="ot">&lt;-</span> eset_geo[[<span class="dv">1</span>]]</span>
-<span id="cb122-6"><a href="tme-deconvolution.html#cb122-6" tabindex="-1"></a>eset    <span class="ot">&lt;-</span> <span class="fu">exprs</span>(eset)</span>
-<span id="cb122-7"><a href="tme-deconvolution.html#cb122-7" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="tme-deconvolution.html#cb90-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;GEOquery&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
+<span id="cb90-2"><a href="tme-deconvolution.html#cb90-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
+<span id="cb90-3"><a href="tme-deconvolution.html#cb90-3" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
+<span id="cb90-4"><a href="tme-deconvolution.html#cb90-4" tabindex="-1"></a>eset_geo <span class="ot">&lt;-</span> <span class="fu">getGEO</span>(<span class="at">GEO =</span> <span class="st">&quot;GSE62254&quot;</span>, <span class="at">getGPL  =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
+<span id="cb90-5"><a href="tme-deconvolution.html#cb90-5" tabindex="-1"></a>eset    <span class="ot">&lt;-</span> eset_geo[[<span class="dv">1</span>]]</span>
+<span id="cb90-6"><a href="tme-deconvolution.html#cb90-6" tabindex="-1"></a>eset    <span class="ot">&lt;-</span> <span class="fu">exprs</span>(eset)</span>
+<span id="cb90-7"><a href="tme-deconvolution.html#cb90-7" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>##           GSM1523727 GSM1523728 GSM1523729 GSM1523744 GSM1523745
 ## 1007_s_at  3.2176645  3.0624323  3.0279131   2.921683  2.8456013
 ## 1053_at    2.4050109  2.4394879  2.2442708   2.345916  2.4328582
@@ -356,10 +356,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 121_at     2.1965561  2.2812181  2.1865556   2.258599  2.1874363
 ## 1255_g_at  0.8698382  0.9502466  0.8125414   1.012860  0.9441993</code></pre>
 <p>Annotation of genes in the expression matrix and removal of duplicate genes.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="tme-deconvolution.html#cb124-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span>
-<span id="cb124-2"><a href="tme-deconvolution.html#cb124-2" tabindex="-1"></a></span>
-<span id="cb124-3"><a href="tme-deconvolution.html#cb124-3" tabindex="-1"></a><span class="co"># Load the annotation file `anno_hug133plus2` in IOBR.</span></span>
-<span id="cb124-4"><a href="tme-deconvolution.html#cb124-4" tabindex="-1"></a><span class="fu">head</span>(anno_hug133plus2)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="tme-deconvolution.html#cb92-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span>
+<span id="cb92-2"><a href="tme-deconvolution.html#cb92-2" tabindex="-1"></a></span>
+<span id="cb92-3"><a href="tme-deconvolution.html#cb92-3" tabindex="-1"></a><span class="co"># Load the annotation file `anno_hug133plus2` in IOBR.</span></span>
+<span id="cb92-4"><a href="tme-deconvolution.html#cb92-4" tabindex="-1"></a><span class="fu">head</span>(anno_hug133plus2)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##   probe_id  symbol 
 ##   &lt;fct&gt;     &lt;fct&gt;  
@@ -369,14 +369,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 121_at    PAX8   
 ## 5 1255_g_at GUCA1A 
 ## 6 1294_at   MIR5193</code></pre>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="tme-deconvolution.html#cb126-1" tabindex="-1"></a><span class="co"># Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. </span></span>
-<span id="cb126-2"><a href="tme-deconvolution.html#cb126-2" tabindex="-1"></a></span>
-<span id="cb126-3"><a href="tme-deconvolution.html#cb126-3" tabindex="-1"></a>eset<span class="ot">&lt;-</span><span class="fu">anno_eset</span>(<span class="at">eset       =</span> eset,</span>
-<span id="cb126-4"><a href="tme-deconvolution.html#cb126-4" tabindex="-1"></a>                <span class="at">annotation =</span> anno_hug133plus2,</span>
-<span id="cb126-5"><a href="tme-deconvolution.html#cb126-5" tabindex="-1"></a>                <span class="at">symbol     =</span> <span class="st">&quot;symbol&quot;</span>,</span>
-<span id="cb126-6"><a href="tme-deconvolution.html#cb126-6" tabindex="-1"></a>                <span class="at">probe      =</span> <span class="st">&quot;probe_id&quot;</span>,</span>
-<span id="cb126-7"><a href="tme-deconvolution.html#cb126-7" tabindex="-1"></a>                <span class="at">method     =</span> <span class="st">&quot;mean&quot;</span>)</span>
-<span id="cb126-8"><a href="tme-deconvolution.html#cb126-8" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="tme-deconvolution.html#cb94-1" tabindex="-1"></a><span class="co"># Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. </span></span>
+<span id="cb94-2"><a href="tme-deconvolution.html#cb94-2" tabindex="-1"></a></span>
+<span id="cb94-3"><a href="tme-deconvolution.html#cb94-3" tabindex="-1"></a>eset<span class="ot">&lt;-</span><span class="fu">anno_eset</span>(<span class="at">eset       =</span> eset,</span>
+<span id="cb94-4"><a href="tme-deconvolution.html#cb94-4" tabindex="-1"></a>                <span class="at">annotation =</span> anno_hug133plus2,</span>
+<span id="cb94-5"><a href="tme-deconvolution.html#cb94-5" tabindex="-1"></a>                <span class="at">symbol     =</span> <span class="st">&quot;symbol&quot;</span>,</span>
+<span id="cb94-6"><a href="tme-deconvolution.html#cb94-6" tabindex="-1"></a>                <span class="at">probe      =</span> <span class="st">&quot;probe_id&quot;</span>,</span>
+<span id="cb94-7"><a href="tme-deconvolution.html#cb94-7" tabindex="-1"></a>                <span class="at">method     =</span> <span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb94-8"><a href="tme-deconvolution.html#cb94-8" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>##              GSM1523727 GSM1523728 GSM1523729
 ## SH3KBP1        4.327974   4.316195   4.351425
 ## RPL41          4.246149   4.246808   4.257940
@@ -386,17 +386,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="available-methods-to-decode-tme-contexture" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Available Methods to Decode TME Contexture<a href="tme-deconvolution.html#available-methods-to-decode-tme-contexture" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="tme-deconvolution.html#cb128-1" tabindex="-1"></a>tme_deconvolution_methods</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="tme-deconvolution.html#cb96-1" tabindex="-1"></a>tme_deconvolution_methods</span></code></pre></div>
 <pre><code>##         MCPcounter               EPIC              xCell          CIBERSORT 
 ##       &quot;mcpcounter&quot;             &quot;epic&quot;            &quot;xcell&quot;        &quot;cibersort&quot; 
 ## CIBERSORT Absolute                IPS           ESTIMATE                SVR 
 ##    &quot;cibersort_abs&quot;              &quot;ips&quot;         &quot;estimate&quot;              &quot;svr&quot; 
 ##               lsei              TIMER          quanTIseq 
 ##             &quot;lsei&quot;            &quot;timer&quot;        &quot;quantiseq&quot;</code></pre>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="tme-deconvolution.html#cb130-1" tabindex="-1"></a><span class="co"># Return available parameter options of deconvolution methods</span></span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="tme-deconvolution.html#cb98-1" tabindex="-1"></a><span class="co"># Return available parameter options of deconvolution methods</span></span></code></pre></div>
 <p>The input data is a matrix subseted from ESET of ACRG cohort, with genes in rows and samples in columns. The row name must be HGNC symbols and the column name must be sample names.</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="tme-deconvolution.html#cb131-1" tabindex="-1"></a>eset_acrg <span class="ot">&lt;-</span> eset[, <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>]</span>
-<span id="cb131-2"><a href="tme-deconvolution.html#cb131-2" tabindex="-1"></a>eset_acrg[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="tme-deconvolution.html#cb99-1" tabindex="-1"></a>eset_acrg <span class="ot">&lt;-</span> eset[, <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>]</span>
+<span id="cb99-2"><a href="tme-deconvolution.html#cb99-2" tabindex="-1"></a>eset_acrg[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>##              GSM1523727 GSM1523728 GSM1523729
 ## SH3KBP1        4.327974   4.316195   4.351425
 ## RPL41          4.246149   4.246808   4.257940
@@ -404,23 +404,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## COX2           4.250288   4.283714   4.270508
 ## LOC101928826   4.219303   4.219670   4.213252</code></pre>
 <p>Check detail parameters of the function</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="tme-deconvolution.html#cb133-1" tabindex="-1"></a><span class="co"># help(deconvo_tme)</span></span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="tme-deconvolution.html#cb101-1" tabindex="-1"></a><span class="co"># help(deconvo_tme)</span></span></code></pre></div>
 </div>
 <div id="method-1-cibersort" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Method 1: CIBERSORT<a href="tme-deconvolution.html#method-1-cibersort" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="tme-deconvolution.html#cb134-1" tabindex="-1"></a>cibersort<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">method =</span> <span class="st">&quot;cibersort&quot;</span>, <span class="at">arrays =</span> <span class="cn">TRUE</span>, <span class="at">perm =</span> <span class="dv">100</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="tme-deconvolution.html#cb102-1" tabindex="-1"></a>cibersort<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">method =</span> <span class="st">&quot;cibersort&quot;</span>, <span class="at">arrays =</span> <span class="cn">TRUE</span>, <span class="at">perm =</span> <span class="dv">100</span> )</span></code></pre></div>
 <pre><code>## 
 ## &gt;&gt;&gt; Running CIBERSORT</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="tme-deconvolution.html#cb136-1" tabindex="-1"></a><span class="co"># head(cibersort)</span></span>
-<span id="cb136-2"><a href="tme-deconvolution.html#cb136-2" tabindex="-1"></a>res<span class="ot">&lt;-</span><span class="fu">cell_bar_plot</span>(<span class="at">input =</span> cibersort[<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,], <span class="at">features =</span> <span class="fu">colnames</span>(cibersort)[<span class="dv">3</span><span class="sc">:</span><span class="dv">24</span>], <span class="at">title =</span> <span class="st">&quot;CIBERSORT Cell Fraction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="tme-deconvolution.html#cb104-1" tabindex="-1"></a><span class="co"># head(cibersort)</span></span>
+<span id="cb104-2"><a href="tme-deconvolution.html#cb104-2" tabindex="-1"></a>res<span class="ot">&lt;-</span><span class="fu">cell_bar_plot</span>(<span class="at">input =</span> cibersort[<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,], <span class="at">features =</span> <span class="fu">colnames</span>(cibersort)[<span class="dv">3</span><span class="sc">:</span><span class="dv">24</span>], <span class="at">title =</span> <span class="st">&quot;CIBERSORT Cell Fraction&quot;</span>)</span></code></pre></div>
 <pre><code>## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap</code></pre>
 <pre><code>## &gt;&gt;&gt;&gt;=== Palette option for random: 1: palette1; 2: palette2; 3: palette3;  4: palette4</code></pre>
 <p><img src="tme-deconvolution_files/figure-html/unnamed-chunk-7-1.png" width="816" /></p>
 </div>
 <div id="method-2-epic" class="section level2 hasAnchor" number="5.5">
 <h2><span class="header-section-number">5.5</span> Method 2: EPIC<a href="tme-deconvolution.html#method-2-epic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="tme-deconvolution.html#cb139-1" tabindex="-1"></a><span class="co"># help(deconvo_epic)</span></span>
-<span id="cb139-2"><a href="tme-deconvolution.html#cb139-2" tabindex="-1"></a>epic<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">method =</span> <span class="st">&quot;epic&quot;</span>, <span class="at">arrays =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="tme-deconvolution.html#cb107-1" tabindex="-1"></a><span class="co"># help(deconvo_epic)</span></span>
+<span id="cb107-2"><a href="tme-deconvolution.html#cb107-2" tabindex="-1"></a>epic<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">method =</span> <span class="st">&quot;epic&quot;</span>, <span class="at">arrays =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ## &gt;&gt;&gt; Running EPIC</code></pre>
 <pre><code>## Warning in IOBR::EPIC(bulk = eset, reference = ref, mRNA_cell = NULL, scaleExprs = TRUE): The optimization didn&#39;t fully converge for some samples:
@@ -430,7 +430,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## scaleExprs = TRUE): mRNA_cell value unknown for some cell types: CAFs,
 ## Endothelial - using the default value of 0.4 for these but this might bias the
 ## true cell proportions from all cell types.</code></pre>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="tme-deconvolution.html#cb143-1" tabindex="-1"></a><span class="fu">head</span>(epic)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="tme-deconvolution.html#cb111-1" tabindex="-1"></a><span class="fu">head</span>(epic)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 9
 ##   ID      Bcells_EPIC CAFs_EPIC CD4_Tcells_EPIC CD8_Tcells_EPIC Endothelial_EPIC
 ##   &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt;
@@ -445,10 +445,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="method-3-mcpcounter" class="section level2 hasAnchor" number="5.6">
 <h2><span class="header-section-number">5.6</span> Method 3: MCPcounter<a href="tme-deconvolution.html#method-3-mcpcounter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="tme-deconvolution.html#cb145-1" tabindex="-1"></a>mcp<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">method =</span> <span class="st">&quot;mcpcounter&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="tme-deconvolution.html#cb113-1" tabindex="-1"></a>mcp<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">method =</span> <span class="st">&quot;mcpcounter&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## &gt;&gt;&gt; Running MCP-counter</code></pre>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="tme-deconvolution.html#cb147-1" tabindex="-1"></a><span class="fu">head</span>(mcp)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="tme-deconvolution.html#cb115-1" tabindex="-1"></a><span class="fu">head</span>(mcp)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 11
 ##   ID         T_cells_MCPcounter CD8_T_cells_MCPcounter Cytotoxic_lymphocytes_M…¹
 ##   &lt;chr&gt;                   &lt;dbl&gt;                  &lt;dbl&gt;                     &lt;dbl&gt;
@@ -466,8 +466,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="method-4-xcell" class="section level2 hasAnchor" number="5.7">
 <h2><span class="header-section-number">5.7</span> Method 4: xCELL<a href="tme-deconvolution.html#method-4-xcell" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="tme-deconvolution.html#cb149-1" tabindex="-1"></a>xcell<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">method =</span> <span class="st">&quot;xcell&quot;</span>, <span class="at">arrays =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="tme-deconvolution.html#cb150-1" tabindex="-1"></a><span class="fu">head</span>(xcell)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="tme-deconvolution.html#cb117-1" tabindex="-1"></a>xcell<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">method =</span> <span class="st">&quot;xcell&quot;</span>, <span class="at">arrays =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="tme-deconvolution.html#cb118-1" tabindex="-1"></a><span class="fu">head</span>(xcell)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 68
 ##   ID         aDC_xCell Adipocytes_xCell Astrocytes_xCell `B-cells_xCell`
 ##   &lt;chr&gt;          &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;           &lt;dbl&gt;
@@ -487,11 +487,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="method-5-estimate" class="section level2 hasAnchor" number="5.8">
 <h2><span class="header-section-number">5.8</span> Method 5: ESTIMATE<a href="tme-deconvolution.html#method-5-estimate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="tme-deconvolution.html#cb152-1" tabindex="-1"></a>estimate<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">method =</span> <span class="st">&quot;estimate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="tme-deconvolution.html#cb120-1" tabindex="-1"></a>estimate<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">method =</span> <span class="st">&quot;estimate&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Merged dataset includes 9940 genes (472 mismatched).&quot;
 ## [1] &quot;1 gene set: StromalSignature  overlap= 136&quot;
 ## [1] &quot;2 gene set: ImmuneSignature  overlap= 138&quot;</code></pre>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="tme-deconvolution.html#cb154-1" tabindex="-1"></a><span class="fu">head</span>(estimate)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="tme-deconvolution.html#cb122-1" tabindex="-1"></a><span class="fu">head</span>(estimate)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
 ##   ID         StromalScore_estimate ImmuneScore_estimate ESTIMATEScore_estimate
 ##   &lt;chr&gt;                      &lt;dbl&gt;                &lt;dbl&gt;                  &lt;dbl&gt;
@@ -505,9 +505,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="method-6-timer" class="section level2 hasAnchor" number="5.9">
 <h2><span class="header-section-number">5.9</span> Method 6: TIMER<a href="tme-deconvolution.html#method-6-timer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="tme-deconvolution.html#cb156-1" tabindex="-1"></a>timer<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">method =</span> <span class="st">&quot;timer&quot;</span>, <span class="at">group_list =</span> <span class="fu">rep</span>(<span class="st">&quot;stad&quot;</span>,<span class="fu">dim</span>(eset_acrg)[<span class="dv">2</span>]))</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="tme-deconvolution.html#cb124-1" tabindex="-1"></a>timer<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">method =</span> <span class="st">&quot;timer&quot;</span>, <span class="at">group_list =</span> <span class="fu">rep</span>(<span class="st">&quot;stad&quot;</span>,<span class="fu">dim</span>(eset_acrg)[<span class="dv">2</span>]))</span></code></pre></div>
 <pre><code>## [1] &quot;Outlier genes: AGR2 B2M COL1A2 COL3A1 COX2 CYAT1 EEF1A1 EIF1 FTH1 GKN1 HUWE1 IGK IGLC1 LIPF LOC101060363 LOC101928826 MIR8071-2 ND4 PABPC1 PABPC3 PGA4 RPL13AP5 RPL37 RPL37A RPL41 RPL7 RPS10 RPS16 RPS17 RPS18 RPS19 S100A6 S100A9 SH3KBP1 SNORD24 SNORD42A SNORD54 SNORD73A SPINK1 SPINK4 TFF1 UQCRFS1&quot;</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="tme-deconvolution.html#cb158-1" tabindex="-1"></a><span class="fu">head</span>(timer)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="tme-deconvolution.html#cb126-1" tabindex="-1"></a><span class="fu">head</span>(timer)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 7
 ##   ID         B_cell_TIMER T_cell_CD4_TIMER T_cell_CD8_TIMER Neutrophil_TIMER
 ##   &lt;chr&gt;             &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
@@ -521,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="method-7-quantiseq" class="section level2 hasAnchor" number="5.10">
 <h2><span class="header-section-number">5.10</span> Method 7: quanTIseq<a href="tme-deconvolution.html#method-7-quantiseq" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="tme-deconvolution.html#cb160-1" tabindex="-1"></a>quantiseq<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">tumor =</span> <span class="cn">TRUE</span>, <span class="at">arrays =</span> <span class="cn">TRUE</span>, <span class="at">scale_mrna =</span> <span class="cn">TRUE</span>, <span class="at">method =</span> <span class="st">&quot;quantiseq&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="tme-deconvolution.html#cb128-1" tabindex="-1"></a>quantiseq<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">tumor =</span> <span class="cn">TRUE</span>, <span class="at">arrays =</span> <span class="cn">TRUE</span>, <span class="at">scale_mrna =</span> <span class="cn">TRUE</span>, <span class="at">method =</span> <span class="st">&quot;quantiseq&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Running quanTIseq deconvolution module</code></pre>
 <pre><code>## Gene expression normalization and re-annotation (arrays: TRUE)</code></pre>
@@ -529,7 +529,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Signature genes found in data set: 152/153 (99.35%)</code></pre>
 <pre><code>## Mixture deconvolution (method: lsei)</code></pre>
 <pre><code>## Deconvolution sucessful!</code></pre>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="tme-deconvolution.html#cb167-1" tabindex="-1"></a><span class="fu">head</span>(quantiseq)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="tme-deconvolution.html#cb135-1" tabindex="-1"></a><span class="fu">head</span>(quantiseq)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 12
 ##   ID         B_cells_quantiseq Macrophages_M1_quantiseq Macrophages_M2_quantiseq
 ##   &lt;chr&gt;                  &lt;dbl&gt;                    &lt;dbl&gt;                    &lt;dbl&gt;
@@ -543,15 +543,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   NK_cells_quantiseq &lt;dbl&gt;, T_cells_CD4_quantiseq &lt;dbl&gt;,
 ## #   T_cells_CD8_quantiseq &lt;dbl&gt;, Tregs_quantiseq &lt;dbl&gt;,
 ## #   Dendritic_cells_quantiseq &lt;dbl&gt;, Other_quantiseq &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="tme-deconvolution.html#cb169-1" tabindex="-1"></a>res<span class="ot">&lt;-</span><span class="fu">cell_bar_plot</span>(<span class="at">input =</span> quantiseq[<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, ], <span class="at">id =</span> <span class="st">&quot;ID&quot;</span>, <span class="at">features =</span> <span class="fu">colnames</span>(quantiseq)[<span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="at">title =</span> <span class="st">&quot;quanTIseq Cell Fraction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="tme-deconvolution.html#cb137-1" tabindex="-1"></a>res<span class="ot">&lt;-</span><span class="fu">cell_bar_plot</span>(<span class="at">input =</span> quantiseq[<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, ], <span class="at">id =</span> <span class="st">&quot;ID&quot;</span>, <span class="at">features =</span> <span class="fu">colnames</span>(quantiseq)[<span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>], <span class="at">title =</span> <span class="st">&quot;quanTIseq Cell Fraction&quot;</span>)</span></code></pre></div>
 <pre><code>## There are seven categories you can choose: box, continue2, continue, random, heatmap, heatmap3, tidyheatmap</code></pre>
 <pre><code>## &gt;&gt;&gt;&gt;=== Palette option for random: 1: palette1; 2: palette2; 3: palette3;  4: palette4</code></pre>
 <p><img src="tme-deconvolution_files/figure-html/unnamed-chunk-14-1.png" width="768" /></p>
 </div>
 <div id="method-8-ips" class="section level2 hasAnchor" number="5.11">
 <h2><span class="header-section-number">5.11</span> Method 8: IPS<a href="tme-deconvolution.html#method-8-ips" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="tme-deconvolution.html#cb172-1" tabindex="-1"></a>ips<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">method =</span> <span class="st">&quot;ips&quot;</span>, <span class="at">plot=</span> <span class="cn">FALSE</span>)</span>
-<span id="cb172-2"><a href="tme-deconvolution.html#cb172-2" tabindex="-1"></a><span class="fu">head</span>(ips)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="tme-deconvolution.html#cb140-1" tabindex="-1"></a>ips<span class="ot">&lt;-</span><span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset_acrg, <span class="at">method =</span> <span class="st">&quot;ips&quot;</span>, <span class="at">plot=</span> <span class="cn">FALSE</span>)</span>
+<span id="cb140-2"><a href="tme-deconvolution.html#cb140-2" tabindex="-1"></a><span class="fu">head</span>(ips)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 7
 ##   ID         MHC_IPS EC_IPS SC_IPS  CP_IPS AZ_IPS IPS_IPS
 ##   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
@@ -564,15 +564,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="combination-of-above-deconvolution-results" class="section level2 hasAnchor" number="5.12">
 <h2><span class="header-section-number">5.12</span> Combination of above deconvolution results</a><a href="tme-deconvolution.html#combination-of-above-deconvolution-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="tme-deconvolution.html#cb174-1" tabindex="-1"></a>tme_combine<span class="ot">&lt;-</span>cibersort <span class="sc">%&gt;%</span> </span>
-<span id="cb174-2"><a href="tme-deconvolution.html#cb174-2" tabindex="-1"></a>  <span class="fu">inner_join</span>(.,mcp,<span class="at">by       =</span> <span class="st">&quot;ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb174-3"><a href="tme-deconvolution.html#cb174-3" tabindex="-1"></a>  <span class="fu">inner_join</span>(.,xcell,<span class="at">by     =</span> <span class="st">&quot;ID&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb174-4"><a href="tme-deconvolution.html#cb174-4" tabindex="-1"></a>  <span class="fu">inner_join</span>(.,epic,<span class="at">by      =</span> <span class="st">&quot;ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb174-5"><a href="tme-deconvolution.html#cb174-5" tabindex="-1"></a>  <span class="fu">inner_join</span>(.,estimate,<span class="at">by  =</span> <span class="st">&quot;ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb174-6"><a href="tme-deconvolution.html#cb174-6" tabindex="-1"></a>  <span class="fu">inner_join</span>(.,timer,<span class="at">by     =</span> <span class="st">&quot;ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb174-7"><a href="tme-deconvolution.html#cb174-7" tabindex="-1"></a>  <span class="fu">inner_join</span>(.,quantiseq,<span class="at">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb174-8"><a href="tme-deconvolution.html#cb174-8" tabindex="-1"></a>  <span class="fu">inner_join</span>(.,ips,<span class="at">by       =</span> <span class="st">&quot;ID&quot;</span>)</span>
-<span id="cb174-9"><a href="tme-deconvolution.html#cb174-9" tabindex="-1"></a><span class="fu">dim</span>(tme_combine)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="tme-deconvolution.html#cb142-1" tabindex="-1"></a>tme_combine<span class="ot">&lt;-</span>cibersort <span class="sc">%&gt;%</span> </span>
+<span id="cb142-2"><a href="tme-deconvolution.html#cb142-2" tabindex="-1"></a>  <span class="fu">inner_join</span>(.,mcp,<span class="at">by       =</span> <span class="st">&quot;ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb142-3"><a href="tme-deconvolution.html#cb142-3" tabindex="-1"></a>  <span class="fu">inner_join</span>(.,xcell,<span class="at">by     =</span> <span class="st">&quot;ID&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb142-4"><a href="tme-deconvolution.html#cb142-4" tabindex="-1"></a>  <span class="fu">inner_join</span>(.,epic,<span class="at">by      =</span> <span class="st">&quot;ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb142-5"><a href="tme-deconvolution.html#cb142-5" tabindex="-1"></a>  <span class="fu">inner_join</span>(.,estimate,<span class="at">by  =</span> <span class="st">&quot;ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb142-6"><a href="tme-deconvolution.html#cb142-6" tabindex="-1"></a>  <span class="fu">inner_join</span>(.,timer,<span class="at">by     =</span> <span class="st">&quot;ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb142-7"><a href="tme-deconvolution.html#cb142-7" tabindex="-1"></a>  <span class="fu">inner_join</span>(.,quantiseq,<span class="at">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb142-8"><a href="tme-deconvolution.html#cb142-8" tabindex="-1"></a>  <span class="fu">inner_join</span>(.,ips,<span class="at">by       =</span> <span class="st">&quot;ID&quot;</span>)</span>
+<span id="cb142-9"><a href="tme-deconvolution.html#cb142-9" tabindex="-1"></a><span class="fu">dim</span>(tme_combine)</span></code></pre></div>
 <pre><code>## [1]  50 138</code></pre>
 </div>
 <div id="how-to-customise-the-signature-matrix-for-svr-and-lesi-algorithm" class="section level2 hasAnchor" number="5.13">
@@ -580,24 +580,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The recent surge in single-cell RNA sequencing has enabled us to identify novel microenvironmental cells, tumour microenvironmental characteristics, and tumour clonal signatures with high resolution. It is necessary to scrutinize, confirm and depict these features attained from high-dimensional single-cell information in bulk-seq with extended specimen sizes for clinical phenotyping. This is a demonstration using the results of 10X single-cell sequencing data of PBMC to construct gene signature matrix for <code>deconvo_tme</code> function and estimate the abundance of these cell types in bulk transcriptome data.</p>
 <p>Download PBMC dataset through: <a href="https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz" class="uri">https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz</a></p>
 <p>Initialize the Seurat object with the raw (non-normalized data).</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="tme-deconvolution.html#cb176-1" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
-<span id="cb176-2"><a href="tme-deconvolution.html#cb176-2" tabindex="-1"></a>pbmc.data <span class="ot">&lt;-</span> <span class="fu">Read10X</span>(<span class="at">data.dir =</span> <span class="st">&quot;./pbmc3k_filtered_gene_bc_matrices/filtered_gene_bc_matrices/hg19&quot;</span>)</span>
-<span id="cb176-3"><a href="tme-deconvolution.html#cb176-3" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(<span class="at">counts =</span> pbmc.data, <span class="at">project =</span> <span class="st">&quot;pbmc3k&quot;</span>, <span class="at">min.cells =</span> <span class="dv">3</span>, <span class="at">min.features =</span> <span class="dv">200</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="tme-deconvolution.html#cb144-1" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb144-2"><a href="tme-deconvolution.html#cb144-2" tabindex="-1"></a>pbmc.data <span class="ot">&lt;-</span> <span class="fu">Read10X</span>(<span class="at">data.dir =</span> <span class="st">&quot;./pbmc3k_filtered_gene_bc_matrices/filtered_gene_bc_matrices/hg19&quot;</span>)</span>
+<span id="cb144-3"><a href="tme-deconvolution.html#cb144-3" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(<span class="at">counts =</span> pbmc.data, <span class="at">project =</span> <span class="st">&quot;pbmc3k&quot;</span>, <span class="at">min.cells =</span> <span class="dv">3</span>, <span class="at">min.features =</span> <span class="dv">200</span>)</span></code></pre></div>
 <p>Data prepare using Seurat’s standard pipeline.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="tme-deconvolution.html#cb177-1" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(pbmc, <span class="at">selection.method =</span> <span class="st">&quot;vst&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb177-2"><a href="tme-deconvolution.html#cb177-2" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(pbmc, <span class="at">normalization.method =</span> <span class="st">&quot;LogNormalize&quot;</span>, <span class="at">scale.factor =</span> <span class="dv">10000</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb177-3"><a href="tme-deconvolution.html#cb177-3" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(pbmc, <span class="at">features =</span>  <span class="fu">rownames</span>(pbmc), <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb177-4"><a href="tme-deconvolution.html#cb177-4" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(pbmc, <span class="at">features =</span> <span class="fu">VariableFeatures</span>(<span class="at">object =</span> pbmc), <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb177-5"><a href="tme-deconvolution.html#cb177-5" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(pbmc, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb177-6"><a href="tme-deconvolution.html#cb177-6" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(pbmc, <span class="at">resolution =</span> <span class="fl">0.5</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb177-7"><a href="tme-deconvolution.html#cb177-7" tabindex="-1"></a><span class="co"># Annotate cells according to seurat&#39;s tutorials</span></span>
-<span id="cb177-8"><a href="tme-deconvolution.html#cb177-8" tabindex="-1"></a><span class="co"># https://satijalab.org/seurat/articles/pbmc3k_tutorial</span></span>
-<span id="cb177-9"><a href="tme-deconvolution.html#cb177-9" tabindex="-1"></a>new.cluster.ids <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Naive_CD4_T&quot;</span>, <span class="st">&quot;CD14_Mono&quot;</span>, <span class="st">&quot;Memory_CD4_T&quot;</span>, <span class="st">&quot;Bcells&quot;</span>, <span class="st">&quot;CD8_Tcell&quot;</span>, <span class="st">&quot;FCGR3A_Mono&quot;</span>, <span class="st">&quot;NK&quot;</span>, <span class="st">&quot;DC&quot;</span>, <span class="st">&quot;Platelet&quot;</span>)</span>
-<span id="cb177-10"><a href="tme-deconvolution.html#cb177-10" tabindex="-1"></a><span class="fu">names</span>(new.cluster.ids) <span class="ot">&lt;-</span> <span class="fu">levels</span>(pbmc<span class="sc">$</span>seurat_clusters)</span>
-<span id="cb177-11"><a href="tme-deconvolution.html#cb177-11" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">RenameIdents</span>(pbmc, new.cluster.ids)</span>
-<span id="cb177-12"><a href="tme-deconvolution.html#cb177-12" tabindex="-1"></a>pbmc<span class="sc">$</span>celltype <span class="ot">&lt;-</span> <span class="fu">Idents</span>(pbmc)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="tme-deconvolution.html#cb145-1" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(pbmc, <span class="at">selection.method =</span> <span class="st">&quot;vst&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb145-2"><a href="tme-deconvolution.html#cb145-2" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(pbmc, <span class="at">normalization.method =</span> <span class="st">&quot;LogNormalize&quot;</span>, <span class="at">scale.factor =</span> <span class="dv">10000</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb145-3"><a href="tme-deconvolution.html#cb145-3" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(pbmc, <span class="at">features =</span>  <span class="fu">rownames</span>(pbmc), <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb145-4"><a href="tme-deconvolution.html#cb145-4" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(pbmc, <span class="at">features =</span> <span class="fu">VariableFeatures</span>(<span class="at">object =</span> pbmc), <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb145-5"><a href="tme-deconvolution.html#cb145-5" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(pbmc, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb145-6"><a href="tme-deconvolution.html#cb145-6" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(pbmc, <span class="at">resolution =</span> <span class="fl">0.5</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb145-7"><a href="tme-deconvolution.html#cb145-7" tabindex="-1"></a><span class="co"># Annotate cells according to seurat&#39;s tutorials</span></span>
+<span id="cb145-8"><a href="tme-deconvolution.html#cb145-8" tabindex="-1"></a><span class="co"># https://satijalab.org/seurat/articles/pbmc3k_tutorial</span></span>
+<span id="cb145-9"><a href="tme-deconvolution.html#cb145-9" tabindex="-1"></a>new.cluster.ids <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Naive_CD4_T&quot;</span>, <span class="st">&quot;CD14_Mono&quot;</span>, <span class="st">&quot;Memory_CD4_T&quot;</span>, <span class="st">&quot;Bcells&quot;</span>, <span class="st">&quot;CD8_Tcell&quot;</span>, <span class="st">&quot;FCGR3A_Mono&quot;</span>, <span class="st">&quot;NK&quot;</span>, <span class="st">&quot;DC&quot;</span>, <span class="st">&quot;Platelet&quot;</span>)</span>
+<span id="cb145-10"><a href="tme-deconvolution.html#cb145-10" tabindex="-1"></a><span class="fu">names</span>(new.cluster.ids) <span class="ot">&lt;-</span> <span class="fu">levels</span>(pbmc<span class="sc">$</span>seurat_clusters)</span>
+<span id="cb145-11"><a href="tme-deconvolution.html#cb145-11" tabindex="-1"></a>pbmc <span class="ot">&lt;-</span> <span class="fu">RenameIdents</span>(pbmc, new.cluster.ids)</span>
+<span id="cb145-12"><a href="tme-deconvolution.html#cb145-12" tabindex="-1"></a>pbmc<span class="sc">$</span>celltype <span class="ot">&lt;-</span> <span class="fu">Idents</span>(pbmc)</span></code></pre></div>
 <p>Generate reference matrix using <code>generateRef_seurat</code> function.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="tme-deconvolution.html#cb178-1" tabindex="-1"></a>sm<span class="ot">&lt;-</span> <span class="fu">generateRef_seurat</span>(<span class="at">sce =</span> pbmc, <span class="at">celltype =</span> <span class="st">&quot;celltype&quot;</span>, <span class="at">slot_out =</span> <span class="st">&quot;data&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="tme-deconvolution.html#cb146-1" tabindex="-1"></a>sm<span class="ot">&lt;-</span> <span class="fu">generateRef_seurat</span>(<span class="at">sce =</span> pbmc, <span class="at">celltype =</span> <span class="st">&quot;celltype&quot;</span>, <span class="at">slot_out =</span> <span class="st">&quot;data&quot;</span>)</span></code></pre></div>
 <pre><code>## &gt;&gt;&gt;---Assay used to find markers: 
 ## [1] &quot;&gt;&gt;&gt;&gt;&gt; RNA&quot;
 ## 
@@ -624,10 +624,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &gt;&gt;&gt;-- Aggreating scRNAseq data...
 ## &gt;&gt;&gt;-- `orig.ident` was set as group. User can define through parameter `celltype` ...</code></pre>
 <p>Load the bulk RNA-seq data</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="tme-deconvolution.html#cb180-1" tabindex="-1"></a><span class="fu">data</span>(eset_stad, <span class="at">package =</span> <span class="st">&quot;IOBR&quot;</span>)</span>
-<span id="cb180-2"><a href="tme-deconvolution.html#cb180-2" tabindex="-1"></a>eset <span class="ot">&lt;-</span> <span class="fu">count2tpm</span>(<span class="at">countMat =</span> eset_stad, <span class="at">source =</span> <span class="st">&quot;local&quot;</span>, <span class="at">idType =</span> <span class="st">&quot;ensembl&quot;</span>)</span>
-<span id="cb180-3"><a href="tme-deconvolution.html#cb180-3" tabindex="-1"></a>svr<span class="ot">&lt;-</span> <span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset, <span class="at">reference  =</span> sm,  <span class="at">method =</span> <span class="st">&quot;svr&quot;</span>, <span class="at">arrays  =</span> <span class="cn">FALSE</span>, <span class="at">absolute.mode =</span> <span class="cn">FALSE</span>, <span class="at">perm =</span> <span class="dv">100</span>)</span>
-<span id="cb180-4"><a href="tme-deconvolution.html#cb180-4" tabindex="-1"></a><span class="fu">head</span>(svr)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="tme-deconvolution.html#cb148-1" tabindex="-1"></a><span class="fu">data</span>(eset_stad, <span class="at">package =</span> <span class="st">&quot;IOBR&quot;</span>)</span>
+<span id="cb148-2"><a href="tme-deconvolution.html#cb148-2" tabindex="-1"></a>eset <span class="ot">&lt;-</span> <span class="fu">count2tpm</span>(<span class="at">countMat =</span> eset_stad, <span class="at">source =</span> <span class="st">&quot;local&quot;</span>, <span class="at">idType =</span> <span class="st">&quot;ensembl&quot;</span>)</span>
+<span id="cb148-3"><a href="tme-deconvolution.html#cb148-3" tabindex="-1"></a>svr<span class="ot">&lt;-</span> <span class="fu">deconvo_tme</span>(<span class="at">eset =</span> eset, <span class="at">reference  =</span> sm,  <span class="at">method =</span> <span class="st">&quot;svr&quot;</span>, <span class="at">arrays  =</span> <span class="cn">FALSE</span>, <span class="at">absolute.mode =</span> <span class="cn">FALSE</span>, <span class="at">perm =</span> <span class="dv">100</span>)</span>
+<span id="cb148-4"><a href="tme-deconvolution.html#cb148-4" tabindex="-1"></a><span class="fu">head</span>(svr)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 13
 ##   ID           Naive_CD4_T_CIBERSORT CD14_Mono_CIBERSORT Memory_CD4_T_CIBERSORT
 ##   &lt;chr&gt;                        &lt;dbl&gt;               &lt;dbl&gt;                  &lt;dbl&gt;
@@ -641,7 +641,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   FCGR3A_Mono_CIBERSORT &lt;dbl&gt;, NK_CIBERSORT &lt;dbl&gt;, DC_CIBERSORT &lt;dbl&gt;,
 ## #   Platelet_CIBERSORT &lt;dbl&gt;, `P-value_CIBERSORT` &lt;dbl&gt;,
 ## #   Correlation_CIBERSORT &lt;dbl&gt;, RMSE_CIBERSORT &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="tme-deconvolution.html#cb182-1" tabindex="-1"></a>res<span class="ot">&lt;-</span><span class="fu">cell_bar_plot</span>(<span class="at">input =</span> svr, <span class="at">features =</span> <span class="fu">colnames</span>(svr)[<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>], <span class="at">title =</span> <span class="st">&quot;SVR Cell Fraction&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="tme-deconvolution.html#cb150-1" tabindex="-1"></a>res<span class="ot">&lt;-</span><span class="fu">cell_bar_plot</span>(<span class="at">input =</span> svr, <span class="at">features =</span> <span class="fu">colnames</span>(svr)[<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>], <span class="at">title =</span> <span class="st">&quot;SVR Cell Fraction&quot;</span>)</span></code></pre></div>
 <p><img src="tme-deconvolution_files/figure-html/unnamed-chunk-21-1.png" width="816" /></p>
 </div>
 <div id="references-2" class="section level2 hasAnchor" number="5.14">
