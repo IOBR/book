@@ -42,7 +42,7 @@ head(anno_hug133plus2)
 ```
 
 ```
-## # A tibble: 6 x 2
+## # A tibble: 6 × 2
 ##   probe_id  symbol 
 ##   <fct>     <fct>  
 ## 1 1007_s_at MIR4640
@@ -229,7 +229,7 @@ head(res)
 ```
 
 ```
-## # A tibble: 6 x 5
+## # A tibble: 6 × 5
 ##   ID                           P    HR CI_low_0.95 CI_up_0.95
 ##   <chr>                    <dbl> <dbl>       <dbl>      <dbl>
 ## 1 Folate_biosynthesis   1.00e-10 0.579       0.490      0.683
@@ -247,9 +247,7 @@ res<- res[nchar(res$ID)<=28, ]
 p1<- sig_forest(res, signature = "ID", n = 20)
 ```
 
-
-
-\begin{center}\includegraphics{Feature-selections_files/figure-latex/unnamed-chunk-7-1} \end{center}
+<img src="Feature-selections_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
 
 ## Visulization using heatmap
 
@@ -265,9 +263,7 @@ p2 <- sig_heatmap(input         = input,
                   path          = "result" )
 ```
 
-
-
-\begin{center}\includegraphics{Feature-selections_files/figure-latex/unnamed-chunk-8-1} \end{center}
+<img src="Feature-selections_files/figure-html/unnamed-chunk-8-1.png" width="864" style="display: block; margin: auto;" />
 
 ## Focus on target signatures
 
@@ -286,7 +282,7 @@ p1 <- sig_box(data           = input,
 ```
 
 ```
-## # A tibble: 6 x 8
+## # A tibble: 6 × 8
 ##   .y.       group1    group2           p    p.adj p.format p.signif method  
 ##   <chr>     <chr>     <chr>        <dbl>    <dbl> <chr>    <chr>    <chr>   
 ## 1 signature EMT       MSI       5.39e-15 3.20e-14 5.4e-15  ****     Wilcoxon
@@ -312,7 +308,7 @@ p2 <- sig_box(data           = input,
 ```
 
 ```
-## # A tibble: 6 x 8
+## # A tibble: 6 × 8
 ##   .y.       group1    group2           p    p.adj p.format p.signif method  
 ##   <chr>     <chr>     <chr>        <dbl>    <dbl> <chr>    <chr>    <chr>   
 ## 1 signature EMT       MSI       7.98e-17 3.20e-16 <2e-16   ****     Wilcoxon
@@ -338,7 +334,7 @@ p3 <- sig_box(data           = input,
 ```
 
 ```
-## # A tibble: 6 x 8
+## # A tibble: 6 × 8
 ##   .y.       group1    group2           p        p.adj p.format p.signif method  
 ##   <chr>     <chr>     <chr>        <dbl>        <dbl> <chr>    <chr>    <chr>   
 ## 1 signature EMT       MSI       2.20e- 2 0.044        0.0220   *        Wilcoxon
@@ -355,9 +351,7 @@ p3 <- sig_box(data           = input,
 p1|p2|p3
 ```
 
-
-
-\begin{center}\includegraphics{Feature-selections_files/figure-latex/unnamed-chunk-10-1} \end{center}
+<img src="Feature-selections_files/figure-html/unnamed-chunk-10-1.png" width="1344" style="display: block; margin: auto;" />
 
 
 ## Survival analysis and visulization
@@ -395,7 +389,7 @@ res <-       sig_surv_plot(input_pdata       = input,
 res$plots
 ```
 
-![](Feature-selections_files/figure-latex/unnamed-chunk-11-1.pdf)<!-- --> 
+<img src="Feature-selections_files/figure-html/unnamed-chunk-11-1.png" width="1536" />
 
 ### Time-Dependent ROC curve
 
@@ -452,7 +446,7 @@ p2<- roc_time(input      = input,
 p1|p2
 ```
 
-![](Feature-selections_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> 
+<img src="Feature-selections_files/figure-html/unnamed-chunk-12-1.png" width="1152" />
 
 
 ## Batch correlation analysis 
@@ -467,15 +461,15 @@ res <- batch_cor(data = input, target = "Glycogen_Biosynthesis", feature = colna
 ```
 
 ```
-## # A tibble: 6 x 6
+## # A tibble: 6 × 6
 ##   sig_names                         p.value statistic    p.adj log10pvalue stars
 ##   <chr>                               <dbl>     <dbl>    <dbl>       <dbl> <fct>
 ## 1 TMEscoreB_CIR                    8.89e-42     0.678 2.27e-39        41.1 **** 
-## 2 Glycine__Serine_and_Threonine_M~ 7.49e-40    -0.666 9.54e-38        39.1 **** 
+## 2 Glycine__Serine_and_Threonine_M… 7.49e-40    -0.666 9.54e-38        39.1 **** 
 ## 3 Ether_Lipid_Metabolism           3.84e-39     0.662 3.27e-37        38.4 **** 
 ## 4 MDSC_Peng_et_al                  1.13e-38     0.659 7.21e-37        37.9 **** 
 ## 5 Glycerophospholipid_Metabolism   8.72e-38    -0.653 4.44e-36        37.1 **** 
-## 6 TIP_Release_of_cancer_cell_anti~ 2.32e-37    -0.650 9.86e-36        36.6 ****
+## 6 TIP_Release_of_cancer_cell_anti… 2.32e-37    -0.650 9.86e-36        36.6 ****
 ```
 
 ```r
@@ -483,15 +477,15 @@ head(res)
 ```
 
 ```
-## # A tibble: 6 x 6
+## # A tibble: 6 × 6
 ##   sig_names                         p.value statistic    p.adj log10pvalue stars
 ##   <chr>                               <dbl>     <dbl>    <dbl>       <dbl> <fct>
 ## 1 TMEscoreB_CIR                    8.89e-42     0.678 2.27e-39        41.1 **** 
-## 2 Glycine__Serine_and_Threonine_M~ 7.49e-40    -0.666 9.54e-38        39.1 **** 
+## 2 Glycine__Serine_and_Threonine_M… 7.49e-40    -0.666 9.54e-38        39.1 **** 
 ## 3 Ether_Lipid_Metabolism           3.84e-39     0.662 3.27e-37        38.4 **** 
 ## 4 MDSC_Peng_et_al                  1.13e-38     0.659 7.21e-37        37.9 **** 
 ## 5 Glycerophospholipid_Metabolism   8.72e-38    -0.653 4.44e-36        37.1 **** 
-## 6 TIP_Release_of_cancer_cell_anti~ 2.32e-37    -0.650 9.86e-36        36.6 ****
+## 6 TIP_Release_of_cancer_cell_anti… 2.32e-37    -0.650 9.86e-36        36.6 ****
 ```
 
 
@@ -542,7 +536,7 @@ p2<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glyco
 p1|p2
 ```
 
-![](Feature-selections_files/figure-latex/unnamed-chunk-15-1.pdf)<!-- --> 
+<img src="Feature-selections_files/figure-html/unnamed-chunk-15-1.png" width="1152" />
 
 #### Demonstrate correlation between multiple variables
 
@@ -562,7 +556,7 @@ p <- get_cor_matrix(data           = input,
                     path           = "result")
 ```
 
-![](Feature-selections_files/figure-latex/unnamed-chunk-16-1.pdf)<!-- --> 
+<img src="Feature-selections_files/figure-html/unnamed-chunk-16-1.png" width="960" />
 
 Demonstrate the correlation between signatures and genes
 
@@ -590,7 +584,7 @@ p <- get_cor_matrix(data           = input2,
                     path           = "result")
 ```
 
-![](Feature-selections_files/figure-latex/unnamed-chunk-17-1.pdf)<!-- --> 
+<img src="Feature-selections_files/figure-html/unnamed-chunk-17-1.png" width="1056" />
 
 Users can customize the image using parameters.
 
@@ -607,7 +601,7 @@ p <- get_cor_matrix(data           = input2,
                     path           = "result")
 ```
 
-![](Feature-selections_files/figure-latex/unnamed-chunk-18-1.pdf)<!-- --> 
+<img src="Feature-selections_files/figure-html/unnamed-chunk-18-1.png" width="1056" />
 
 
 ### Identifying Category Variables Linked to Signatures
@@ -629,7 +623,7 @@ head(res)
 ```
 
 ```
-## # A tibble: 6 x 8
+## # A tibble: 6 × 8
 ##   sig_names         p.value   High    Low statistic    p.adj log10pvalue stars
 ##   <chr>               <dbl>  <dbl>  <dbl>     <dbl>    <dbl>       <dbl> <fct>
 ## 1 TMEscore_CIR     4.44e-37  1.17  -0.365      1.54 1.14e-34        36.4 **** 
@@ -655,7 +649,7 @@ p1 <- sig_box(data           = input,
 ```
 
 ```
-## # A tibble: 1 x 8
+## # A tibble: 1 × 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   <chr>     <chr>  <chr>     <dbl>    <dbl> <chr>    <chr>    <chr>   
 ## 1 signature High   Low    4.44e-37 4.40e-37 <2e-16   ****     Wilcoxon
@@ -676,7 +670,7 @@ p2 <- sig_box(data           = input,
 ```
 
 ```
-## # A tibble: 1 x 8
+## # A tibble: 1 × 8
 ##   .y.       group1 group2        p p.adj p.format p.signif method  
 ##   <chr>     <chr>  <chr>     <dbl> <dbl> <chr>    <chr>    <chr>   
 ## 1 signature High   Low    3.97e-34 4e-34 <2e-16   ****     Wilcoxon
@@ -697,7 +691,7 @@ p3 <- sig_box(data           = input,
 ```
 
 ```
-## # A tibble: 1 x 8
+## # A tibble: 1 × 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   <chr>     <chr>  <chr>     <dbl>    <dbl> <chr>    <chr>    <chr>   
 ## 1 signature High   Low    1.68e-25 1.70e-25 <2e-16   ****     Wilcoxon
@@ -709,9 +703,7 @@ p3 <- sig_box(data           = input,
 p1|p2|p3
 ```
 
-
-
-\begin{center}\includegraphics{Feature-selections_files/figure-latex/unnamed-chunk-21-1} \end{center}
+<img src="Feature-selections_files/figure-html/unnamed-chunk-21-1.png" width="960" style="display: block; margin: auto;" />
 
 
 ### For multicategorical variables (>2 subgroups)
@@ -731,16 +723,16 @@ head(res)
 ```
 
 ```
-## # A tibble: 6 x 10
+## # A tibble: 6 × 10
 ##   sig_names        p.value   EMT    MSI `MSS/TP53-` `MSS/TP53+`    mean    p.adj
 ##   <chr>              <dbl> <dbl>  <dbl>       <dbl>       <dbl>   <dbl>    <dbl>
 ## 1 TMEscore_CIR    1.35e-28 -1.36  1.00        0.305      0.0577 -0.119  3.46e-26
-## 2 Ether_Lipid_Me~ 4.37e-27  1.46 -0.830      -0.253     -0.375   0.165  4.64e-25
+## 2 Ether_Lipid_Me… 4.37e-27  1.46 -0.830      -0.253     -0.375   0.165  4.64e-25
 ## 3 TMEscoreB_CIR   5.88e-27  1.55 -0.829      -0.420     -0.303   0.169  4.64e-25
-## 4 Inositol_Phosp~ 7.25e-27  1.53 -0.808      -0.315     -0.408   0.177  4.64e-25
-## 5 Selenocompound~ 1.17e-26 -1.48  0.824       0.328      0.326  -0.163  5.99e-25
-## 6 Folate_biosynt~ 1.63e-26 -1.12  1.05        0.127     -0.0573 -0.0792 6.15e-25
-## # i 2 more variables: log10pvalue <dbl>, stars <fct>
+## 4 Inositol_Phosp… 7.25e-27  1.53 -0.808      -0.315     -0.408   0.177  4.64e-25
+## 5 Selenocompound… 1.17e-26 -1.48  0.824       0.328      0.326  -0.163  5.99e-25
+## 6 Folate_biosynt… 1.63e-26 -1.12  1.05        0.127     -0.0573 -0.0792 6.15e-25
+## # ℹ 2 more variables: log10pvalue <dbl>, stars <fct>
 ```
 
 ```r
@@ -758,7 +750,7 @@ p1 <- sig_box(data           = input,
 ```
 
 ```
-## # A tibble: 6 x 8
+## # A tibble: 6 × 8
 ##   .y.       group1    group2           p    p.adj p.format p.signif method  
 ##   <chr>     <chr>     <chr>        <dbl>    <dbl> <chr>    <chr>    <chr>   
 ## 1 signature EMT       MSI       3.64e-17 2.20e-16 < 2e-16  ****     Wilcoxon
@@ -784,7 +776,7 @@ p2 <- sig_box(data           = input,
 ```
 
 ```
-## # A tibble: 6 x 8
+## # A tibble: 6 × 8
 ##   .y.       group1    group2           p    p.adj p.format p.signif method  
 ##   <chr>     <chr>     <chr>        <dbl>    <dbl> <chr>    <chr>    <chr>   
 ## 1 signature EMT       MSI       3.76e-19 1.9 e-18 < 2e-16  ****     Wilcoxon
@@ -810,7 +802,7 @@ p3 <- sig_box(data           = input,
 ```
 
 ```
-## # A tibble: 6 x 8
+## # A tibble: 6 × 8
 ##   .y.       group1    group2           p    p.adj p.format p.signif method  
 ##   <chr>     <chr>     <chr>        <dbl>    <dbl> <chr>    <chr>    <chr>   
 ## 1 signature EMT       MSI       9.59e-19 4.80e-18 < 2e-16  ****     Wilcoxon
@@ -827,9 +819,7 @@ p3 <- sig_box(data           = input,
 p1|p2|p3
 ```
 
-
-
-\begin{center}\includegraphics{Feature-selections_files/figure-latex/unnamed-chunk-24-1} \end{center}
+<img src="Feature-selections_files/figure-html/unnamed-chunk-24-1.png" width="960" style="display: block; margin: auto;" />
 
 ## Reference
 

@@ -1,7 +1,7 @@
 
 # **How to install IOBR**
 
-##  Install Dependency Packages
+## ⏳ Install Dependency Packages
 
 It is essential that you have R 3.6.3 or above already installed on your computer or server. IOBR is a pipeline that utilizes many other R packages that are currently available from CRAN, Bioconductor and GitHub.
 
@@ -17,7 +17,7 @@ for(i in 1:length(depens)){
 }
 ```
 
-##  Install IOBR package
+## 💻 Install IOBR package
 
 When the dependent environments are built, users are able to install IOBR from github by typing the following code into your R session:
 
@@ -28,7 +28,7 @@ library(IOBR)
 ```
 
 
-##  How to update IOBR
+## 📍 How to update IOBR
 
 ```r
 detach("package:IOBR")

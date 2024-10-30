@@ -44,7 +44,7 @@ head(anno_hug133plus2)
 ```
 
 ```
-## # A tibble: 6 x 2
+## # A tibble: 6 × 2
 ##   probe_id  symbol 
 ##   <fct>     <fct>  
 ## 1 1007_s_at MIR4640
@@ -140,7 +140,7 @@ res<-cell_bar_plot(input = cibersort[1:12,], features = colnames(cibersort)[3:24
 ## >>>>=== Palette option for random: 1: palette1; 2: palette2; 3: palette3;  4: palette4
 ```
 
-![](tme-deconvolution_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
+<img src="tme-deconvolution_files/figure-html/unnamed-chunk-7-1.png" width="816" />
 
 ## Method 2: EPIC
 
@@ -172,16 +172,16 @@ head(epic)
 ```
 
 ```
-## # A tibble: 6 x 9
+## # A tibble: 6 × 9
 ##   ID      Bcells_EPIC CAFs_EPIC CD4_Tcells_EPIC CD8_Tcells_EPIC Endothelial_EPIC
 ##   <chr>         <dbl>     <dbl>           <dbl>           <dbl>            <dbl>
-## 1 GSM152~      0.0292   0.00888           0.145          0.0756           0.0876
-## 2 GSM152~      0.0293   0.0109            0.159          0.0745           0.0954
-## 3 GSM152~      0.0308   0.0106            0.149          0.0732           0.0941
-## 4 GSM152~      0.0273   0.0108            0.145          0.0704           0.0860
-## 5 GSM152~      0.0280   0.0111            0.151          0.0707           0.0928
-## 6 GSM152~      0.0320   0.00958           0.148          0.0716           0.0907
-## # i 3 more variables: Macrophages_EPIC <dbl>, NKcells_EPIC <dbl>,
+## 1 GSM152…      0.0292   0.00888           0.145          0.0756           0.0876
+## 2 GSM152…      0.0293   0.0109            0.159          0.0745           0.0954
+## 3 GSM152…      0.0308   0.0106            0.149          0.0732           0.0941
+## 4 GSM152…      0.0273   0.0108            0.145          0.0704           0.0860
+## 5 GSM152…      0.0280   0.0111            0.151          0.0707           0.0928
+## 6 GSM152…      0.0320   0.00958           0.148          0.0716           0.0907
+## # ℹ 3 more variables: Macrophages_EPIC <dbl>, NKcells_EPIC <dbl>,
 ## #   otherCells_EPIC <dbl>
 ```
 
@@ -201,8 +201,8 @@ head(mcp)
 ```
 
 ```
-## # A tibble: 6 x 11
-##   ID         T_cells_MCPcounter CD8_T_cells_MCPcounter Cytotoxic_lymphocytes_M~1
+## # A tibble: 6 × 11
+##   ID         T_cells_MCPcounter CD8_T_cells_MCPcounter Cytotoxic_lymphocytes_M…¹
 ##   <chr>                   <dbl>                  <dbl>                     <dbl>
 ## 1 GSM1523727               1.47                  1.11                       1.33
 ## 2 GSM1523728               1.53                  1.05                       1.60
@@ -210,8 +210,8 @@ head(mcp)
 ## 4 GSM1523744               1.46                  1.02                       1.44
 ## 5 GSM1523745               1.51                  1.10                       1.49
 ## 6 GSM1523746               1.51                  0.992                      1.40
-## # i abbreviated name: 1: Cytotoxic_lymphocytes_MCPcounter
-## # i 7 more variables: B_lineage_MCPcounter <dbl>, NK_cells_MCPcounter <dbl>,
+## # ℹ abbreviated name: ¹​Cytotoxic_lymphocytes_MCPcounter
+## # ℹ 7 more variables: B_lineage_MCPcounter <dbl>, NK_cells_MCPcounter <dbl>,
 ## #   Monocytic_lineage_MCPcounter <dbl>,
 ## #   Myeloid_dendritic_cells_MCPcounter <dbl>, Neutrophils_MCPcounter <dbl>,
 ## #   Endothelial_cells_MCPcounter <dbl>, Fibroblasts_MCPcounter <dbl>
@@ -228,7 +228,7 @@ head(xcell)
 ```
 
 ```
-## # A tibble: 6 x 68
+## # A tibble: 6 × 68
 ##   ID         aDC_xCell Adipocytes_xCell Astrocytes_xCell `B-cells_xCell`
 ##   <chr>          <dbl>            <dbl>            <dbl>           <dbl>
 ## 1 GSM1523727  4.78e-19          0.0250          0                 0     
@@ -237,13 +237,13 @@ head(xcell)
 ## 4 GSM1523744  7.88e- 2          0.0538          4.82e-18          0.0126
 ## 5 GSM1523745  9.02e- 2          0.0136          1.93e- 2          0     
 ## 6 GSM1523746  3.40e- 2          0.0331          9.22e- 2          0     
-## # i 63 more variables: Basophils_xCell <dbl>,
+## # ℹ 63 more variables: Basophils_xCell <dbl>,
 ## #   `CD4+_memory_T-cells_xCell` <dbl>, `CD4+_naive_T-cells_xCell` <dbl>,
 ## #   `CD4+_T-cells_xCell` <dbl>, `CD4+_Tcm_xCell` <dbl>, `CD4+_Tem_xCell` <dbl>,
 ## #   `CD8+_naive_T-cells_xCell` <dbl>, `CD8+_T-cells_xCell` <dbl>,
 ## #   `CD8+_Tcm_xCell` <dbl>, `CD8+_Tem_xCell` <dbl>, cDC_xCell <dbl>,
 ## #   Chondrocytes_xCell <dbl>, `Class-switched_memory_B-cells_xCell` <dbl>,
-## #   CLP_xCell <dbl>, CMP_xCell <dbl>, DC_xCell <dbl>, ...
+## #   CLP_xCell <dbl>, CMP_xCell <dbl>, DC_xCell <dbl>, …
 ```
 
 ## Method 5: ESTIMATE
@@ -263,7 +263,7 @@ head(estimate)
 ```
 
 ```
-## # A tibble: 6 x 5
+## # A tibble: 6 × 5
 ##   ID         StromalScore_estimate ImmuneScore_estimate ESTIMATEScore_estimate
 ##   <chr>                      <dbl>                <dbl>                  <dbl>
 ## 1 GSM1523727                -1250.                 268.                 -982. 
@@ -272,7 +272,7 @@ head(estimate)
 ## 4 GSM1523744                 -119.                 662.                  544. 
 ## 5 GSM1523745                  324.                1015.                 1339. 
 ## 6 GSM1523746                 -594.                 621.                   27.0
-## # i 1 more variable: TumorPurity_estimate <dbl>
+## # ℹ 1 more variable: TumorPurity_estimate <dbl>
 ```
 
 ## Method 6: TIMER
@@ -290,7 +290,7 @@ head(timer)
 ```
 
 ```
-## # A tibble: 6 x 7
+## # A tibble: 6 × 7
 ##   ID         B_cell_TIMER T_cell_CD4_TIMER T_cell_CD8_TIMER Neutrophil_TIMER
 ##   <chr>             <dbl>            <dbl>            <dbl>            <dbl>
 ## 1 GSM1523727        0.104            0.128            0.183            0.108
@@ -299,7 +299,7 @@ head(timer)
 ## 4 GSM1523744        0.101            0.126            0.187            0.111
 ## 5 GSM1523745        0.104            0.127            0.191            0.116
 ## 6 GSM1523746        0.105            0.129            0.192            0.111
-## # i 2 more variables: Macrophage_TIMER <dbl>, DC_TIMER <dbl>
+## # ℹ 2 more variables: Macrophage_TIMER <dbl>, DC_TIMER <dbl>
 ```
 
 ## Method 7: quanTIseq
@@ -338,7 +338,7 @@ head(quantiseq)
 ```
 
 ```
-## # A tibble: 6 x 12
+## # A tibble: 6 × 12
 ##   ID         B_cells_quantiseq Macrophages_M1_quantiseq Macrophages_M2_quantiseq
 ##   <chr>                  <dbl>                    <dbl>                    <dbl>
 ## 1 GSM1523727            0.0983                   0.0510                   0.0598
@@ -347,7 +347,7 @@ head(quantiseq)
 ## 4 GSM1523744            0.0954                   0.0725                   0.0579
 ## 5 GSM1523745            0.0991                   0.0669                   0.0613
 ## 6 GSM1523746            0.105                    0.0453                   0.0662
-## # i 8 more variables: Monocytes_quantiseq <dbl>, Neutrophils_quantiseq <dbl>,
+## # ℹ 8 more variables: Monocytes_quantiseq <dbl>, Neutrophils_quantiseq <dbl>,
 ## #   NK_cells_quantiseq <dbl>, T_cells_CD4_quantiseq <dbl>,
 ## #   T_cells_CD8_quantiseq <dbl>, Tregs_quantiseq <dbl>,
 ## #   Dendritic_cells_quantiseq <dbl>, Other_quantiseq <dbl>
@@ -365,7 +365,7 @@ res<-cell_bar_plot(input = quantiseq[1:12, ], id = "ID", features = colnames(qua
 ## >>>>=== Palette option for random: 1: palette1; 2: palette2; 3: palette3;  4: palette4
 ```
 
-![](tme-deconvolution_files/figure-latex/unnamed-chunk-14-1.pdf)<!-- --> 
+<img src="tme-deconvolution_files/figure-html/unnamed-chunk-14-1.png" width="768" />
 
 ## Method 8: IPS
 
@@ -375,7 +375,7 @@ head(ips)
 ```
 
 ```
-## # A tibble: 6 x 7
+## # A tibble: 6 × 7
 ##   ID         MHC_IPS EC_IPS SC_IPS  CP_IPS AZ_IPS IPS_IPS
 ##   <chr>        <dbl>  <dbl>  <dbl>   <dbl>  <dbl>   <dbl>
 ## 1 GSM1523727    2.25  0.404 -0.192  0.220    2.68       9
@@ -450,7 +450,7 @@ sm<- generateRef_seurat(sce = pbmc, celltype = "celltype", slot_out = "data")
 ##  Naive_CD4_T           NK     Platelet 
 ##          696          148           15 
 ## >>> Find markers of each celltype... 
-## # A tibble: 450 x 7
+## # A tibble: 450 × 7
 ## # Groups:   cluster [9]
 ##        p_val avg_log2FC pct.1 pct.2 p_val_adj cluster     gene 
 ##        <dbl>      <dbl> <dbl> <dbl>     <dbl> <fct>       <chr>
@@ -464,7 +464,7 @@ sm<- generateRef_seurat(sce = pbmc, celltype = "celltype", slot_out = "data")
 ##  8 1.74e-113      0.727 0.996 0.969 2.38e-109 Naive_CD4_T RPL9 
 ##  9 4.38e-110      0.590 0.999 0.993 6.01e-106 Naive_CD4_T RPS3 
 ## 10 6.80e-108      0.665 0.997 0.979 9.33e-104 Naive_CD4_T RPL30
-## # i 440 more rows
+## # ℹ 440 more rows
 ## >>>-- Aggreating scRNAseq data...
 ## >>>-- `orig.ident` was set as group. User can define through parameter `celltype` ...
 ```
@@ -479,7 +479,7 @@ head(svr)
 ```
 
 ```
-## # A tibble: 6 x 13
+## # A tibble: 6 × 13
 ##   ID           Naive_CD4_T_CIBERSORT CD14_Mono_CIBERSORT Memory_CD4_T_CIBERSORT
 ##   <chr>                        <dbl>               <dbl>                  <dbl>
 ## 1 TCGA-BR-6455                     0             0.143                    0.332
@@ -488,7 +488,7 @@ head(svr)
 ## 4 TCGA-BR-8380                     0             0.00125                  0.221
 ## 5 TCGA-BR-8592                     0             0.0621                   0.189
 ## 6 TCGA-BR-8686                     0             0.0411                   0.259
-## # i 9 more variables: Bcells_CIBERSORT <dbl>, CD8_Tcell_CIBERSORT <dbl>,
+## # ℹ 9 more variables: Bcells_CIBERSORT <dbl>, CD8_Tcell_CIBERSORT <dbl>,
 ## #   FCGR3A_Mono_CIBERSORT <dbl>, NK_CIBERSORT <dbl>, DC_CIBERSORT <dbl>,
 ## #   Platelet_CIBERSORT <dbl>, `P-value_CIBERSORT` <dbl>,
 ## #   Correlation_CIBERSORT <dbl>, RMSE_CIBERSORT <dbl>
@@ -499,7 +499,7 @@ head(svr)
 res<-cell_bar_plot(input = svr, features = colnames(svr)[2:10], title = "SVR Cell Fraction")
 ```
 
-![](tme-deconvolution_files/figure-latex/unnamed-chunk-21-1.pdf)<!-- --> 
+<img src="tme-deconvolution_files/figure-html/unnamed-chunk-21-1.png" width="816" />
 
 
 ## References
