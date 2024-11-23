@@ -9,6 +9,7 @@ Load the IOBR package in your R session after the installation is complete:
 library(IOBR)
 library(survminer)
 library(tidyverse)
+options(future.globals.maxSize = 8 * 1024^3)
 ```
 
 ## Downloading data for example
@@ -122,6 +123,7 @@ tme_combine<-cibersort %>%
   inner_join(.,ips,by       = "ID")
 dim(tme_combine)
 ```
+
 
 ## How to customise the signature matrix for `SVR` and `lesi` algorithm
 

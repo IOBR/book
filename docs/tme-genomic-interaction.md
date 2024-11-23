@@ -6,7 +6,7 @@
 ## Loading packages
 
 
-```r
+``` r
 library(IOBR)
 ```
 
@@ -18,7 +18,7 @@ In this section, we are going to use the MAF data of TCGA-STAD cohort as an exam
 R Bioconductor package **[TCGAbiolinks](https://bioconductor.org/packages/TCGAbiolinks/)** provides an R interface of [GDC data portal](https://portal.gdc.cancer.gov/), which stores updating TCGA data. You can check and install this package with the following code.
 
 
-```r
+``` r
 if (!requireNamespace("TCGAbiolinks", quietly = TRUE))
   BiocManager::install("TCGAbiolinks")
 ```
@@ -26,7 +26,7 @@ if (!requireNamespace("TCGAbiolinks", quietly = TRUE))
 Then you can query, download and prepare the required dataset.
 
 
-```r
+``` r
 library(TCGAbiolinks)
 query <- GDCquery(
   project = "TCGA-STAD", 
@@ -42,7 +42,7 @@ This `maf` object is a `data.frame`, you can use `read.maf()` from R package **[
 
 In this example, we used the maf file of TCGA-STAD to extract the SNPs in it,and then transformed it into a non-negative matrix.
 
-```r
+``` r
 (load("TCGA-STAD.maf.RData"))
 ```
 
@@ -50,7 +50,7 @@ In this example, we used the maf file of TCGA-STAD to extract the SNPs in it,and
 ## [1] "maf"
 ```
 
-```r
+``` r
 mut_list <- make_mut_matrix(maf = maf, isTCGA   = T, category = "multi")
 ```
 
@@ -65,7 +65,7 @@ mut_list <- make_mut_matrix(maf = maf, isTCGA   = T, category = "multi")
 ##   FLG
 ## -Processing clinical data
 ## --Missing clinical data
-## -Finished in 10.0s elapsed (9.180s cpu) 
+## -Finished in 7.470s elapsed (0.310s cpu) 
 ##        Frame_Shift_Del        Frame_Shift_Ins           In_Frame_Del 
 ##                  21547                   4526                   1196 
 ##           In_Frame_Ins      Missense_Mutation      Nonsense_Mutation 
@@ -76,14 +76,14 @@ mut_list <- make_mut_matrix(maf = maf, isTCGA   = T, category = "multi")
 ##  22997   4675     10 109965
 ```
 
-```r
+``` r
 mut <- mut_list$snp
 ```
 
 ## Identifying Mutations Associated with TME
 The microenvironmental data from the TCGA-STAD expression matrix was merged. The Cuzick or Wilcoxon test was used to identify genetic variants associated with microenvironmental factors. CD_8_T_effector was used as the target variable in this example.
 
-```r
+``` r
 data("tcga_stad_sig", package = "IOBR")
 res<-find_mutations(mutation_matrix     = mut, 
                     signature_matrix    = tcga_stad_sig, 
@@ -165,7 +165,7 @@ res<-find_mutations(mutation_matrix     = mut,
 As its name, the R package **[TCGAmutations](https://github.com/PoisonAlien/TCGAmutations)** provides pre-compiled, curated somatic mutations from 33 TCGA cohorts along with relevant clinical information for all sequenced samples. You can install it similar to the **TCGAbiolinks**.
 
 
-```r
+``` r
 if (!requireNamespace("TCGAmutations", quietly = TRUE))
   BiocManager::install("PoisonAlien/TCGAmutations")
 ```
@@ -173,7 +173,7 @@ if (!requireNamespace("TCGAmutations", quietly = TRUE))
 It's quite simple to use:
 
 
-```r
+``` r
 maf = TCGAmutations::tcga_load(study = "STAD")
 # Change `source` argument to Firehose for MAF files from Broad Firehose
 # maf = TCGAmutations::tcga_load(study = "STAD", source = "Firehose")
@@ -183,7 +183,7 @@ maf = TCGAmutations::tcga_load(study = "STAD")
 If you are a user of R package **[Maftools](https://github.com/PoisonAlien/maftools)**, you can access and load the data in a similar way (because the author of **TCGAmutations** and **Maftools** is the same person).
 
 
-```r
+``` r
 # The following github can be changed to gitee
 # it maybe fast in China mainland
 maftools::tcgaAvailable(repo = "github")
@@ -194,7 +194,7 @@ MAF data transformation
 To prepare the data for the downstream analysis. We need to extract the SNV data in it and transform it into a non-negative matrix.
 
 
-```r
+``` r
 mut_list <- make_mut_matrix(maf = maf, isTCGA = TRUE, category = "multi")
 ```
 

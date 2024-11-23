@@ -6,7 +6,7 @@
 It is essential that you have R 3.6.3 or above already installed on your computer or server. IOBR is a pipeline that utilizes many other R packages that are currently available from CRAN, Bioconductor and GitHub.
 
 
-```r
+``` r
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 depens<-c('tibble', 'survival', 'survminer', 'limma', "DESeq2","devtools", 'limSolve', 'GSVA', 'e1071', 'preprocessCore', 
           "devtools", "tidyHeatmap", "caret", "glmnet", "ppcor",  "timeROC", "pracma", "factoextra", 
@@ -21,7 +21,7 @@ for(i in 1:length(depens)){
 
 When the dependent environments are built, users are able to install IOBR from github by typing the following code into your R session:
 
-```r
+``` r
 if (!requireNamespace("IOBR", quietly = TRUE))  devtools::install_github("IOBR/IOBR")
 
 library(IOBR)
@@ -30,7 +30,7 @@ library(IOBR)
 
 ## 📍 How to update IOBR
 
-```r
+``` r
 detach("package:IOBR")
 path<-.libPaths()
 remove.packages(c('IOBR'), lib=file.path(path))

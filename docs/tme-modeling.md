@@ -6,7 +6,7 @@ Previous studies have shown that the tumour microenvironment is a complex ecosys
 ## Loading packages
 
 
-```r
+``` r
 library(IOBR)
 ```
 
@@ -15,14 +15,14 @@ library(IOBR)
 Using data from IMvigor210, we demonstrate two common scenarios for building models of the tumour microenvironment: predicting survival and predicting treatment response (BOR, RECIEST 1.1).
 
 
-```r
+``` r
 data("imvigor210_sig", package = "IOBR")
 data("imvigor210_pdata", package = "IOBR")
 ```
 
 ## Input data (overall survival) prepare
 
-```r
+``` r
 pdata_prog <- imvigor210_pdata %>% 
   dplyr::select(ID, OS_days, OS_status) %>%
   mutate(OS_days = as.numeric(.$OS_days)) %>% 
@@ -45,7 +45,7 @@ head(pdata_prog)
 
 ## Constructing survival prediction models
 
-```r
+``` r
 prognostic_result <- PrognosticModel(x           = imvigor210_sig, 
                                      y           = pdata_prog, 
                                      scale       = T, 
@@ -55,18 +55,12 @@ prognostic_result <- PrognosticModel(x           = imvigor210_sig,
                                      plot        = TRUE)
 ```
 
-```
-## NULL
-## NULL
-## NULL
-```
-
-<img src="tme-modeling_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="tme-modeling_files/figure-html/unnamed-chunk-4-2.png" width="672" />
+<img src="tme-modeling_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 
 ## Input data (Response) prepare
 
-```r
+``` r
 pdata_group <- imvigor210_pdata[!imvigor210_pdata$BOR_binary=="NA",c("ID","BOR_binary")]
 pdata_group$BOR_binary <- ifelse(pdata_group$BOR_binary == "R", 1, 0)
 head(pdata_group)
@@ -86,7 +80,7 @@ head(pdata_group)
 
 ## Constructing prediction models for response
 
-```r
+``` r
 binom_res <- BinomialModel(x           = imvigor210_sig, 
                            y           = pdata_group, 
                            seed        = 123456, 
@@ -98,15 +92,23 @@ binom_res <- BinomialModel(x           = imvigor210_sig,
 
 ```
 ## NULL
-## NULL
-## NULL
 ```
 
 ```
 ## NULL
 ```
 
-<img src="tme-modeling_files/figure-html/unnamed-chunk-6-1.png" width="672" /><img src="tme-modeling_files/figure-html/unnamed-chunk-6-2.png" width="672" />
+```
+## NULL
+```
+
+<img src="tme-modeling_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+
+```
+## NULL
+```
+
+<img src="tme-modeling_files/figure-html/unnamed-chunk-6-2.png" width="672" />
 
 ```
 ## NULL

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 TME and genomic interaction | IOBR (Immuno-Oncology Biological Research)</title>
   <meta name="description" content="The tutorial of IOBR package" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 TME and genomic interaction | IOBR (Immuno-Oncology Biological Research)" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Dongqiang Zeng, Yiran Fang" />
 
 
-<meta name="date" content="2024-02-23" />
+<meta name="date" content="2024-11-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -152,32 +152,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-dependency-packages"><i class="fa fa-check"></i><b>1.1</b> ⏳ Install Dependency Packages</a></li>
 <li class="chapter" data-level="1.2" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-iobr-package"><i class="fa fa-check"></i><b>1.2</b> 💻 Install IOBR package</a></li>
-<li class="chapter" data-level="1.3" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#how-to-update-iobr"><i class="fa fa-check"></i><b>1.3</b> 📍 How to update IOBR</a></li>
+<li class="chapter" data-level="1.3" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#how-to-update-iobr"><i class="fa fa-check"></i><b>1.3</b> 📌 How to update IOBR</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
-<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 👆 Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 🗂 Main Functions of IOBR</a></li>
 <li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌎 Current working environment</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#loading-packages"><i class="fa fa-check"></i><b>3.1</b> Loading packages</a></li>
-<li class="chapter" data-level="3.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-array-data-using-geoquery"><i class="fa fa-check"></i><b>3.2</b> Download array data using <code>GEOquery</code></a></li>
-<li class="chapter" data-level="3.3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#gene-annotation"><i class="fa fa-check"></i><b>3.3</b> Gene Annotation</a>
+<li class="chapter" data-level="3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#introduction-2"><i class="fa fa-check"></i><b>3.1</b> <strong>Introduction</strong></a></li>
+<li class="chapter" data-level="3.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#loading-packages"><i class="fa fa-check"></i><b>3.2</b> Loading packages</a></li>
+<li class="chapter" data-level="3.3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#gene-annotation"><i class="fa fa-check"></i><b>3.3</b> Gene Annotation</a></li>
+<li class="chapter" data-level="3.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-array-data-using-geoquery"><i class="fa fa-check"></i><b>3.4</b> Download array data using <code>GEOquery</code></a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-array-data-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>3.3.1</b> For Array data: HGU133PLUS-2 (Affaymetrix)</a></li>
+<li class="chapter" data-level="3.4.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-array-data-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>3.4.1</b> For Array data: HGU133PLUS-2 (Affaymetrix)</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-rnaseq-data-using-ucscxenatools"><i class="fa fa-check"></i><b>3.4</b> Download RNAseq data using <code>UCSCXenaTools</code></a></li>
-<li class="chapter" data-level="3.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#normalization-and-gene-annotation"><i class="fa fa-check"></i><b>3.5</b> Normalization and Gene annotation</a></li>
-<li class="chapter" data-level="3.6" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>3.6</b> Identifying outlier samples</a></li>
-<li class="chapter" data-level="3.7" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>3.7</b> PCA analysis of molecular subtypes</a></li>
-<li class="chapter" data-level="3.8" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>3.8</b> Batch effect correction</a>
+<li class="chapter" data-level="3.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-rnaseq-data-using-ucscxenatools"><i class="fa fa-check"></i><b>3.5</b> Download RNAseq data using <code>UCSCXenaTools</code></a></li>
+<li class="chapter" data-level="3.6" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#normalization-and-gene-annotation"><i class="fa fa-check"></i><b>3.6</b> Normalization and Gene annotation</a></li>
+<li class="chapter" data-level="3.7" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>3.7</b> Identifying outlier samples</a></li>
+<li class="chapter" data-level="3.8" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>3.8</b> PCA analysis of molecular subtypes</a></li>
+<li class="chapter" data-level="3.9" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>3.9</b> Batch effect correction</a>
 <ul>
-<li class="chapter" data-level="3.8.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-microarray-data"><i class="fa fa-check"></i><b>3.8.1</b> For microarray data</a></li>
-<li class="chapter" data-level="3.8.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-rnaseq-count-data"><i class="fa fa-check"></i><b>3.8.2</b> For RNAseq count data</a></li>
+<li class="chapter" data-level="3.9.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-microarray-data"><i class="fa fa-check"></i><b>3.9.1</b> For microarray data</a></li>
+<li class="chapter" data-level="3.9.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-rnaseq-count-data"><i class="fa fa-check"></i><b>3.9.2</b> For RNAseq count data</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#references"><i class="fa fa-check"></i><b>3.9</b> References</a></li>
+<li class="chapter" data-level="3.10" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#references"><i class="fa fa-check"></i><b>3.10</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html"><i class="fa fa-check"></i><b>4</b> <strong>Signature Score Calculation</strong></a>
 <ul>
@@ -196,7 +197,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.9.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-1-use-excel-for-storage-and-construction"><i class="fa fa-check"></i><b>4.9.1</b> Method-1: Use excel for storage and construction</a></li>
 <li class="chapter" data-level="4.9.2" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-2-build-the-list-structure-directly"><i class="fa fa-check"></i><b>4.9.2</b> Method-2: Build the list structure directly</a></li>
-<li class="chapter" data-level="4.9.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method3-add-the-new-signature-to-the-existing-gene-list"><i class="fa fa-check"></i><b>4.9.3</b> Method3: Add the new signature to the existing gene list</a></li>
+<li class="chapter" data-level="4.9.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-3-add-the-new-signature-to-the-existing-gene-list"><i class="fa fa-check"></i><b>4.9.3</b> Method-3: Add the new signature to the existing gene list</a></li>
+<li class="chapter" data-level="4.9.4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-4-construct-cell-specific-gene-signatures-from-single-cell-differential-analysis-results"><i class="fa fa-check"></i><b>4.9.4</b> Method-4: Construct cell-specific gene signatures from single-cell differential analysis results</a></li>
 </ul></li>
 <li class="chapter" data-level="4.10" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#how-to-export-gene-signature"><i class="fa fa-check"></i><b>4.10</b> How to export gene signature</a></li>
 <li class="chapter" data-level="4.11" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#references-1"><i class="fa fa-check"></i><b>4.11</b> References</a></li>
@@ -250,8 +252,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-tme-patterns"><i class="fa fa-check"></i><b>7.5</b> Identifying TME patterns</a></li>
 <li class="chapter" data-level="7.6" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#cell-abundance-of-each-cluster"><i class="fa fa-check"></i><b>7.6</b> Cell abundance of each cluster</a></li>
 <li class="chapter" data-level="7.7" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#deg-analysis-between-tme-subtypes"><i class="fa fa-check"></i><b>7.7</b> DEG analysis between TME subtypes</a></li>
-<li class="chapter" data-level="7.8" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>7.8</b> Identifying signatures associated with TME clusters</a></li>
-<li class="chapter" data-level="7.9" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#references-3"><i class="fa fa-check"></i><b>7.9</b> References</a></li>
+<li class="chapter" data-level="7.8" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-lr-associated-with-tme-clusters"><i class="fa fa-check"></i><b>7.8</b> Identifying LR associated with TME clusters</a></li>
+<li class="chapter" data-level="7.9" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>7.9</b> Identifying signatures associated with TME clusters</a></li>
+<li class="chapter" data-level="7.10" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#references-3"><i class="fa fa-check"></i><b>7.10</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html"><i class="fa fa-check"></i><b>8</b> <strong>Tumor ecosystem analysis</strong></a>
 <ul>
@@ -333,7 +336,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 9</span> <strong>TME and genomic interaction</strong><a href="tme-and-genomic-interaction.html#tme-and-genomic-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="loading-packages-6" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> Loading packages<a href="tme-and-genomic-interaction.html#loading-packages-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="tme-and-genomic-interaction.html#cb332-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="tme-and-genomic-interaction.html#cb362-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span></code></pre></div>
 </div>
 <div id="genomic-data-prepare" class="section level2 hasAnchor" number="9.2">
 <h2><span class="header-section-number">9.2</span> Genomic data prepare<a href="tme-and-genomic-interaction.html#genomic-data-prepare" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -341,24 +344,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="using-tcgabiolinks-to-download-genomic-data" class="section level3 hasAnchor" number="9.2.1">
 <h3><span class="header-section-number">9.2.1</span> Using TCGAbiolinks to download genomic data<a href="tme-and-genomic-interaction.html#using-tcgabiolinks-to-download-genomic-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R Bioconductor package <strong><a href="https://bioconductor.org/packages/TCGAbiolinks/">TCGAbiolinks</a></strong> provides an R interface of <a href="https://portal.gdc.cancer.gov/">GDC data portal</a>, which stores updating TCGA data. You can check and install this package with the following code.</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="tme-and-genomic-interaction.html#cb333-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;TCGAbiolinks&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb333-2"><a href="tme-and-genomic-interaction.html#cb333-2" tabindex="-1"></a>  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;TCGAbiolinks&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="tme-and-genomic-interaction.html#cb363-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;TCGAbiolinks&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb363-2"><a href="tme-and-genomic-interaction.html#cb363-2" tabindex="-1"></a>  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;TCGAbiolinks&quot;</span>)</span></code></pre></div>
 <p>Then you can query, download and prepare the required dataset.</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="tme-and-genomic-interaction.html#cb334-1" tabindex="-1"></a><span class="fu">library</span>(TCGAbiolinks)</span>
-<span id="cb334-2"><a href="tme-and-genomic-interaction.html#cb334-2" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="fu">GDCquery</span>(</span>
-<span id="cb334-3"><a href="tme-and-genomic-interaction.html#cb334-3" tabindex="-1"></a>  <span class="at">project =</span> <span class="st">&quot;TCGA-STAD&quot;</span>, </span>
-<span id="cb334-4"><a href="tme-and-genomic-interaction.html#cb334-4" tabindex="-1"></a>  <span class="at">data.category =</span> <span class="st">&quot;Simple Nucleotide Variation&quot;</span>, </span>
-<span id="cb334-5"><a href="tme-and-genomic-interaction.html#cb334-5" tabindex="-1"></a>  <span class="at">access =</span> <span class="st">&quot;open&quot;</span>,</span>
-<span id="cb334-6"><a href="tme-and-genomic-interaction.html#cb334-6" tabindex="-1"></a>  <span class="at">data.type =</span> <span class="st">&quot;Masked Somatic Mutation&quot;</span>, </span>
-<span id="cb334-7"><a href="tme-and-genomic-interaction.html#cb334-7" tabindex="-1"></a>  <span class="at">workflow.type =</span> <span class="st">&quot;Aliquot Ensemble Somatic Variant Merging and Masking&quot;</span></span>
-<span id="cb334-8"><a href="tme-and-genomic-interaction.html#cb334-8" tabindex="-1"></a>)</span>
-<span id="cb334-9"><a href="tme-and-genomic-interaction.html#cb334-9" tabindex="-1"></a><span class="fu">GDCdownload</span>(query)</span>
-<span id="cb334-10"><a href="tme-and-genomic-interaction.html#cb334-10" tabindex="-1"></a>maf <span class="ot">&lt;-</span> <span class="fu">GDCprepare</span>(query)</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="tme-and-genomic-interaction.html#cb364-1" tabindex="-1"></a><span class="fu">library</span>(TCGAbiolinks)</span>
+<span id="cb364-2"><a href="tme-and-genomic-interaction.html#cb364-2" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="fu">GDCquery</span>(</span>
+<span id="cb364-3"><a href="tme-and-genomic-interaction.html#cb364-3" tabindex="-1"></a>  <span class="at">project =</span> <span class="st">&quot;TCGA-STAD&quot;</span>, </span>
+<span id="cb364-4"><a href="tme-and-genomic-interaction.html#cb364-4" tabindex="-1"></a>  <span class="at">data.category =</span> <span class="st">&quot;Simple Nucleotide Variation&quot;</span>, </span>
+<span id="cb364-5"><a href="tme-and-genomic-interaction.html#cb364-5" tabindex="-1"></a>  <span class="at">access =</span> <span class="st">&quot;open&quot;</span>,</span>
+<span id="cb364-6"><a href="tme-and-genomic-interaction.html#cb364-6" tabindex="-1"></a>  <span class="at">data.type =</span> <span class="st">&quot;Masked Somatic Mutation&quot;</span>, </span>
+<span id="cb364-7"><a href="tme-and-genomic-interaction.html#cb364-7" tabindex="-1"></a>  <span class="at">workflow.type =</span> <span class="st">&quot;Aliquot Ensemble Somatic Variant Merging and Masking&quot;</span></span>
+<span id="cb364-8"><a href="tme-and-genomic-interaction.html#cb364-8" tabindex="-1"></a>)</span>
+<span id="cb364-9"><a href="tme-and-genomic-interaction.html#cb364-9" tabindex="-1"></a><span class="fu">GDCdownload</span>(query)</span>
+<span id="cb364-10"><a href="tme-and-genomic-interaction.html#cb364-10" tabindex="-1"></a>maf <span class="ot">&lt;-</span> <span class="fu">GDCprepare</span>(query)</span></code></pre></div>
 <p>This <code>maf</code> object is a <code>data.frame</code>, you can use <code>read.maf()</code> from R package <strong><a href="https://github.com/PoisonAlien/maftools">Maftools</a></strong> to convert it to a MAF object.</p>
 <p>In this example, we used the maf file of TCGA-STAD to extract the SNPs in it,and then transformed it into a non-negative matrix.</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="tme-and-genomic-interaction.html#cb335-1" tabindex="-1"></a>(<span class="fu">load</span>(<span class="st">&quot;TCGA-STAD.maf.RData&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="tme-and-genomic-interaction.html#cb365-1" tabindex="-1"></a>(<span class="fu">load</span>(<span class="st">&quot;TCGA-STAD.maf.RData&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;maf&quot;</code></pre>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="tme-and-genomic-interaction.html#cb337-1" tabindex="-1"></a>mut_list <span class="ot">&lt;-</span> <span class="fu">make_mut_matrix</span>(<span class="at">maf =</span> maf, <span class="at">isTCGA   =</span> T, <span class="at">category =</span> <span class="st">&quot;multi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="tme-and-genomic-interaction.html#cb367-1" tabindex="-1"></a>mut_list <span class="ot">&lt;-</span> <span class="fu">make_mut_matrix</span>(<span class="at">maf =</span> maf, <span class="at">isTCGA   =</span> T, <span class="at">category =</span> <span class="st">&quot;multi&quot;</span>)</span></code></pre></div>
 <pre><code>## -Validating
 ## -Silent variants: 45460 
 ## -Summarizing
@@ -369,7 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   FLG
 ## -Processing clinical data
 ## --Missing clinical data
-## -Finished in 10.2s elapsed (9.390s cpu) 
+## -Finished in 8.120s elapsed (2.130s cpu) 
 ##        Frame_Shift_Del        Frame_Shift_Ins           In_Frame_Del 
 ##                  21547                   4526                   1196 
 ##           In_Frame_Ins      Missense_Mutation      Nonsense_Mutation 
@@ -378,22 +381,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                    117                   2242                    107 
 ##    DEL    INS    ONP    SNP 
 ##  22997   4675     10 109965</code></pre>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="tme-and-genomic-interaction.html#cb339-1" tabindex="-1"></a>mut <span class="ot">&lt;-</span> mut_list<span class="sc">$</span>snp</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="tme-and-genomic-interaction.html#cb369-1" tabindex="-1"></a>mut <span class="ot">&lt;-</span> mut_list<span class="sc">$</span>snp</span></code></pre></div>
 </div>
 </div>
 <div id="identifying-mutations-associated-with-tme" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> Identifying Mutations Associated with TME<a href="tme-and-genomic-interaction.html#identifying-mutations-associated-with-tme" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The microenvironmental data from the TCGA-STAD expression matrix was merged. The Cuzick or Wilcoxon test was used to identify genetic variants associated with microenvironmental factors. CD_8_T_effector was used as the target variable in this example.</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="tme-and-genomic-interaction.html#cb340-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;tcga_stad_sig&quot;</span>, <span class="at">package =</span> <span class="st">&quot;IOBR&quot;</span>)</span>
-<span id="cb340-2"><a href="tme-and-genomic-interaction.html#cb340-2" tabindex="-1"></a>res<span class="ot">&lt;-</span><span class="fu">find_mutations</span>(<span class="at">mutation_matrix     =</span> mut, </span>
-<span id="cb340-3"><a href="tme-and-genomic-interaction.html#cb340-3" tabindex="-1"></a>                    <span class="at">signature_matrix    =</span> tcga_stad_sig, </span>
-<span id="cb340-4"><a href="tme-and-genomic-interaction.html#cb340-4" tabindex="-1"></a>                    <span class="at">id_signature_matrix =</span> <span class="st">&quot;ID&quot;</span>, </span>
-<span id="cb340-5"><a href="tme-and-genomic-interaction.html#cb340-5" tabindex="-1"></a>                    <span class="at">signature           =</span> <span class="st">&quot;CD_8_T_effector&quot;</span>,</span>
-<span id="cb340-6"><a href="tme-and-genomic-interaction.html#cb340-6" tabindex="-1"></a>                    <span class="at">palette             =</span> <span class="st">&quot;nrc&quot;</span>,</span>
-<span id="cb340-7"><a href="tme-and-genomic-interaction.html#cb340-7" tabindex="-1"></a>                    <span class="at">min_mut_freq        =</span> <span class="fl">0.01</span>, </span>
-<span id="cb340-8"><a href="tme-and-genomic-interaction.html#cb340-8" tabindex="-1"></a>                    <span class="at">plot                =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb340-9"><a href="tme-and-genomic-interaction.html#cb340-9" tabindex="-1"></a>                    <span class="at">jitter              =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb340-10"><a href="tme-and-genomic-interaction.html#cb340-10" tabindex="-1"></a>                    <span class="at">point.alpha         =</span> <span class="fl">0.25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="tme-and-genomic-interaction.html#cb370-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;tcga_stad_sig&quot;</span>, <span class="at">package =</span> <span class="st">&quot;IOBR&quot;</span>)</span>
+<span id="cb370-2"><a href="tme-and-genomic-interaction.html#cb370-2" tabindex="-1"></a>res<span class="ot">&lt;-</span><span class="fu">find_mutations</span>(<span class="at">mutation_matrix     =</span> mut, </span>
+<span id="cb370-3"><a href="tme-and-genomic-interaction.html#cb370-3" tabindex="-1"></a>                    <span class="at">signature_matrix    =</span> tcga_stad_sig, </span>
+<span id="cb370-4"><a href="tme-and-genomic-interaction.html#cb370-4" tabindex="-1"></a>                    <span class="at">id_signature_matrix =</span> <span class="st">&quot;ID&quot;</span>, </span>
+<span id="cb370-5"><a href="tme-and-genomic-interaction.html#cb370-5" tabindex="-1"></a>                    <span class="at">signature           =</span> <span class="st">&quot;CD_8_T_effector&quot;</span>,</span>
+<span id="cb370-6"><a href="tme-and-genomic-interaction.html#cb370-6" tabindex="-1"></a>                    <span class="at">palette             =</span> <span class="st">&quot;nrc&quot;</span>,</span>
+<span id="cb370-7"><a href="tme-and-genomic-interaction.html#cb370-7" tabindex="-1"></a>                    <span class="at">min_mut_freq        =</span> <span class="fl">0.01</span>, </span>
+<span id="cb370-8"><a href="tme-and-genomic-interaction.html#cb370-8" tabindex="-1"></a>                    <span class="at">plot                =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb370-9"><a href="tme-and-genomic-interaction.html#cb370-9" tabindex="-1"></a>                    <span class="at">jitter              =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb370-10"><a href="tme-and-genomic-interaction.html#cb370-10" tabindex="-1"></a>                    <span class="at">point.alpha         =</span> <span class="fl">0.25</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;&gt;&gt;&gt;&gt; Result of Cuzick Test&quot;
 ##             p.value  names statistic adjust_pvalue
 ## PIK3CA 6.279087e-10 PIK3CA  6.183261  3.139543e-07
@@ -450,23 +453,23 @@ Figure 9.2: Top 10 mutated genes
 <div id="using-tcgamutations" class="section level3 hasAnchor" number="9.6.1">
 <h3><span class="header-section-number">9.6.1</span> Using TCGAmutations<a href="tme-and-genomic-interaction.html#using-tcgamutations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As its name, the R package <strong><a href="https://github.com/PoisonAlien/TCGAmutations">TCGAmutations</a></strong> provides pre-compiled, curated somatic mutations from 33 TCGA cohorts along with relevant clinical information for all sequenced samples. You can install it similar to the <strong>TCGAbiolinks</strong>.</p>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="tme-and-genomic-interaction.html#cb347-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;TCGAmutations&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb347-2"><a href="tme-and-genomic-interaction.html#cb347-2" tabindex="-1"></a>  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;PoisonAlien/TCGAmutations&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="tme-and-genomic-interaction.html#cb377-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;TCGAmutations&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb377-2"><a href="tme-and-genomic-interaction.html#cb377-2" tabindex="-1"></a>  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;PoisonAlien/TCGAmutations&quot;</span>)</span></code></pre></div>
 <p>It’s quite simple to use:</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="tme-and-genomic-interaction.html#cb348-1" tabindex="-1"></a>maf <span class="ot">=</span> TCGAmutations<span class="sc">::</span><span class="fu">tcga_load</span>(<span class="at">study =</span> <span class="st">&quot;STAD&quot;</span>)</span>
-<span id="cb348-2"><a href="tme-and-genomic-interaction.html#cb348-2" tabindex="-1"></a><span class="co"># Change `source` argument to Firehose for MAF files from Broad Firehose</span></span>
-<span id="cb348-3"><a href="tme-and-genomic-interaction.html#cb348-3" tabindex="-1"></a><span class="co"># maf = TCGAmutations::tcga_load(study = &quot;STAD&quot;, source = &quot;Firehose&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="tme-and-genomic-interaction.html#cb378-1" tabindex="-1"></a>maf <span class="ot">=</span> TCGAmutations<span class="sc">::</span><span class="fu">tcga_load</span>(<span class="at">study =</span> <span class="st">&quot;STAD&quot;</span>)</span>
+<span id="cb378-2"><a href="tme-and-genomic-interaction.html#cb378-2" tabindex="-1"></a><span class="co"># Change `source` argument to Firehose for MAF files from Broad Firehose</span></span>
+<span id="cb378-3"><a href="tme-and-genomic-interaction.html#cb378-3" tabindex="-1"></a><span class="co"># maf = TCGAmutations::tcga_load(study = &quot;STAD&quot;, source = &quot;Firehose&quot;)</span></span></code></pre></div>
 </div>
 <div id="using-maftools" class="section level3 hasAnchor" number="9.6.2">
 <h3><span class="header-section-number">9.6.2</span> Using maftools<a href="tme-and-genomic-interaction.html#using-maftools" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If you are a user of R package <strong><a href="https://github.com/PoisonAlien/maftools">Maftools</a></strong>, you can access and load the data in a similar way (because the author of <strong>TCGAmutations</strong> and <strong>Maftools</strong> is the same person).</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="tme-and-genomic-interaction.html#cb349-1" tabindex="-1"></a><span class="co"># The following github can be changed to gitee</span></span>
-<span id="cb349-2"><a href="tme-and-genomic-interaction.html#cb349-2" tabindex="-1"></a><span class="co"># it maybe fast in China mainland</span></span>
-<span id="cb349-3"><a href="tme-and-genomic-interaction.html#cb349-3" tabindex="-1"></a>maftools<span class="sc">::</span><span class="fu">tcgaAvailable</span>(<span class="at">repo =</span> <span class="st">&quot;github&quot;</span>)</span>
-<span id="cb349-4"><a href="tme-and-genomic-interaction.html#cb349-4" tabindex="-1"></a>maftools<span class="sc">::</span><span class="fu">tcgaLoad</span>(<span class="st">&quot;STAD&quot;</span>, <span class="at">repo =</span> <span class="st">&quot;github&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="tme-and-genomic-interaction.html#cb379-1" tabindex="-1"></a><span class="co"># The following github can be changed to gitee</span></span>
+<span id="cb379-2"><a href="tme-and-genomic-interaction.html#cb379-2" tabindex="-1"></a><span class="co"># it maybe fast in China mainland</span></span>
+<span id="cb379-3"><a href="tme-and-genomic-interaction.html#cb379-3" tabindex="-1"></a>maftools<span class="sc">::</span><span class="fu">tcgaAvailable</span>(<span class="at">repo =</span> <span class="st">&quot;github&quot;</span>)</span>
+<span id="cb379-4"><a href="tme-and-genomic-interaction.html#cb379-4" tabindex="-1"></a>maftools<span class="sc">::</span><span class="fu">tcgaLoad</span>(<span class="st">&quot;STAD&quot;</span>, <span class="at">repo =</span> <span class="st">&quot;github&quot;</span>)</span></code></pre></div>
 <p>MAF data transformation
 To prepare the data for the downstream analysis. We need to extract the SNV data in it and transform it into a non-negative matrix.</p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="tme-and-genomic-interaction.html#cb350-1" tabindex="-1"></a>mut_list <span class="ot">&lt;-</span> <span class="fu">make_mut_matrix</span>(<span class="at">maf =</span> maf, <span class="at">isTCGA =</span> <span class="cn">TRUE</span>, <span class="at">category =</span> <span class="st">&quot;multi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="tme-and-genomic-interaction.html#cb380-1" tabindex="-1"></a>mut_list <span class="ot">&lt;-</span> <span class="fu">make_mut_matrix</span>(<span class="at">maf =</span> maf, <span class="at">isTCGA =</span> <span class="cn">TRUE</span>, <span class="at">category =</span> <span class="st">&quot;multi&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="references-5" class="section level2 hasAnchor" number="9.7">

@@ -1,5 +1,11 @@
 fig:unnamed-chunk-1
 fig:unnamed-chunk-2
+fig:flowchart
+fig:unnamed-chunk-10
+fig:unnamed-chunk-9
+fig:unnamed-chunk-11
+fig:unnamed-chunk-6
+fig:unnamed-chunk-7
 introduction-1
 license
 citations
@@ -14,9 +20,10 @@ the-main-pipeline-of-iobr
 main-functions-of-iobr
 current-working-environment
 rna-data-preprocessing
+introduction-2
 loading-packages
-download-array-data-using-geoquery
 gene-annotation
+download-array-data-using-geoquery
 for-array-data-hgu133plus-2-affaymetrix
 download-rnaseq-data-using-ucscxenatools
 normalization-and-gene-annotation
@@ -39,7 +46,8 @@ classification-of-signatures
 how-to-customise-the-signature-gene-list-for-calculate_signature_score
 method-1-use-excel-for-storage-and-construction
 method-2-build-the-list-structure-directly
-method3-add-the-new-signature-to-the-existing-gene-list
+method-3-add-the-new-signature-to-the-existing-gene-list
+method-4-construct-cell-specific-gene-signatures-from-single-cell-differential-analysis-results
 how-to-export-gene-signature
 references-1
 tme-deconvolution
@@ -85,6 +93,7 @@ tme-deconvolution-using-cibersort-algorithm
 identifying-tme-patterns
 cell-abundance-of-each-cluster
 deg-analysis-between-tme-subtypes
+identifying-lr-associated-with-tme-clusters
 identifying-signatures-associated-with-tme-clusters
 references-3
 tumor-ecosystem-analysis

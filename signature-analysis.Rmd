@@ -2,6 +2,8 @@
 
 # **Signature Score Calculation**
 
+The **`calculate_sig_score`** function integrates three gene set scoring methods: **ssGSEA**, **PCA**, and **z-score**.By inputting preprocessed transcriptomic data, the function can batch-calculate signature scores for each sample. This streamlined approach enables efficient and flexible scoring of gene signatures, supporting diverse research needs in transcriptomic data analysis.
+
 ## Loading packages
 Load the IOBR package in your R session after the installation is complete:
 ```{r, eval=TRUE, warning=FALSE, message=FALSE}
@@ -41,6 +43,7 @@ eset[1:5, 1:3]
 ## Signature score estimation
 
 ### Signature collection of IOBR
+**322 reported gene signatures** are collected in IOBR, including those related to the TME, metabolism, gene signatures derived from single-cell RNA-seq data, and others. The extensive signature collection is categorized into three distinct groups: **TME-associated**, **tumour-metabolism**, and **tumour-intrinsic signatures**.
 
 ```{r}
 # Return available parameter options of signature estimation.
@@ -148,6 +151,8 @@ sig_group[1:8]
 
 ## How to customise the signature gene list for `calculate_signature_score`
 
+To overcome the limitations of fixed signatures in IOBR, users are now allowed to create customized gene signature lists for the **`calculate_sig_score`** function, enabling more flexible transcriptomic data analysis tailored to specific research goals.
+
 ### Method-1: Use excel for storage and construction
 Users can collect gene signatures using either an `Excel` or `CSV` file. The format should have the name of the signature in the first row, followed by the genes contained in each signature from the second row onwards. Once imported, the function `format_signature` can be used to transform the data into a gene list of signatures required for `calculate_signature_score`. To import the file into R, users can use the functions read.csv or read_excel. It is important to note here that the user needs to use the longest signature as a criterion and then replace all the vacant grids using NA, otherwise an error may be reported when reading into R.
 
@@ -166,11 +171,18 @@ sig <- list("CD8" = c("CD8A",  "CXCL10", "CXCL9",  "GZMA",   "GZMB",   "IFNG",  
             "ICB" = c("CD274",   "PDCD1LG2", "CTLA4",    "PDCD1",    "LAG3",     "HAVCR2",   "TIGIT" ))
 sig
 ```
-### Method3: Add the new signature to the existing gene list
+### Method-3: Add the new signature to the existing gene list
 
 ```{r, warning = F}
 sig<- signature_tumor
 sig$CD8 <- c("CD8A",  "CXCL10", "CXCL9",  "GZMA",   "GZMB",   "IFNG",   "PRF1",   "TBX21")
+sig
+```
+
+### Method-4: Construct cell-specific gene signatures from single-cell differential analysis results
+```{r, message = F, warning = F}
+data('deg', package = "IOBR")
+sig <- get_sig_sc(deg, cluster = "cluster", gene = "gene", avg_log2FC = "avg_log2FC", n = 100)
 sig
 ```
 

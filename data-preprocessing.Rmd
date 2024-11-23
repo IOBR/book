@@ -1,5 +1,25 @@
 
 # **RNA Data preprocessing**
+## **Introduction**
+Transcriptomic data primarily encompasses microarray data and RNA-seq data. Microarray data are predominantly derived from platforms such as Affymetrix and Illumina, while RNA-seq data are largely generated using second-generation sequencing technologies, with third-generation sequencing becoming increasingly available. When performing TME analysis and calculating signature scores, it is essential to first annotate and normalize the gene expression matrix.
+
+The IOBR package offers a suite of functions designed to facilitate rapid preprocessing of transcriptomic data, including:
+
+  - **count2tpm**: Performs gene annotation, removes duplicate genes, and applies TPM normalization.
+  - **anno_eset**: Handles duplicate gene removal and gene annotation.
+  - **find_outlier_samples**: Identifies and removes outlier samples.
+  - **iobr_pca**: Visualizes batch effects and examines biological variability.
+  - **remove_batcheffect**: Removes batch effects and integrates multiple datasets.
+
+**Streamlining Gene Annotation for Downstream Analysis**
+
+Since downstream TME analysis tools and scoring functions in IOBR primarily recognize gene symbols rather than probe IDs, Ensembl IDs, or Entrez IDs, the **`anno_eset()`** function simplifies the annotation process. It enables efficient annotation of microarray data (e.g., Affymetrix and Illumina) and RNA-seq data (e.g., Ensembl and Entrez IDs), converting these identifiers into the more familiar gene symbols.
+
+**Improving Inter-Sample Comparability Through Normalization**
+
+In RNA-seq data analysis, TPM (transcripts per million) is a widely adopted normalization method that converts raw read counts into relative abundance or expression levels. TPM normalization accounts not only for the read count of each gene but also for the gene length, providing a more accurate comparison of expression levels across genes. This method effectively addresses the bias introduced by varying gene lengths, improving the comparability of expression levels between different genes.
+IOBR offers the **`count2tpm()`** function for TPM conversion of RNA-seq count data. For microarray data, which is typically pre-normalized, packages such as affy and limma are commonly used for preprocessing. However, due to the higher cost and relatively limited information content of microarrays, RNA-seq has become the dominant technology in transcriptomic studies.
+
 ## Loading packages
 
 Load the IOBR package in your R session after the installation is complete:
@@ -7,18 +27,6 @@ Load the IOBR package in your R session after the installation is complete:
 library(IOBR)
 library(tidyverse)
 library(clusterProfiler)
-```
-
-## Download array data using `GEOquery`
-Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.nih.gov/25894828/) using `GEOquery` R package.
-```{r,message=FALSE,warning=FALSE}
-if (!requireNamespace("GEOquery", quietly = TRUE))  BiocManager::install("GEOquery")
-library("GEOquery")
-# NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
-eset_geo<-getGEO(GEO     = "GSE62254", getGPL  = F, destdir = "./")
-eset    <-eset_geo[[1]]
-eset    <-exprs(eset)
-eset[1:5,1:5]
 ```
 
 ## Gene Annotation
@@ -42,6 +50,18 @@ head(anno_gc_vm32)
 
 ```
 
+## Download array data using `GEOquery`
+Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.nih.gov/25894828/) using `GEOquery` R package.
+```{r,message=FALSE,warning=FALSE}
+if (!requireNamespace("GEOquery", quietly = TRUE))  BiocManager::install("GEOquery")
+library("GEOquery")
+# NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
+eset_geo<-getGEO(GEO     = "GSE62254", getGPL  = F, destdir = "./")
+eset    <-eset_geo[[1]]
+eset    <-exprs(eset)
+eset[1:5,1:5]
+```
+
 ### For Array data: HGU133PLUS-2 (Affaymetrix)
 ```{r,message=FALSE,warning=FALSE}
 
@@ -63,13 +83,14 @@ Use the following code to check and install **UCSCXenaTools**.
 
 ```{r, eval=FALSE}
 if (!requireNamespace("UCSCXenaTools", quietly = TRUE))  
-  BiocManager::install("UCSCXenaTools")
+  BiocManager::install("ropensci/UCSCXenaTools")
 ```
 
 **UCSCXenaTools** provides an R interface to access public cancer datasets from [UCSC Xena data hubs](https://xenabrowser.net/datapages/), including multiple pan-cancer studies like TCGA and PCAWG. You can directly access information of all datasets in R.
 
 ```{r}
 library(UCSCXenaTools)
+data(XenaData)
 head(XenaData)
 
 # You can use view(XenaData) to find your dataset of interest
@@ -81,7 +102,7 @@ head(XenaData)
 library(UCSCXenaTools)
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
 eset_stad<-XenaGenerate(subset = XenaCohorts =="GDC TCGA Stomach Cancer (STAD)") %>% 
-  XenaFilter(filterDatasets    = "TCGA-STAD.htseq_counts.tsv") %>% 
+  XenaFilter(filterDatasets    = "TCGA-STAD.star_counts.tsv") %>% 
   XenaQuery() %>%
   XenaDownload() %>% 
   XenaPrepare()
@@ -91,7 +112,7 @@ eset_stad[1:5, 1:3]
 As the metadata of this dataset have been stored in the `XeneData` data.frame. You can easily recheck the dataset with code.
 
 ```{r, eval=FALSE}
-dplyr::filter(XenaData, XenaDatasets == "TCGA-STAD.htseq_counts.tsv") |> 
+dplyr::filter(XenaData, XenaDatasets == "TCGA-STAD.star_counts.tsv") |> 
   as.list()
 ```
 
@@ -99,6 +120,8 @@ dplyr::filter(XenaData, XenaDatasets == "TCGA-STAD.htseq_counts.tsv") |>
 ## Normalization and Gene annotation
 Transform gene expression matrix into TPM format, and conduct subsequent annotation. 
 ```{r, eval=FALSE}
+# Remove Ensembl IDs with the suffix '_PAR_Y'.
+eset_stad<- eset_stad[!grepl("_PAR_Y$", eset_stad$Ensembl_ID), ]
 
 # Remove the version numbers in Ensembl ID.
 eset_stad$Ensembl_ID<-substring(eset_stad$Ensembl_ID, 1, 15)

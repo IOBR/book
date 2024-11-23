@@ -6,16 +6,17 @@ This section demonstrates various algorithms for parsing the tumour microenviron
 ## Loading packages
 Load the IOBR package in your R session after the installation is complete:
 
-```r
+``` r
 library(IOBR)
 library(survminer)
 library(tidyverse)
+options(future.globals.maxSize = 8 * 1024^3)
 ```
 
 ## Downloading data for example
 Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.nih.gov/25894828/) using `GEOquery` R package.
 
-```r
+``` r
 if (!requireNamespace("GEOquery", quietly = TRUE))  BiocManager::install("GEOquery")
 library("GEOquery")
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
@@ -36,7 +37,7 @@ eset[1:5, 1:5]
 
 Annotation of genes in the expression matrix and removal of duplicate genes.
 
-```r
+``` r
 library(IOBR)
 
 # Load the annotation file `anno_hug133plus2` in IOBR.
@@ -55,7 +56,7 @@ head(anno_hug133plus2)
 ## 6 1294_at   MIR5193
 ```
 
-```r
+``` r
 # Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. 
 
 eset<-anno_eset(eset       = eset,
@@ -78,7 +79,7 @@ eset[1:5, 1:3]
 ## Available Methods to Decode TME Contexture
 
 
-```r
+``` r
 tme_deconvolution_methods
 ```
 
@@ -91,13 +92,13 @@ tme_deconvolution_methods
 ##             "lsei"            "timer"        "quantiseq"
 ```
 
-```r
+``` r
 # Return available parameter options of deconvolution methods
 ```
 
 The input data is a matrix subseted from ESET of ACRG cohort, with genes in rows and samples in columns. The row name must be HGNC symbols and the column name must be sample names.
 
-```r
+``` r
 eset_acrg <- eset[, 1:50]
 eset_acrg[1:5, 1:3]
 ```
@@ -112,13 +113,13 @@ eset_acrg[1:5, 1:3]
 ```
 Check detail parameters of the function
 
-```r
+``` r
 # help(deconvo_tme)
 ```
 
 ## Method 1: CIBERSORT
 
-```r
+``` r
 cibersort<-deconvo_tme(eset = eset_acrg, method = "cibersort", arrays = TRUE, perm = 100 )
 ```
 
@@ -127,7 +128,7 @@ cibersort<-deconvo_tme(eset = eset_acrg, method = "cibersort", arrays = TRUE, pe
 ## >>> Running CIBERSORT
 ```
 
-```r
+``` r
 # head(cibersort)
 res<-cell_bar_plot(input = cibersort[1:12,], features = colnames(cibersort)[3:24], title = "CIBERSORT Cell Fraction")
 ```
@@ -144,7 +145,7 @@ res<-cell_bar_plot(input = cibersort[1:12,], features = colnames(cibersort)[3:24
 
 ## Method 2: EPIC
 
-```r
+``` r
 # help(deconvo_epic)
 epic<-deconvo_tme(eset = eset_acrg, method = "epic", arrays = TRUE)
 ```
@@ -167,7 +168,7 @@ epic<-deconvo_tme(eset = eset_acrg, method = "epic", arrays = TRUE)
 ## true cell proportions from all cell types.
 ```
 
-```r
+``` r
 head(epic)
 ```
 
@@ -187,7 +188,7 @@ head(epic)
 
 ## Method 3: MCPcounter
 
-```r
+``` r
 mcp<-deconvo_tme(eset = eset_acrg, method = "mcpcounter")
 ```
 
@@ -196,7 +197,7 @@ mcp<-deconvo_tme(eset = eset_acrg, method = "mcpcounter")
 ## >>> Running MCP-counter
 ```
 
-```r
+``` r
 head(mcp)
 ```
 
@@ -219,11 +220,11 @@ head(mcp)
 
 ## Method 4: xCELL
 
-```r
+``` r
 xcell<-deconvo_tme(eset = eset_acrg, method = "xcell", arrays = TRUE)
 ```
 
-```r
+``` r
 head(xcell)
 ```
 
@@ -231,12 +232,12 @@ head(xcell)
 ## # A tibble: 6 × 68
 ##   ID         aDC_xCell Adipocytes_xCell Astrocytes_xCell `B-cells_xCell`
 ##   <chr>          <dbl>            <dbl>            <dbl>           <dbl>
-## 1 GSM1523727  4.78e-19          0.0250          0                 0     
-## 2 GSM1523728  9.41e- 2          0.00433         7.70e- 3          0     
-## 3 GSM1523729  1.02e- 1          0.0789          2.04e- 2          0     
-## 4 GSM1523744  7.88e- 2          0.0538          4.82e-18          0.0126
-## 5 GSM1523745  9.02e- 2          0.0136          1.93e- 2          0     
-## 6 GSM1523746  3.40e- 2          0.0331          9.22e- 2          0     
+## 1 GSM1523727 0                 0.000346         3.06e-20        4.10e- 5
+## 2 GSM1523728 0.000221          0.000255         0               4.89e- 5
+## 3 GSM1523729 0.0000141         0.000490         5.19e-20        5.24e-22
+## 4 GSM1523744 0.000110          0.000395         2.34e-21        6.00e- 5
+## 5 GSM1523745 0.000100          0.000259         0               2.39e- 5
+## 6 GSM1523746 0.0000415         0.000266         3.90e-20        6.37e- 5
 ## # ℹ 63 more variables: Basophils_xCell <dbl>,
 ## #   `CD4+_memory_T-cells_xCell` <dbl>, `CD4+_naive_T-cells_xCell` <dbl>,
 ## #   `CD4+_T-cells_xCell` <dbl>, `CD4+_Tcm_xCell` <dbl>, `CD4+_Tem_xCell` <dbl>,
@@ -248,7 +249,7 @@ head(xcell)
 
 ## Method 5: ESTIMATE
 
-```r
+``` r
 estimate<-deconvo_tme(eset = eset_acrg, method = "estimate")
 ```
 
@@ -258,7 +259,7 @@ estimate<-deconvo_tme(eset = eset_acrg, method = "estimate")
 ## [1] "2 gene set: ImmuneSignature  overlap= 138"
 ```
 
-```r
+``` r
 head(estimate)
 ```
 
@@ -277,7 +278,7 @@ head(estimate)
 
 ## Method 6: TIMER
 
-```r
+``` r
 timer<-deconvo_tme(eset = eset_acrg, method = "timer", group_list = rep("stad",dim(eset_acrg)[2]))
 ```
 
@@ -285,7 +286,7 @@ timer<-deconvo_tme(eset = eset_acrg, method = "timer", group_list = rep("stad",d
 ## [1] "Outlier genes: AGR2 B2M COL1A2 COL3A1 COX2 CYAT1 EEF1A1 EIF1 FTH1 GKN1 HUWE1 IGK IGLC1 LIPF LOC101060363 LOC101928826 MIR8071-2 ND4 PABPC1 PABPC3 PGA4 RPL13AP5 RPL37 RPL37A RPL41 RPL7 RPS10 RPS16 RPS17 RPS18 RPS19 S100A6 S100A9 SH3KBP1 SNORD24 SNORD42A SNORD54 SNORD73A SPINK1 SPINK4 TFF1 UQCRFS1"
 ```
 
-```r
+``` r
 head(timer)
 ```
 
@@ -304,7 +305,7 @@ head(timer)
 
 ## Method 7: quanTIseq
 
-```r
+``` r
 quantiseq<-deconvo_tme(eset = eset_acrg, tumor = TRUE, arrays = TRUE, scale_mrna = TRUE, method = "quantiseq")
 ```
 
@@ -333,7 +334,7 @@ quantiseq<-deconvo_tme(eset = eset_acrg, tumor = TRUE, arrays = TRUE, scale_mrna
 ## Deconvolution sucessful!
 ```
 
-```r
+``` r
 head(quantiseq)
 ```
 
@@ -353,7 +354,7 @@ head(quantiseq)
 ## #   Dendritic_cells_quantiseq <dbl>, Other_quantiseq <dbl>
 ```
 
-```r
+``` r
 res<-cell_bar_plot(input = quantiseq[1:12, ], id = "ID", features = colnames(quantiseq)[2:12], title = "quanTIseq Cell Fraction")
 ```
 
@@ -369,7 +370,7 @@ res<-cell_bar_plot(input = quantiseq[1:12, ], id = "ID", features = colnames(qua
 
 ## Method 8: IPS
 
-```r
+``` r
 ips<-deconvo_tme(eset = eset_acrg, method = "ips", plot= FALSE)
 head(ips)
 ```
@@ -388,7 +389,7 @@ head(ips)
 
 ## Combination of above deconvolution results</a>
 
-```r
+``` r
 tme_combine<-cibersort %>% 
   inner_join(.,mcp,by       = "ID") %>% 
   inner_join(.,xcell,by     = "ID") %>%
@@ -404,6 +405,7 @@ dim(tme_combine)
 ## [1]  50 138
 ```
 
+
 ## How to customise the signature matrix for `SVR` and `lesi` algorithm
 
 The recent surge in single-cell RNA sequencing has enabled us to identify novel microenvironmental cells, tumour microenvironmental characteristics, and tumour clonal signatures with high resolution. It is necessary to scrutinize, confirm and depict these features attained from high-dimensional single-cell information in bulk-seq with extended specimen sizes for clinical phenotyping. This is a demonstration using the results of 10X single-cell sequencing data of PBMC to construct gene signature matrix for `deconvo_tme` function and estimate the abundance of these cell types in bulk transcriptome data.
@@ -412,7 +414,7 @@ Download PBMC dataset through: https://cf.10xgenomics.com/samples/cell/pbmc3k/pb
 
 Initialize the Seurat object with the raw (non-normalized data).
 
-```r
+``` r
 library(Seurat)
 pbmc.data <- Read10X(data.dir = "./pbmc3k_filtered_gene_bc_matrices/filtered_gene_bc_matrices/hg19")
 pbmc <- CreateSeuratObject(counts = pbmc.data, project = "pbmc3k", min.cells = 3, min.features = 200)
@@ -420,7 +422,7 @@ pbmc <- CreateSeuratObject(counts = pbmc.data, project = "pbmc3k", min.cells = 3
 
 Data prepare using Seurat's standard pipeline.
 
-```r
+``` r
 pbmc <- FindVariableFeatures(pbmc, selection.method = "vst", nfeatures = 2000, verbose = FALSE)
 pbmc <- NormalizeData(pbmc, normalization.method = "LogNormalize", scale.factor = 10000, verbose = FALSE)
 pbmc <- ScaleData(pbmc, features =  rownames(pbmc), verbose = FALSE)
@@ -437,33 +439,46 @@ pbmc$celltype <- Idents(pbmc)
 
 Generate reference matrix using `generateRef_seurat` function.
 
-```r
+``` r
 sm<- generateRef_seurat(sce = pbmc, celltype = "celltype", slot_out = "data")
 ```
 
 ```
 ## >>>---Assay used to find markers: 
 ## [1] ">>>>> RNA"
+```
+
+```
 ## 
 ##       Bcells    CD14_Mono    CD8_Tcell           DC  FCGR3A_Mono Memory_CD4_T 
 ##          349          491          339           36          159          467 
 ##  Naive_CD4_T           NK     Platelet 
 ##          696          148           15 
-## >>> Find markers of each celltype... 
+## >>> Find markers of each celltype...
+```
+
+```
+##               p_val avg_log2FC pct.1 pct.2     p_val_adj     cluster  gene
+## RPS6  5.433910e-142  0.6874852 0.999 0.994 7.452065e-138 Naive_CD4_T  RPS6
+## RPL32 5.645212e-138  0.6331843 0.999 0.995 7.741843e-134 Naive_CD4_T RPL32
+## RPS12 5.615968e-137  0.7246307 1.000 0.990 7.701739e-133 Naive_CD4_T RPS12
+## RPS27 1.903184e-131  0.7039172 0.999 0.992 2.610026e-127 Naive_CD4_T RPS27
+## RPS25 2.355892e-127  0.7846319 0.997 0.973 3.230871e-123 Naive_CD4_T RPS25
+## RPL31 3.961343e-121  0.7725688 0.996 0.963 5.432585e-117 Naive_CD4_T RPL31
 ## # A tibble: 450 × 7
 ## # Groups:   cluster [9]
-##        p_val avg_log2FC pct.1 pct.2 p_val_adj cluster     gene 
-##        <dbl>      <dbl> <dbl> <dbl>     <dbl> <fct>       <chr>
-##  1 5.43e-142      0.681 0.999 0.994 7.45e-138 Naive_CD4_T RPS6 
-##  2 5.65e-138      0.626 0.999 0.995 7.74e-134 Naive_CD4_T RPL32
-##  3 5.62e-137      0.716 1     0.99  7.70e-133 Naive_CD4_T RPS12
-##  4 1.90e-131      0.695 0.999 0.992 2.61e-127 Naive_CD4_T RPS27
-##  5 2.36e-127      0.765 0.997 0.973 3.23e-123 Naive_CD4_T RPS25
-##  6 3.96e-121      0.751 0.996 0.963 5.43e-117 Naive_CD4_T RPL31
-##  7 2.91e-120      0.605 0.999 0.995 3.99e-116 Naive_CD4_T RPS14
-##  8 1.74e-113      0.727 0.996 0.969 2.38e-109 Naive_CD4_T RPL9 
-##  9 4.38e-110      0.590 0.999 0.993 6.01e-106 Naive_CD4_T RPS3 
-## 10 6.80e-108      0.665 0.997 0.979 9.33e-104 Naive_CD4_T RPL30
+##        p_val avg_log2FC pct.1 pct.2 p_val_adj cluster     gene  
+##        <dbl>      <dbl> <dbl> <dbl>     <dbl> <fct>       <chr> 
+##  1 5.43e-142      0.687 0.999 0.994 7.45e-138 Naive_CD4_T RPS6  
+##  2 5.62e-137      0.725 1     0.99  7.70e-133 Naive_CD4_T RPS12 
+##  3 1.90e-131      0.704 0.999 0.992 2.61e-127 Naive_CD4_T RPS27 
+##  4 2.36e-127      0.785 0.997 0.973 3.23e-123 Naive_CD4_T RPS25 
+##  5 3.96e-121      0.773 0.996 0.963 5.43e-117 Naive_CD4_T RPL31 
+##  6 1.74e-113      0.743 0.996 0.969 2.38e-109 Naive_CD4_T RPL9  
+##  7 1.08e-104      0.779 0.996 0.974 1.48e-100 Naive_CD4_T RPS3A 
+##  8 3.04e-104      1.11  0.895 0.592 4.16e-100 Naive_CD4_T LDHB  
+##  9 8.09e-101      0.749 0.996 0.964 1.11e- 96 Naive_CD4_T RPS27A
+## 10 5.99e- 90      0.688 0.986 0.956 8.22e- 86 Naive_CD4_T RPS13 
 ## # ℹ 440 more rows
 ## >>>-- Aggreating scRNAseq data...
 ## >>>-- `orig.ident` was set as group. User can define through parameter `celltype` ...
@@ -471,7 +486,7 @@ sm<- generateRef_seurat(sce = pbmc, celltype = "celltype", slot_out = "data")
 
 Load the bulk RNA-seq data
 
-```r
+``` r
 data(eset_stad, package = "IOBR")
 eset <- count2tpm(countMat = eset_stad, source = "local", idType = "ensembl")
 svr<- deconvo_tme(eset = eset, reference  = sm,  method = "svr", arrays  = FALSE, absolute.mode = FALSE, perm = 100)
@@ -480,22 +495,23 @@ head(svr)
 
 ```
 ## # A tibble: 6 × 13
-##   ID           Naive_CD4_T_CIBERSORT CD14_Mono_CIBERSORT Memory_CD4_T_CIBERSORT
-##   <chr>                        <dbl>               <dbl>                  <dbl>
-## 1 TCGA-BR-6455                     0             0.143                    0.332
-## 2 TCGA-BR-7196                     0             0.0862                   0.221
-## 3 TCGA-BR-8371                     0             0.0642                   0.156
-## 4 TCGA-BR-8380                     0             0.00125                  0.221
-## 5 TCGA-BR-8592                     0             0.0621                   0.189
-## 6 TCGA-BR-8686                     0             0.0411                   0.259
-## # ℹ 9 more variables: Bcells_CIBERSORT <dbl>, CD8_Tcell_CIBERSORT <dbl>,
-## #   FCGR3A_Mono_CIBERSORT <dbl>, NK_CIBERSORT <dbl>, DC_CIBERSORT <dbl>,
+##   ID         Naive-CD4-T_CIBERSOR…¹ `CD14-Mono_CIBERSORT` Memory-CD4-T_CIBERSO…²
+##   <chr>                       <dbl>                 <dbl>                  <dbl>
+## 1 TCGA-BR-6…                  0.374                     0                 0     
+## 2 TCGA-BR-7…                  0                         0                 0.0577
+## 3 TCGA-BR-8…                  0.484                     0                 0     
+## 4 TCGA-BR-8…                  0.528                     0                 0     
+## 5 TCGA-BR-8…                  0.396                     0                 0     
+## 6 TCGA-BR-8…                  0                         0                 0.0441
+## # ℹ abbreviated names: ¹​`Naive-CD4-T_CIBERSORT`, ²​`Memory-CD4-T_CIBERSORT`
+## # ℹ 9 more variables: Bcells_CIBERSORT <dbl>, `CD8-Tcell_CIBERSORT` <dbl>,
+## #   `FCGR3A-Mono_CIBERSORT` <dbl>, NK_CIBERSORT <dbl>, DC_CIBERSORT <dbl>,
 ## #   Platelet_CIBERSORT <dbl>, `P-value_CIBERSORT` <dbl>,
 ## #   Correlation_CIBERSORT <dbl>, RMSE_CIBERSORT <dbl>
 ```
 
 
-```r
+``` r
 res<-cell_bar_plot(input = svr, features = colnames(svr)[2:10], title = "SVR Cell Fraction")
 ```
 

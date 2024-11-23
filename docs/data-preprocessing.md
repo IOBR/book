@@ -1,42 +1,40 @@
 
 # **RNA Data preprocessing**
+## **Introduction**
+Transcriptomic data primarily encompasses microarray data and RNA-seq data. Microarray data are predominantly derived from platforms such as Affymetrix and Illumina, while RNA-seq data are largely generated using second-generation sequencing technologies, with third-generation sequencing becoming increasingly available. When performing TME analysis and calculating signature scores, it is essential to first annotate and normalize the gene expression matrix.
+
+The IOBR package offers a suite of functions designed to facilitate rapid preprocessing of transcriptomic data, including:
+
+  - **count2tpm**: Performs gene annotation, removes duplicate genes, and applies TPM normalization.
+  - **anno_eset**: Handles duplicate gene removal and gene annotation.
+  - **find_outlier_samples**: Identifies and removes outlier samples.
+  - **iobr_pca**: Visualizes batch effects and examines biological variability.
+  - **remove_batcheffect**: Removes batch effects and integrates multiple datasets.
+
+**Streamlining Gene Annotation for Downstream Analysis**
+
+Since downstream TME analysis tools and scoring functions in IOBR primarily recognize gene symbols rather than probe IDs, Ensembl IDs, or Entrez IDs, the **`anno_eset()`** function simplifies the annotation process. It enables efficient annotation of microarray data (e.g., Affymetrix and Illumina) and RNA-seq data (e.g., Ensembl and Entrez IDs), converting these identifiers into the more familiar gene symbols.
+
+**Improving Inter-Sample Comparability Through Normalization**
+
+In RNA-seq data analysis, TPM (transcripts per million) is a widely adopted normalization method that converts raw read counts into relative abundance or expression levels. TPM normalization accounts not only for the read count of each gene but also for the gene length, providing a more accurate comparison of expression levels across genes. This method effectively addresses the bias introduced by varying gene lengths, improving the comparability of expression levels between different genes.
+IOBR offers the **`count2tpm()`** function for TPM conversion of RNA-seq count data. For microarray data, which is typically pre-normalized, packages such as affy and limma are commonly used for preprocessing. However, due to the higher cost and relatively limited information content of microarrays, RNA-seq has become the dominant technology in transcriptomic studies.
+
 ## Loading packages
 
 Load the IOBR package in your R session after the installation is complete:
 
-```r
+``` r
 library(IOBR)
 library(tidyverse)
 library(clusterProfiler)
-```
-
-## Download array data using `GEOquery`
-Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.nih.gov/25894828/) using `GEOquery` R package.
-
-```r
-if (!requireNamespace("GEOquery", quietly = TRUE))  BiocManager::install("GEOquery")
-library("GEOquery")
-# NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
-eset_geo<-getGEO(GEO     = "GSE62254", getGPL  = F, destdir = "./")
-eset    <-eset_geo[[1]]
-eset    <-exprs(eset)
-eset[1:5,1:5]
-```
-
-```
-##           GSM1523727 GSM1523728 GSM1523729 GSM1523744 GSM1523745
-## 1007_s_at  3.2176645  3.0624323  3.0279131   2.921683  2.8456013
-## 1053_at    2.4050109  2.4394879  2.2442708   2.345916  2.4328582
-## 117_at     1.4933412  1.8067380  1.5959665   1.839822  1.8326058
-## 121_at     2.1965561  2.2812181  2.1865556   2.258599  2.1874363
-## 1255_g_at  0.8698382  0.9502466  0.8125414   1.012860  0.9441993
 ```
 
 ## Gene Annotation
 
 Annotation of genes in the expression matrix and removal of duplicate genes.
 
-```r
+``` r
 # Load the annotation file `anno_hug133plus2` in IOBR.
 head(anno_hug133plus2)
 ```
@@ -54,7 +52,7 @@ head(anno_hug133plus2)
 ```
 
 
-```r
+``` r
 # Load the annotation file `anno_grch38` in IOBR.
 head(anno_grch38)
 ```
@@ -84,7 +82,7 @@ head(anno_grch38)
 ```
 
 
-```r
+``` r
 # Load the annotation file `anno_gc_vm32` in IOBR for mouse RNAseq data
 head(anno_gc_vm32)
 ```
@@ -106,9 +104,31 @@ head(anno_gc_vm32)
 ## 6 108234180 108305222          <NA> <NA>
 ```
 
+## Download array data using `GEOquery`
+Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.nih.gov/25894828/) using `GEOquery` R package.
+
+``` r
+if (!requireNamespace("GEOquery", quietly = TRUE))  BiocManager::install("GEOquery")
+library("GEOquery")
+# NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
+eset_geo<-getGEO(GEO     = "GSE62254", getGPL  = F, destdir = "./")
+eset    <-eset_geo[[1]]
+eset    <-exprs(eset)
+eset[1:5,1:5]
+```
+
+```
+##           GSM1523727 GSM1523728 GSM1523729 GSM1523744 GSM1523745
+## 1007_s_at  3.2176645  3.0624323  3.0279131   2.921683  2.8456013
+## 1053_at    2.4050109  2.4394879  2.2442708   2.345916  2.4328582
+## 117_at     1.4933412  1.8067380  1.5959665   1.839822  1.8326058
+## 121_at     2.1965561  2.2812181  2.1865556   2.258599  2.1874363
+## 1255_g_at  0.8698382  0.9502466  0.8125414   1.012860  0.9441993
+```
+
 ### For Array data: HGU133PLUS-2 (Affaymetrix)
 
-```r
+``` r
 # Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. 
 
 eset<-anno_eset(eset       = eset,
@@ -135,20 +155,20 @@ In this section, we are going to download RNA-seq data from The Cancer Genome At
 Use the following code to check and install **UCSCXenaTools**.
 
 
-```r
+``` r
 if (!requireNamespace("UCSCXenaTools", quietly = TRUE))  
-  BiocManager::install("UCSCXenaTools")
+  BiocManager::install("ropensci/UCSCXenaTools")
 ```
 
 **UCSCXenaTools** provides an R interface to access public cancer datasets from [UCSC Xena data hubs](https://xenabrowser.net/datapages/), including multiple pan-cancer studies like TCGA and PCAWG. You can directly access information of all datasets in R.
 
 
-```r
+``` r
 library(UCSCXenaTools)
 ```
 
 ```
-## Warning: package 'UCSCXenaTools' was built under R version 4.2.1
+## Warning: package 'UCSCXenaTools' was built under R version 4.4.2
 ```
 
 ```
@@ -176,7 +196,8 @@ library(UCSCXenaTools)
 ##     samples
 ```
 
-```r
+``` r
+data(XenaData)
 head(XenaData)
 ```
 
@@ -195,18 +216,18 @@ head(XenaData)
 ## #   Unit <chr>, Platform <chr>
 ```
 
-```r
+``` r
 # You can use view(XenaData) to find your dataset of interest
 ```
 
 **UCSCXenaTools** provides [workflow functions](https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html#workflow) to generate object, filter, query, download and load the dataset(s) of interest. The following code show a standardized **UCSCXenaTools** data workflow to query the data from UCSC Xena data hub and load it into R.
 
 
-```r
+``` r
 library(UCSCXenaTools)
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
 eset_stad<-XenaGenerate(subset = XenaCohorts =="GDC TCGA Stomach Cancer (STAD)") %>% 
-  XenaFilter(filterDatasets    = "TCGA-STAD.htseq_counts.tsv") %>% 
+  XenaFilter(filterDatasets    = "TCGA-STAD.star_counts.tsv") %>% 
   XenaQuery() %>%
   XenaDownload() %>% 
   XenaPrepare()
@@ -216,8 +237,8 @@ eset_stad[1:5, 1:3]
 As the metadata of this dataset have been stored in the `XeneData` data.frame. You can easily recheck the dataset with code.
 
 
-```r
-dplyr::filter(XenaData, XenaDatasets == "TCGA-STAD.htseq_counts.tsv") |> 
+``` r
+dplyr::filter(XenaData, XenaDatasets == "TCGA-STAD.star_counts.tsv") |> 
   as.list()
 ```
 
@@ -225,7 +246,10 @@ dplyr::filter(XenaData, XenaDatasets == "TCGA-STAD.htseq_counts.tsv") |>
 ## Normalization and Gene annotation
 Transform gene expression matrix into TPM format, and conduct subsequent annotation. 
 
-```r
+``` r
+# Remove Ensembl IDs with the suffix '_PAR_Y'.
+eset_stad<- eset_stad[!grepl("_PAR_Y$", eset_stad$Ensembl_ID), ]
+
 # Remove the version numbers in Ensembl ID.
 eset_stad$Ensembl_ID<-substring(eset_stad$Ensembl_ID, 1, 15)
 eset_stad<-column_to_rownames(eset_stad, var = "Ensembl_ID")
@@ -242,7 +266,7 @@ eset_stad[1:5,1:5]
 
 Take ACRG microarray data for example
 
-```r
+``` r
 res <- find_outlier_samples(eset = eset, project = "ACRG", show_plot = TRUE)
 ```
 
@@ -254,14 +278,14 @@ res <- find_outlier_samples(eset = eset, project = "ACRG", show_plot = TRUE)
 
 Removing potential outlier samples
 
-```r
+``` r
 eset1 <- eset[, !colnames(eset)%in%res]
 ```
 
 ## PCA analysis of molecular subtypes
 
 
-```r
+``` r
 data("pdata_acrg", package = "IOBR")
 res<- iobr_pca(data       = eset1,
               is.matrix   = TRUE,
@@ -282,11 +306,14 @@ res<- iobr_pca(data       = eset1,
 ```
 ## 
 ##       CIN       EBV       EMT        GS       MSI MSS/TP53- MSS/TP53+ 
-##         0         0        42         0        68       106        79 
+##         0         0        42         0        68       106        79
+```
+
+```
 ## [1] ">>== colors for group: "
 ```
 
-```r
+``` r
 res
 ```
 
@@ -298,7 +325,7 @@ res
 ### For microarray data
 Obtaining another data set from GEO [Gastric cancer: GSE57303](https://www.ncbi.nlm.nih.gov/pubmed/24935174/) using `GEOquery` R package.
 
-```r
+``` r
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
 eset_geo<-getGEO(GEO     = "GSE57303", getGPL  = F, destdir = "./")
 eset2    <-eset_geo[[1]]
@@ -317,7 +344,7 @@ eset2[1:5,1:5]
 
 Annotation of genes in the expression matrix and removal of duplicate genes.
 
-```r
+``` r
 eset2<-anno_eset(eset       = eset2,
                  annotation = anno_hug133plus2,
                  symbol     = "symbol",
@@ -337,7 +364,7 @@ eset2[1:5, 1:5]
 
 
 
-```r
+``` r
 eset_com <- remove_batcheffect( eset1       = eset1,  
                                 eset2       = eset2,   
                                 eset3       = NULL,
@@ -355,17 +382,26 @@ eset_com <- remove_batcheffect( eset1       = eset1,
 ```
 ## 
 ## eset1 eset2 
-##   295    70 
+##   295    70
+```
+
+```
 ## [1] ">>== colors for group: "
+```
+
+```
 ## 
 ## eset1 eset2 
-##   295    70 
+##   295    70
+```
+
+```
 ## [1] ">>== colors for group: "
 ```
 
 <img src="data-preprocessing_files/figure-html/unnamed-chunk-17-1.png" width="1056" style="display: block; margin: auto;" />
 
-```r
+``` r
 dim(eset_com)
 ```
 
@@ -377,7 +413,7 @@ dim(eset_com)
 ### For RNAseq count data
 
 
-```r
+``` r
 data("eset_stad", package = "IOBR")
 head(eset_stad)
 ```
@@ -406,7 +442,7 @@ head(eset_stad)
 ## ENSG00000000938          370          688
 ```
 
-```r
+``` r
 data("eset_blca", package = "IOBR")
 head(eset_blca)
 ```
@@ -428,7 +464,7 @@ head(eset_blca)
 ## ENSG00000000938          362
 ```
 
-```r
+``` r
 eset_com <- remove_batcheffect(eset_stad, eset_blca, id_type = "ensembl", data_type = "count")
 ```
 
@@ -450,21 +486,36 @@ eset_com <- remove_batcheffect(eset_stad, eset_blca, id_type = "ensembl", data_t
 ```
 ## 
 ## eset1 eset2 
-##    10     5 
+##    10     5
+```
+
+```
 ## [1] ">>== colors for group: "
+```
+
+```
 ## 
 ## eset1 eset2 
-##    10     5 
+##    10     5
+```
+
+```
 ## [1] ">>== colors for group: "
+```
+
+```
 ## 
 ## eset1 eset2 
-##    10     5 
+##    10     5
+```
+
+```
 ## [1] ">>== colors for group: "
 ```
 
 <img src="data-preprocessing_files/figure-html/unnamed-chunk-18-1.png" width="1056" style="display: block; margin: auto;" />
 
-```r
+``` r
 # The returned matrix is the count matrix after removing the batches.
 head(eset_com)
 ```

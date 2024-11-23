@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 TME Modeling | IOBR (Immuno-Oncology Biological Research)</title>
   <meta name="description" content="The tutorial of IOBR package" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 TME Modeling | IOBR (Immuno-Oncology Biological Research)" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Dongqiang Zeng, Yiran Fang" />
 
 
-<meta name="date" content="2024-02-23" />
+<meta name="date" content="2024-11-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -152,32 +152,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-dependency-packages"><i class="fa fa-check"></i><b>1.1</b> ⏳ Install Dependency Packages</a></li>
 <li class="chapter" data-level="1.2" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-iobr-package"><i class="fa fa-check"></i><b>1.2</b> 💻 Install IOBR package</a></li>
-<li class="chapter" data-level="1.3" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#how-to-update-iobr"><i class="fa fa-check"></i><b>1.3</b> 📍 How to update IOBR</a></li>
+<li class="chapter" data-level="1.3" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#how-to-update-iobr"><i class="fa fa-check"></i><b>1.3</b> 📌 How to update IOBR</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
-<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 👆 Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 🗂 Main Functions of IOBR</a></li>
 <li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌎 Current working environment</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#loading-packages"><i class="fa fa-check"></i><b>3.1</b> Loading packages</a></li>
-<li class="chapter" data-level="3.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-array-data-using-geoquery"><i class="fa fa-check"></i><b>3.2</b> Download array data using <code>GEOquery</code></a></li>
-<li class="chapter" data-level="3.3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#gene-annotation"><i class="fa fa-check"></i><b>3.3</b> Gene Annotation</a>
+<li class="chapter" data-level="3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#introduction-2"><i class="fa fa-check"></i><b>3.1</b> <strong>Introduction</strong></a></li>
+<li class="chapter" data-level="3.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#loading-packages"><i class="fa fa-check"></i><b>3.2</b> Loading packages</a></li>
+<li class="chapter" data-level="3.3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#gene-annotation"><i class="fa fa-check"></i><b>3.3</b> Gene Annotation</a></li>
+<li class="chapter" data-level="3.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-array-data-using-geoquery"><i class="fa fa-check"></i><b>3.4</b> Download array data using <code>GEOquery</code></a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-array-data-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>3.3.1</b> For Array data: HGU133PLUS-2 (Affaymetrix)</a></li>
+<li class="chapter" data-level="3.4.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-array-data-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>3.4.1</b> For Array data: HGU133PLUS-2 (Affaymetrix)</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-rnaseq-data-using-ucscxenatools"><i class="fa fa-check"></i><b>3.4</b> Download RNAseq data using <code>UCSCXenaTools</code></a></li>
-<li class="chapter" data-level="3.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#normalization-and-gene-annotation"><i class="fa fa-check"></i><b>3.5</b> Normalization and Gene annotation</a></li>
-<li class="chapter" data-level="3.6" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>3.6</b> Identifying outlier samples</a></li>
-<li class="chapter" data-level="3.7" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>3.7</b> PCA analysis of molecular subtypes</a></li>
-<li class="chapter" data-level="3.8" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>3.8</b> Batch effect correction</a>
+<li class="chapter" data-level="3.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-rnaseq-data-using-ucscxenatools"><i class="fa fa-check"></i><b>3.5</b> Download RNAseq data using <code>UCSCXenaTools</code></a></li>
+<li class="chapter" data-level="3.6" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#normalization-and-gene-annotation"><i class="fa fa-check"></i><b>3.6</b> Normalization and Gene annotation</a></li>
+<li class="chapter" data-level="3.7" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>3.7</b> Identifying outlier samples</a></li>
+<li class="chapter" data-level="3.8" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>3.8</b> PCA analysis of molecular subtypes</a></li>
+<li class="chapter" data-level="3.9" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>3.9</b> Batch effect correction</a>
 <ul>
-<li class="chapter" data-level="3.8.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-microarray-data"><i class="fa fa-check"></i><b>3.8.1</b> For microarray data</a></li>
-<li class="chapter" data-level="3.8.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-rnaseq-count-data"><i class="fa fa-check"></i><b>3.8.2</b> For RNAseq count data</a></li>
+<li class="chapter" data-level="3.9.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-microarray-data"><i class="fa fa-check"></i><b>3.9.1</b> For microarray data</a></li>
+<li class="chapter" data-level="3.9.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-rnaseq-count-data"><i class="fa fa-check"></i><b>3.9.2</b> For RNAseq count data</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#references"><i class="fa fa-check"></i><b>3.9</b> References</a></li>
+<li class="chapter" data-level="3.10" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#references"><i class="fa fa-check"></i><b>3.10</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html"><i class="fa fa-check"></i><b>4</b> <strong>Signature Score Calculation</strong></a>
 <ul>
@@ -196,7 +197,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.9.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-1-use-excel-for-storage-and-construction"><i class="fa fa-check"></i><b>4.9.1</b> Method-1: Use excel for storage and construction</a></li>
 <li class="chapter" data-level="4.9.2" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-2-build-the-list-structure-directly"><i class="fa fa-check"></i><b>4.9.2</b> Method-2: Build the list structure directly</a></li>
-<li class="chapter" data-level="4.9.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method3-add-the-new-signature-to-the-existing-gene-list"><i class="fa fa-check"></i><b>4.9.3</b> Method3: Add the new signature to the existing gene list</a></li>
+<li class="chapter" data-level="4.9.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-3-add-the-new-signature-to-the-existing-gene-list"><i class="fa fa-check"></i><b>4.9.3</b> Method-3: Add the new signature to the existing gene list</a></li>
+<li class="chapter" data-level="4.9.4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-4-construct-cell-specific-gene-signatures-from-single-cell-differential-analysis-results"><i class="fa fa-check"></i><b>4.9.4</b> Method-4: Construct cell-specific gene signatures from single-cell differential analysis results</a></li>
 </ul></li>
 <li class="chapter" data-level="4.10" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#how-to-export-gene-signature"><i class="fa fa-check"></i><b>4.10</b> How to export gene signature</a></li>
 <li class="chapter" data-level="4.11" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#references-1"><i class="fa fa-check"></i><b>4.11</b> References</a></li>
@@ -250,8 +252,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-tme-patterns"><i class="fa fa-check"></i><b>7.5</b> Identifying TME patterns</a></li>
 <li class="chapter" data-level="7.6" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#cell-abundance-of-each-cluster"><i class="fa fa-check"></i><b>7.6</b> Cell abundance of each cluster</a></li>
 <li class="chapter" data-level="7.7" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#deg-analysis-between-tme-subtypes"><i class="fa fa-check"></i><b>7.7</b> DEG analysis between TME subtypes</a></li>
-<li class="chapter" data-level="7.8" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>7.8</b> Identifying signatures associated with TME clusters</a></li>
-<li class="chapter" data-level="7.9" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#references-3"><i class="fa fa-check"></i><b>7.9</b> References</a></li>
+<li class="chapter" data-level="7.8" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-lr-associated-with-tme-clusters"><i class="fa fa-check"></i><b>7.8</b> Identifying LR associated with TME clusters</a></li>
+<li class="chapter" data-level="7.9" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>7.9</b> Identifying signatures associated with TME clusters</a></li>
+<li class="chapter" data-level="7.10" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#references-3"><i class="fa fa-check"></i><b>7.10</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html"><i class="fa fa-check"></i><b>8</b> <strong>Tumor ecosystem analysis</strong></a>
 <ul>
@@ -334,22 +337,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Previous studies have shown that the tumour microenvironment is a complex ecosystem. No single cell or gene is sufficient to influence the phenotype. Therefore, machine learning models of the tumour microenvironment or models of tumour microenvironment typing are used to predict tumour phenotypes and treatment response. In the last section, we present common considerations and scenarios for constructing tumour microenvironment models.</p>
 <div id="loading-packages-7" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Loading packages<a href="tme-modeling.html#loading-packages-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="tme-modeling.html#cb351-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="tme-modeling.html#cb381-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span></code></pre></div>
 </div>
 <div id="data-prepare" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> Data prepare<a href="tme-modeling.html#data-prepare" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Using data from IMvigor210, we demonstrate two common scenarios for building models of the tumour microenvironment: predicting survival and predicting treatment response (BOR, RECIEST 1.1).</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="tme-modeling.html#cb352-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;imvigor210_sig&quot;</span>, <span class="at">package =</span> <span class="st">&quot;IOBR&quot;</span>)</span>
-<span id="cb352-2"><a href="tme-modeling.html#cb352-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;imvigor210_pdata&quot;</span>, <span class="at">package =</span> <span class="st">&quot;IOBR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="tme-modeling.html#cb382-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;imvigor210_sig&quot;</span>, <span class="at">package =</span> <span class="st">&quot;IOBR&quot;</span>)</span>
+<span id="cb382-2"><a href="tme-modeling.html#cb382-2" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;imvigor210_pdata&quot;</span>, <span class="at">package =</span> <span class="st">&quot;IOBR&quot;</span>)</span></code></pre></div>
 </div>
 <div id="input-data-overall-survival-prepare" class="section level2 hasAnchor" number="10.3">
 <h2><span class="header-section-number">10.3</span> Input data (overall survival) prepare<a href="tme-modeling.html#input-data-overall-survival-prepare" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="tme-modeling.html#cb353-1" tabindex="-1"></a>pdata_prog <span class="ot">&lt;-</span> imvigor210_pdata <span class="sc">%&gt;%</span> </span>
-<span id="cb353-2"><a href="tme-modeling.html#cb353-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(ID, OS_days, OS_status) <span class="sc">%&gt;%</span></span>
-<span id="cb353-3"><a href="tme-modeling.html#cb353-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OS_days =</span> <span class="fu">as.numeric</span>(.<span class="sc">$</span>OS_days)) <span class="sc">%&gt;%</span> </span>
-<span id="cb353-4"><a href="tme-modeling.html#cb353-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OS_status =</span> <span class="fu">as.numeric</span>(.<span class="sc">$</span>OS_status))</span>
-<span id="cb353-5"><a href="tme-modeling.html#cb353-5" tabindex="-1"></a></span>
-<span id="cb353-6"><a href="tme-modeling.html#cb353-6" tabindex="-1"></a><span class="fu">head</span>(pdata_prog)</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="tme-modeling.html#cb383-1" tabindex="-1"></a>pdata_prog <span class="ot">&lt;-</span> imvigor210_pdata <span class="sc">%&gt;%</span> </span>
+<span id="cb383-2"><a href="tme-modeling.html#cb383-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(ID, OS_days, OS_status) <span class="sc">%&gt;%</span></span>
+<span id="cb383-3"><a href="tme-modeling.html#cb383-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OS_days =</span> <span class="fu">as.numeric</span>(.<span class="sc">$</span>OS_days)) <span class="sc">%&gt;%</span> </span>
+<span id="cb383-4"><a href="tme-modeling.html#cb383-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OS_status =</span> <span class="fu">as.numeric</span>(.<span class="sc">$</span>OS_status))</span>
+<span id="cb383-5"><a href="tme-modeling.html#cb383-5" tabindex="-1"></a></span>
+<span id="cb383-6"><a href="tme-modeling.html#cb383-6" tabindex="-1"></a><span class="fu">head</span>(pdata_prog)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   ID              OS_days OS_status
 ##   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;
@@ -362,23 +365,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="constructing-survival-prediction-models" class="section level2 hasAnchor" number="10.4">
 <h2><span class="header-section-number">10.4</span> Constructing survival prediction models<a href="tme-modeling.html#constructing-survival-prediction-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="tme-modeling.html#cb355-1" tabindex="-1"></a>prognostic_result <span class="ot">&lt;-</span> <span class="fu">PrognosticModel</span>(<span class="at">x           =</span> imvigor210_sig, </span>
-<span id="cb355-2"><a href="tme-modeling.html#cb355-2" tabindex="-1"></a>                                     <span class="at">y           =</span> pdata_prog, </span>
-<span id="cb355-3"><a href="tme-modeling.html#cb355-3" tabindex="-1"></a>                                     <span class="at">scale       =</span> T, </span>
-<span id="cb355-4"><a href="tme-modeling.html#cb355-4" tabindex="-1"></a>                                     <span class="at">seed        =</span> <span class="dv">123456</span>, </span>
-<span id="cb355-5"><a href="tme-modeling.html#cb355-5" tabindex="-1"></a>                                     <span class="at">train_ratio =</span> <span class="fl">0.7</span>, </span>
-<span id="cb355-6"><a href="tme-modeling.html#cb355-6" tabindex="-1"></a>                                     <span class="at">nfold       =</span> <span class="dv">8</span>,</span>
-<span id="cb355-7"><a href="tme-modeling.html#cb355-7" tabindex="-1"></a>                                     <span class="at">plot        =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## NULL
-## NULL
-## NULL</code></pre>
-<p><img src="tme-modeling_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="tme-modeling_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="tme-modeling.html#cb385-1" tabindex="-1"></a>prognostic_result <span class="ot">&lt;-</span> <span class="fu">PrognosticModel</span>(<span class="at">x           =</span> imvigor210_sig, </span>
+<span id="cb385-2"><a href="tme-modeling.html#cb385-2" tabindex="-1"></a>                                     <span class="at">y           =</span> pdata_prog, </span>
+<span id="cb385-3"><a href="tme-modeling.html#cb385-3" tabindex="-1"></a>                                     <span class="at">scale       =</span> T, </span>
+<span id="cb385-4"><a href="tme-modeling.html#cb385-4" tabindex="-1"></a>                                     <span class="at">seed        =</span> <span class="dv">123456</span>, </span>
+<span id="cb385-5"><a href="tme-modeling.html#cb385-5" tabindex="-1"></a>                                     <span class="at">train_ratio =</span> <span class="fl">0.7</span>, </span>
+<span id="cb385-6"><a href="tme-modeling.html#cb385-6" tabindex="-1"></a>                                     <span class="at">nfold       =</span> <span class="dv">8</span>,</span>
+<span id="cb385-7"><a href="tme-modeling.html#cb385-7" tabindex="-1"></a>                                     <span class="at">plot        =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="tme-modeling_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="input-data-response-prepare" class="section level2 hasAnchor" number="10.5">
 <h2><span class="header-section-number">10.5</span> Input data (Response) prepare<a href="tme-modeling.html#input-data-response-prepare" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="tme-modeling.html#cb357-1" tabindex="-1"></a>pdata_group <span class="ot">&lt;-</span> imvigor210_pdata[<span class="sc">!</span>imvigor210_pdata<span class="sc">$</span>BOR_binary<span class="sc">==</span><span class="st">&quot;NA&quot;</span>,<span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>,<span class="st">&quot;BOR_binary&quot;</span>)]</span>
-<span id="cb357-2"><a href="tme-modeling.html#cb357-2" tabindex="-1"></a>pdata_group<span class="sc">$</span>BOR_binary <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(pdata_group<span class="sc">$</span>BOR_binary <span class="sc">==</span> <span class="st">&quot;R&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb357-3"><a href="tme-modeling.html#cb357-3" tabindex="-1"></a><span class="fu">head</span>(pdata_group)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="tme-modeling.html#cb386-1" tabindex="-1"></a>pdata_group <span class="ot">&lt;-</span> imvigor210_pdata[<span class="sc">!</span>imvigor210_pdata<span class="sc">$</span>BOR_binary<span class="sc">==</span><span class="st">&quot;NA&quot;</span>,<span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>,<span class="st">&quot;BOR_binary&quot;</span>)]</span>
+<span id="cb386-2"><a href="tme-modeling.html#cb386-2" tabindex="-1"></a>pdata_group<span class="sc">$</span>BOR_binary <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(pdata_group<span class="sc">$</span>BOR_binary <span class="sc">==</span> <span class="st">&quot;R&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb386-3"><a href="tme-modeling.html#cb386-3" tabindex="-1"></a><span class="fu">head</span>(pdata_group)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##   ID              BOR_binary
 ##   &lt;chr&gt;                &lt;dbl&gt;
@@ -391,18 +391,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="constructing-prediction-models-for-response" class="section level2 hasAnchor" number="10.6">
 <h2><span class="header-section-number">10.6</span> Constructing prediction models for response<a href="tme-modeling.html#constructing-prediction-models-for-response" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="tme-modeling.html#cb359-1" tabindex="-1"></a>binom_res <span class="ot">&lt;-</span> <span class="fu">BinomialModel</span>(<span class="at">x           =</span> imvigor210_sig, </span>
-<span id="cb359-2"><a href="tme-modeling.html#cb359-2" tabindex="-1"></a>                           <span class="at">y           =</span> pdata_group, </span>
-<span id="cb359-3"><a href="tme-modeling.html#cb359-3" tabindex="-1"></a>                           <span class="at">seed        =</span> <span class="dv">123456</span>, </span>
-<span id="cb359-4"><a href="tme-modeling.html#cb359-4" tabindex="-1"></a>                           <span class="at">scale       =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb359-5"><a href="tme-modeling.html#cb359-5" tabindex="-1"></a>                           <span class="at">train_ratio =</span> <span class="fl">0.7</span>, </span>
-<span id="cb359-6"><a href="tme-modeling.html#cb359-6" tabindex="-1"></a>                           <span class="at">nfold       =</span> <span class="dv">8</span>, </span>
-<span id="cb359-7"><a href="tme-modeling.html#cb359-7" tabindex="-1"></a>                           <span class="at">plot        =</span> T)</span></code></pre></div>
-<pre><code>## NULL
-## NULL
-## NULL</code></pre>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="tme-modeling.html#cb388-1" tabindex="-1"></a>binom_res <span class="ot">&lt;-</span> <span class="fu">BinomialModel</span>(<span class="at">x           =</span> imvigor210_sig, </span>
+<span id="cb388-2"><a href="tme-modeling.html#cb388-2" tabindex="-1"></a>                           <span class="at">y           =</span> pdata_group, </span>
+<span id="cb388-3"><a href="tme-modeling.html#cb388-3" tabindex="-1"></a>                           <span class="at">seed        =</span> <span class="dv">123456</span>, </span>
+<span id="cb388-4"><a href="tme-modeling.html#cb388-4" tabindex="-1"></a>                           <span class="at">scale       =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb388-5"><a href="tme-modeling.html#cb388-5" tabindex="-1"></a>                           <span class="at">train_ratio =</span> <span class="fl">0.7</span>, </span>
+<span id="cb388-6"><a href="tme-modeling.html#cb388-6" tabindex="-1"></a>                           <span class="at">nfold       =</span> <span class="dv">8</span>, </span>
+<span id="cb388-7"><a href="tme-modeling.html#cb388-7" tabindex="-1"></a>                           <span class="at">plot        =</span> T)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-<p><img src="tme-modeling_files/figure-html/unnamed-chunk-6-1.png" width="672" /><img src="tme-modeling_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<pre><code>## NULL</code></pre>
+<pre><code>## NULL</code></pre>
+<p><img src="tme-modeling_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre><code>## NULL</code></pre>
+<p><img src="tme-modeling_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
 <pre><code>## NULL</code></pre>
 </div>
 <div id="references-6" class="section level2 hasAnchor" number="10.7">

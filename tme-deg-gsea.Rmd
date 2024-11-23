@@ -36,7 +36,7 @@ eset[1:5, 1:3]
 
 ## Determine TME subtype of gastric cancer using [TMEclassifier R package](https://github.com/LiaoWJLab/TMEclassifier)
 ```{r, message=FALSE, warning=FALSE}
-if (!requireNamespace("TMEclassifier", quietly = TRUE)) devtools::install_github("LiaoWJLab/TMEclassifier")
+if (!requireNamespace("TMEclassifier", quietly = TRUE))  devtools::install_github("LiaoWJLab/TMEclassifier")
 library(TMEclassifier)
 tme <- tme_classifier(eset = eset, scale = TRUE)
 table(tme$TMEcluster)
@@ -241,4 +241,4 @@ Cristescu, R., Lee, J., Nebozhyn, M. et al. Molecular analysis of gastric cancer
 
 Seurat: Hao and Hao et al. Integrated analysis of multimodal single-cell data. Cell (2021)
 
-Zeng D, Yu Y, Qiu W, Mao Q, …, Zhang K, Liao W; Tumor microenvironment immunotyping heterogeneity reveals distinct molecular mechanisms to clinical immunotherapy applications in gastric cancer. (2023) Under Review.
+Zeng D, Yu Y, Qiu W, Mao Q, …, Zhang K, Liao W; Tumor microenvironment immunotyping heterogeneity reveals distinct molecular mechanisms to clinical immunotherapy applications in gastric cancer. (2024) Under Review.

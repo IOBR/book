@@ -5,7 +5,7 @@
 ## Loading packages
 Load the IOBR package in your R session after the installation is complete:
 
-```r
+``` r
 library(IOBR)
 library(survminer)
 library(tidyverse)
@@ -14,7 +14,7 @@ library(tidyverse)
 ## Downloading data for example
 Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.nih.gov/25894828/) using `GEOquery` R package.
 
-```r
+``` r
 if (!requireNamespace("GEOquery", quietly = TRUE))  BiocManager::install("GEOquery")
 library("GEOquery")
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
@@ -36,7 +36,7 @@ eset[1:5,1:5]
 ## Gene Annotation
 Annotation of genes in the expression matrix and removal of duplicate genes.
 
-```r
+``` r
 # Load the annotation file `anno_hug133plus2` in IOBR.
 head(anno_hug133plus2)
 ```
@@ -53,7 +53,7 @@ head(anno_hug133plus2)
 ## 6 1294_at   MIR5193
 ```
 
-```r
+``` r
 # Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. 
 
 eset<-anno_eset(eset       = eset,
@@ -76,7 +76,7 @@ eset[1:5, 1:3]
 
 ## Estimation of signatures
 
-```r
+``` r
 sig_tme<-calculate_sig_score(pdata           = NULL,
                              eset            = eset,
                              signature       = signature_collection,
@@ -99,7 +99,7 @@ sig_tme[1:5, 1:3]
 ## Combining score data and phenotype data
 
 
-```r
+``` r
 data("pdata_acrg", package = "IOBR")
 head(pdata_acrg)
 ```
@@ -212,7 +212,7 @@ head(pdata_acrg)
 ## 76             Low
 ```
 
-```r
+``` r
 input <- combine_pd_eset(eset = sig_tme, pdata = pdata_acrg, scale = T)
 ```
 
@@ -220,7 +220,7 @@ input <- combine_pd_eset(eset = sig_tme, pdata = pdata_acrg, scale = T)
 ## Identifying features associated with survival
 
 
-```r
+``` r
 res<- batch_surv(pdata    = input,
                  time     = "OS_time", 
                  status   = "OS_status", 
@@ -242,19 +242,17 @@ head(res)
 
 Use forest plots `sig_forest` to show the most relevant variables to overall survival
 
-```r
+``` r
 res<- res[nchar(res$ID)<=28, ]
 p1<- sig_forest(res, signature = "ID", n = 20)
 ```
-
-<img src="Feature-selections_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
 
 ## Visulization using heatmap
 
 Relationship between Signatures and molecular typing.
 Heatmap visualisation using `IOBR`'s `sig_heatmap`
 
-```r
+``` r
 p2 <- sig_heatmap(input         = input, 
                   features      = res$ID[1:20],
                   group         = "Subtype", 
@@ -267,7 +265,7 @@ p2 <- sig_heatmap(input         = input,
 
 ## Focus on target signatures
 
-```r
+``` r
 p1 <- sig_box(data           = input, 
               signature      = "Glycogen_Biosynthesis",
               variable       = "Subtype",
@@ -293,7 +291,7 @@ p1 <- sig_box(data           = input,
 ## 6 signature MSS/TP53- MSS/TP53+ 7.16e- 1 7.2 e- 1 0.7161   ns       Wilcoxon
 ```
 
-```r
+``` r
 p2 <- sig_box(data           = input, 
               signature      = "Pan_F_TBRs",
               variable       = "Subtype",
@@ -319,7 +317,7 @@ p2 <- sig_box(data           = input,
 ## 6 signature MSS/TP53- MSS/TP53+ 4.02e- 1 4   e- 1 0.402    ns       Wilcoxon
 ```
 
-```r
+``` r
 p3 <- sig_box(data           = input, 
               signature      = "Immune_Checkpoint",
               variable       = "Subtype",
@@ -347,11 +345,11 @@ p3 <- sig_box(data           = input,
 
 
 
-```r
+``` r
 p1|p2|p3
 ```
 
-<img src="Feature-selections_files/figure-html/unnamed-chunk-10-1.png" width="1344" style="display: block; margin: auto;" />
+<img src="Feature-selections_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;" />
 
 
 ## Survival analysis and visulization
@@ -359,7 +357,7 @@ p1|p2|p3
 ### Kaplan-Meier plot
 Displaying the outcomes of survival analyses using Kaplan-Meier plot. Multiple stratifications of the signature were used to judge the efficacy of this metric in predicting patient survival.
 
-```r
+``` r
 res <-       sig_surv_plot(input_pdata       = input, 
                            signature         = "Glycogen_Biosynthesis",
                            cols              = NULL, 
@@ -385,7 +383,7 @@ res <-       sig_surv_plot(input_pdata       = input,
 ## [1] ">>>>>>>>>"
 ```
 
-```r
+``` r
 res$plots
 ```
 
@@ -394,7 +392,7 @@ res$plots
 ### Time-Dependent ROC curve
 
 
-```r
+``` r
 p1<- roc_time(input      = input,  
              vars       = "Glycogen_Biosynthesis", 
              time       = "OS_time",
@@ -418,7 +416,7 @@ p1<- roc_time(input      = input,
 ## [1]   1.0 105.7
 ```
 
-```r
+``` r
 p2<- roc_time(input      = input,  
              vars       = "Glycogen_Biosynthesis", 
              time       = "RFS_time",
@@ -442,11 +440,11 @@ p2<- roc_time(input      = input,
 ## [1]   0.10 100.87
 ```
 
-```r
+``` r
 p1|p2
 ```
 
-<img src="Feature-selections_files/figure-html/unnamed-chunk-12-1.png" width="1152" />
+<img src="Feature-selections_files/figure-html/unnamed-chunk-12-1.png" width="1344" />
 
 
 ## Batch correlation analysis 
@@ -456,7 +454,7 @@ Identifying genes or signatures related to the target signatures
 
 #### Correlation between two variables
 
-```r
+``` r
 res <- batch_cor(data = input, target = "Glycogen_Biosynthesis", feature = colnames(input)[69:ncol(input)])
 ```
 
@@ -464,15 +462,15 @@ res <- batch_cor(data = input, target = "Glycogen_Biosynthesis", feature = colna
 ## # A tibble: 6 × 6
 ##   sig_names                         p.value statistic    p.adj log10pvalue stars
 ##   <chr>                               <dbl>     <dbl>    <dbl>       <dbl> <fct>
-## 1 TMEscoreB_CIR                    8.89e-42     0.678 2.27e-39        41.1 **** 
-## 2 Glycine__Serine_and_Threonine_M… 7.49e-40    -0.666 9.54e-38        39.1 **** 
-## 3 Ether_Lipid_Metabolism           3.84e-39     0.662 3.27e-37        38.4 **** 
-## 4 MDSC_Peng_et_al                  1.13e-38     0.659 7.21e-37        37.9 **** 
-## 5 Glycerophospholipid_Metabolism   8.72e-38    -0.653 4.44e-36        37.1 **** 
-## 6 TIP_Release_of_cancer_cell_anti… 2.32e-37    -0.650 9.86e-36        36.6 ****
+## 1 TMEscoreB_CIR                    8.89e-42     0.678 2.79e-39        41.1 **** 
+## 2 Glycine__Serine_and_Threonine_M… 7.49e-40    -0.666 1.18e-37        39.1 **** 
+## 3 Ether_Lipid_Metabolism           3.84e-39     0.662 4.02e-37        38.4 **** 
+## 4 MDSC_Peng_et_al                  1.13e-38     0.659 8.88e-37        37.9 **** 
+## 5 Glycerophospholipid_Metabolism   8.72e-38    -0.653 5.47e-36        37.1 **** 
+## 6 TIP_Release_of_cancer_cell_anti… 2.32e-37    -0.650 1.21e-35        36.6 ****
 ```
 
-```r
+``` r
 head(res)
 ```
 
@@ -480,16 +478,16 @@ head(res)
 ## # A tibble: 6 × 6
 ##   sig_names                         p.value statistic    p.adj log10pvalue stars
 ##   <chr>                               <dbl>     <dbl>    <dbl>       <dbl> <fct>
-## 1 TMEscoreB_CIR                    8.89e-42     0.678 2.27e-39        41.1 **** 
-## 2 Glycine__Serine_and_Threonine_M… 7.49e-40    -0.666 9.54e-38        39.1 **** 
-## 3 Ether_Lipid_Metabolism           3.84e-39     0.662 3.27e-37        38.4 **** 
-## 4 MDSC_Peng_et_al                  1.13e-38     0.659 7.21e-37        37.9 **** 
-## 5 Glycerophospholipid_Metabolism   8.72e-38    -0.653 4.44e-36        37.1 **** 
-## 6 TIP_Release_of_cancer_cell_anti… 2.32e-37    -0.650 9.86e-36        36.6 ****
+## 1 TMEscoreB_CIR                    8.89e-42     0.678 2.79e-39        41.1 **** 
+## 2 Glycine__Serine_and_Threonine_M… 7.49e-40    -0.666 1.18e-37        39.1 **** 
+## 3 Ether_Lipid_Metabolism           3.84e-39     0.662 4.02e-37        38.4 **** 
+## 4 MDSC_Peng_et_al                  1.13e-38     0.659 8.88e-37        37.9 **** 
+## 5 Glycerophospholipid_Metabolism   8.72e-38    -0.653 5.47e-36        37.1 **** 
+## 6 TIP_Release_of_cancer_cell_anti… 2.32e-37    -0.650 1.21e-35        36.6 ****
 ```
 
 
-```r
+``` r
 p1<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glycogen_Biosynthesis", 
              var2 = "TMEscore_CIR", subtype = "Subtype", palette = "aaas", path = "result")
 ```
@@ -510,9 +508,9 @@ p1<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glyco
 ##        46        68       107        79
 ```
 
-```r
+``` r
 p2<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glycogen_Biosynthesis", 
-             var2 = "TGFb.myCAF", subtype = "Subtype", palette = "aaas", path = "result")
+             var2 = "TGFβ_myCAF", subtype = "Subtype", palette = "aaas", path = "result")
 ```
 
 ```
@@ -520,19 +518,19 @@ p2<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glyco
 ## 	Spearman's rank correlation rho
 ## 
 ## data:  data[, var1] and data[, var2]
-## S = 2471758, p-value < 2.2e-16
+## S = 2430178, p-value < 2.2e-16
 ## alternative hypothesis: true rho is not equal to 0
 ## sample estimates:
 ##       rho 
-## 0.4507143 
+## 0.4599544 
 ## 
-## [1] ">>>--- The exact p value is: 2.04505761057615e-16"
+## [1] ">>>--- The exact p value is: 4.1228739609711e-17"
 ##       EMT       MSI MSS/TP53- MSS/TP53+ 
 ##        46        68       107        79
 ```
 
 
-```r
+``` r
 p1|p2
 ```
 
@@ -542,7 +540,7 @@ p1|p2
 
 Visualisation via correlation matrix
 
-```r
+``` r
 feas1 <- c("Glycogen_Biosynthesis", "Ferroptosis")
 feas2 <- c("Glutathione_Metabolism", "TMEscore_CIR", "Purine_Metabolism", "ICB_resistance_Peng_et_al", "Interleukins_Li_et_al", "TLS_Nature")
 p <- get_cor_matrix(data           = input, 
@@ -560,7 +558,7 @@ p <- get_cor_matrix(data           = input,
 
 Demonstrate the correlation between signatures and genes
 
-```r
+``` r
 input2 <- combine_pd_eset(eset = eset, pdata =  input[, c("ID", "Glycogen_Biosynthesis", "TLS_Nature", "Ferroptosis")])
 feas1 <- c("Glycogen_Biosynthesis","TLS_Nature", "Ferroptosis")
 feas2 <- signature_collection$CD_8_T_effector
@@ -571,7 +569,7 @@ feas2
 ## [1] "CD8A"   "GZMA"   "GZMB"   "IFNG"   "CXCL9"  "CXCL10" "PRF1"   "TBX21"
 ```
 
-```r
+``` r
 p <- get_cor_matrix(data           = input2, 
                     feas1          = feas2, 
                     feas2          = feas1,
@@ -588,7 +586,7 @@ p <- get_cor_matrix(data           = input2,
 
 Users can customize the image using parameters.
 
-```r
+``` r
 p <- get_cor_matrix(data           = input2, 
                     feas1          = feas2, 
                     feas2          = feas1,
@@ -608,7 +606,7 @@ p <- get_cor_matrix(data           = input2,
 
 #### For binary variable
 
-```r
+``` r
 res <- batch_wilcoxon(data = input, target = "TMEscore_binary", feature = colnames(input)[69:ncol(input)])
 ```
 
@@ -618,7 +616,7 @@ res <- batch_wilcoxon(data = input, target = "TMEscore_binary", feature = colnam
 ##   71  228
 ```
 
-```r
+``` r
 head(res)
 ```
 
@@ -626,15 +624,15 @@ head(res)
 ## # A tibble: 6 × 8
 ##   sig_names         p.value   High    Low statistic    p.adj log10pvalue stars
 ##   <chr>               <dbl>  <dbl>  <dbl>     <dbl>    <dbl>       <dbl> <fct>
-## 1 TMEscore_CIR     4.44e-37  1.17  -0.365      1.54 1.14e-34        36.4 **** 
-## 2 TMEscore_plus    3.97e-34  1.23  -0.380      1.61 5.08e-32        33.4 **** 
-## 3 TMEscoreA_plus   1.68e-25  1.18  -0.359      1.54 1.44e-23        24.8 **** 
-## 4 TMEscoreB_CIR    5.59e-24 -0.881  0.279     -1.16 3.36e-22        23.3 **** 
-## 5 ADP_Ribosylation 6.56e-24  1.06  -0.329      1.39 3.36e-22        23.2 **** 
-## 6 TMEscoreA_CIR    1.02e-22  1.11  -0.337      1.45 3.80e-21        22.0 ****
+## 1 TMEscore_CIR     4.44e-37  1.17  -0.365      1.54 1.40e-34        36.4 **** 
+## 2 TMEscore_plus    3.97e-34  1.23  -0.380      1.61 6.25e-32        33.4 **** 
+## 3 TMEscoreA_plus   1.68e-25  1.18  -0.359      1.54 1.77e-23        24.8 **** 
+## 4 TMEscoreB_CIR    5.59e-24 -0.881  0.279     -1.16 4.13e-22        23.3 **** 
+## 5 ADP_Ribosylation 6.56e-24  1.06  -0.329      1.39 4.13e-22        23.2 **** 
+## 6 TMEscoreA_CIR    1.02e-22  1.11  -0.337      1.45 4.68e-21        22.0 ****
 ```
 
-```r
+``` r
 p1 <- sig_box(data           = input, 
               signature      = res$sig_names[1],
               variable       = "TMEscore_binary",
@@ -655,7 +653,7 @@ p1 <- sig_box(data           = input,
 ## 1 signature High   Low    4.44e-37 4.40e-37 <2e-16   ****     Wilcoxon
 ```
 
-```r
+``` r
 p2 <- sig_box(data           = input, 
               signature      = res$sig_names[2],
               variable       = "TMEscore_binary",
@@ -676,7 +674,7 @@ p2 <- sig_box(data           = input,
 ## 1 signature High   Low    3.97e-34 4e-34 <2e-16   ****     Wilcoxon
 ```
 
-```r
+``` r
 p3 <- sig_box(data           = input, 
               signature      = res$sig_names[3],
               variable       = "TMEscore_binary",
@@ -699,16 +697,16 @@ p3 <- sig_box(data           = input,
 
 
 
-```r
+``` r
 p1|p2|p3
 ```
 
-<img src="Feature-selections_files/figure-html/unnamed-chunk-21-1.png" width="960" style="display: block; margin: auto;" />
+<img src="Feature-selections_files/figure-html/unnamed-chunk-21-1.png" width="864" style="display: block; margin: auto;" />
 
 
 ### For multicategorical variables (>2 subgroups)
 
-```r
+``` r
 res <- batch_kruskal(data = input, group = "Subtype", feature = colnames(input)[69:ncol(input)])
 ```
 
@@ -718,7 +716,7 @@ res <- batch_kruskal(data = input, group = "Subtype", feature = colnames(input)[
 ##        46        68       107        79
 ```
 
-```r
+``` r
 head(res)
 ```
 
@@ -726,16 +724,16 @@ head(res)
 ## # A tibble: 6 × 10
 ##   sig_names        p.value   EMT    MSI `MSS/TP53-` `MSS/TP53+`    mean    p.adj
 ##   <chr>              <dbl> <dbl>  <dbl>       <dbl>       <dbl>   <dbl>    <dbl>
-## 1 TMEscore_CIR    1.35e-28 -1.36  1.00        0.305      0.0577 -0.119  3.46e-26
-## 2 Ether_Lipid_Me… 4.37e-27  1.46 -0.830      -0.253     -0.375   0.165  4.64e-25
-## 3 TMEscoreB_CIR   5.88e-27  1.55 -0.829      -0.420     -0.303   0.169  4.64e-25
-## 4 Inositol_Phosp… 7.25e-27  1.53 -0.808      -0.315     -0.408   0.177  4.64e-25
-## 5 Selenocompound… 1.17e-26 -1.48  0.824       0.328      0.326  -0.163  5.99e-25
-## 6 Folate_biosynt… 1.63e-26 -1.12  1.05        0.127     -0.0573 -0.0792 6.15e-25
+## 1 TMEscore_CIR    1.35e-28 -1.36  1.00        0.305      0.0577 -0.119  4.26e-26
+## 2 Ether_Lipid_Me… 4.37e-27  1.46 -0.830      -0.253     -0.375   0.165  5.71e-25
+## 3 TMEscoreB_CIR   5.88e-27  1.55 -0.829      -0.420     -0.303   0.169  5.71e-25
+## 4 Inositol_Phosp… 7.25e-27  1.53 -0.808      -0.315     -0.408   0.177  5.71e-25
+## 5 Selenocompound… 1.17e-26 -1.48  0.824       0.328      0.326  -0.163  7.38e-25
+## 6 Folate_biosynt… 1.63e-26 -1.12  1.05        0.127     -0.0573 -0.0792 7.57e-25
 ## # ℹ 2 more variables: log10pvalue <dbl>, stars <fct>
 ```
 
-```r
+``` r
 p1 <- sig_box(data           = input, 
               signature      = res$sig_names[1],
               variable       = "Subtype",
@@ -761,7 +759,7 @@ p1 <- sig_box(data           = input,
 ## 6 signature MSS/TP53- MSS/TP53+ 7.71e- 3 7.7 e- 3 0.0077   **       Wilcoxon
 ```
 
-```r
+``` r
 p2 <- sig_box(data           = input, 
               signature      = res$sig_names[2],
               variable       = "Subtype",
@@ -787,7 +785,7 @@ p2 <- sig_box(data           = input,
 ## 6 signature MSS/TP53- MSS/TP53+ 2.84e- 1 2.8 e- 1 0.28     ns       Wilcoxon
 ```
 
-```r
+``` r
 p3 <- sig_box(data           = input, 
               signature      = res$sig_names[3],
               variable       = "Subtype",
@@ -815,7 +813,7 @@ p3 <- sig_box(data           = input,
 
 
 
-```r
+``` r
 p1|p2|p3
 ```
 
@@ -824,3 +822,5 @@ p1|p2|p3
 ## Reference
 
 Cristescu, R., Lee, J., Nebozhyn, M. et al. Molecular analysis of gastric cancer identifies subtypes associated with distinct clinical outcomes. Nat Med 21, 449–456 (2015). https://doi.org/10.1038/nm.3850
+
+Dongqiang Zeng, ..., WJ Liao et al., Tumor Microenvironment Characterization in Gastric Cancer Identifies Prognostic and Immunotherapeutically Relevant Gene Signatures, Cancer Immunol Res (2019) 7 (5): 737–750. https://doi.org/10.1158/2326-6066.CIR-18-0436

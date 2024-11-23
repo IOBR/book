@@ -130,7 +130,7 @@ p3 <- sig_box(data           = input,
 ```
 
 
-```{r, message = F, warning = F, fig.width= 14, fig.height=6, fig.align='center'}
+```{r, message = F, warning = F, fig.width= 10, fig.height=6, fig.align='center'}
 p1|p2|p3
 ```
 
@@ -154,7 +154,7 @@ res$plots
 
 ### Time-Dependent ROC curve
 
-```{r, message = F, warning = F, fig.width= 12, fig.height=6.2}
+```{r, message = F, warning = F, fig.width= 14, fig.height=6.5}
 p1<- roc_time(input      = input,  
              vars       = "Glycogen_Biosynthesis", 
              time       = "OS_time",
@@ -207,7 +207,7 @@ head(res)
 p1<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glycogen_Biosynthesis", 
              var2 = "TMEscore_CIR", subtype = "Subtype", palette = "aaas", path = "result")
 p2<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glycogen_Biosynthesis", 
-             var2 = "TGFb.myCAF", subtype = "Subtype", palette = "aaas", path = "result")
+             var2 = "TGFβ_myCAF", subtype = "Subtype", palette = "aaas", path = "result")
 ```
 
 ```{r, fig.width= 12, fig.height=6, message = F, warning = F}
@@ -311,7 +311,7 @@ p3 <- sig_box(data           = input,
 ```
 
 
-```{r, message = F, warning = F, fig.width= 10, fig.height=6, fig.align='center'}
+```{r, message = F, warning = F, fig.width= 9, fig.height=5, fig.align='center'}
 p1|p2|p3
 ```
 
@@ -368,3 +368,5 @@ p1|p2|p3
 ## Reference
 
 Cristescu, R., Lee, J., Nebozhyn, M. et al. Molecular analysis of gastric cancer identifies subtypes associated with distinct clinical outcomes. Nat Med 21, 449–456 (2015). https://doi.org/10.1038/nm.3850
+
+Dongqiang Zeng, ..., WJ Liao et al., Tumor Microenvironment Characterization in Gastric Cancer Identifies Prognostic and Immunotherapeutically Relevant Gene Signatures, Cancer Immunol Res (2019) 7 (5): 737–750. https://doi.org/10.1158/2326-6066.CIR-18-0436

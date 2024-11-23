@@ -6,7 +6,7 @@ In this section, we'll cover some of the tips inside the IOBR package in terms o
 ## Loading packages
 
 
-```r
+``` r
 library(IOBR)
 ```
 
@@ -16,7 +16,7 @@ library(IOBR)
 In IOBR, we created a function for get_col. The user can get the colours with some parameters in it. Please refer to the following example. In order to better suit the requirements of the journal, we have provided some of the more commonly used colour schemes. These include `nrc`, `jama`, `aaas`, `jco`, `paired1`, `paired2`, `paired3`, `paired4`, `accent`, `set2`.
 
 
-```r
+``` r
 cols <- get_cols(palette = "jama", show_col = T)
 ```
 
@@ -26,7 +26,7 @@ cols <- get_cols(palette = "jama", show_col = T)
 
 <img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
-```r
+``` r
 cols
 ```
 
@@ -35,7 +35,7 @@ cols
 ## [7] "#80796BFF"
 ```
 
-```r
+``` r
 cols <- get_cols( palette = "jco", show_col = T)
 ```
 
@@ -45,7 +45,7 @@ cols <- get_cols( palette = "jco", show_col = T)
 
 <img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
-```r
+``` r
 cols
 ```
 
@@ -55,7 +55,7 @@ cols
 ```
 
 
-```r
+``` r
 cols <- get_cols(palette = "nrc", show_col = T)
 ```
 
@@ -65,7 +65,7 @@ cols <- get_cols(palette = "nrc", show_col = T)
 
 <img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
-```r
+``` r
 cols
 ```
 
@@ -75,7 +75,7 @@ cols
 ```
 
 
-```r
+``` r
 cols <- get_cols(palette = "aaas", show_col = T)
 ```
 
@@ -85,7 +85,7 @@ cols <- get_cols(palette = "aaas", show_col = T)
 
 <img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
-```r
+``` r
 cols
 ```
 
@@ -94,7 +94,7 @@ cols
 ## [7] "#5F559BFF" "#A20056FF" "#808180FF"
 ```
 
-```r
+``` r
 cols <- get_cols(palette = "paired4", show_col = T)
 ```
 
@@ -104,7 +104,7 @@ cols <- get_cols(palette = "paired4", show_col = T)
 
 <img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
-```r
+``` r
 cols
 ```
 
@@ -113,7 +113,7 @@ cols
 ```
 
 
-```r
+``` r
 cols <- get_cols(palette = "set2", show_col = T)
 ```
 
@@ -123,7 +123,7 @@ cols <- get_cols(palette = "set2", show_col = T)
 
 <img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
-```r
+``` r
 cols
 ```
 
@@ -135,7 +135,7 @@ cols
 In order to cope with multiple groupings, we have selected some colours that are more identifiable with each other and stored these colourways in the objects palette1-4. The user can obtain them by setting the parameter `palette`.
 
 
-```r
+``` r
 cols <- get_cols(palette = 1, show_col = T)
 ```
 
@@ -149,7 +149,7 @@ cols <- get_cols(palette = 1, show_col = T)
 
 <img src="some-tips-for-IOBR_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 
-```r
+``` r
 cols
 ```
 
@@ -165,7 +165,7 @@ cols
 ### Gradient colour or heatmap colour scheme
 
 
-```r
+``` r
 palettes(category = "continue", palette = "puor", show_col = TRUE, show_message = TRUE)
 ```
 
@@ -189,7 +189,7 @@ palettes(category = "continue", palette = "puor", show_col = TRUE, show_message 
 ```
 
 
-```r
+``` r
 palettes(category = "continue", palette = "rdbu", show_col = TRUE, show_message = TRUE)
 ```
 
@@ -212,7 +212,7 @@ palettes(category = "continue", palette = "rdbu", show_col = TRUE, show_message 
 ##  [8] "#92C5DE" "#4393C3" "#2166AC" "#053061"
 ```
 
-```r
+``` r
 palettes(category = "continue", palette = "blues", show_col = TRUE, show_message = TRUE)
 ```
 
@@ -241,7 +241,7 @@ palettes(category = "continue", palette = "blues", show_col = TRUE, show_message
 ```
 
 
-```r
+``` r
 palettes(category = "continue", palette = "reds", show_col = TRUE, show_message = TRUE)
 ```
 
@@ -271,7 +271,7 @@ palettes(category = "continue", palette = "reds", show_col = TRUE, show_message 
 
 For heatmap colour configuration, usually more colours are needed. Users can adjust the number of colours to be returned by setting the parameter `category` to heatmap and by adjusting `count`. In IOBR, we offer a total of 7 colour schemes. Users can choose the colour scheme by setting the palette.
 
-```r
+``` r
 palettes(category = "heatmap", palette = "1", counts = 20, show_col = TRUE, show_message = TRUE)
 ```
 
@@ -295,7 +295,7 @@ palettes(category = "heatmap", palette = "1", counts = 20, show_col = TRUE, show
 ## [15] "#FDBD78" "#FCA267" "#FA8856" "#EE6A46" "#E24D36" "#D73027"
 ```
 
-```r
+``` r
 palettes(category = "heatmap", palette = "2", counts = 20, show_col = TRUE, show_message = TRUE)
 ```
 
@@ -319,7 +319,7 @@ palettes(category = "heatmap", palette = "2", counts = 20, show_col = TRUE, show
 ## [15] "#EE93BE" "#EB7BB0" "#E763A1" "#E44B93" "#E03385" "#DD1C77"
 ```
 
-```r
+``` r
 palettes(category = "heatmap", palette = "3", counts = 20, show_col = TRUE, show_message = TRUE)
 ```
 
@@ -343,7 +343,7 @@ palettes(category = "heatmap", palette = "3", counts = 20, show_col = TRUE, show
 ## [15] "#C9DDF0" "#D2E3F3" "#DBE9F6" "#E4EFF9" "#EDF5FC" "#F7FBFF"
 ```
 
-```r
+``` r
 palettes(category = "heatmap", palette = "7", counts = 20, show_col = TRUE, show_message = TRUE)
 ```
 

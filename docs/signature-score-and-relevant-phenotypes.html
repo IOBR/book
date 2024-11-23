@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Signature Score and Relevant phenotypes | IOBR (Immuno-Oncology Biological Research)</title>
   <meta name="description" content="The tutorial of IOBR package" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Signature Score and Relevant phenotypes | IOBR (Immuno-Oncology Biological Research)" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Dongqiang Zeng, Yiran Fang" />
 
 
-<meta name="date" content="2024-02-23" />
+<meta name="date" content="2024-11-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -152,32 +152,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-dependency-packages"><i class="fa fa-check"></i><b>1.1</b> ⏳ Install Dependency Packages</a></li>
 <li class="chapter" data-level="1.2" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-iobr-package"><i class="fa fa-check"></i><b>1.2</b> 💻 Install IOBR package</a></li>
-<li class="chapter" data-level="1.3" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#how-to-update-iobr"><i class="fa fa-check"></i><b>1.3</b> 📍 How to update IOBR</a></li>
+<li class="chapter" data-level="1.3" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#how-to-update-iobr"><i class="fa fa-check"></i><b>1.3</b> 📌 How to update IOBR</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
-<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 👆 Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 🗂 Main Functions of IOBR</a></li>
 <li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌎 Current working environment</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#loading-packages"><i class="fa fa-check"></i><b>3.1</b> Loading packages</a></li>
-<li class="chapter" data-level="3.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-array-data-using-geoquery"><i class="fa fa-check"></i><b>3.2</b> Download array data using <code>GEOquery</code></a></li>
-<li class="chapter" data-level="3.3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#gene-annotation"><i class="fa fa-check"></i><b>3.3</b> Gene Annotation</a>
+<li class="chapter" data-level="3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#introduction-2"><i class="fa fa-check"></i><b>3.1</b> <strong>Introduction</strong></a></li>
+<li class="chapter" data-level="3.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#loading-packages"><i class="fa fa-check"></i><b>3.2</b> Loading packages</a></li>
+<li class="chapter" data-level="3.3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#gene-annotation"><i class="fa fa-check"></i><b>3.3</b> Gene Annotation</a></li>
+<li class="chapter" data-level="3.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-array-data-using-geoquery"><i class="fa fa-check"></i><b>3.4</b> Download array data using <code>GEOquery</code></a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-array-data-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>3.3.1</b> For Array data: HGU133PLUS-2 (Affaymetrix)</a></li>
+<li class="chapter" data-level="3.4.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-array-data-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>3.4.1</b> For Array data: HGU133PLUS-2 (Affaymetrix)</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-rnaseq-data-using-ucscxenatools"><i class="fa fa-check"></i><b>3.4</b> Download RNAseq data using <code>UCSCXenaTools</code></a></li>
-<li class="chapter" data-level="3.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#normalization-and-gene-annotation"><i class="fa fa-check"></i><b>3.5</b> Normalization and Gene annotation</a></li>
-<li class="chapter" data-level="3.6" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>3.6</b> Identifying outlier samples</a></li>
-<li class="chapter" data-level="3.7" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>3.7</b> PCA analysis of molecular subtypes</a></li>
-<li class="chapter" data-level="3.8" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>3.8</b> Batch effect correction</a>
+<li class="chapter" data-level="3.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-rnaseq-data-using-ucscxenatools"><i class="fa fa-check"></i><b>3.5</b> Download RNAseq data using <code>UCSCXenaTools</code></a></li>
+<li class="chapter" data-level="3.6" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#normalization-and-gene-annotation"><i class="fa fa-check"></i><b>3.6</b> Normalization and Gene annotation</a></li>
+<li class="chapter" data-level="3.7" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>3.7</b> Identifying outlier samples</a></li>
+<li class="chapter" data-level="3.8" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>3.8</b> PCA analysis of molecular subtypes</a></li>
+<li class="chapter" data-level="3.9" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>3.9</b> Batch effect correction</a>
 <ul>
-<li class="chapter" data-level="3.8.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-microarray-data"><i class="fa fa-check"></i><b>3.8.1</b> For microarray data</a></li>
-<li class="chapter" data-level="3.8.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-rnaseq-count-data"><i class="fa fa-check"></i><b>3.8.2</b> For RNAseq count data</a></li>
+<li class="chapter" data-level="3.9.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-microarray-data"><i class="fa fa-check"></i><b>3.9.1</b> For microarray data</a></li>
+<li class="chapter" data-level="3.9.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-rnaseq-count-data"><i class="fa fa-check"></i><b>3.9.2</b> For RNAseq count data</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#references"><i class="fa fa-check"></i><b>3.9</b> References</a></li>
+<li class="chapter" data-level="3.10" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#references"><i class="fa fa-check"></i><b>3.10</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html"><i class="fa fa-check"></i><b>4</b> <strong>Signature Score Calculation</strong></a>
 <ul>
@@ -196,7 +197,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.9.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-1-use-excel-for-storage-and-construction"><i class="fa fa-check"></i><b>4.9.1</b> Method-1: Use excel for storage and construction</a></li>
 <li class="chapter" data-level="4.9.2" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-2-build-the-list-structure-directly"><i class="fa fa-check"></i><b>4.9.2</b> Method-2: Build the list structure directly</a></li>
-<li class="chapter" data-level="4.9.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method3-add-the-new-signature-to-the-existing-gene-list"><i class="fa fa-check"></i><b>4.9.3</b> Method3: Add the new signature to the existing gene list</a></li>
+<li class="chapter" data-level="4.9.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-3-add-the-new-signature-to-the-existing-gene-list"><i class="fa fa-check"></i><b>4.9.3</b> Method-3: Add the new signature to the existing gene list</a></li>
+<li class="chapter" data-level="4.9.4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-4-construct-cell-specific-gene-signatures-from-single-cell-differential-analysis-results"><i class="fa fa-check"></i><b>4.9.4</b> Method-4: Construct cell-specific gene signatures from single-cell differential analysis results</a></li>
 </ul></li>
 <li class="chapter" data-level="4.10" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#how-to-export-gene-signature"><i class="fa fa-check"></i><b>4.10</b> How to export gene signature</a></li>
 <li class="chapter" data-level="4.11" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#references-1"><i class="fa fa-check"></i><b>4.11</b> References</a></li>
@@ -250,8 +252,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-tme-patterns"><i class="fa fa-check"></i><b>7.5</b> Identifying TME patterns</a></li>
 <li class="chapter" data-level="7.6" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#cell-abundance-of-each-cluster"><i class="fa fa-check"></i><b>7.6</b> Cell abundance of each cluster</a></li>
 <li class="chapter" data-level="7.7" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#deg-analysis-between-tme-subtypes"><i class="fa fa-check"></i><b>7.7</b> DEG analysis between TME subtypes</a></li>
-<li class="chapter" data-level="7.8" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>7.8</b> Identifying signatures associated with TME clusters</a></li>
-<li class="chapter" data-level="7.9" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#references-3"><i class="fa fa-check"></i><b>7.9</b> References</a></li>
+<li class="chapter" data-level="7.8" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-lr-associated-with-tme-clusters"><i class="fa fa-check"></i><b>7.8</b> Identifying LR associated with TME clusters</a></li>
+<li class="chapter" data-level="7.9" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>7.9</b> Identifying signatures associated with TME clusters</a></li>
+<li class="chapter" data-level="7.10" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#references-3"><i class="fa fa-check"></i><b>7.10</b> References</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html"><i class="fa fa-check"></i><b>8</b> <strong>Tumor ecosystem analysis</strong></a>
 <ul>
@@ -334,20 +337,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="loading-packages-3" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Loading packages<a href="signature-score-and-relevant-phenotypes.html#loading-packages-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Load the IOBR package in your R session after the installation is complete:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="signature-score-and-relevant-phenotypes.html#cb151-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span>
-<span id="cb151-2"><a href="signature-score-and-relevant-phenotypes.html#cb151-2" tabindex="-1"></a><span class="fu">library</span>(survminer)</span>
-<span id="cb151-3"><a href="signature-score-and-relevant-phenotypes.html#cb151-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="signature-score-and-relevant-phenotypes.html#cb164-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span>
+<span id="cb164-2"><a href="signature-score-and-relevant-phenotypes.html#cb164-2" tabindex="-1"></a><span class="fu">library</span>(survminer)</span>
+<span id="cb164-3"><a href="signature-score-and-relevant-phenotypes.html#cb164-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="downloading-data-for-example-2" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Downloading data for example<a href="signature-score-and-relevant-phenotypes.html#downloading-data-for-example-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Obtaining data set from GEO <a href="https://pubmed.ncbi.nlm.nih.gov/25894828/">Gastric cancer: GSE62254</a> using <code>GEOquery</code> R package.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="signature-score-and-relevant-phenotypes.html#cb152-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;GEOquery&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
-<span id="cb152-2"><a href="signature-score-and-relevant-phenotypes.html#cb152-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
-<span id="cb152-3"><a href="signature-score-and-relevant-phenotypes.html#cb152-3" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
-<span id="cb152-4"><a href="signature-score-and-relevant-phenotypes.html#cb152-4" tabindex="-1"></a>eset_geo <span class="ot">&lt;-</span> <span class="fu">getGEO</span>(<span class="at">GEO =</span> <span class="st">&quot;GSE62254&quot;</span>, <span class="at">getGPL  =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
-<span id="cb152-5"><a href="signature-score-and-relevant-phenotypes.html#cb152-5" tabindex="-1"></a>eset    <span class="ot">&lt;-</span> eset_geo[[<span class="dv">1</span>]]</span>
-<span id="cb152-6"><a href="signature-score-and-relevant-phenotypes.html#cb152-6" tabindex="-1"></a>eset    <span class="ot">&lt;-</span> <span class="fu">exprs</span>(eset)</span>
-<span id="cb152-7"><a href="signature-score-and-relevant-phenotypes.html#cb152-7" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="signature-score-and-relevant-phenotypes.html#cb165-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;GEOquery&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
+<span id="cb165-2"><a href="signature-score-and-relevant-phenotypes.html#cb165-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
+<span id="cb165-3"><a href="signature-score-and-relevant-phenotypes.html#cb165-3" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
+<span id="cb165-4"><a href="signature-score-and-relevant-phenotypes.html#cb165-4" tabindex="-1"></a>eset_geo <span class="ot">&lt;-</span> <span class="fu">getGEO</span>(<span class="at">GEO =</span> <span class="st">&quot;GSE62254&quot;</span>, <span class="at">getGPL  =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
+<span id="cb165-5"><a href="signature-score-and-relevant-phenotypes.html#cb165-5" tabindex="-1"></a>eset    <span class="ot">&lt;-</span> eset_geo[[<span class="dv">1</span>]]</span>
+<span id="cb165-6"><a href="signature-score-and-relevant-phenotypes.html#cb165-6" tabindex="-1"></a>eset    <span class="ot">&lt;-</span> <span class="fu">exprs</span>(eset)</span>
+<span id="cb165-7"><a href="signature-score-and-relevant-phenotypes.html#cb165-7" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>##           GSM1523727 GSM1523728 GSM1523729 GSM1523744 GSM1523745
 ## 1007_s_at  3.2176645  3.0624323  3.0279131   2.921683  2.8456013
 ## 1053_at    2.4050109  2.4394879  2.2442708   2.345916  2.4328582
@@ -358,8 +361,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="gene-annotation-1" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> Gene Annotation<a href="signature-score-and-relevant-phenotypes.html#gene-annotation-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Annotation of genes in the expression matrix and removal of duplicate genes.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="signature-score-and-relevant-phenotypes.html#cb154-1" tabindex="-1"></a><span class="co"># Load the annotation file `anno_hug133plus2` in IOBR.</span></span>
-<span id="cb154-2"><a href="signature-score-and-relevant-phenotypes.html#cb154-2" tabindex="-1"></a><span class="fu">head</span>(anno_hug133plus2)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="signature-score-and-relevant-phenotypes.html#cb167-1" tabindex="-1"></a><span class="co"># Load the annotation file `anno_hug133plus2` in IOBR.</span></span>
+<span id="cb167-2"><a href="signature-score-and-relevant-phenotypes.html#cb167-2" tabindex="-1"></a><span class="fu">head</span>(anno_hug133plus2)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##   probe_id  symbol 
 ##   &lt;fct&gt;     &lt;fct&gt;  
@@ -369,14 +372,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 121_at    PAX8   
 ## 5 1255_g_at GUCA1A 
 ## 6 1294_at   MIR5193</code></pre>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="signature-score-and-relevant-phenotypes.html#cb156-1" tabindex="-1"></a><span class="co"># Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. </span></span>
-<span id="cb156-2"><a href="signature-score-and-relevant-phenotypes.html#cb156-2" tabindex="-1"></a></span>
-<span id="cb156-3"><a href="signature-score-and-relevant-phenotypes.html#cb156-3" tabindex="-1"></a>eset<span class="ot">&lt;-</span><span class="fu">anno_eset</span>(<span class="at">eset       =</span> eset,</span>
-<span id="cb156-4"><a href="signature-score-and-relevant-phenotypes.html#cb156-4" tabindex="-1"></a>                <span class="at">annotation =</span> anno_hug133plus2,</span>
-<span id="cb156-5"><a href="signature-score-and-relevant-phenotypes.html#cb156-5" tabindex="-1"></a>                <span class="at">symbol     =</span> <span class="st">&quot;symbol&quot;</span>,</span>
-<span id="cb156-6"><a href="signature-score-and-relevant-phenotypes.html#cb156-6" tabindex="-1"></a>                <span class="at">probe      =</span> <span class="st">&quot;probe_id&quot;</span>,</span>
-<span id="cb156-7"><a href="signature-score-and-relevant-phenotypes.html#cb156-7" tabindex="-1"></a>                <span class="at">method     =</span> <span class="st">&quot;mean&quot;</span>)</span>
-<span id="cb156-8"><a href="signature-score-and-relevant-phenotypes.html#cb156-8" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="signature-score-and-relevant-phenotypes.html#cb169-1" tabindex="-1"></a><span class="co"># Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. </span></span>
+<span id="cb169-2"><a href="signature-score-and-relevant-phenotypes.html#cb169-2" tabindex="-1"></a></span>
+<span id="cb169-3"><a href="signature-score-and-relevant-phenotypes.html#cb169-3" tabindex="-1"></a>eset<span class="ot">&lt;-</span><span class="fu">anno_eset</span>(<span class="at">eset       =</span> eset,</span>
+<span id="cb169-4"><a href="signature-score-and-relevant-phenotypes.html#cb169-4" tabindex="-1"></a>                <span class="at">annotation =</span> anno_hug133plus2,</span>
+<span id="cb169-5"><a href="signature-score-and-relevant-phenotypes.html#cb169-5" tabindex="-1"></a>                <span class="at">symbol     =</span> <span class="st">&quot;symbol&quot;</span>,</span>
+<span id="cb169-6"><a href="signature-score-and-relevant-phenotypes.html#cb169-6" tabindex="-1"></a>                <span class="at">probe      =</span> <span class="st">&quot;probe_id&quot;</span>,</span>
+<span id="cb169-7"><a href="signature-score-and-relevant-phenotypes.html#cb169-7" tabindex="-1"></a>                <span class="at">method     =</span> <span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb169-8"><a href="signature-score-and-relevant-phenotypes.html#cb169-8" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>##              GSM1523727 GSM1523728 GSM1523729
 ## SH3KBP1        4.327974   4.316195   4.351425
 ## RPL41          4.246149   4.246808   4.257940
@@ -386,14 +389,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="estimation-of-signatures" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> Estimation of signatures<a href="signature-score-and-relevant-phenotypes.html#estimation-of-signatures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="signature-score-and-relevant-phenotypes.html#cb158-1" tabindex="-1"></a>sig_tme<span class="ot">&lt;-</span><span class="fu">calculate_sig_score</span>(<span class="at">pdata           =</span> <span class="cn">NULL</span>,</span>
-<span id="cb158-2"><a href="signature-score-and-relevant-phenotypes.html#cb158-2" tabindex="-1"></a>                             <span class="at">eset            =</span> eset,</span>
-<span id="cb158-3"><a href="signature-score-and-relevant-phenotypes.html#cb158-3" tabindex="-1"></a>                             <span class="at">signature       =</span> signature_collection,</span>
-<span id="cb158-4"><a href="signature-score-and-relevant-phenotypes.html#cb158-4" tabindex="-1"></a>                             <span class="at">method          =</span> <span class="st">&quot;pca&quot;</span>,</span>
-<span id="cb158-5"><a href="signature-score-and-relevant-phenotypes.html#cb158-5" tabindex="-1"></a>                             <span class="at">mini_gene_count =</span> <span class="dv">2</span>)</span>
-<span id="cb158-6"><a href="signature-score-and-relevant-phenotypes.html#cb158-6" tabindex="-1"></a></span>
-<span id="cb158-7"><a href="signature-score-and-relevant-phenotypes.html#cb158-7" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">column_to_rownames</span>(sig_tme, <span class="at">var =</span> <span class="st">&quot;ID&quot;</span>))</span>
-<span id="cb158-8"><a href="signature-score-and-relevant-phenotypes.html#cb158-8" tabindex="-1"></a>sig_tme[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="signature-score-and-relevant-phenotypes.html#cb171-1" tabindex="-1"></a>sig_tme<span class="ot">&lt;-</span><span class="fu">calculate_sig_score</span>(<span class="at">pdata           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb171-2"><a href="signature-score-and-relevant-phenotypes.html#cb171-2" tabindex="-1"></a>                             <span class="at">eset            =</span> eset,</span>
+<span id="cb171-3"><a href="signature-score-and-relevant-phenotypes.html#cb171-3" tabindex="-1"></a>                             <span class="at">signature       =</span> signature_collection,</span>
+<span id="cb171-4"><a href="signature-score-and-relevant-phenotypes.html#cb171-4" tabindex="-1"></a>                             <span class="at">method          =</span> <span class="st">&quot;pca&quot;</span>,</span>
+<span id="cb171-5"><a href="signature-score-and-relevant-phenotypes.html#cb171-5" tabindex="-1"></a>                             <span class="at">mini_gene_count =</span> <span class="dv">2</span>)</span>
+<span id="cb171-6"><a href="signature-score-and-relevant-phenotypes.html#cb171-6" tabindex="-1"></a></span>
+<span id="cb171-7"><a href="signature-score-and-relevant-phenotypes.html#cb171-7" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">column_to_rownames</span>(sig_tme, <span class="at">var =</span> <span class="st">&quot;ID&quot;</span>))</span>
+<span id="cb171-8"><a href="signature-score-and-relevant-phenotypes.html#cb171-8" tabindex="-1"></a>sig_tme[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>##                   GSM1523727 GSM1523728 GSM1523729
 ## CD_8_T_effector   -2.5513794  0.7789141 -2.1770675
 ## DDR               -0.8747614  0.7425162 -1.3272054
@@ -403,8 +406,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="combining-score-data-and-phenotype-data" class="section level2 hasAnchor" number="6.5">
 <h2><span class="header-section-number">6.5</span> Combining score data and phenotype data<a href="signature-score-and-relevant-phenotypes.html#combining-score-data-and-phenotype-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="signature-score-and-relevant-phenotypes.html#cb160-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;pdata_acrg&quot;</span>, <span class="at">package =</span> <span class="st">&quot;IOBR&quot;</span>)</span>
-<span id="cb160-2"><a href="signature-score-and-relevant-phenotypes.html#cb160-2" tabindex="-1"></a><span class="fu">head</span>(pdata_acrg)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="signature-score-and-relevant-phenotypes.html#cb173-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;pdata_acrg&quot;</span>, <span class="at">package =</span> <span class="st">&quot;IOBR&quot;</span>)</span>
+<span id="cb173-2"><a href="signature-score-and-relevant-phenotypes.html#cb173-2" tabindex="-1"></a><span class="fu">head</span>(pdata_acrg)</span></code></pre></div>
 <pre><code>##            ID ProjectID  Technology       platform Gender Age RFS_time
 ## 71 GSM1523727  GSE62254 Affymetrix  HG-U133_Plus_2      M  67     3.97
 ## 72 GSM1523728  GSE62254 Affymetrix  HG-U133_Plus_2      F  68     4.03
@@ -510,15 +513,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 74            High
 ## 75             Low
 ## 76             Low</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="signature-score-and-relevant-phenotypes.html#cb162-1" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">combine_pd_eset</span>(<span class="at">eset =</span> sig_tme, <span class="at">pdata =</span> pdata_acrg, <span class="at">scale =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="signature-score-and-relevant-phenotypes.html#cb175-1" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">combine_pd_eset</span>(<span class="at">eset =</span> sig_tme, <span class="at">pdata =</span> pdata_acrg, <span class="at">scale =</span> T)</span></code></pre></div>
 </div>
 <div id="identifying-features-associated-with-survival" class="section level2 hasAnchor" number="6.6">
 <h2><span class="header-section-number">6.6</span> Identifying features associated with survival<a href="signature-score-and-relevant-phenotypes.html#identifying-features-associated-with-survival" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="signature-score-and-relevant-phenotypes.html#cb163-1" tabindex="-1"></a>res<span class="ot">&lt;-</span> <span class="fu">batch_surv</span>(<span class="at">pdata    =</span> input,</span>
-<span id="cb163-2"><a href="signature-score-and-relevant-phenotypes.html#cb163-2" tabindex="-1"></a>                 <span class="at">time     =</span> <span class="st">&quot;OS_time&quot;</span>, </span>
-<span id="cb163-3"><a href="signature-score-and-relevant-phenotypes.html#cb163-3" tabindex="-1"></a>                 <span class="at">status   =</span> <span class="st">&quot;OS_status&quot;</span>, </span>
-<span id="cb163-4"><a href="signature-score-and-relevant-phenotypes.html#cb163-4" tabindex="-1"></a>                 <span class="at">variable =</span> <span class="fu">colnames</span>(input)[<span class="dv">69</span><span class="sc">:</span><span class="fu">ncol</span>(input)])</span>
-<span id="cb163-5"><a href="signature-score-and-relevant-phenotypes.html#cb163-5" tabindex="-1"></a><span class="fu">head</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="signature-score-and-relevant-phenotypes.html#cb176-1" tabindex="-1"></a>res<span class="ot">&lt;-</span> <span class="fu">batch_surv</span>(<span class="at">pdata    =</span> input,</span>
+<span id="cb176-2"><a href="signature-score-and-relevant-phenotypes.html#cb176-2" tabindex="-1"></a>                 <span class="at">time     =</span> <span class="st">&quot;OS_time&quot;</span>, </span>
+<span id="cb176-3"><a href="signature-score-and-relevant-phenotypes.html#cb176-3" tabindex="-1"></a>                 <span class="at">status   =</span> <span class="st">&quot;OS_status&quot;</span>, </span>
+<span id="cb176-4"><a href="signature-score-and-relevant-phenotypes.html#cb176-4" tabindex="-1"></a>                 <span class="at">variable =</span> <span class="fu">colnames</span>(input)[<span class="dv">69</span><span class="sc">:</span><span class="fu">ncol</span>(input)])</span>
+<span id="cb176-5"><a href="signature-score-and-relevant-phenotypes.html#cb176-5" tabindex="-1"></a><span class="fu">head</span>(res)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
 ##   ID                           P    HR CI_low_0.95 CI_up_0.95
 ##   &lt;chr&gt;                    &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt;
@@ -529,35 +532,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 TMEscoreB_CIR         7.17e- 9 1.52        1.32       1.75 
 ## 6 TMEscore_plus         8.08e- 9 0.638       0.547      0.743</code></pre>
 <p>Use forest plots <code>sig_forest</code> to show the most relevant variables to overall survival</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="signature-score-and-relevant-phenotypes.html#cb165-1" tabindex="-1"></a>res<span class="ot">&lt;-</span> res[<span class="fu">nchar</span>(res<span class="sc">$</span>ID)<span class="sc">&lt;=</span><span class="dv">28</span>, ]</span>
-<span id="cb165-2"><a href="signature-score-and-relevant-phenotypes.html#cb165-2" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">sig_forest</span>(res, <span class="at">signature =</span> <span class="st">&quot;ID&quot;</span>, <span class="at">n =</span> <span class="dv">20</span>)</span></code></pre></div>
-<p><img src="Feature-selections_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="signature-score-and-relevant-phenotypes.html#cb178-1" tabindex="-1"></a>res<span class="ot">&lt;-</span> res[<span class="fu">nchar</span>(res<span class="sc">$</span>ID)<span class="sc">&lt;=</span><span class="dv">28</span>, ]</span>
+<span id="cb178-2"><a href="signature-score-and-relevant-phenotypes.html#cb178-2" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">sig_forest</span>(res, <span class="at">signature =</span> <span class="st">&quot;ID&quot;</span>, <span class="at">n =</span> <span class="dv">20</span>)</span></code></pre></div>
 </div>
 <div id="visulization-using-heatmap" class="section level2 hasAnchor" number="6.7">
 <h2><span class="header-section-number">6.7</span> Visulization using heatmap<a href="signature-score-and-relevant-phenotypes.html#visulization-using-heatmap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Relationship between Signatures and molecular typing.
 Heatmap visualisation using <code>IOBR</code>’s <code>sig_heatmap</code></p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="signature-score-and-relevant-phenotypes.html#cb166-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_heatmap</span>(<span class="at">input         =</span> input, </span>
-<span id="cb166-2"><a href="signature-score-and-relevant-phenotypes.html#cb166-2" tabindex="-1"></a>                  <span class="at">features      =</span> res<span class="sc">$</span>ID[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>],</span>
-<span id="cb166-3"><a href="signature-score-and-relevant-phenotypes.html#cb166-3" tabindex="-1"></a>                  <span class="at">group         =</span> <span class="st">&quot;Subtype&quot;</span>, </span>
-<span id="cb166-4"><a href="signature-score-and-relevant-phenotypes.html#cb166-4" tabindex="-1"></a>                  <span class="at">palette_group =</span> <span class="st">&quot;jama&quot;</span>, </span>
-<span id="cb166-5"><a href="signature-score-and-relevant-phenotypes.html#cb166-5" tabindex="-1"></a>                  <span class="at">palette       =</span> <span class="dv">6</span>,</span>
-<span id="cb166-6"><a href="signature-score-and-relevant-phenotypes.html#cb166-6" tabindex="-1"></a>                  <span class="at">path          =</span> <span class="st">&quot;result&quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="signature-score-and-relevant-phenotypes.html#cb179-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_heatmap</span>(<span class="at">input         =</span> input, </span>
+<span id="cb179-2"><a href="signature-score-and-relevant-phenotypes.html#cb179-2" tabindex="-1"></a>                  <span class="at">features      =</span> res<span class="sc">$</span>ID[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>],</span>
+<span id="cb179-3"><a href="signature-score-and-relevant-phenotypes.html#cb179-3" tabindex="-1"></a>                  <span class="at">group         =</span> <span class="st">&quot;Subtype&quot;</span>, </span>
+<span id="cb179-4"><a href="signature-score-and-relevant-phenotypes.html#cb179-4" tabindex="-1"></a>                  <span class="at">palette_group =</span> <span class="st">&quot;jama&quot;</span>, </span>
+<span id="cb179-5"><a href="signature-score-and-relevant-phenotypes.html#cb179-5" tabindex="-1"></a>                  <span class="at">palette       =</span> <span class="dv">6</span>,</span>
+<span id="cb179-6"><a href="signature-score-and-relevant-phenotypes.html#cb179-6" tabindex="-1"></a>                  <span class="at">path          =</span> <span class="st">&quot;result&quot;</span> )</span></code></pre></div>
 <p><img src="Feature-selections_files/figure-html/unnamed-chunk-8-1.png" width="864" style="display: block; margin: auto;" /></p>
 </div>
 <div id="focus-on-target-signatures" class="section level2 hasAnchor" number="6.8">
 <h2><span class="header-section-number">6.8</span> Focus on target signatures<a href="signature-score-and-relevant-phenotypes.html#focus-on-target-signatures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="signature-score-and-relevant-phenotypes.html#cb167-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
-<span id="cb167-2"><a href="signature-score-and-relevant-phenotypes.html#cb167-2" tabindex="-1"></a>              <span class="at">signature      =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>,</span>
-<span id="cb167-3"><a href="signature-score-and-relevant-phenotypes.html#cb167-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
-<span id="cb167-4"><a href="signature-score-and-relevant-phenotypes.html#cb167-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb167-5"><a href="signature-score-and-relevant-phenotypes.html#cb167-5" tabindex="-1"></a>              <span class="at">cols           =</span>  <span class="cn">NULL</span>,</span>
-<span id="cb167-6"><a href="signature-score-and-relevant-phenotypes.html#cb167-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jama&quot;</span>,</span>
-<span id="cb167-7"><a href="signature-score-and-relevant-phenotypes.html#cb167-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb167-8"><a href="signature-score-and-relevant-phenotypes.html#cb167-8" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>,</span>
-<span id="cb167-9"><a href="signature-score-and-relevant-phenotypes.html#cb167-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
-<span id="cb167-10"><a href="signature-score-and-relevant-phenotypes.html#cb167-10" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
-<span id="cb167-11"><a href="signature-score-and-relevant-phenotypes.html#cb167-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="signature-score-and-relevant-phenotypes.html#cb180-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
+<span id="cb180-2"><a href="signature-score-and-relevant-phenotypes.html#cb180-2" tabindex="-1"></a>              <span class="at">signature      =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>,</span>
+<span id="cb180-3"><a href="signature-score-and-relevant-phenotypes.html#cb180-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
+<span id="cb180-4"><a href="signature-score-and-relevant-phenotypes.html#cb180-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb180-5"><a href="signature-score-and-relevant-phenotypes.html#cb180-5" tabindex="-1"></a>              <span class="at">cols           =</span>  <span class="cn">NULL</span>,</span>
+<span id="cb180-6"><a href="signature-score-and-relevant-phenotypes.html#cb180-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jama&quot;</span>,</span>
+<span id="cb180-7"><a href="signature-score-and-relevant-phenotypes.html#cb180-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb180-8"><a href="signature-score-and-relevant-phenotypes.html#cb180-8" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>,</span>
+<span id="cb180-9"><a href="signature-score-and-relevant-phenotypes.html#cb180-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
+<span id="cb180-10"><a href="signature-score-and-relevant-phenotypes.html#cb180-10" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
+<span id="cb180-11"><a href="signature-score-and-relevant-phenotypes.html#cb180-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ##   .y.       group1    group2           p    p.adj p.format p.signif method  
 ##   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
@@ -567,17 +569,17 @@ Heatmap visualisation using <code>IOBR</code>’s <code>sig_heatmap</code></p>
 ## 4 signature MSI       MSS/TP53- 1.14e- 3 3.4 e- 3 0.0011   **       Wilcoxon
 ## 5 signature MSI       MSS/TP53+ 7.05e- 3 1.4 e- 2 0.0071   **       Wilcoxon
 ## 6 signature MSS/TP53- MSS/TP53+ 7.16e- 1 7.2 e- 1 0.7161   ns       Wilcoxon</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="signature-score-and-relevant-phenotypes.html#cb169-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
-<span id="cb169-2"><a href="signature-score-and-relevant-phenotypes.html#cb169-2" tabindex="-1"></a>              <span class="at">signature      =</span> <span class="st">&quot;Pan_F_TBRs&quot;</span>,</span>
-<span id="cb169-3"><a href="signature-score-and-relevant-phenotypes.html#cb169-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
-<span id="cb169-4"><a href="signature-score-and-relevant-phenotypes.html#cb169-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb169-5"><a href="signature-score-and-relevant-phenotypes.html#cb169-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
-<span id="cb169-6"><a href="signature-score-and-relevant-phenotypes.html#cb169-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jama&quot;</span>,</span>
-<span id="cb169-7"><a href="signature-score-and-relevant-phenotypes.html#cb169-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb169-8"><a href="signature-score-and-relevant-phenotypes.html#cb169-8" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
-<span id="cb169-9"><a href="signature-score-and-relevant-phenotypes.html#cb169-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
-<span id="cb169-10"><a href="signature-score-and-relevant-phenotypes.html#cb169-10" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>, </span>
-<span id="cb169-11"><a href="signature-score-and-relevant-phenotypes.html#cb169-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="signature-score-and-relevant-phenotypes.html#cb182-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
+<span id="cb182-2"><a href="signature-score-and-relevant-phenotypes.html#cb182-2" tabindex="-1"></a>              <span class="at">signature      =</span> <span class="st">&quot;Pan_F_TBRs&quot;</span>,</span>
+<span id="cb182-3"><a href="signature-score-and-relevant-phenotypes.html#cb182-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
+<span id="cb182-4"><a href="signature-score-and-relevant-phenotypes.html#cb182-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb182-5"><a href="signature-score-and-relevant-phenotypes.html#cb182-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb182-6"><a href="signature-score-and-relevant-phenotypes.html#cb182-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jama&quot;</span>,</span>
+<span id="cb182-7"><a href="signature-score-and-relevant-phenotypes.html#cb182-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb182-8"><a href="signature-score-and-relevant-phenotypes.html#cb182-8" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
+<span id="cb182-9"><a href="signature-score-and-relevant-phenotypes.html#cb182-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
+<span id="cb182-10"><a href="signature-score-and-relevant-phenotypes.html#cb182-10" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>, </span>
+<span id="cb182-11"><a href="signature-score-and-relevant-phenotypes.html#cb182-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ##   .y.       group1    group2           p    p.adj p.format p.signif method  
 ##   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
@@ -587,17 +589,17 @@ Heatmap visualisation using <code>IOBR</code>’s <code>sig_heatmap</code></p>
 ## 4 signature MSI       MSS/TP53- 1.32e- 2 4   e- 2 0.013    *        Wilcoxon
 ## 5 signature MSI       MSS/TP53+ 6.99e- 2 1.4 e- 1 0.070    ns       Wilcoxon
 ## 6 signature MSS/TP53- MSS/TP53+ 4.02e- 1 4   e- 1 0.402    ns       Wilcoxon</code></pre>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="signature-score-and-relevant-phenotypes.html#cb171-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
-<span id="cb171-2"><a href="signature-score-and-relevant-phenotypes.html#cb171-2" tabindex="-1"></a>              <span class="at">signature      =</span> <span class="st">&quot;Immune_Checkpoint&quot;</span>,</span>
-<span id="cb171-3"><a href="signature-score-and-relevant-phenotypes.html#cb171-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
-<span id="cb171-4"><a href="signature-score-and-relevant-phenotypes.html#cb171-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb171-5"><a href="signature-score-and-relevant-phenotypes.html#cb171-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
-<span id="cb171-6"><a href="signature-score-and-relevant-phenotypes.html#cb171-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jama&quot;</span>,</span>
-<span id="cb171-7"><a href="signature-score-and-relevant-phenotypes.html#cb171-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb171-8"><a href="signature-score-and-relevant-phenotypes.html#cb171-8" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
-<span id="cb171-9"><a href="signature-score-and-relevant-phenotypes.html#cb171-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
-<span id="cb171-10"><a href="signature-score-and-relevant-phenotypes.html#cb171-10" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>, </span>
-<span id="cb171-11"><a href="signature-score-and-relevant-phenotypes.html#cb171-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="signature-score-and-relevant-phenotypes.html#cb184-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
+<span id="cb184-2"><a href="signature-score-and-relevant-phenotypes.html#cb184-2" tabindex="-1"></a>              <span class="at">signature      =</span> <span class="st">&quot;Immune_Checkpoint&quot;</span>,</span>
+<span id="cb184-3"><a href="signature-score-and-relevant-phenotypes.html#cb184-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
+<span id="cb184-4"><a href="signature-score-and-relevant-phenotypes.html#cb184-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb184-5"><a href="signature-score-and-relevant-phenotypes.html#cb184-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb184-6"><a href="signature-score-and-relevant-phenotypes.html#cb184-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jama&quot;</span>,</span>
+<span id="cb184-7"><a href="signature-score-and-relevant-phenotypes.html#cb184-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb184-8"><a href="signature-score-and-relevant-phenotypes.html#cb184-8" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
+<span id="cb184-9"><a href="signature-score-and-relevant-phenotypes.html#cb184-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
+<span id="cb184-10"><a href="signature-score-and-relevant-phenotypes.html#cb184-10" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>, </span>
+<span id="cb184-11"><a href="signature-score-and-relevant-phenotypes.html#cb184-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ##   .y.       group1    group2           p        p.adj p.format p.signif method  
 ##   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
@@ -607,23 +609,23 @@ Heatmap visualisation using <code>IOBR</code>’s <code>sig_heatmap</code></p>
 ## 4 signature MSI       MSS/TP53- 9.13e-10 0.0000000055 9.1e-10  ****     Wilcoxon
 ## 5 signature MSI       MSS/TP53+ 5.03e- 4 0.0025       0.0005   ***      Wilcoxon
 ## 6 signature MSS/TP53- MSS/TP53+ 4.82e- 3 0.014        0.0048   **       Wilcoxon</code></pre>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="signature-score-and-relevant-phenotypes.html#cb173-1" tabindex="-1"></a>p1<span class="sc">|</span>p2<span class="sc">|</span>p3</span></code></pre></div>
-<p><img src="Feature-selections_files/figure-html/unnamed-chunk-10-1.png" width="1344" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="signature-score-and-relevant-phenotypes.html#cb186-1" tabindex="-1"></a>p1<span class="sc">|</span>p2<span class="sc">|</span>p3</span></code></pre></div>
+<p><img src="Feature-selections_files/figure-html/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="survival-analysis-and-visulization" class="section level2 hasAnchor" number="6.9">
 <h2><span class="header-section-number">6.9</span> Survival analysis and visulization<a href="signature-score-and-relevant-phenotypes.html#survival-analysis-and-visulization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="kaplan-meier-plot" class="section level3 hasAnchor" number="6.9.1">
 <h3><span class="header-section-number">6.9.1</span> Kaplan-Meier plot<a href="signature-score-and-relevant-phenotypes.html#kaplan-meier-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Displaying the outcomes of survival analyses using Kaplan-Meier plot. Multiple stratifications of the signature were used to judge the efficacy of this metric in predicting patient survival.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="signature-score-and-relevant-phenotypes.html#cb174-1" tabindex="-1"></a>res <span class="ot">&lt;-</span>       <span class="fu">sig_surv_plot</span>(<span class="at">input_pdata       =</span> input, </span>
-<span id="cb174-2"><a href="signature-score-and-relevant-phenotypes.html#cb174-2" tabindex="-1"></a>                           <span class="at">signature         =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>,</span>
-<span id="cb174-3"><a href="signature-score-and-relevant-phenotypes.html#cb174-3" tabindex="-1"></a>                           <span class="at">cols              =</span> <span class="cn">NULL</span>, </span>
-<span id="cb174-4"><a href="signature-score-and-relevant-phenotypes.html#cb174-4" tabindex="-1"></a>                           <span class="at">palette           =</span> <span class="st">&quot;jama&quot;</span>,</span>
-<span id="cb174-5"><a href="signature-score-and-relevant-phenotypes.html#cb174-5" tabindex="-1"></a>                           <span class="at">project           =</span> <span class="st">&quot;ACRG&quot;</span>,</span>
-<span id="cb174-6"><a href="signature-score-and-relevant-phenotypes.html#cb174-6" tabindex="-1"></a>                           <span class="at">time              =</span> <span class="st">&quot;OS_time&quot;</span>,</span>
-<span id="cb174-7"><a href="signature-score-and-relevant-phenotypes.html#cb174-7" tabindex="-1"></a>                           <span class="at">status            =</span> <span class="st">&quot;OS_status&quot;</span>,</span>
-<span id="cb174-8"><a href="signature-score-and-relevant-phenotypes.html#cb174-8" tabindex="-1"></a>                           <span class="at">time_type         =</span> <span class="st">&quot;month&quot;</span>,</span>
-<span id="cb174-9"><a href="signature-score-and-relevant-phenotypes.html#cb174-9" tabindex="-1"></a>                           <span class="at">save_path         =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="signature-score-and-relevant-phenotypes.html#cb187-1" tabindex="-1"></a>res <span class="ot">&lt;-</span>       <span class="fu">sig_surv_plot</span>(<span class="at">input_pdata       =</span> input, </span>
+<span id="cb187-2"><a href="signature-score-and-relevant-phenotypes.html#cb187-2" tabindex="-1"></a>                           <span class="at">signature         =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>,</span>
+<span id="cb187-3"><a href="signature-score-and-relevant-phenotypes.html#cb187-3" tabindex="-1"></a>                           <span class="at">cols              =</span> <span class="cn">NULL</span>, </span>
+<span id="cb187-4"><a href="signature-score-and-relevant-phenotypes.html#cb187-4" tabindex="-1"></a>                           <span class="at">palette           =</span> <span class="st">&quot;jama&quot;</span>,</span>
+<span id="cb187-5"><a href="signature-score-and-relevant-phenotypes.html#cb187-5" tabindex="-1"></a>                           <span class="at">project           =</span> <span class="st">&quot;ACRG&quot;</span>,</span>
+<span id="cb187-6"><a href="signature-score-and-relevant-phenotypes.html#cb187-6" tabindex="-1"></a>                           <span class="at">time              =</span> <span class="st">&quot;OS_time&quot;</span>,</span>
+<span id="cb187-7"><a href="signature-score-and-relevant-phenotypes.html#cb187-7" tabindex="-1"></a>                           <span class="at">status            =</span> <span class="st">&quot;OS_status&quot;</span>,</span>
+<span id="cb187-8"><a href="signature-score-and-relevant-phenotypes.html#cb187-8" tabindex="-1"></a>                           <span class="at">time_type         =</span> <span class="st">&quot;month&quot;</span>,</span>
+<span id="cb187-9"><a href="signature-score-and-relevant-phenotypes.html#cb187-9" tabindex="-1"></a>                           <span class="at">save_path         =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
 <pre><code>##           ID   time status Glycogen_Biosynthesis group3 group2 bestcutoff
 ## 1 GSM1523727  88.73      0            -0.3612213 Middle    Low        Low
 ## 2 GSM1523728  88.23      0            -0.6926726    Low    Low        Low
@@ -632,49 +634,49 @@ Heatmap visualisation using <code>IOBR</code>’s <code>sig_heatmap</code></p>
 ## 5 GSM1523745 105.53      0            -0.3034304 Middle    Low        Low
 ## 6 GSM1523746  25.50      1             0.7517934   High   High       High</code></pre>
 <pre><code>## [1] &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&quot;</code></pre>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="signature-score-and-relevant-phenotypes.html#cb177-1" tabindex="-1"></a>res<span class="sc">$</span>plots</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="signature-score-and-relevant-phenotypes.html#cb190-1" tabindex="-1"></a>res<span class="sc">$</span>plots</span></code></pre></div>
 <p><img src="Feature-selections_files/figure-html/unnamed-chunk-11-1.png" width="1536" /></p>
 </div>
 <div id="time-dependent-roc-curve" class="section level3 hasAnchor" number="6.9.2">
 <h3><span class="header-section-number">6.9.2</span> Time-Dependent ROC curve<a href="signature-score-and-relevant-phenotypes.html#time-dependent-roc-curve" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="signature-score-and-relevant-phenotypes.html#cb178-1" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">roc_time</span>(<span class="at">input      =</span> input,  </span>
-<span id="cb178-2"><a href="signature-score-and-relevant-phenotypes.html#cb178-2" tabindex="-1"></a>             <span class="at">vars       =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, </span>
-<span id="cb178-3"><a href="signature-score-and-relevant-phenotypes.html#cb178-3" tabindex="-1"></a>             <span class="at">time       =</span> <span class="st">&quot;OS_time&quot;</span>,</span>
-<span id="cb178-4"><a href="signature-score-and-relevant-phenotypes.html#cb178-4" tabindex="-1"></a>             <span class="at">status     =</span> <span class="st">&quot;OS_status&quot;</span>, </span>
-<span id="cb178-5"><a href="signature-score-and-relevant-phenotypes.html#cb178-5" tabindex="-1"></a>             <span class="at">time_point =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">36</span>), </span>
-<span id="cb178-6"><a href="signature-score-and-relevant-phenotypes.html#cb178-6" tabindex="-1"></a>             <span class="at">time_type  =</span> <span class="st">&quot;month&quot;</span>,</span>
-<span id="cb178-7"><a href="signature-score-and-relevant-phenotypes.html#cb178-7" tabindex="-1"></a>             <span class="at">palette    =</span> <span class="st">&quot;jama&quot;</span>,</span>
-<span id="cb178-8"><a href="signature-score-and-relevant-phenotypes.html#cb178-8" tabindex="-1"></a>             <span class="at">cols       =</span> <span class="st">&quot;normal&quot;</span>,</span>
-<span id="cb178-9"><a href="signature-score-and-relevant-phenotypes.html#cb178-9" tabindex="-1"></a>             <span class="at">seed       =</span> <span class="dv">1234</span>, </span>
-<span id="cb178-10"><a href="signature-score-and-relevant-phenotypes.html#cb178-10" tabindex="-1"></a>             <span class="at">show_col   =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb178-11"><a href="signature-score-and-relevant-phenotypes.html#cb178-11" tabindex="-1"></a>             <span class="at">path       =</span> <span class="st">&quot;result&quot;</span>, </span>
-<span id="cb178-12"><a href="signature-score-and-relevant-phenotypes.html#cb178-12" tabindex="-1"></a>             <span class="at">main       =</span> <span class="st">&quot;OS&quot;</span>,</span>
-<span id="cb178-13"><a href="signature-score-and-relevant-phenotypes.html#cb178-13" tabindex="-1"></a>             <span class="at">index      =</span> <span class="dv">1</span>,</span>
-<span id="cb178-14"><a href="signature-score-and-relevant-phenotypes.html#cb178-14" tabindex="-1"></a>             <span class="at">fig.type   =</span> <span class="st">&quot;pdf&quot;</span>,</span>
-<span id="cb178-15"><a href="signature-score-and-relevant-phenotypes.html#cb178-15" tabindex="-1"></a>             <span class="at">width      =</span> <span class="dv">5</span>,</span>
-<span id="cb178-16"><a href="signature-score-and-relevant-phenotypes.html#cb178-16" tabindex="-1"></a>             <span class="at">height     =</span> <span class="fl">5.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="signature-score-and-relevant-phenotypes.html#cb191-1" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">roc_time</span>(<span class="at">input      =</span> input,  </span>
+<span id="cb191-2"><a href="signature-score-and-relevant-phenotypes.html#cb191-2" tabindex="-1"></a>             <span class="at">vars       =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, </span>
+<span id="cb191-3"><a href="signature-score-and-relevant-phenotypes.html#cb191-3" tabindex="-1"></a>             <span class="at">time       =</span> <span class="st">&quot;OS_time&quot;</span>,</span>
+<span id="cb191-4"><a href="signature-score-and-relevant-phenotypes.html#cb191-4" tabindex="-1"></a>             <span class="at">status     =</span> <span class="st">&quot;OS_status&quot;</span>, </span>
+<span id="cb191-5"><a href="signature-score-and-relevant-phenotypes.html#cb191-5" tabindex="-1"></a>             <span class="at">time_point =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">36</span>), </span>
+<span id="cb191-6"><a href="signature-score-and-relevant-phenotypes.html#cb191-6" tabindex="-1"></a>             <span class="at">time_type  =</span> <span class="st">&quot;month&quot;</span>,</span>
+<span id="cb191-7"><a href="signature-score-and-relevant-phenotypes.html#cb191-7" tabindex="-1"></a>             <span class="at">palette    =</span> <span class="st">&quot;jama&quot;</span>,</span>
+<span id="cb191-8"><a href="signature-score-and-relevant-phenotypes.html#cb191-8" tabindex="-1"></a>             <span class="at">cols       =</span> <span class="st">&quot;normal&quot;</span>,</span>
+<span id="cb191-9"><a href="signature-score-and-relevant-phenotypes.html#cb191-9" tabindex="-1"></a>             <span class="at">seed       =</span> <span class="dv">1234</span>, </span>
+<span id="cb191-10"><a href="signature-score-and-relevant-phenotypes.html#cb191-10" tabindex="-1"></a>             <span class="at">show_col   =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb191-11"><a href="signature-score-and-relevant-phenotypes.html#cb191-11" tabindex="-1"></a>             <span class="at">path       =</span> <span class="st">&quot;result&quot;</span>, </span>
+<span id="cb191-12"><a href="signature-score-and-relevant-phenotypes.html#cb191-12" tabindex="-1"></a>             <span class="at">main       =</span> <span class="st">&quot;OS&quot;</span>,</span>
+<span id="cb191-13"><a href="signature-score-and-relevant-phenotypes.html#cb191-13" tabindex="-1"></a>             <span class="at">index      =</span> <span class="dv">1</span>,</span>
+<span id="cb191-14"><a href="signature-score-and-relevant-phenotypes.html#cb191-14" tabindex="-1"></a>             <span class="at">fig.type   =</span> <span class="st">&quot;pdf&quot;</span>,</span>
+<span id="cb191-15"><a href="signature-score-and-relevant-phenotypes.html#cb191-15" tabindex="-1"></a>             <span class="at">width      =</span> <span class="dv">5</span>,</span>
+<span id="cb191-16"><a href="signature-score-and-relevant-phenotypes.html#cb191-16" tabindex="-1"></a>             <span class="at">height     =</span> <span class="fl">5.2</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;&gt;&gt;&gt;-- Range of Time: &quot;
 ## [1]   1.0 105.7</code></pre>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="signature-score-and-relevant-phenotypes.html#cb180-1" tabindex="-1"></a>p2<span class="ot">&lt;-</span> <span class="fu">roc_time</span>(<span class="at">input      =</span> input,  </span>
-<span id="cb180-2"><a href="signature-score-and-relevant-phenotypes.html#cb180-2" tabindex="-1"></a>             <span class="at">vars       =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, </span>
-<span id="cb180-3"><a href="signature-score-and-relevant-phenotypes.html#cb180-3" tabindex="-1"></a>             <span class="at">time       =</span> <span class="st">&quot;RFS_time&quot;</span>,</span>
-<span id="cb180-4"><a href="signature-score-and-relevant-phenotypes.html#cb180-4" tabindex="-1"></a>             <span class="at">status     =</span> <span class="st">&quot;RFS_status&quot;</span>, </span>
-<span id="cb180-5"><a href="signature-score-and-relevant-phenotypes.html#cb180-5" tabindex="-1"></a>             <span class="at">time_point =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">36</span>), </span>
-<span id="cb180-6"><a href="signature-score-and-relevant-phenotypes.html#cb180-6" tabindex="-1"></a>             <span class="at">time_type  =</span> <span class="st">&quot;month&quot;</span>,</span>
-<span id="cb180-7"><a href="signature-score-and-relevant-phenotypes.html#cb180-7" tabindex="-1"></a>             <span class="at">palette    =</span> <span class="st">&quot;jama&quot;</span>,</span>
-<span id="cb180-8"><a href="signature-score-and-relevant-phenotypes.html#cb180-8" tabindex="-1"></a>             <span class="at">cols       =</span> <span class="st">&quot;normal&quot;</span>,</span>
-<span id="cb180-9"><a href="signature-score-and-relevant-phenotypes.html#cb180-9" tabindex="-1"></a>             <span class="at">seed       =</span> <span class="dv">1234</span>, </span>
-<span id="cb180-10"><a href="signature-score-and-relevant-phenotypes.html#cb180-10" tabindex="-1"></a>             <span class="at">show_col   =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb180-11"><a href="signature-score-and-relevant-phenotypes.html#cb180-11" tabindex="-1"></a>             <span class="at">path       =</span> <span class="st">&quot;result&quot;</span>, </span>
-<span id="cb180-12"><a href="signature-score-and-relevant-phenotypes.html#cb180-12" tabindex="-1"></a>             <span class="at">main       =</span> <span class="st">&quot;OS&quot;</span>,</span>
-<span id="cb180-13"><a href="signature-score-and-relevant-phenotypes.html#cb180-13" tabindex="-1"></a>             <span class="at">index      =</span> <span class="dv">1</span>,</span>
-<span id="cb180-14"><a href="signature-score-and-relevant-phenotypes.html#cb180-14" tabindex="-1"></a>             <span class="at">fig.type   =</span> <span class="st">&quot;pdf&quot;</span>,</span>
-<span id="cb180-15"><a href="signature-score-and-relevant-phenotypes.html#cb180-15" tabindex="-1"></a>             <span class="at">width      =</span> <span class="dv">5</span>,</span>
-<span id="cb180-16"><a href="signature-score-and-relevant-phenotypes.html#cb180-16" tabindex="-1"></a>             <span class="at">height     =</span> <span class="fl">5.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="signature-score-and-relevant-phenotypes.html#cb193-1" tabindex="-1"></a>p2<span class="ot">&lt;-</span> <span class="fu">roc_time</span>(<span class="at">input      =</span> input,  </span>
+<span id="cb193-2"><a href="signature-score-and-relevant-phenotypes.html#cb193-2" tabindex="-1"></a>             <span class="at">vars       =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, </span>
+<span id="cb193-3"><a href="signature-score-and-relevant-phenotypes.html#cb193-3" tabindex="-1"></a>             <span class="at">time       =</span> <span class="st">&quot;RFS_time&quot;</span>,</span>
+<span id="cb193-4"><a href="signature-score-and-relevant-phenotypes.html#cb193-4" tabindex="-1"></a>             <span class="at">status     =</span> <span class="st">&quot;RFS_status&quot;</span>, </span>
+<span id="cb193-5"><a href="signature-score-and-relevant-phenotypes.html#cb193-5" tabindex="-1"></a>             <span class="at">time_point =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">24</span>, <span class="dv">36</span>), </span>
+<span id="cb193-6"><a href="signature-score-and-relevant-phenotypes.html#cb193-6" tabindex="-1"></a>             <span class="at">time_type  =</span> <span class="st">&quot;month&quot;</span>,</span>
+<span id="cb193-7"><a href="signature-score-and-relevant-phenotypes.html#cb193-7" tabindex="-1"></a>             <span class="at">palette    =</span> <span class="st">&quot;jama&quot;</span>,</span>
+<span id="cb193-8"><a href="signature-score-and-relevant-phenotypes.html#cb193-8" tabindex="-1"></a>             <span class="at">cols       =</span> <span class="st">&quot;normal&quot;</span>,</span>
+<span id="cb193-9"><a href="signature-score-and-relevant-phenotypes.html#cb193-9" tabindex="-1"></a>             <span class="at">seed       =</span> <span class="dv">1234</span>, </span>
+<span id="cb193-10"><a href="signature-score-and-relevant-phenotypes.html#cb193-10" tabindex="-1"></a>             <span class="at">show_col   =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb193-11"><a href="signature-score-and-relevant-phenotypes.html#cb193-11" tabindex="-1"></a>             <span class="at">path       =</span> <span class="st">&quot;result&quot;</span>, </span>
+<span id="cb193-12"><a href="signature-score-and-relevant-phenotypes.html#cb193-12" tabindex="-1"></a>             <span class="at">main       =</span> <span class="st">&quot;OS&quot;</span>,</span>
+<span id="cb193-13"><a href="signature-score-and-relevant-phenotypes.html#cb193-13" tabindex="-1"></a>             <span class="at">index      =</span> <span class="dv">1</span>,</span>
+<span id="cb193-14"><a href="signature-score-and-relevant-phenotypes.html#cb193-14" tabindex="-1"></a>             <span class="at">fig.type   =</span> <span class="st">&quot;pdf&quot;</span>,</span>
+<span id="cb193-15"><a href="signature-score-and-relevant-phenotypes.html#cb193-15" tabindex="-1"></a>             <span class="at">width      =</span> <span class="dv">5</span>,</span>
+<span id="cb193-16"><a href="signature-score-and-relevant-phenotypes.html#cb193-16" tabindex="-1"></a>             <span class="at">height     =</span> <span class="fl">5.2</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;&gt;&gt;&gt;-- Range of Time: &quot;
 ## [1]   0.10 100.87</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="signature-score-and-relevant-phenotypes.html#cb182-1" tabindex="-1"></a>p1<span class="sc">|</span>p2</span></code></pre></div>
-<p><img src="Feature-selections_files/figure-html/unnamed-chunk-12-1.png" width="1152" /></p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="signature-score-and-relevant-phenotypes.html#cb195-1" tabindex="-1"></a>p1<span class="sc">|</span>p2</span></code></pre></div>
+<p><img src="Feature-selections_files/figure-html/unnamed-chunk-12-1.png" width="1344" /></p>
 </div>
 </div>
 <div id="batch-correlation-analysis" class="section level2 hasAnchor" number="6.10">
@@ -684,28 +686,28 @@ Heatmap visualisation using <code>IOBR</code>’s <code>sig_heatmap</code></p>
 <p>Identifying genes or signatures related to the target signatures</p>
 <div id="correlation-between-two-variables" class="section level4 hasAnchor" number="6.10.1.1">
 <h4><span class="header-section-number">6.10.1.1</span> Correlation between two variables<a href="signature-score-and-relevant-phenotypes.html#correlation-between-two-variables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="signature-score-and-relevant-phenotypes.html#cb183-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">batch_cor</span>(<span class="at">data =</span> input, <span class="at">target =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, <span class="at">feature =</span> <span class="fu">colnames</span>(input)[<span class="dv">69</span><span class="sc">:</span><span class="fu">ncol</span>(input)])</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="signature-score-and-relevant-phenotypes.html#cb196-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">batch_cor</span>(<span class="at">data =</span> input, <span class="at">target =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, <span class="at">feature =</span> <span class="fu">colnames</span>(input)[<span class="dv">69</span><span class="sc">:</span><span class="fu">ncol</span>(input)])</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
 ##   sig_names                         p.value statistic    p.adj log10pvalue stars
 ##   &lt;chr&gt;                               &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;
-## 1 TMEscoreB_CIR                    8.89e-42     0.678 2.27e-39        41.1 **** 
-## 2 Glycine__Serine_and_Threonine_M… 7.49e-40    -0.666 9.54e-38        39.1 **** 
-## 3 Ether_Lipid_Metabolism           3.84e-39     0.662 3.27e-37        38.4 **** 
-## 4 MDSC_Peng_et_al                  1.13e-38     0.659 7.21e-37        37.9 **** 
-## 5 Glycerophospholipid_Metabolism   8.72e-38    -0.653 4.44e-36        37.1 **** 
-## 6 TIP_Release_of_cancer_cell_anti… 2.32e-37    -0.650 9.86e-36        36.6 ****</code></pre>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="signature-score-and-relevant-phenotypes.html#cb185-1" tabindex="-1"></a><span class="fu">head</span>(res)</span></code></pre></div>
+## 1 TMEscoreB_CIR                    8.89e-42     0.678 2.79e-39        41.1 **** 
+## 2 Glycine__Serine_and_Threonine_M… 7.49e-40    -0.666 1.18e-37        39.1 **** 
+## 3 Ether_Lipid_Metabolism           3.84e-39     0.662 4.02e-37        38.4 **** 
+## 4 MDSC_Peng_et_al                  1.13e-38     0.659 8.88e-37        37.9 **** 
+## 5 Glycerophospholipid_Metabolism   8.72e-38    -0.653 5.47e-36        37.1 **** 
+## 6 TIP_Release_of_cancer_cell_anti… 2.32e-37    -0.650 1.21e-35        36.6 ****</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="signature-score-and-relevant-phenotypes.html#cb198-1" tabindex="-1"></a><span class="fu">head</span>(res)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
 ##   sig_names                         p.value statistic    p.adj log10pvalue stars
 ##   &lt;chr&gt;                               &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;
-## 1 TMEscoreB_CIR                    8.89e-42     0.678 2.27e-39        41.1 **** 
-## 2 Glycine__Serine_and_Threonine_M… 7.49e-40    -0.666 9.54e-38        39.1 **** 
-## 3 Ether_Lipid_Metabolism           3.84e-39     0.662 3.27e-37        38.4 **** 
-## 4 MDSC_Peng_et_al                  1.13e-38     0.659 7.21e-37        37.9 **** 
-## 5 Glycerophospholipid_Metabolism   8.72e-38    -0.653 4.44e-36        37.1 **** 
-## 6 TIP_Release_of_cancer_cell_anti… 2.32e-37    -0.650 9.86e-36        36.6 ****</code></pre>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="signature-score-and-relevant-phenotypes.html#cb187-1" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">get_cor</span>(<span class="at">eset =</span> sig_tme, <span class="at">pdata =</span> pdata_acrg, <span class="at">is.matrix =</span> <span class="cn">TRUE</span>, <span class="at">var1 =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, </span>
-<span id="cb187-2"><a href="signature-score-and-relevant-phenotypes.html#cb187-2" tabindex="-1"></a>             <span class="at">var2 =</span> <span class="st">&quot;TMEscore_CIR&quot;</span>, <span class="at">subtype =</span> <span class="st">&quot;Subtype&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;aaas&quot;</span>, <span class="at">path =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
+## 1 TMEscoreB_CIR                    8.89e-42     0.678 2.79e-39        41.1 **** 
+## 2 Glycine__Serine_and_Threonine_M… 7.49e-40    -0.666 1.18e-37        39.1 **** 
+## 3 Ether_Lipid_Metabolism           3.84e-39     0.662 4.02e-37        38.4 **** 
+## 4 MDSC_Peng_et_al                  1.13e-38     0.659 8.88e-37        37.9 **** 
+## 5 Glycerophospholipid_Metabolism   8.72e-38    -0.653 5.47e-36        37.1 **** 
+## 6 TIP_Release_of_cancer_cell_anti… 2.32e-37    -0.650 1.21e-35        36.6 ****</code></pre>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="signature-score-and-relevant-phenotypes.html#cb200-1" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">get_cor</span>(<span class="at">eset =</span> sig_tme, <span class="at">pdata =</span> pdata_acrg, <span class="at">is.matrix =</span> <span class="cn">TRUE</span>, <span class="at">var1 =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, </span>
+<span id="cb200-2"><a href="signature-score-and-relevant-phenotypes.html#cb200-2" tabindex="-1"></a>             <span class="at">var2 =</span> <span class="st">&quot;TMEscore_CIR&quot;</span>, <span class="at">subtype =</span> <span class="st">&quot;Subtype&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;aaas&quot;</span>, <span class="at">path =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho
 ## 
@@ -719,67 +721,67 @@ Heatmap visualisation using <code>IOBR</code>’s <code>sig_heatmap</code></p>
 ## [1] &quot;&gt;&gt;&gt;--- The exact p value is: 4.78971420439895e-33&quot;
 ##       EMT       MSI MSS/TP53- MSS/TP53+ 
 ##        46        68       107        79</code></pre>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="signature-score-and-relevant-phenotypes.html#cb189-1" tabindex="-1"></a>p2<span class="ot">&lt;-</span> <span class="fu">get_cor</span>(<span class="at">eset =</span> sig_tme, <span class="at">pdata =</span> pdata_acrg, <span class="at">is.matrix =</span> <span class="cn">TRUE</span>, <span class="at">var1 =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, </span>
-<span id="cb189-2"><a href="signature-score-and-relevant-phenotypes.html#cb189-2" tabindex="-1"></a>             <span class="at">var2 =</span> <span class="st">&quot;TGFb.myCAF&quot;</span>, <span class="at">subtype =</span> <span class="st">&quot;Subtype&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;aaas&quot;</span>, <span class="at">path =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="signature-score-and-relevant-phenotypes.html#cb202-1" tabindex="-1"></a>p2<span class="ot">&lt;-</span> <span class="fu">get_cor</span>(<span class="at">eset =</span> sig_tme, <span class="at">pdata =</span> pdata_acrg, <span class="at">is.matrix =</span> <span class="cn">TRUE</span>, <span class="at">var1 =</span> <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, </span>
+<span id="cb202-2"><a href="signature-score-and-relevant-phenotypes.html#cb202-2" tabindex="-1"></a>             <span class="at">var2 =</span> <span class="st">&quot;TGFβ_myCAF&quot;</span>, <span class="at">subtype =</span> <span class="st">&quot;Subtype&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;aaas&quot;</span>, <span class="at">path =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho
 ## 
 ## data:  data[, var1] and data[, var2]
-## S = 2471758, p-value &lt; 2.2e-16
+## S = 2430178, p-value &lt; 2.2e-16
 ## alternative hypothesis: true rho is not equal to 0
 ## sample estimates:
 ##       rho 
-## 0.4507143 
+## 0.4599544 
 ## 
-## [1] &quot;&gt;&gt;&gt;--- The exact p value is: 2.04505761057615e-16&quot;
+## [1] &quot;&gt;&gt;&gt;--- The exact p value is: 4.1228739609711e-17&quot;
 ##       EMT       MSI MSS/TP53- MSS/TP53+ 
 ##        46        68       107        79</code></pre>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="signature-score-and-relevant-phenotypes.html#cb191-1" tabindex="-1"></a>p1<span class="sc">|</span>p2</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="signature-score-and-relevant-phenotypes.html#cb204-1" tabindex="-1"></a>p1<span class="sc">|</span>p2</span></code></pre></div>
 <p><img src="Feature-selections_files/figure-html/unnamed-chunk-15-1.png" width="1152" /></p>
 </div>
 <div id="demonstrate-correlation-between-multiple-variables" class="section level4 hasAnchor" number="6.10.1.2">
 <h4><span class="header-section-number">6.10.1.2</span> Demonstrate correlation between multiple variables<a href="signature-score-and-relevant-phenotypes.html#demonstrate-correlation-between-multiple-variables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Visualisation via correlation matrix</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="signature-score-and-relevant-phenotypes.html#cb192-1" tabindex="-1"></a>feas1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, <span class="st">&quot;Ferroptosis&quot;</span>)</span>
-<span id="cb192-2"><a href="signature-score-and-relevant-phenotypes.html#cb192-2" tabindex="-1"></a>feas2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Glutathione_Metabolism&quot;</span>, <span class="st">&quot;TMEscore_CIR&quot;</span>, <span class="st">&quot;Purine_Metabolism&quot;</span>, <span class="st">&quot;ICB_resistance_Peng_et_al&quot;</span>, <span class="st">&quot;Interleukins_Li_et_al&quot;</span>, <span class="st">&quot;TLS_Nature&quot;</span>)</span>
-<span id="cb192-3"><a href="signature-score-and-relevant-phenotypes.html#cb192-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">get_cor_matrix</span>(<span class="at">data           =</span> input, </span>
-<span id="cb192-4"><a href="signature-score-and-relevant-phenotypes.html#cb192-4" tabindex="-1"></a>                    <span class="at">feas1          =</span> feas2, </span>
-<span id="cb192-5"><a href="signature-score-and-relevant-phenotypes.html#cb192-5" tabindex="-1"></a>                    <span class="at">feas2          =</span> feas1,</span>
-<span id="cb192-6"><a href="signature-score-and-relevant-phenotypes.html#cb192-6" tabindex="-1"></a>                    <span class="at">method         =</span> <span class="st">&quot;pearson&quot;</span>,</span>
-<span id="cb192-7"><a href="signature-score-and-relevant-phenotypes.html#cb192-7" tabindex="-1"></a>                    <span class="at">font.size.star =</span> <span class="dv">8</span>, </span>
-<span id="cb192-8"><a href="signature-score-and-relevant-phenotypes.html#cb192-8" tabindex="-1"></a>                    <span class="at">font.size      =</span> <span class="dv">15</span>, </span>
-<span id="cb192-9"><a href="signature-score-and-relevant-phenotypes.html#cb192-9" tabindex="-1"></a>                    <span class="at">fill_by_cor    =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb192-10"><a href="signature-score-and-relevant-phenotypes.html#cb192-10" tabindex="-1"></a>                    <span class="at">round.num      =</span> <span class="dv">1</span>, </span>
-<span id="cb192-11"><a href="signature-score-and-relevant-phenotypes.html#cb192-11" tabindex="-1"></a>                    <span class="at">path           =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="signature-score-and-relevant-phenotypes.html#cb205-1" tabindex="-1"></a>feas1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, <span class="st">&quot;Ferroptosis&quot;</span>)</span>
+<span id="cb205-2"><a href="signature-score-and-relevant-phenotypes.html#cb205-2" tabindex="-1"></a>feas2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Glutathione_Metabolism&quot;</span>, <span class="st">&quot;TMEscore_CIR&quot;</span>, <span class="st">&quot;Purine_Metabolism&quot;</span>, <span class="st">&quot;ICB_resistance_Peng_et_al&quot;</span>, <span class="st">&quot;Interleukins_Li_et_al&quot;</span>, <span class="st">&quot;TLS_Nature&quot;</span>)</span>
+<span id="cb205-3"><a href="signature-score-and-relevant-phenotypes.html#cb205-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">get_cor_matrix</span>(<span class="at">data           =</span> input, </span>
+<span id="cb205-4"><a href="signature-score-and-relevant-phenotypes.html#cb205-4" tabindex="-1"></a>                    <span class="at">feas1          =</span> feas2, </span>
+<span id="cb205-5"><a href="signature-score-and-relevant-phenotypes.html#cb205-5" tabindex="-1"></a>                    <span class="at">feas2          =</span> feas1,</span>
+<span id="cb205-6"><a href="signature-score-and-relevant-phenotypes.html#cb205-6" tabindex="-1"></a>                    <span class="at">method         =</span> <span class="st">&quot;pearson&quot;</span>,</span>
+<span id="cb205-7"><a href="signature-score-and-relevant-phenotypes.html#cb205-7" tabindex="-1"></a>                    <span class="at">font.size.star =</span> <span class="dv">8</span>, </span>
+<span id="cb205-8"><a href="signature-score-and-relevant-phenotypes.html#cb205-8" tabindex="-1"></a>                    <span class="at">font.size      =</span> <span class="dv">15</span>, </span>
+<span id="cb205-9"><a href="signature-score-and-relevant-phenotypes.html#cb205-9" tabindex="-1"></a>                    <span class="at">fill_by_cor    =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb205-10"><a href="signature-score-and-relevant-phenotypes.html#cb205-10" tabindex="-1"></a>                    <span class="at">round.num      =</span> <span class="dv">1</span>, </span>
+<span id="cb205-11"><a href="signature-score-and-relevant-phenotypes.html#cb205-11" tabindex="-1"></a>                    <span class="at">path           =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
 <p><img src="Feature-selections_files/figure-html/unnamed-chunk-16-1.png" width="960" /></p>
 <p>Demonstrate the correlation between signatures and genes</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="signature-score-and-relevant-phenotypes.html#cb193-1" tabindex="-1"></a>input2 <span class="ot">&lt;-</span> <span class="fu">combine_pd_eset</span>(<span class="at">eset =</span> eset, <span class="at">pdata =</span>  input[, <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, <span class="st">&quot;TLS_Nature&quot;</span>, <span class="st">&quot;Ferroptosis&quot;</span>)])</span>
-<span id="cb193-2"><a href="signature-score-and-relevant-phenotypes.html#cb193-2" tabindex="-1"></a>feas1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Glycogen_Biosynthesis&quot;</span>,<span class="st">&quot;TLS_Nature&quot;</span>, <span class="st">&quot;Ferroptosis&quot;</span>)</span>
-<span id="cb193-3"><a href="signature-score-and-relevant-phenotypes.html#cb193-3" tabindex="-1"></a>feas2 <span class="ot">&lt;-</span> signature_collection<span class="sc">$</span>CD_8_T_effector</span>
-<span id="cb193-4"><a href="signature-score-and-relevant-phenotypes.html#cb193-4" tabindex="-1"></a>feas2</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="signature-score-and-relevant-phenotypes.html#cb206-1" tabindex="-1"></a>input2 <span class="ot">&lt;-</span> <span class="fu">combine_pd_eset</span>(<span class="at">eset =</span> eset, <span class="at">pdata =</span>  input[, <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;Glycogen_Biosynthesis&quot;</span>, <span class="st">&quot;TLS_Nature&quot;</span>, <span class="st">&quot;Ferroptosis&quot;</span>)])</span>
+<span id="cb206-2"><a href="signature-score-and-relevant-phenotypes.html#cb206-2" tabindex="-1"></a>feas1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Glycogen_Biosynthesis&quot;</span>,<span class="st">&quot;TLS_Nature&quot;</span>, <span class="st">&quot;Ferroptosis&quot;</span>)</span>
+<span id="cb206-3"><a href="signature-score-and-relevant-phenotypes.html#cb206-3" tabindex="-1"></a>feas2 <span class="ot">&lt;-</span> signature_collection<span class="sc">$</span>CD_8_T_effector</span>
+<span id="cb206-4"><a href="signature-score-and-relevant-phenotypes.html#cb206-4" tabindex="-1"></a>feas2</span></code></pre></div>
 <pre><code>## [1] &quot;CD8A&quot;   &quot;GZMA&quot;   &quot;GZMB&quot;   &quot;IFNG&quot;   &quot;CXCL9&quot;  &quot;CXCL10&quot; &quot;PRF1&quot;   &quot;TBX21&quot;</code></pre>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="signature-score-and-relevant-phenotypes.html#cb195-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">get_cor_matrix</span>(<span class="at">data           =</span> input2, </span>
-<span id="cb195-2"><a href="signature-score-and-relevant-phenotypes.html#cb195-2" tabindex="-1"></a>                    <span class="at">feas1          =</span> feas2, </span>
-<span id="cb195-3"><a href="signature-score-and-relevant-phenotypes.html#cb195-3" tabindex="-1"></a>                    <span class="at">feas2          =</span> feas1,</span>
-<span id="cb195-4"><a href="signature-score-and-relevant-phenotypes.html#cb195-4" tabindex="-1"></a>                    <span class="at">method         =</span> <span class="st">&quot;pearson&quot;</span>,</span>
-<span id="cb195-5"><a href="signature-score-and-relevant-phenotypes.html#cb195-5" tabindex="-1"></a>                    <span class="at">scale          =</span> T, </span>
-<span id="cb195-6"><a href="signature-score-and-relevant-phenotypes.html#cb195-6" tabindex="-1"></a>                    <span class="at">font.size.star =</span> <span class="dv">8</span>, </span>
-<span id="cb195-7"><a href="signature-score-and-relevant-phenotypes.html#cb195-7" tabindex="-1"></a>                    <span class="at">font.size      =</span> <span class="dv">15</span>, </span>
-<span id="cb195-8"><a href="signature-score-and-relevant-phenotypes.html#cb195-8" tabindex="-1"></a>                    <span class="at">fill_by_cor    =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb195-9"><a href="signature-score-and-relevant-phenotypes.html#cb195-9" tabindex="-1"></a>                    <span class="at">round.num      =</span> <span class="dv">1</span>,</span>
-<span id="cb195-10"><a href="signature-score-and-relevant-phenotypes.html#cb195-10" tabindex="-1"></a>                    <span class="at">path           =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="signature-score-and-relevant-phenotypes.html#cb208-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">get_cor_matrix</span>(<span class="at">data           =</span> input2, </span>
+<span id="cb208-2"><a href="signature-score-and-relevant-phenotypes.html#cb208-2" tabindex="-1"></a>                    <span class="at">feas1          =</span> feas2, </span>
+<span id="cb208-3"><a href="signature-score-and-relevant-phenotypes.html#cb208-3" tabindex="-1"></a>                    <span class="at">feas2          =</span> feas1,</span>
+<span id="cb208-4"><a href="signature-score-and-relevant-phenotypes.html#cb208-4" tabindex="-1"></a>                    <span class="at">method         =</span> <span class="st">&quot;pearson&quot;</span>,</span>
+<span id="cb208-5"><a href="signature-score-and-relevant-phenotypes.html#cb208-5" tabindex="-1"></a>                    <span class="at">scale          =</span> T, </span>
+<span id="cb208-6"><a href="signature-score-and-relevant-phenotypes.html#cb208-6" tabindex="-1"></a>                    <span class="at">font.size.star =</span> <span class="dv">8</span>, </span>
+<span id="cb208-7"><a href="signature-score-and-relevant-phenotypes.html#cb208-7" tabindex="-1"></a>                    <span class="at">font.size      =</span> <span class="dv">15</span>, </span>
+<span id="cb208-8"><a href="signature-score-and-relevant-phenotypes.html#cb208-8" tabindex="-1"></a>                    <span class="at">fill_by_cor    =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb208-9"><a href="signature-score-and-relevant-phenotypes.html#cb208-9" tabindex="-1"></a>                    <span class="at">round.num      =</span> <span class="dv">1</span>,</span>
+<span id="cb208-10"><a href="signature-score-and-relevant-phenotypes.html#cb208-10" tabindex="-1"></a>                    <span class="at">path           =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
 <p><img src="Feature-selections_files/figure-html/unnamed-chunk-17-1.png" width="1056" /></p>
 <p>Users can customize the image using parameters.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="signature-score-and-relevant-phenotypes.html#cb196-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">get_cor_matrix</span>(<span class="at">data           =</span> input2, </span>
-<span id="cb196-2"><a href="signature-score-and-relevant-phenotypes.html#cb196-2" tabindex="-1"></a>                    <span class="at">feas1          =</span> feas2, </span>
-<span id="cb196-3"><a href="signature-score-and-relevant-phenotypes.html#cb196-3" tabindex="-1"></a>                    <span class="at">feas2          =</span> feas1,</span>
-<span id="cb196-4"><a href="signature-score-and-relevant-phenotypes.html#cb196-4" tabindex="-1"></a>                    <span class="at">method         =</span> <span class="st">&quot;pearson&quot;</span>,</span>
-<span id="cb196-5"><a href="signature-score-and-relevant-phenotypes.html#cb196-5" tabindex="-1"></a>                    <span class="at">scale          =</span> T, </span>
-<span id="cb196-6"><a href="signature-score-and-relevant-phenotypes.html#cb196-6" tabindex="-1"></a>                    <span class="at">font.size.star =</span> <span class="dv">8</span>, </span>
-<span id="cb196-7"><a href="signature-score-and-relevant-phenotypes.html#cb196-7" tabindex="-1"></a>                    <span class="at">font.size      =</span> <span class="dv">15</span>, </span>
-<span id="cb196-8"><a href="signature-score-and-relevant-phenotypes.html#cb196-8" tabindex="-1"></a>                    <span class="at">fill_by_cor    =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb196-9"><a href="signature-score-and-relevant-phenotypes.html#cb196-9" tabindex="-1"></a>                    <span class="at">round.num      =</span> <span class="dv">2</span>,</span>
-<span id="cb196-10"><a href="signature-score-and-relevant-phenotypes.html#cb196-10" tabindex="-1"></a>                    <span class="at">path           =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="signature-score-and-relevant-phenotypes.html#cb209-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">get_cor_matrix</span>(<span class="at">data           =</span> input2, </span>
+<span id="cb209-2"><a href="signature-score-and-relevant-phenotypes.html#cb209-2" tabindex="-1"></a>                    <span class="at">feas1          =</span> feas2, </span>
+<span id="cb209-3"><a href="signature-score-and-relevant-phenotypes.html#cb209-3" tabindex="-1"></a>                    <span class="at">feas2          =</span> feas1,</span>
+<span id="cb209-4"><a href="signature-score-and-relevant-phenotypes.html#cb209-4" tabindex="-1"></a>                    <span class="at">method         =</span> <span class="st">&quot;pearson&quot;</span>,</span>
+<span id="cb209-5"><a href="signature-score-and-relevant-phenotypes.html#cb209-5" tabindex="-1"></a>                    <span class="at">scale          =</span> T, </span>
+<span id="cb209-6"><a href="signature-score-and-relevant-phenotypes.html#cb209-6" tabindex="-1"></a>                    <span class="at">font.size.star =</span> <span class="dv">8</span>, </span>
+<span id="cb209-7"><a href="signature-score-and-relevant-phenotypes.html#cb209-7" tabindex="-1"></a>                    <span class="at">font.size      =</span> <span class="dv">15</span>, </span>
+<span id="cb209-8"><a href="signature-score-and-relevant-phenotypes.html#cb209-8" tabindex="-1"></a>                    <span class="at">fill_by_cor    =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb209-9"><a href="signature-score-and-relevant-phenotypes.html#cb209-9" tabindex="-1"></a>                    <span class="at">round.num      =</span> <span class="dv">2</span>,</span>
+<span id="cb209-10"><a href="signature-score-and-relevant-phenotypes.html#cb209-10" tabindex="-1"></a>                    <span class="at">path           =</span> <span class="st">&quot;result&quot;</span>)</span></code></pre></div>
 <p><img src="Feature-selections_files/figure-html/unnamed-chunk-18-1.png" width="1056" /></p>
 </div>
 </div>
@@ -787,97 +789,97 @@ Heatmap visualisation using <code>IOBR</code>’s <code>sig_heatmap</code></p>
 <h3><span class="header-section-number">6.10.2</span> Identifying Category Variables Linked to Signatures<a href="signature-score-and-relevant-phenotypes.html#identifying-category-variables-linked-to-signatures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="for-binary-variable" class="section level4 hasAnchor" number="6.10.2.1">
 <h4><span class="header-section-number">6.10.2.1</span> For binary variable<a href="signature-score-and-relevant-phenotypes.html#for-binary-variable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="signature-score-and-relevant-phenotypes.html#cb197-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">batch_wilcoxon</span>(<span class="at">data =</span> input, <span class="at">target =</span> <span class="st">&quot;TMEscore_binary&quot;</span>, <span class="at">feature =</span> <span class="fu">colnames</span>(input)[<span class="dv">69</span><span class="sc">:</span><span class="fu">ncol</span>(input)])</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="signature-score-and-relevant-phenotypes.html#cb210-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">batch_wilcoxon</span>(<span class="at">data =</span> input, <span class="at">target =</span> <span class="st">&quot;TMEscore_binary&quot;</span>, <span class="at">feature =</span> <span class="fu">colnames</span>(input)[<span class="dv">69</span><span class="sc">:</span><span class="fu">ncol</span>(input)])</span></code></pre></div>
 <pre><code>## 
 ## High  Low 
 ##   71  228</code></pre>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="signature-score-and-relevant-phenotypes.html#cb199-1" tabindex="-1"></a><span class="fu">head</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="signature-score-and-relevant-phenotypes.html#cb212-1" tabindex="-1"></a><span class="fu">head</span>(res)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ##   sig_names         p.value   High    Low statistic    p.adj log10pvalue stars
 ##   &lt;chr&gt;               &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;
-## 1 TMEscore_CIR     4.44e-37  1.17  -0.365      1.54 1.14e-34        36.4 **** 
-## 2 TMEscore_plus    3.97e-34  1.23  -0.380      1.61 5.08e-32        33.4 **** 
-## 3 TMEscoreA_plus   1.68e-25  1.18  -0.359      1.54 1.44e-23        24.8 **** 
-## 4 TMEscoreB_CIR    5.59e-24 -0.881  0.279     -1.16 3.36e-22        23.3 **** 
-## 5 ADP_Ribosylation 6.56e-24  1.06  -0.329      1.39 3.36e-22        23.2 **** 
-## 6 TMEscoreA_CIR    1.02e-22  1.11  -0.337      1.45 3.80e-21        22.0 ****</code></pre>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="signature-score-and-relevant-phenotypes.html#cb201-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
-<span id="cb201-2"><a href="signature-score-and-relevant-phenotypes.html#cb201-2" tabindex="-1"></a>              <span class="at">signature      =</span> res<span class="sc">$</span>sig_names[<span class="dv">1</span>],</span>
-<span id="cb201-3"><a href="signature-score-and-relevant-phenotypes.html#cb201-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;TMEscore_binary&quot;</span>,</span>
-<span id="cb201-4"><a href="signature-score-and-relevant-phenotypes.html#cb201-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb201-5"><a href="signature-score-and-relevant-phenotypes.html#cb201-5" tabindex="-1"></a>              <span class="at">cols           =</span>  <span class="cn">NULL</span>,</span>
-<span id="cb201-6"><a href="signature-score-and-relevant-phenotypes.html#cb201-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jco&quot;</span>,</span>
-<span id="cb201-7"><a href="signature-score-and-relevant-phenotypes.html#cb201-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb201-8"><a href="signature-score-and-relevant-phenotypes.html#cb201-8" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>,</span>
-<span id="cb201-9"><a href="signature-score-and-relevant-phenotypes.html#cb201-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
-<span id="cb201-10"><a href="signature-score-and-relevant-phenotypes.html#cb201-10" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
-<span id="cb201-11"><a href="signature-score-and-relevant-phenotypes.html#cb201-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
+## 1 TMEscore_CIR     4.44e-37  1.17  -0.365      1.54 1.40e-34        36.4 **** 
+## 2 TMEscore_plus    3.97e-34  1.23  -0.380      1.61 6.25e-32        33.4 **** 
+## 3 TMEscoreA_plus   1.68e-25  1.18  -0.359      1.54 1.77e-23        24.8 **** 
+## 4 TMEscoreB_CIR    5.59e-24 -0.881  0.279     -1.16 4.13e-22        23.3 **** 
+## 5 ADP_Ribosylation 6.56e-24  1.06  -0.329      1.39 4.13e-22        23.2 **** 
+## 6 TMEscoreA_CIR    1.02e-22  1.11  -0.337      1.45 4.68e-21        22.0 ****</code></pre>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="signature-score-and-relevant-phenotypes.html#cb214-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
+<span id="cb214-2"><a href="signature-score-and-relevant-phenotypes.html#cb214-2" tabindex="-1"></a>              <span class="at">signature      =</span> res<span class="sc">$</span>sig_names[<span class="dv">1</span>],</span>
+<span id="cb214-3"><a href="signature-score-and-relevant-phenotypes.html#cb214-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;TMEscore_binary&quot;</span>,</span>
+<span id="cb214-4"><a href="signature-score-and-relevant-phenotypes.html#cb214-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb214-5"><a href="signature-score-and-relevant-phenotypes.html#cb214-5" tabindex="-1"></a>              <span class="at">cols           =</span>  <span class="cn">NULL</span>,</span>
+<span id="cb214-6"><a href="signature-score-and-relevant-phenotypes.html#cb214-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jco&quot;</span>,</span>
+<span id="cb214-7"><a href="signature-score-and-relevant-phenotypes.html#cb214-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb214-8"><a href="signature-score-and-relevant-phenotypes.html#cb214-8" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>,</span>
+<span id="cb214-9"><a href="signature-score-and-relevant-phenotypes.html#cb214-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
+<span id="cb214-10"><a href="signature-score-and-relevant-phenotypes.html#cb214-10" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
+<span id="cb214-11"><a href="signature-score-and-relevant-phenotypes.html#cb214-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
 ## 1 signature High   Low    4.44e-37 4.40e-37 &lt;2e-16   ****     Wilcoxon</code></pre>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="signature-score-and-relevant-phenotypes.html#cb203-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
-<span id="cb203-2"><a href="signature-score-and-relevant-phenotypes.html#cb203-2" tabindex="-1"></a>              <span class="at">signature      =</span> res<span class="sc">$</span>sig_names[<span class="dv">2</span>],</span>
-<span id="cb203-3"><a href="signature-score-and-relevant-phenotypes.html#cb203-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;TMEscore_binary&quot;</span>,</span>
-<span id="cb203-4"><a href="signature-score-and-relevant-phenotypes.html#cb203-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb203-5"><a href="signature-score-and-relevant-phenotypes.html#cb203-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
-<span id="cb203-6"><a href="signature-score-and-relevant-phenotypes.html#cb203-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jco&quot;</span>,</span>
-<span id="cb203-7"><a href="signature-score-and-relevant-phenotypes.html#cb203-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb203-8"><a href="signature-score-and-relevant-phenotypes.html#cb203-8" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
-<span id="cb203-9"><a href="signature-score-and-relevant-phenotypes.html#cb203-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
-<span id="cb203-10"><a href="signature-score-and-relevant-phenotypes.html#cb203-10" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>, </span>
-<span id="cb203-11"><a href="signature-score-and-relevant-phenotypes.html#cb203-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="signature-score-and-relevant-phenotypes.html#cb216-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
+<span id="cb216-2"><a href="signature-score-and-relevant-phenotypes.html#cb216-2" tabindex="-1"></a>              <span class="at">signature      =</span> res<span class="sc">$</span>sig_names[<span class="dv">2</span>],</span>
+<span id="cb216-3"><a href="signature-score-and-relevant-phenotypes.html#cb216-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;TMEscore_binary&quot;</span>,</span>
+<span id="cb216-4"><a href="signature-score-and-relevant-phenotypes.html#cb216-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb216-5"><a href="signature-score-and-relevant-phenotypes.html#cb216-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb216-6"><a href="signature-score-and-relevant-phenotypes.html#cb216-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jco&quot;</span>,</span>
+<span id="cb216-7"><a href="signature-score-and-relevant-phenotypes.html#cb216-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb216-8"><a href="signature-score-and-relevant-phenotypes.html#cb216-8" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
+<span id="cb216-9"><a href="signature-score-and-relevant-phenotypes.html#cb216-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
+<span id="cb216-10"><a href="signature-score-and-relevant-phenotypes.html#cb216-10" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>, </span>
+<span id="cb216-11"><a href="signature-score-and-relevant-phenotypes.html#cb216-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 8
 ##   .y.       group1 group2        p p.adj p.format p.signif method  
 ##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
 ## 1 signature High   Low    3.97e-34 4e-34 &lt;2e-16   ****     Wilcoxon</code></pre>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="signature-score-and-relevant-phenotypes.html#cb205-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
-<span id="cb205-2"><a href="signature-score-and-relevant-phenotypes.html#cb205-2" tabindex="-1"></a>              <span class="at">signature      =</span> res<span class="sc">$</span>sig_names[<span class="dv">3</span>],</span>
-<span id="cb205-3"><a href="signature-score-and-relevant-phenotypes.html#cb205-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;TMEscore_binary&quot;</span>,</span>
-<span id="cb205-4"><a href="signature-score-and-relevant-phenotypes.html#cb205-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb205-5"><a href="signature-score-and-relevant-phenotypes.html#cb205-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
-<span id="cb205-6"><a href="signature-score-and-relevant-phenotypes.html#cb205-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jco&quot;</span>,</span>
-<span id="cb205-7"><a href="signature-score-and-relevant-phenotypes.html#cb205-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb205-8"><a href="signature-score-and-relevant-phenotypes.html#cb205-8" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
-<span id="cb205-9"><a href="signature-score-and-relevant-phenotypes.html#cb205-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
-<span id="cb205-10"><a href="signature-score-and-relevant-phenotypes.html#cb205-10" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>, </span>
-<span id="cb205-11"><a href="signature-score-and-relevant-phenotypes.html#cb205-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="signature-score-and-relevant-phenotypes.html#cb218-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
+<span id="cb218-2"><a href="signature-score-and-relevant-phenotypes.html#cb218-2" tabindex="-1"></a>              <span class="at">signature      =</span> res<span class="sc">$</span>sig_names[<span class="dv">3</span>],</span>
+<span id="cb218-3"><a href="signature-score-and-relevant-phenotypes.html#cb218-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;TMEscore_binary&quot;</span>,</span>
+<span id="cb218-4"><a href="signature-score-and-relevant-phenotypes.html#cb218-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb218-5"><a href="signature-score-and-relevant-phenotypes.html#cb218-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb218-6"><a href="signature-score-and-relevant-phenotypes.html#cb218-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jco&quot;</span>,</span>
+<span id="cb218-7"><a href="signature-score-and-relevant-phenotypes.html#cb218-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb218-8"><a href="signature-score-and-relevant-phenotypes.html#cb218-8" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
+<span id="cb218-9"><a href="signature-score-and-relevant-phenotypes.html#cb218-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
+<span id="cb218-10"><a href="signature-score-and-relevant-phenotypes.html#cb218-10" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>, </span>
+<span id="cb218-11"><a href="signature-score-and-relevant-phenotypes.html#cb218-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
 ## 1 signature High   Low    1.68e-25 1.70e-25 &lt;2e-16   ****     Wilcoxon</code></pre>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="signature-score-and-relevant-phenotypes.html#cb207-1" tabindex="-1"></a>p1<span class="sc">|</span>p2<span class="sc">|</span>p3</span></code></pre></div>
-<p><img src="Feature-selections_files/figure-html/unnamed-chunk-21-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="signature-score-and-relevant-phenotypes.html#cb220-1" tabindex="-1"></a>p1<span class="sc">|</span>p2<span class="sc">|</span>p3</span></code></pre></div>
+<p><img src="Feature-selections_files/figure-html/unnamed-chunk-21-1.png" width="864" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="for-multicategorical-variables-2-subgroups" class="section level3 hasAnchor" number="6.10.3">
 <h3><span class="header-section-number">6.10.3</span> For multicategorical variables (&gt;2 subgroups)<a href="signature-score-and-relevant-phenotypes.html#for-multicategorical-variables-2-subgroups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="signature-score-and-relevant-phenotypes.html#cb208-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">batch_kruskal</span>(<span class="at">data =</span> input, <span class="at">group =</span> <span class="st">&quot;Subtype&quot;</span>, <span class="at">feature =</span> <span class="fu">colnames</span>(input)[<span class="dv">69</span><span class="sc">:</span><span class="fu">ncol</span>(input)])</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="signature-score-and-relevant-phenotypes.html#cb221-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">batch_kruskal</span>(<span class="at">data =</span> input, <span class="at">group =</span> <span class="st">&quot;Subtype&quot;</span>, <span class="at">feature =</span> <span class="fu">colnames</span>(input)[<span class="dv">69</span><span class="sc">:</span><span class="fu">ncol</span>(input)])</span></code></pre></div>
 <pre><code>## 
 ##       EMT       MSI MSS/TP53- MSS/TP53+ 
 ##        46        68       107        79</code></pre>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="signature-score-and-relevant-phenotypes.html#cb210-1" tabindex="-1"></a><span class="fu">head</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="signature-score-and-relevant-phenotypes.html#cb223-1" tabindex="-1"></a><span class="fu">head</span>(res)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 10
 ##   sig_names        p.value   EMT    MSI `MSS/TP53-` `MSS/TP53+`    mean    p.adj
 ##   &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
-## 1 TMEscore_CIR    1.35e-28 -1.36  1.00        0.305      0.0577 -0.119  3.46e-26
-## 2 Ether_Lipid_Me… 4.37e-27  1.46 -0.830      -0.253     -0.375   0.165  4.64e-25
-## 3 TMEscoreB_CIR   5.88e-27  1.55 -0.829      -0.420     -0.303   0.169  4.64e-25
-## 4 Inositol_Phosp… 7.25e-27  1.53 -0.808      -0.315     -0.408   0.177  4.64e-25
-## 5 Selenocompound… 1.17e-26 -1.48  0.824       0.328      0.326  -0.163  5.99e-25
-## 6 Folate_biosynt… 1.63e-26 -1.12  1.05        0.127     -0.0573 -0.0792 6.15e-25
+## 1 TMEscore_CIR    1.35e-28 -1.36  1.00        0.305      0.0577 -0.119  4.26e-26
+## 2 Ether_Lipid_Me… 4.37e-27  1.46 -0.830      -0.253     -0.375   0.165  5.71e-25
+## 3 TMEscoreB_CIR   5.88e-27  1.55 -0.829      -0.420     -0.303   0.169  5.71e-25
+## 4 Inositol_Phosp… 7.25e-27  1.53 -0.808      -0.315     -0.408   0.177  5.71e-25
+## 5 Selenocompound… 1.17e-26 -1.48  0.824       0.328      0.326  -0.163  7.38e-25
+## 6 Folate_biosynt… 1.63e-26 -1.12  1.05        0.127     -0.0573 -0.0792 7.57e-25
 ## # ℹ 2 more variables: log10pvalue &lt;dbl&gt;, stars &lt;fct&gt;</code></pre>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="signature-score-and-relevant-phenotypes.html#cb212-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
-<span id="cb212-2"><a href="signature-score-and-relevant-phenotypes.html#cb212-2" tabindex="-1"></a>              <span class="at">signature      =</span> res<span class="sc">$</span>sig_names[<span class="dv">1</span>],</span>
-<span id="cb212-3"><a href="signature-score-and-relevant-phenotypes.html#cb212-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
-<span id="cb212-4"><a href="signature-score-and-relevant-phenotypes.html#cb212-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb212-5"><a href="signature-score-and-relevant-phenotypes.html#cb212-5" tabindex="-1"></a>              <span class="at">cols           =</span>  <span class="cn">NULL</span>,</span>
-<span id="cb212-6"><a href="signature-score-and-relevant-phenotypes.html#cb212-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jco&quot;</span>,</span>
-<span id="cb212-7"><a href="signature-score-and-relevant-phenotypes.html#cb212-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb212-8"><a href="signature-score-and-relevant-phenotypes.html#cb212-8" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>,</span>
-<span id="cb212-9"><a href="signature-score-and-relevant-phenotypes.html#cb212-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
-<span id="cb212-10"><a href="signature-score-and-relevant-phenotypes.html#cb212-10" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
-<span id="cb212-11"><a href="signature-score-and-relevant-phenotypes.html#cb212-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="signature-score-and-relevant-phenotypes.html#cb225-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
+<span id="cb225-2"><a href="signature-score-and-relevant-phenotypes.html#cb225-2" tabindex="-1"></a>              <span class="at">signature      =</span> res<span class="sc">$</span>sig_names[<span class="dv">1</span>],</span>
+<span id="cb225-3"><a href="signature-score-and-relevant-phenotypes.html#cb225-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
+<span id="cb225-4"><a href="signature-score-and-relevant-phenotypes.html#cb225-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb225-5"><a href="signature-score-and-relevant-phenotypes.html#cb225-5" tabindex="-1"></a>              <span class="at">cols           =</span>  <span class="cn">NULL</span>,</span>
+<span id="cb225-6"><a href="signature-score-and-relevant-phenotypes.html#cb225-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jco&quot;</span>,</span>
+<span id="cb225-7"><a href="signature-score-and-relevant-phenotypes.html#cb225-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb225-8"><a href="signature-score-and-relevant-phenotypes.html#cb225-8" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>,</span>
+<span id="cb225-9"><a href="signature-score-and-relevant-phenotypes.html#cb225-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
+<span id="cb225-10"><a href="signature-score-and-relevant-phenotypes.html#cb225-10" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
+<span id="cb225-11"><a href="signature-score-and-relevant-phenotypes.html#cb225-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ##   .y.       group1    group2           p    p.adj p.format p.signif method  
 ##   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
@@ -887,17 +889,17 @@ Heatmap visualisation using <code>IOBR</code>’s <code>sig_heatmap</code></p>
 ## 4 signature MSI       MSS/TP53- 1.27e-15 6.40e-15 1.3e-15  ****     Wilcoxon
 ## 5 signature MSI       MSS/TP53+ 5.96e- 9 1.20e- 8 6.0e-09  ****     Wilcoxon
 ## 6 signature MSS/TP53- MSS/TP53+ 7.71e- 3 7.7 e- 3 0.0077   **       Wilcoxon</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="signature-score-and-relevant-phenotypes.html#cb214-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
-<span id="cb214-2"><a href="signature-score-and-relevant-phenotypes.html#cb214-2" tabindex="-1"></a>              <span class="at">signature      =</span> res<span class="sc">$</span>sig_names[<span class="dv">2</span>],</span>
-<span id="cb214-3"><a href="signature-score-and-relevant-phenotypes.html#cb214-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
-<span id="cb214-4"><a href="signature-score-and-relevant-phenotypes.html#cb214-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb214-5"><a href="signature-score-and-relevant-phenotypes.html#cb214-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
-<span id="cb214-6"><a href="signature-score-and-relevant-phenotypes.html#cb214-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jco&quot;</span>,</span>
-<span id="cb214-7"><a href="signature-score-and-relevant-phenotypes.html#cb214-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb214-8"><a href="signature-score-and-relevant-phenotypes.html#cb214-8" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
-<span id="cb214-9"><a href="signature-score-and-relevant-phenotypes.html#cb214-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
-<span id="cb214-10"><a href="signature-score-and-relevant-phenotypes.html#cb214-10" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>, </span>
-<span id="cb214-11"><a href="signature-score-and-relevant-phenotypes.html#cb214-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="signature-score-and-relevant-phenotypes.html#cb227-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
+<span id="cb227-2"><a href="signature-score-and-relevant-phenotypes.html#cb227-2" tabindex="-1"></a>              <span class="at">signature      =</span> res<span class="sc">$</span>sig_names[<span class="dv">2</span>],</span>
+<span id="cb227-3"><a href="signature-score-and-relevant-phenotypes.html#cb227-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
+<span id="cb227-4"><a href="signature-score-and-relevant-phenotypes.html#cb227-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb227-5"><a href="signature-score-and-relevant-phenotypes.html#cb227-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb227-6"><a href="signature-score-and-relevant-phenotypes.html#cb227-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jco&quot;</span>,</span>
+<span id="cb227-7"><a href="signature-score-and-relevant-phenotypes.html#cb227-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb227-8"><a href="signature-score-and-relevant-phenotypes.html#cb227-8" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
+<span id="cb227-9"><a href="signature-score-and-relevant-phenotypes.html#cb227-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
+<span id="cb227-10"><a href="signature-score-and-relevant-phenotypes.html#cb227-10" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>, </span>
+<span id="cb227-11"><a href="signature-score-and-relevant-phenotypes.html#cb227-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ##   .y.       group1    group2           p    p.adj p.format p.signif method  
 ##   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
@@ -907,17 +909,17 @@ Heatmap visualisation using <code>IOBR</code>’s <code>sig_heatmap</code></p>
 ## 4 signature MSI       MSS/TP53- 5.43e- 5 1.1 e- 4 5.4e-05  ****     Wilcoxon
 ## 5 signature MSI       MSS/TP53+ 2.12e- 7 6.40e- 7 2.1e-07  ****     Wilcoxon
 ## 6 signature MSS/TP53- MSS/TP53+ 2.84e- 1 2.8 e- 1 0.28     ns       Wilcoxon</code></pre>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="signature-score-and-relevant-phenotypes.html#cb216-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
-<span id="cb216-2"><a href="signature-score-and-relevant-phenotypes.html#cb216-2" tabindex="-1"></a>              <span class="at">signature      =</span> res<span class="sc">$</span>sig_names[<span class="dv">3</span>],</span>
-<span id="cb216-3"><a href="signature-score-and-relevant-phenotypes.html#cb216-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
-<span id="cb216-4"><a href="signature-score-and-relevant-phenotypes.html#cb216-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb216-5"><a href="signature-score-and-relevant-phenotypes.html#cb216-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
-<span id="cb216-6"><a href="signature-score-and-relevant-phenotypes.html#cb216-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jco&quot;</span>,</span>
-<span id="cb216-7"><a href="signature-score-and-relevant-phenotypes.html#cb216-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb216-8"><a href="signature-score-and-relevant-phenotypes.html#cb216-8" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
-<span id="cb216-9"><a href="signature-score-and-relevant-phenotypes.html#cb216-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
-<span id="cb216-10"><a href="signature-score-and-relevant-phenotypes.html#cb216-10" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>, </span>
-<span id="cb216-11"><a href="signature-score-and-relevant-phenotypes.html#cb216-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="signature-score-and-relevant-phenotypes.html#cb229-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(<span class="at">data           =</span> input, </span>
+<span id="cb229-2"><a href="signature-score-and-relevant-phenotypes.html#cb229-2" tabindex="-1"></a>              <span class="at">signature      =</span> res<span class="sc">$</span>sig_names[<span class="dv">3</span>],</span>
+<span id="cb229-3"><a href="signature-score-and-relevant-phenotypes.html#cb229-3" tabindex="-1"></a>              <span class="at">variable       =</span> <span class="st">&quot;Subtype&quot;</span>,</span>
+<span id="cb229-4"><a href="signature-score-and-relevant-phenotypes.html#cb229-4" tabindex="-1"></a>              <span class="at">jitter         =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb229-5"><a href="signature-score-and-relevant-phenotypes.html#cb229-5" tabindex="-1"></a>              <span class="at">cols           =</span> <span class="cn">NULL</span>,</span>
+<span id="cb229-6"><a href="signature-score-and-relevant-phenotypes.html#cb229-6" tabindex="-1"></a>              <span class="at">palette        =</span> <span class="st">&quot;jco&quot;</span>,</span>
+<span id="cb229-7"><a href="signature-score-and-relevant-phenotypes.html#cb229-7" tabindex="-1"></a>              <span class="at">show_pvalue    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb229-8"><a href="signature-score-and-relevant-phenotypes.html#cb229-8" tabindex="-1"></a>              <span class="at">angle_x_text   =</span> <span class="dv">60</span>, </span>
+<span id="cb229-9"><a href="signature-score-and-relevant-phenotypes.html#cb229-9" tabindex="-1"></a>              <span class="at">hjust          =</span> <span class="dv">1</span>, </span>
+<span id="cb229-10"><a href="signature-score-and-relevant-phenotypes.html#cb229-10" tabindex="-1"></a>              <span class="at">size_of_pvalue =</span> <span class="dv">5</span>, </span>
+<span id="cb229-11"><a href="signature-score-and-relevant-phenotypes.html#cb229-11" tabindex="-1"></a>              <span class="at">size_of_font   =</span> <span class="dv">8</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 8
 ##   .y.       group1    group2           p    p.adj p.format p.signif method  
 ##   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
@@ -927,13 +929,14 @@ Heatmap visualisation using <code>IOBR</code>’s <code>sig_heatmap</code></p>
 ## 4 signature MSI       MSS/TP53- 1.48e- 7 4.50e- 7 1.5e-07  ****     Wilcoxon
 ## 5 signature MSI       MSS/TP53+ 1.44e- 5 2.90e- 5 1.4e-05  ****     Wilcoxon
 ## 6 signature MSS/TP53- MSS/TP53+ 3.17e- 1 3.2 e- 1 0.32     ns       Wilcoxon</code></pre>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="signature-score-and-relevant-phenotypes.html#cb218-1" tabindex="-1"></a>p1<span class="sc">|</span>p2<span class="sc">|</span>p3</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="signature-score-and-relevant-phenotypes.html#cb231-1" tabindex="-1"></a>p1<span class="sc">|</span>p2<span class="sc">|</span>p3</span></code></pre></div>
 <p><img src="Feature-selections_files/figure-html/unnamed-chunk-24-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="reference" class="section level2 hasAnchor" number="6.11">
 <h2><span class="header-section-number">6.11</span> Reference<a href="signature-score-and-relevant-phenotypes.html#reference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Cristescu, R., Lee, J., Nebozhyn, M. et al. Molecular analysis of gastric cancer identifies subtypes associated with distinct clinical outcomes. Nat Med 21, 449–456 (2015). <a href="https://doi.org/10.1038/nm.3850" class="uri">https://doi.org/10.1038/nm.3850</a></p>
+<p>Dongqiang Zeng, …, WJ Liao et al., Tumor Microenvironment Characterization in Gastric Cancer Identifies Prognostic and Immunotherapeutically Relevant Gene Signatures, Cancer Immunol Res (2019) 7 (5): 737–750. <a href="https://doi.org/10.1158/2326-6066.CIR-18-0436" class="uri">https://doi.org/10.1158/2326-6066.CIR-18-0436</a></p>
 
 </div>
 </div>
