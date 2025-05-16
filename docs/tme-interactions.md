@@ -184,14 +184,14 @@ top15$gene
 ```
 
 ```
-##  [1] "TMEM100"  "ADH1B"    "ABCA8"    "MAMDC2"   "SCN7A"    "LIPF"    
-##  [7] "C7"       "C2orf40"  "PGA4"     "OGN"      "GHRL"     "C6orf58" 
-## [13] "SCRG1"    "GIF"      "VIP"      "IFNG"     "CXCL10"   "IDO1"    
-## [19] "GZMB"     "CXCL11"   "GBP4"     "CXCL9"    "GNLY"     "AIM2"    
-## [25] "COL11A1"  "S100A2"   "SLCO1B3"  "KRT13"    "KISS1R"   "SERPINB2"
-## [31] "IL1A"     "PPBP"     "IL11"     "CXCL6"    "TREM1"    "PROK2"   
-## [37] "IL24"     "PI15"     "HCAR3"    "CLEC5A"   "IGFBP1"   "MAGEA2B" 
-## [43] "MAGEA6"   "MAGEA12"  "REG1B"
+##  [1] "C2orf40"  "LIPF"     "OGN"      "ADH1B"    "PGA4"     "SCN7A"   
+##  [7] "C7"       "MAMDC2"   "ABCA8"    "GIF"      "SCRG1"    "C6orf58" 
+## [13] "VIP"      "TMEM100"  "GHRL"     "IDO1"     "CXCL11"   "SLCO1B3" 
+## [19] "AIM2"     "IFNG"     "GZMB"     "CXCL10"   "GBP4"     "KRT13"   
+## [25] "CXCL9"    "GNLY"     "S100A2"   "COL11A1"  "SERPINB2" "KISS1R"  
+## [31] "IL1A"     "REG1B"    "PROK2"    "PI15"     "IL11"     "PPBP"    
+## [37] "CLEC5A"   "MAGEA6"   "MAGEA12"  "IGFBP1"   "TREM1"    "HCAR3"   
+## [43] "IL24"     "MAGEA2B"  "CXCL6"
 ```
 
 Heatmap visualisation using `Seurat`'s `DoHeatmap`
@@ -273,21 +273,21 @@ top15$gene
 ```
 
 ```
-##  [1] "FN1-ITGA8"          "NCAM1-GFRA1"        "COL4A5-CD93"       
-##  [4] "NCAM1-FGFR1"        "TSLP-IL7R"          "F13A1-ITGA9"       
-##  [7] "GNAI2-P2RY12"       "ANGPTL1-TEK"        "FGF7-FGFR1-NRP1"   
-## [10] "LTF-LRP11"          "EFNB2-EPHA3"        "ADAM10-EFNA1-EPHA3"
-## [13] "SFRP1-FZD6"         "MYOC-FZD1"          "MYOC-FZD4"         
-## [16] "IFNG-IFNGR1-IFNGR2" "CXCL10-SDC4"        "GZMB-IGF2R"        
-## [19] "FASLG-FAS"          "HLA-B-HLA-E-KLRD1"  "TNFSF9-TNFRSF9"    
-## [22] "CCL5-SDC4"          "CCL8-CCR5"          "IL15-IL2RA"        
-## [25] "CCL8-CCR1"          "CCL7-ACKR4"         "CCL7-CXCR3"        
-## [28] "CCL7-CCR1"          "CCL7-CCR5"          "CCL7-CCR2"         
-## [31] "IL1A-IL1R1"         "IL1A-IL1R2"         "IL1A-IL1RAP"       
-## [34] "PPBP-CXCR1"         "OSM-IL6ST"          "OSM-OSMR"          
-## [37] "PPBP-CXCR2"         "VWF-TNFRSF11B"      "THBS1-TNFRSF11B"   
-## [40] "FN1-TNFRSF11B"      "TNFSF10-TNFRSF11B"  "TNFSF13-TNFRSF11B" 
-## [43] "EREG-EGFR"          "IL6-IL6ST"          "ANXA1-APP-FPR2"
+##  [1] "ANGPTL1-TEK"        "FN1-ITGA8"          "COL4A5-CD93"       
+##  [4] "GNAI2-P2RY12"       "NCAM1-GFRA1"        "FGF7-FGFR1-NRP1"   
+##  [7] "LTF-LRP11"          "SFRP1-FZD6"         "MYOC-FZD4"         
+## [10] "EFNB2-EPHA3"        "ADAM10-EFNA1-EPHA3" "MYOC-FZD1"         
+## [13] "TSLP-IL7R"          "NCAM1-FGFR1"        "F13A1-ITGA9"       
+## [16] "IFNG-IFNGR1-IFNGR2" "GZMB-IGF2R"         "HLA-B-HLA-E-KLRD1" 
+## [19] "CXCL10-SDC4"        "FASLG-FAS"          "CCL7-CCR1"         
+## [22] "CCL7-CCR5"          "CCL8-CCR5"          "CCL5-SDC4"         
+## [25] "CCL7-ACKR4"         "CCL8-CCR1"          "CCL7-CCR2"         
+## [28] "CCL7-CXCR3"         "TNFSF9-TNFRSF9"     "IL15-IL2RA"        
+## [31] "IL1A-IL1R1"         "IL1A-IL1R2"         "PPBP-CXCR2"        
+## [34] "IL1A-IL1RAP"        "FN1-TNFRSF11B"      "THBS1-TNFRSF11B"   
+## [37] "TNFSF10-TNFRSF11B"  "OSM-IL6ST"          "PPBP-CXCR1"        
+## [40] "VWF-TNFRSF11B"      "EREG-EGFR"          "OSM-OSMR"          
+## [43] "TNFSF13-TNFRSF11B"  "IL6-IL6ST"          "ANXA1-APP-FPR2"
 ```
 
 Heatmap visualisation using `Seurat`'s `DoHeatmap`
@@ -315,11 +315,11 @@ p2 <- sig_box(input, variable = "cluster", signature = top15$gene[1], jitter = T
 
 ```
 ## # A tibble: 3 × 8
-##   .y.       group1 group2        p   p.adj p.format p.signif method  
-##   <chr>     <chr>  <chr>     <dbl>   <dbl> <chr>    <chr>    <chr>   
-## 1 signature TME3   TME2   4.69e-17 1.4e-16 < 2e-16  ****     Wilcoxon
-## 2 signature TME3   TME1   9.94e-10 2  e- 9 9.9e-10  ****     Wilcoxon
-## 3 signature TME2   TME1   5.75e- 3 5.8e- 3 0.0058   **       Wilcoxon
+##   .y.       group1 group2           p     p.adj p.format p.signif method  
+##   <chr>     <chr>  <chr>        <dbl>     <dbl> <chr>    <chr>    <chr>   
+## 1 signature TME3   TME2   0.000000823 0.0000025 8.2e-07  ****     Wilcoxon
+## 2 signature TME3   TME1   0.0000336   0.000067  3.4e-05  ****     Wilcoxon
+## 3 signature TME2   TME1   0.649       0.65      0.65     ns       Wilcoxon
 ```
 
 ``` r
@@ -331,9 +331,9 @@ p3 <- sig_box(input, variable = "cluster", signature = top15$gene[5],
 ## # A tibble: 3 × 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   <chr>     <chr>  <chr>     <dbl>    <dbl> <chr>    <chr>    <chr>   
-## 1 signature TME3   TME2   9.17e-15 2.8 e-14 9.2e-15  ****     Wilcoxon
-## 2 signature TME3   TME1   2.15e- 5 4.30e- 5 2.2e-05  ****     Wilcoxon
-## 3 signature TME2   TME1   9.68e- 5 9.70e- 5 9.7e-05  ****     Wilcoxon
+## 1 signature TME3   TME2   5.86e-16 1.80e-15 5.9e-16  ****     Wilcoxon
+## 2 signature TME3   TME1   1.31e-10 2.6 e-10 1.3e-10  ****     Wilcoxon
+## 3 signature TME2   TME1   1.14e- 1 1.1 e- 1 0.11     ns       Wilcoxon
 ```
 
 Combining the results obtained above

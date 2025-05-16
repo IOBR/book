@@ -497,12 +497,12 @@ head(svr)
 ## # A tibble: 6 × 13
 ##   ID         Naive-CD4-T_CIBERSOR…¹ `CD14-Mono_CIBERSORT` Memory-CD4-T_CIBERSO…²
 ##   <chr>                       <dbl>                 <dbl>                  <dbl>
-## 1 TCGA-BR-6…                  0.374                     0                 0     
-## 2 TCGA-BR-7…                  0                         0                 0.0577
-## 3 TCGA-BR-8…                  0.484                     0                 0     
-## 4 TCGA-BR-8…                  0.528                     0                 0     
-## 5 TCGA-BR-8…                  0.396                     0                 0     
-## 6 TCGA-BR-8…                  0                         0                 0.0441
+## 1 TCGA-BR-6…                  0.371                     0                 0     
+## 2 TCGA-BR-7…                  0                         0                 0.182 
+## 3 TCGA-BR-8…                  0.513                     0                 0     
+## 4 TCGA-BR-8…                  0.615                     0                 0     
+## 5 TCGA-BR-8…                  0.471                     0                 0     
+## 6 TCGA-BR-8…                  0                         0                 0.0917
 ## # ℹ abbreviated names: ¹​`Naive-CD4-T_CIBERSORT`, ²​`Memory-CD4-T_CIBERSORT`
 ## # ℹ 9 more variables: Bcells_CIBERSORT <dbl>, `CD8-Tcell_CIBERSORT` <dbl>,
 ## #   `FCGR3A-Mono_CIBERSORT` <dbl>, NK_CIBERSORT <dbl>, DC_CIBERSORT <dbl>,

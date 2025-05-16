@@ -49,6 +49,8 @@ This R package integrates 8 published methods for decoding the tumour microenvir
 
 Zeng DQ, Fang YR, … , Yu GC, Liao WJ. Enhancing Immuno-Oncology Investigations Through Multidimensional Decoding of Tumour Microenvironment with IOBR 2.0, **Cell Reports Methods**, 2024 [https://doi.org/10.1016/j.crmeth.2024.100910](https://doi.org/10.1016/j.crmeth.2024.100910)
 
+Fang YR, …, Liao WJ, Zeng DQ, Systematic Investigation of Tumor Microenvironment and Antitumor Immunity With IOBR, **Med Research**, 2025, [DOI:10.1002/mdr2.70001](https://onlinelibrary.wiley.com/doi/epdf/10.1002/mdr2.70001)
+
 ## `r if(knitr::is_html_output()) emo::ji("time")` Major Updates
 
 ```{r echo=FALSE, fig.cap='The workflow of IOBR', out.width='95%', fig.asp=.85, fig.align='center'}

@@ -28,7 +28,7 @@ library(IOBR)
 ```
 
 
-## 📍 How to update IOBR
+## 📌 How to update IOBR
 
 ``` r
 detach("package:IOBR")

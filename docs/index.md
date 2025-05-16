@@ -1,7 +1,7 @@
 --- 
 title: "IOBR (Immuno-Oncology Biological Research)"
 author: "Dongqiang Zeng, Yiran Fang"
-date: "2024-11-24"
+date: "2025-05-16"
 output:
   pdf_document: default
   html_document:
@@ -48,7 +48,9 @@ This R package integrates 8 published methods for decoding the tumour microenvir
 
 ## 🏆 Citations
 
-Zeng DQ, Fang YR, … , Yu GC, Liao WJ.Enhancing Immuno-Oncology Investigations Through Multidimensional Decoding of Tumour Microenvironment with IOBR 2.0, **Cell Reports Methods**, 2024 [https://doi.org/10.1016/j.crmeth.2024.100910](https://doi.org/10.1016/j.crmeth.2024.100910)
+Zeng DQ, Fang YR, … , Yu GC, Liao WJ. Enhancing Immuno-Oncology Investigations Through Multidimensional Decoding of Tumour Microenvironment with IOBR 2.0, **Cell Reports Methods**, 2024 [https://doi.org/10.1016/j.crmeth.2024.100910](https://doi.org/10.1016/j.crmeth.2024.100910)
+
+Fang YR, …, Liao WJ, Zeng DQ, Systematic Investigation of Tumor Microenvironment and Antitumor Immunity With IOBR, **Med Research**, 2025, [DOI:10.1002/mdr2.70001](https://onlinelibrary.wiley.com/doi/epdf/10.1002/mdr2.70001)
 
 ## ⏳ Major Updates
 

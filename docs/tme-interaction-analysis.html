@@ -23,7 +23,7 @@
 <meta name="author" content="Dongqiang Zeng, Yiran Fang" />
 
 
-<meta name="date" content="2024-11-24" />
+<meta name="date" content="2025-05-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -157,8 +157,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
-<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 🗂 Main Functions of IOBR</a></li>
-<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌎 Current working environment</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 👆 Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌐 Current working environment</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
 <ul>
@@ -453,14 +453,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb251-9"><a href="tme-interaction-analysis.html#cb251-9" tabindex="-1"></a>                            <span class="at">min.pct    =</span> <span class="fl">0.10</span>)</span>
 <span id="cb251-10"><a href="tme-interaction-analysis.html#cb251-10" tabindex="-1"></a>top15 <span class="ot">&lt;-</span>  res<span class="sc">$</span>top_markers <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span> <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span>  dplyr<span class="sc">::</span><span class="fu">top_n</span>(<span class="dv">15</span>, avg_log2FC)</span>
 <span id="cb251-11"><a href="tme-interaction-analysis.html#cb251-11" tabindex="-1"></a>top15<span class="sc">$</span>gene</span></code></pre></div>
-<pre><code>##  [1] &quot;TMEM100&quot;  &quot;ADH1B&quot;    &quot;ABCA8&quot;    &quot;MAMDC2&quot;   &quot;SCN7A&quot;    &quot;LIPF&quot;    
-##  [7] &quot;C7&quot;       &quot;C2orf40&quot;  &quot;PGA4&quot;     &quot;OGN&quot;      &quot;GHRL&quot;     &quot;C6orf58&quot; 
-## [13] &quot;SCRG1&quot;    &quot;GIF&quot;      &quot;VIP&quot;      &quot;IFNG&quot;     &quot;CXCL10&quot;   &quot;IDO1&quot;    
-## [19] &quot;GZMB&quot;     &quot;CXCL11&quot;   &quot;GBP4&quot;     &quot;CXCL9&quot;    &quot;GNLY&quot;     &quot;AIM2&quot;    
-## [25] &quot;COL11A1&quot;  &quot;S100A2&quot;   &quot;SLCO1B3&quot;  &quot;KRT13&quot;    &quot;KISS1R&quot;   &quot;SERPINB2&quot;
-## [31] &quot;IL1A&quot;     &quot;PPBP&quot;     &quot;IL11&quot;     &quot;CXCL6&quot;    &quot;TREM1&quot;    &quot;PROK2&quot;   
-## [37] &quot;IL24&quot;     &quot;PI15&quot;     &quot;HCAR3&quot;    &quot;CLEC5A&quot;   &quot;IGFBP1&quot;   &quot;MAGEA2B&quot; 
-## [43] &quot;MAGEA6&quot;   &quot;MAGEA12&quot;  &quot;REG1B&quot;</code></pre>
+<pre><code>##  [1] &quot;C2orf40&quot;  &quot;LIPF&quot;     &quot;OGN&quot;      &quot;ADH1B&quot;    &quot;PGA4&quot;     &quot;SCN7A&quot;   
+##  [7] &quot;C7&quot;       &quot;MAMDC2&quot;   &quot;ABCA8&quot;    &quot;GIF&quot;      &quot;SCRG1&quot;    &quot;C6orf58&quot; 
+## [13] &quot;VIP&quot;      &quot;TMEM100&quot;  &quot;GHRL&quot;     &quot;IDO1&quot;     &quot;CXCL11&quot;   &quot;SLCO1B3&quot; 
+## [19] &quot;AIM2&quot;     &quot;IFNG&quot;     &quot;GZMB&quot;     &quot;CXCL10&quot;   &quot;GBP4&quot;     &quot;KRT13&quot;   
+## [25] &quot;CXCL9&quot;    &quot;GNLY&quot;     &quot;S100A2&quot;   &quot;COL11A1&quot;  &quot;SERPINB2&quot; &quot;KISS1R&quot;  
+## [31] &quot;IL1A&quot;     &quot;REG1B&quot;    &quot;PROK2&quot;    &quot;PI15&quot;     &quot;IL11&quot;     &quot;PPBP&quot;    
+## [37] &quot;CLEC5A&quot;   &quot;MAGEA6&quot;   &quot;MAGEA12&quot;  &quot;IGFBP1&quot;   &quot;TREM1&quot;    &quot;HCAR3&quot;   
+## [43] &quot;IL24&quot;     &quot;MAGEA2B&quot;  &quot;CXCL6&quot;</code></pre>
 <p>Heatmap visualisation using <code>Seurat</code>’s <code>DoHeatmap</code></p>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="tme-interaction-analysis.html#cb253-1" tabindex="-1"></a><span class="co">#Defining cluster colors</span></span>
 <span id="cb253-2"><a href="tme-interaction-analysis.html#cb253-2" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#2692a4&#39;</span>,<span class="st">&#39;#fc0d3a&#39;</span>,<span class="st">&#39;#ffbe0b&#39;</span>)</span>
@@ -508,21 +508,21 @@ The method calculates interaction weights for 813 ligand-receptor (LR) pairs. Fo
 <span id="cb260-9"><a href="tme-interaction-analysis.html#cb260-9" tabindex="-1"></a>                            <span class="at">min.pct    =</span> <span class="fl">0.10</span>)</span>
 <span id="cb260-10"><a href="tme-interaction-analysis.html#cb260-10" tabindex="-1"></a>top15 <span class="ot">&lt;-</span>  res<span class="sc">$</span>top_markers <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span> <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span>  dplyr<span class="sc">::</span><span class="fu">top_n</span>(<span class="dv">15</span>, avg_log2FC)</span>
 <span id="cb260-11"><a href="tme-interaction-analysis.html#cb260-11" tabindex="-1"></a>top15<span class="sc">$</span>gene</span></code></pre></div>
-<pre><code>##  [1] &quot;FN1-ITGA8&quot;          &quot;NCAM1-GFRA1&quot;        &quot;COL4A5-CD93&quot;       
-##  [4] &quot;NCAM1-FGFR1&quot;        &quot;TSLP-IL7R&quot;          &quot;F13A1-ITGA9&quot;       
-##  [7] &quot;GNAI2-P2RY12&quot;       &quot;ANGPTL1-TEK&quot;        &quot;FGF7-FGFR1-NRP1&quot;   
-## [10] &quot;LTF-LRP11&quot;          &quot;EFNB2-EPHA3&quot;        &quot;ADAM10-EFNA1-EPHA3&quot;
-## [13] &quot;SFRP1-FZD6&quot;         &quot;MYOC-FZD1&quot;          &quot;MYOC-FZD4&quot;         
-## [16] &quot;IFNG-IFNGR1-IFNGR2&quot; &quot;CXCL10-SDC4&quot;        &quot;GZMB-IGF2R&quot;        
-## [19] &quot;FASLG-FAS&quot;          &quot;HLA-B-HLA-E-KLRD1&quot;  &quot;TNFSF9-TNFRSF9&quot;    
-## [22] &quot;CCL5-SDC4&quot;          &quot;CCL8-CCR5&quot;          &quot;IL15-IL2RA&quot;        
-## [25] &quot;CCL8-CCR1&quot;          &quot;CCL7-ACKR4&quot;         &quot;CCL7-CXCR3&quot;        
-## [28] &quot;CCL7-CCR1&quot;          &quot;CCL7-CCR5&quot;          &quot;CCL7-CCR2&quot;         
-## [31] &quot;IL1A-IL1R1&quot;         &quot;IL1A-IL1R2&quot;         &quot;IL1A-IL1RAP&quot;       
-## [34] &quot;PPBP-CXCR1&quot;         &quot;OSM-IL6ST&quot;          &quot;OSM-OSMR&quot;          
-## [37] &quot;PPBP-CXCR2&quot;         &quot;VWF-TNFRSF11B&quot;      &quot;THBS1-TNFRSF11B&quot;   
-## [40] &quot;FN1-TNFRSF11B&quot;      &quot;TNFSF10-TNFRSF11B&quot;  &quot;TNFSF13-TNFRSF11B&quot; 
-## [43] &quot;EREG-EGFR&quot;          &quot;IL6-IL6ST&quot;          &quot;ANXA1-APP-FPR2&quot;</code></pre>
+<pre><code>##  [1] &quot;ANGPTL1-TEK&quot;        &quot;FN1-ITGA8&quot;          &quot;COL4A5-CD93&quot;       
+##  [4] &quot;GNAI2-P2RY12&quot;       &quot;NCAM1-GFRA1&quot;        &quot;FGF7-FGFR1-NRP1&quot;   
+##  [7] &quot;LTF-LRP11&quot;          &quot;SFRP1-FZD6&quot;         &quot;MYOC-FZD4&quot;         
+## [10] &quot;EFNB2-EPHA3&quot;        &quot;ADAM10-EFNA1-EPHA3&quot; &quot;MYOC-FZD1&quot;         
+## [13] &quot;TSLP-IL7R&quot;          &quot;NCAM1-FGFR1&quot;        &quot;F13A1-ITGA9&quot;       
+## [16] &quot;IFNG-IFNGR1-IFNGR2&quot; &quot;GZMB-IGF2R&quot;         &quot;HLA-B-HLA-E-KLRD1&quot; 
+## [19] &quot;CXCL10-SDC4&quot;        &quot;FASLG-FAS&quot;          &quot;CCL7-CCR1&quot;         
+## [22] &quot;CCL7-CCR5&quot;          &quot;CCL8-CCR5&quot;          &quot;CCL5-SDC4&quot;         
+## [25] &quot;CCL7-ACKR4&quot;         &quot;CCL8-CCR1&quot;          &quot;CCL7-CCR2&quot;         
+## [28] &quot;CCL7-CXCR3&quot;         &quot;TNFSF9-TNFRSF9&quot;     &quot;IL15-IL2RA&quot;        
+## [31] &quot;IL1A-IL1R1&quot;         &quot;IL1A-IL1R2&quot;         &quot;PPBP-CXCR2&quot;        
+## [34] &quot;IL1A-IL1RAP&quot;        &quot;FN1-TNFRSF11B&quot;      &quot;THBS1-TNFRSF11B&quot;   
+## [37] &quot;TNFSF10-TNFRSF11B&quot;  &quot;OSM-IL6ST&quot;          &quot;PPBP-CXCR1&quot;        
+## [40] &quot;VWF-TNFRSF11B&quot;      &quot;EREG-EGFR&quot;          &quot;OSM-OSMR&quot;          
+## [43] &quot;TNFSF13-TNFRSF11B&quot;  &quot;IL6-IL6ST&quot;          &quot;ANXA1-APP-FPR2&quot;</code></pre>
 <p>Heatmap visualisation using <code>Seurat</code>’s <code>DoHeatmap</code></p>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="tme-interaction-analysis.html#cb262-1" tabindex="-1"></a><span class="co">#cols &lt;- c(&#39;#2692a4&#39;,&#39;#fc0d3a&#39;,&#39;#ffbe0b&#39;)</span></span>
 <span id="cb262-2"><a href="tme-interaction-analysis.html#cb262-2" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">DoHeatmap</span>(res<span class="sc">$</span>sce, top15<span class="sc">$</span>gene, <span class="at">group.colors =</span> cols )<span class="sc">+</span></span>
@@ -536,19 +536,19 @@ The method calculates interaction weights for 813 ligand-receptor (LR) pairs. Fo
 <span id="cb264-4"><a href="tme-interaction-analysis.html#cb264-4" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(input, <span class="at">variable =</span> <span class="st">&quot;cluster&quot;</span>, <span class="at">signature =</span> top15<span class="sc">$</span>gene[<span class="dv">1</span>], <span class="at">jitter =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb264-5"><a href="tme-interaction-analysis.html#cb264-5" tabindex="-1"></a>              <span class="at">cols =</span>  cols, <span class="at">show_pvalue =</span> <span class="cn">TRUE</span>, <span class="at">size_of_pvalue =</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 8
-##   .y.       group1 group2        p   p.adj p.format p.signif method  
-##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
-## 1 signature TME3   TME2   4.69e-17 1.4e-16 &lt; 2e-16  ****     Wilcoxon
-## 2 signature TME3   TME1   9.94e-10 2  e- 9 9.9e-10  ****     Wilcoxon
-## 3 signature TME2   TME1   5.75e- 3 5.8e- 3 0.0058   **       Wilcoxon</code></pre>
+##   .y.       group1 group2           p     p.adj p.format p.signif method  
+##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+## 1 signature TME3   TME2   0.000000823 0.0000025 8.2e-07  ****     Wilcoxon
+## 2 signature TME3   TME1   0.0000336   0.000067  3.4e-05  ****     Wilcoxon
+## 3 signature TME2   TME1   0.649       0.65      0.65     ns       Wilcoxon</code></pre>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="tme-interaction-analysis.html#cb266-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(input, <span class="at">variable =</span> <span class="st">&quot;cluster&quot;</span>, <span class="at">signature =</span> top15<span class="sc">$</span>gene[<span class="dv">5</span>], </span>
 <span id="cb266-2"><a href="tme-interaction-analysis.html#cb266-2" tabindex="-1"></a>              <span class="at">jitter =</span> <span class="cn">TRUE</span>, <span class="at">cols =</span>  cols, <span class="at">show_pvalue =</span> <span class="cn">TRUE</span>, <span class="at">size_of_pvalue =</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
-## 1 signature TME3   TME2   9.17e-15 2.8 e-14 9.2e-15  ****     Wilcoxon
-## 2 signature TME3   TME1   2.15e- 5 4.30e- 5 2.2e-05  ****     Wilcoxon
-## 3 signature TME2   TME1   9.68e- 5 9.70e- 5 9.7e-05  ****     Wilcoxon</code></pre>
+## 1 signature TME3   TME2   5.86e-16 1.80e-15 5.9e-16  ****     Wilcoxon
+## 2 signature TME3   TME1   1.31e-10 2.6 e-10 1.3e-10  ****     Wilcoxon
+## 3 signature TME2   TME1   1.14e- 1 1.1 e- 1 0.11     ns       Wilcoxon</code></pre>
 <p>Combining the results obtained above</p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="tme-interaction-analysis.html#cb268-1" tabindex="-1"></a><span class="co"># if (!requireNamespace(&quot;patchwork&quot;, quietly = TRUE))   install.packages(&quot;patchwork&quot;)</span></span>
 <span id="cb268-2"><a href="tme-interaction-analysis.html#cb268-2" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
