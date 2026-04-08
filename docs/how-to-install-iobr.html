@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="The tutorial of IOBR package" />
   <meta name="twitter:image" content="https://iobr.github.io/book/./fig/cover.png" />
 
-<meta name="author" content="Dongqiang Zeng, Yiran Fang" />
+<meta name="author" content="Dongqiang Zeng, Yiran Fang, Qingcong Luo, Hongqian Qian, Shixiang Wang" />
 
 
 <meta name="date" content="2026-04-08" />
@@ -158,8 +158,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
-<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 👆 Main Functions of IOBR</a></li>
-<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌐 Current working environment</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> ☝️ Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌎 Current working environment</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
 <ul>
@@ -217,7 +217,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-6-timer"><i class="fa fa-check"></i><b>5.9</b> Method 6: TIMER</a></li>
 <li class="chapter" data-level="5.10" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-7-quantiseq"><i class="fa fa-check"></i><b>5.10</b> Method 7: quanTIseq</a></li>
 <li class="chapter" data-level="5.11" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-8-ips"><i class="fa fa-check"></i><b>5.11</b> Method 8: IPS</a></li>
-<li class="chapter" data-level="5.12" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#combination-of-above-deconvolution-results"><i class="fa fa-check"></i><b>5.12</b> Combination of above deconvolution results</a></a></li>
+<li class="chapter" data-level="5.12" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#combination-of-above-deconvolution-results"><i class="fa fa-check"></i><b>5.12</b> Combination of above deconvolution results</a></li>
 <li class="chapter" data-level="5.13" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#how-to-customise-the-signature-matrix-for-svr-and-lesi-algorithm"><i class="fa fa-check"></i><b>5.13</b> How to customise the signature matrix for <code>SVR</code> and <code>lesi</code> algorithm</a></li>
 <li class="chapter" data-level="5.14" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#references-2"><i class="fa fa-check"></i><b>5.14</b> References</a></li>
 </ul></li>
@@ -337,29 +337,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 1</span> <strong>How to install IOBR</strong><a href="how-to-install-iobr.html#how-to-install-iobr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="install-dependency-packages" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> ⏳ Install Dependency Packages<a href="how-to-install-iobr.html#install-dependency-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>It is essential that you have R 3.6.3 or above already installed on your computer or server. IOBR is a pipeline that utilizes many other R packages that are currently available from CRAN, Bioconductor and GitHub.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="how-to-install-iobr.html#cb1-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
-<span id="cb1-2"><a href="how-to-install-iobr.html#cb1-2" tabindex="-1"></a>depens<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&#39;tibble&#39;</span>, <span class="st">&#39;survival&#39;</span>, <span class="st">&#39;survminer&#39;</span>, <span class="st">&#39;limma&#39;</span>, <span class="st">&quot;DESeq2&quot;</span>,<span class="st">&quot;devtools&quot;</span>, <span class="st">&#39;limSolve&#39;</span>, <span class="st">&#39;GSVA&#39;</span>, <span class="st">&#39;e1071&#39;</span>, <span class="st">&#39;preprocessCore&#39;</span>, </span>
-<span id="cb1-3"><a href="how-to-install-iobr.html#cb1-3" tabindex="-1"></a>          <span class="st">&quot;devtools&quot;</span>, <span class="st">&quot;tidyHeatmap&quot;</span>, <span class="st">&quot;caret&quot;</span>, <span class="st">&quot;glmnet&quot;</span>, <span class="st">&quot;ppcor&quot;</span>,  <span class="st">&quot;timeROC&quot;</span>, <span class="st">&quot;pracma&quot;</span>, <span class="st">&quot;factoextra&quot;</span>, </span>
-<span id="cb1-4"><a href="how-to-install-iobr.html#cb1-4" tabindex="-1"></a>          <span class="st">&quot;FactoMineR&quot;</span>, <span class="st">&quot;WGCNA&quot;</span>, <span class="st">&quot;patchwork&quot;</span>, <span class="st">&#39;ggplot2&#39;</span>, <span class="st">&quot;biomaRt&quot;</span>, <span class="st">&#39;ggpubr&#39;</span>, <span class="st">&quot;PMCMRplus&quot;</span>)</span>
-<span id="cb1-5"><a href="how-to-install-iobr.html#cb1-5" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(depens)){</span>
-<span id="cb1-6"><a href="how-to-install-iobr.html#cb1-6" tabindex="-1"></a>  depen<span class="ot">&lt;-</span>depens[i]</span>
-<span id="cb1-7"><a href="how-to-install-iobr.html#cb1-7" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(depen, <span class="at">quietly =</span> <span class="cn">TRUE</span>))  BiocManager<span class="sc">::</span><span class="fu">install</span>(depen,<span class="at">update =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-8"><a href="how-to-install-iobr.html#cb1-8" tabindex="-1"></a>}</span></code></pre></div>
+<p>It is essential that you have R 3.6.3 or above already installed on your computer or server (R&gt;4.1 is recommended for some suggested packages). IOBR is a pipeline that utilizes many other R packages that are currently available from CRAN, Bioconductor (and GitHub).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="how-to-install-iobr.html#cb1-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;pak&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;pak&quot;</span>)</span></code></pre></div>
 </div>
 <div id="install-iobr-package" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> 💻 Install IOBR package<a href="how-to-install-iobr.html#install-iobr-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When the dependent environments are built, users are able to install IOBR from github by typing the following code into your R session:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="how-to-install-iobr.html#cb2-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;IOBR&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))  devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;IOBR/IOBR&quot;</span>)</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="how-to-install-iobr.html#cb2-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;IOBR&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">&quot;IOBR/IOBR&quot;</span>)</span>
 <span id="cb2-2"><a href="how-to-install-iobr.html#cb2-2" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="how-to-install-iobr.html#cb2-3" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span></code></pre></div>
 </div>
 <div id="how-to-update-iobr" class="section level2 hasAnchor" number="1.3">
 <h2><span class="header-section-number">1.3</span> 📌 How to update IOBR<a href="how-to-install-iobr.html#how-to-update-iobr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="how-to-install-iobr.html#cb3-1" tabindex="-1"></a><span class="fu">detach</span>(<span class="st">&quot;package:IOBR&quot;</span>)</span>
-<span id="cb3-2"><a href="how-to-install-iobr.html#cb3-2" tabindex="-1"></a>path<span class="ot">&lt;-</span><span class="fu">.libPaths</span>()</span>
-<span id="cb3-3"><a href="how-to-install-iobr.html#cb3-3" tabindex="-1"></a><span class="fu">remove.packages</span>(<span class="fu">c</span>(<span class="st">&#39;IOBR&#39;</span>), <span class="at">lib=</span><span class="fu">file.path</span>(path))</span>
-<span id="cb3-4"><a href="how-to-install-iobr.html#cb3-4" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;IOBR/IOBR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="how-to-install-iobr.html#cb3-1" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">&quot;IOBR/IOBR&quot;</span>)</span></code></pre></div>
+<p>More see <a href="https://github.com/IOBR/IOBR">IOBR README</a>.</p>
 
 </div>
 </div>

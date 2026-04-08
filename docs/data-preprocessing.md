@@ -111,13 +111,13 @@ head(anno_gc_vm32)
 Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.nih.gov/25894828/) using `GEOquery` R package.
 
 ``` r
-if (!requireNamespace("GEOquery", quietly = TRUE))  BiocManager::install("GEOquery")
+if (!requireNamespace("GEOquery", quietly = TRUE)) BiocManager::install("GEOquery")
 library("GEOquery")
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
-eset_geo<-getGEO(GEO     = "GSE62254", getGPL  = F, destdir = "./")
-eset    <-eset_geo[[1]]
-eset    <-exprs(eset)
-eset[1:5,1:5]
+eset_geo <- getGEO(GEO = "GSE62254", getGPL = F, destdir = "./")
+eset <- eset_geo[[1]]
+eset <- exprs(eset)
+eset[1:5, 1:5]
 ```
 
 ```
@@ -132,13 +132,15 @@ eset[1:5,1:5]
 ### For Array data: HGU133PLUS-2 (Affaymetrix)
 
 ``` r
-# Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. 
+# Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others.
 
-eset<-anno_eset(eset       = eset,
-                annotation = anno_hug133plus2,
-                symbol     = "symbol",
-                probe      = "probe_id",
-                method     = "mean")
+eset <- anno_eset(
+  eset = eset,
+  annotation = anno_hug133plus2,
+  symbol = "symbol",
+  probe = "probe_id",
+  method = "mean"
+)
 eset[1:5, 1:3]
 ```
 
@@ -159,8 +161,9 @@ Use the following code to check and install **UCSCXenaTools**.
 
 
 ``` r
-if (!requireNamespace("UCSCXenaTools", quietly = TRUE))  
+if (!requireNamespace("UCSCXenaTools", quietly = TRUE)) {
   BiocManager::install("ropensci/UCSCXenaTools")
+}
 ```
 
 **UCSCXenaTools** provides an R interface to access public cancer datasets from [UCSC Xena data hubs](https://xenabrowser.net/datapages/), including multiple pan-cancer studies like TCGA and PCAWG. You can directly access information of all datasets in R.
@@ -225,10 +228,10 @@ head(XenaData)
 ``` r
 library(UCSCXenaTools)
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
-eset_stad<-XenaGenerate(subset = XenaCohorts =="GDC TCGA Stomach Cancer (STAD)") %>% 
-  XenaFilter(filterDatasets    = "TCGA-STAD.star_counts.tsv") %>% 
+eset_stad <- XenaGenerate(subset = XenaCohorts == "GDC TCGA Stomach Cancer (STAD)") %>%
+  XenaFilter(filterDatasets = "TCGA-STAD.star_counts.tsv") %>%
   XenaQuery() %>%
-  XenaDownload() %>% 
+  XenaDownload() %>%
   XenaPrepare()
 eset_stad[1:5, 1:3]
 ```
@@ -237,7 +240,7 @@ As the metadata of this dataset have been stored in the `XeneData` data.frame. Y
 
 
 ``` r
-dplyr::filter(XenaData, XenaDatasets == "TCGA-STAD.star_counts.tsv") |> 
+dplyr::filter(XenaData, XenaDatasets == "TCGA-STAD.star_counts.tsv") |>
   as.list()
 ```
 
@@ -247,18 +250,18 @@ Transform gene expression matrix into TPM format, and conduct subsequent annotat
 
 ``` r
 # Remove Ensembl IDs with the suffix '_PAR_Y'.
-eset_stad<- eset_stad[!grepl("_PAR_Y$", eset_stad$Ensembl_ID), ]
+eset_stad <- eset_stad[!grepl("_PAR_Y$", eset_stad$Ensembl_ID), ]
 
 # Remove the version numbers in Ensembl ID.
-eset_stad$Ensembl_ID<-substring(eset_stad$Ensembl_ID, 1, 15)
-eset_stad<-column_to_rownames(eset_stad, var = "Ensembl_ID")
+eset_stad$Ensembl_ID <- substring(eset_stad$Ensembl_ID, 1, 15)
+eset_stad <- column_to_rownames(eset_stad, var = "Ensembl_ID")
 
 # Revert back to original format because the data from UCSC was log2(x+1)transformed.
-eset_stad<-(2^eset_stad)-1
+eset_stad <- (2^eset_stad) - 1
 
-eset_stad<-count2tpm(countMat = eset_stad, idType = "Ensembl", org="hsa", source = "local" )
+eset_stad <- count2tpm(countMat = eset_stad, idType = "Ensembl", org = "hsa", source = "local")
 
-eset_stad[1:5,1:5]
+eset_stad[1:5, 1:5]
 ```
 
 ## Identifying outlier samples
@@ -274,7 +277,7 @@ res <- find_outlier_samples(eset = eset, project = "ACRG", show_plot = TRUE)
 Removing potential outlier samples
 
 ``` r
-eset1 <- eset[, !colnames(eset)%in%res]
+eset1 <- eset[, !colnames(eset) %in% res]
 ```
 
 ## PCA analysis of molecular subtypes
@@ -282,20 +285,22 @@ eset1 <- eset[, !colnames(eset)%in%res]
 
 ``` r
 pdata_acrg <- load_data("pdata_acrg")
-res<- iobr_pca(data       = eset1,
-              is.matrix   = TRUE,
-              scale       = TRUE,
-              is.log      = FALSE,
-              pdata       = pdata_acrg, 
-              id_pdata    = "ID", 
-              group       = "Subtype",
-              geom.ind    = "point", 
-              cols        = "normal",
-              palette     = "jama", 
-              repel       = FALSE,
-              ncp         = 5,
-              axes        = c(1, 2),
-              addEllipses = TRUE)
+res <- iobr_pca(
+  data = eset1,
+  is.matrix = TRUE,
+  scale = TRUE,
+  is.log = FALSE,
+  pdata = pdata_acrg,
+  id_pdata = "ID",
+  group = "Subtype",
+  geom.ind = "point",
+  cols = "normal",
+  palette = "jama",
+  repel = FALSE,
+  ncp = 5,
+  axes = c(1, 2),
+  addEllipses = TRUE
+)
 ```
 
 ```
@@ -322,10 +327,10 @@ Obtaining another data set from GEO [Gastric cancer: GSE57303](https://www.ncbi.
 
 ``` r
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
-eset_geo<-getGEO(GEO     = "GSE57303", getGPL  = F, destdir = "./")
-eset2    <-eset_geo[[1]]
-eset2    <-exprs(eset2)
-eset2[1:5,1:5]
+eset_geo <- getGEO(GEO = "GSE57303", getGPL = F, destdir = "./")
+eset2 <- eset_geo[[1]]
+eset2 <- exprs(eset2)
+eset2[1:5, 1:5]
 ```
 
 ```
@@ -340,11 +345,13 @@ eset2[1:5,1:5]
 Annotation of genes in the expression matrix and removal of duplicate genes.
 
 ``` r
-eset2<-anno_eset(eset       = eset2,
-                 annotation = anno_hug133plus2,
-                 symbol     = "symbol",
-                 probe      = "probe_id",
-                 method     = "mean")
+eset2 <- anno_eset(
+  eset = eset2,
+  annotation = anno_hug133plus2,
+  symbol = "symbol",
+  probe = "probe_id",
+  method = "mean"
+)
 eset2[1:5, 1:5]
 ```
 
@@ -360,18 +367,20 @@ eset2[1:5, 1:5]
 
 
 ``` r
-eset_com <- remove_batcheffect( eset1       = eset1,  
-                                eset2       = eset2,   
-                                eset3       = NULL,
-                                id_type     = "symbol",
-                                data_type   = "array", 
-                                cols        = "normal", 
-                                palette     = "jama", 
-                                log2        = TRUE, 
-                                check_eset  = TRUE,
-                                adjust_eset = TRUE,
-                                repel       = FALSE,
-                                path        = "result")
+eset_com <- remove_batcheffect(
+  eset1 = eset1,
+  eset2 = eset2,
+  eset3 = NULL,
+  id_type = "symbol",
+  data_type = "array",
+  cols = "normal",
+  palette = "jama",
+  log2 = TRUE,
+  check_eset = TRUE,
+  adjust_eset = TRUE,
+  repel = FALSE,
+  path = "result"
+)
 ```
 
 ```

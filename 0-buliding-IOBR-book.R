@@ -1,7 +1,3 @@
-
-
-
-
 library(usethis)
 # usethis::use_git()
 # use_github(organisation = "DongqiangZeng0808")
@@ -17,9 +13,10 @@ library(usethis)
 # remotes::install_github("hadley/emo")
 
 library(future)
-options(future.globals.maxSize = 8 * 1024^3)  # 2GB
+options(future.globals.maxSize = 8 * 1024^3) # 2GB
 
 
-bookdown::render_book("index.Rmd", output_format="bookdown::gitbook", encoding="UTF-8")
-
-
+bookdown::render_book("index.Rmd",
+  output_format = "bookdown::gitbook",
+  encoding = "UTF-8", output_dir = "docs"
+)

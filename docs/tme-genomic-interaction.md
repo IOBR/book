@@ -19,8 +19,9 @@ R Bioconductor package **[TCGAbiolinks](https://bioconductor.org/packages/TCGAbi
 
 
 ``` r
-if (!requireNamespace("TCGAbiolinks", quietly = TRUE))
+if (!requireNamespace("TCGAbiolinks", quietly = TRUE)) {
   BiocManager::install("TCGAbiolinks")
+}
 ```
 
 Then you can query, download and prepare the required dataset.
@@ -29,10 +30,10 @@ Then you can query, download and prepare the required dataset.
 ``` r
 library(TCGAbiolinks)
 query <- GDCquery(
-  project = "TCGA-STAD", 
-  data.category = "Simple Nucleotide Variation", 
+  project = "TCGA-STAD",
+  data.category = "Simple Nucleotide Variation",
   access = "open",
-  data.type = "Masked Somatic Mutation", 
+  data.type = "Masked Somatic Mutation",
   workflow.type = "Aliquot Ensemble Somatic Variant Merging and Masking"
 )
 GDCdownload(query)
@@ -51,7 +52,7 @@ In this example, we used the maf file of TCGA-STAD to extract the SNPs in it,and
 ```
 
 ``` r
-mut_list <- make_mut_matrix(maf = maf, isTCGA   = T, category = "multi")
+mut_list <- make_mut_matrix(maf = maf, isTCGA = T, category = "multi")
 ```
 
 ```
@@ -65,7 +66,7 @@ mut_list <- make_mut_matrix(maf = maf, isTCGA   = T, category = "multi")
 ##   FLG
 ## -Processing clinical data
 ## --Missing clinical data
-## -Finished in 3.058s elapsed (3.189s cpu)
+## -Finished in 3.097s elapsed (3.213s cpu)
 ```
 
 ```
@@ -91,19 +92,24 @@ The microenvironmental data from the TCGA-STAD expression matrix was merged. The
 
 ``` r
 tcga_stad_sig <- load_data("tcga_stad_sig")
-res <- tryCatch({
-  find_mutations(mutation_matrix     = mut, 
-                 signature_matrix    = tcga_stad_sig, 
-                 id_signature_matrix = "ID", 
-                 signature           = "CD_8_T_effector",
-                 palette             = "nrc",
-                 min_mut_freq        = 0.01, 
-                 plot                = TRUE, 
-                 jitter              = TRUE)
-}, error = function(e) {
-  message("find_mutations error: ", e$message)
-  NULL
-})
+res <- tryCatch(
+  {
+    find_mutations(
+      mutation_matrix = mut,
+      signature_matrix = tcga_stad_sig,
+      id_signature_matrix = "ID",
+      signature = "CD_8_T_effector",
+      palette = "nrc",
+      min_mut_freq = 0.01,
+      plot = TRUE,
+      jitter = TRUE
+    )
+  },
+  error = function(e) {
+    message("find_mutations error: ", e$message)
+    NULL
+  }
+)
 ```
 
 ```
@@ -155,15 +161,16 @@ As its name, the R package **[TCGAmutations](https://github.com/PoisonAlien/TCGA
 
 
 ``` r
-if (!requireNamespace("TCGAmutations", quietly = TRUE))
+if (!requireNamespace("TCGAmutations", quietly = TRUE)) {
   BiocManager::install("PoisonAlien/TCGAmutations")
+}
 ```
 
 It's quite simple to use:
 
 
 ``` r
-maf = TCGAmutations::tcga_load(study = "STAD")
+maf <- TCGAmutations::tcga_load(study = "STAD")
 # Change `source` argument to Firehose for MAF files from Broad Firehose
 # maf = TCGAmutations::tcga_load(study = "STAD", source = "Firehose")
 ```

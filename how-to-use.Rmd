@@ -66,6 +66,8 @@ knitr::include_graphics(rep("./fig/IOBR-Package.png", 1))
   * **percent_bar_plot()**: create a percent bar plot based on the given data. The input is a data frame, with x and y-axis variables specified.
 </br>
 
+More details of the functions and their parameters can be found in the [IOBR reference manual](https://iobr.github.io/IOBR/reference/index.html).
+
 
 ## `r if(knitr::is_html_output()) emo::ji("world")` Current working environment
 

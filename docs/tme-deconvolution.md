@@ -4,7 +4,9 @@
 This section demonstrates various algorithms for parsing the tumour microenvironment using data from the bulk transcriptome. We also describe how to construct the reference signature matrix for the popular SVR algorithm (CIBERSORT) from single-cell data.
 
 ## Loading packages
+
 Load the IOBR package in your R session after the installation is complete:
+
 
 ``` r
 library(IOBR)
@@ -14,15 +16,17 @@ options(future.globals.maxSize = 8 * 1024^3)
 ```
 
 ## Downloading data for example
+
 Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.nih.gov/25894828/) using `GEOquery` R package.
 
+
 ``` r
-if (!requireNamespace("GEOquery", quietly = TRUE))  BiocManager::install("GEOquery")
+if (!requireNamespace("GEOquery", quietly = TRUE)) BiocManager::install("GEOquery")
 library("GEOquery")
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
-eset_geo <- getGEO(GEO = "GSE62254", getGPL  = F, destdir = "./")
-eset    <- eset_geo[[1]]
-eset    <- exprs(eset)
+eset_geo <- getGEO(GEO = "GSE62254", getGPL = F, destdir = "./")
+eset <- eset_geo[[1]]
+eset <- exprs(eset)
 eset[1:5, 1:5]
 ```
 
@@ -58,13 +62,15 @@ head(anno_hug133plus2)
 ```
 
 ``` r
-# Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. 
+# Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others.
 
-eset<-anno_eset(eset       = eset,
-                annotation = anno_hug133plus2,
-                symbol     = "symbol",
-                probe      = "probe_id",
-                method     = "mean")
+eset <- anno_eset(
+  eset = eset,
+  annotation = anno_hug133plus2,
+  symbol = "symbol",
+  probe = "probe_id",
+  method = "mean"
+)
 eset[1:5, 1:3]
 ```
 
@@ -112,16 +118,20 @@ eset_acrg[1:5, 1:3]
 ## COX2           4.250288   4.283714   4.270508
 ## LOC101928826   4.219303   4.219670   4.213252
 ```
+
 Check detail parameters of the function
+
 
 ``` r
 # help(deconvo_tme)
+# or ?deconvo_tme
 ```
 
 ## Method 1: CIBERSORT
 
+
 ``` r
-cibersort<-deconvo_tme(eset = eset_acrg, method = "cibersort", arrays = TRUE, perm = 100 )
+cibersort <- deconvo_tme(eset = eset_acrg, method = "cibersort", arrays = TRUE, perm = 100)
 ```
 
 ```
@@ -135,7 +145,7 @@ cibersort<-deconvo_tme(eset = eset_acrg, method = "cibersort", arrays = TRUE, pe
 
 ``` r
 # head(cibersort)
-res<-cell_bar_plot(input = cibersort[1:12,], features = colnames(cibersort)[3:24], title = "CIBERSORT Cell Fraction")
+res <- cell_bar_plot(input = cibersort[1:12, ], features = colnames(cibersort)[3:24], title = "CIBERSORT Cell Fraction")
 ```
 
 ```
@@ -146,11 +156,18 @@ res<-cell_bar_plot(input = cibersort[1:12,], features = colnames(cibersort)[3:24
 ## ℹ Random palettes: 1 (palette1), 2 (palette2), 3 (palette3), 4 (palette4)
 ```
 
+``` r
+res
+```
+
+<img src="tme-deconvolution_files/figure-html/unnamed-chunk-7-1.png" alt="" width="816" />
+
 ## Method 2: EPIC
+
 
 ``` r
 # help(deconvo_epic)
-epic<-deconvo_tme(eset = eset_acrg, method = "epic", arrays = TRUE)
+epic <- deconvo_tme(eset = eset_acrg, method = "epic", arrays = TRUE)
 ```
 
 ```
@@ -195,8 +212,9 @@ head(epic)
 
 ## Method 3: MCPcounter
 
+
 ``` r
-mcp<-deconvo_tme(eset = eset_acrg, method = "mcpcounter")
+mcp <- deconvo_tme(eset = eset_acrg, method = "mcpcounter")
 ```
 
 ```
@@ -231,9 +249,11 @@ head(mcp)
 
 ## Method 4: xCELL
 
+
 ``` r
-xcell<-deconvo_tme(eset = eset_acrg, method = "xcell", arrays = TRUE)
+xcell <- deconvo_tme(eset = eset_acrg, method = "xcell", arrays = TRUE)
 ```
+
 
 ``` r
 head(xcell)
@@ -260,8 +280,9 @@ head(xcell)
 
 ## Method 5: ESTIMATE
 
+
 ``` r
-estimate<-deconvo_tme(eset = eset_acrg, method = "estimate")
+estimate <- deconvo_tme(eset = eset_acrg, method = "estimate")
 ```
 
 ```
@@ -289,8 +310,9 @@ head(estimate)
 
 ## Method 6: TIMER
 
+
 ``` r
-timer<-deconvo_tme(eset = eset_acrg, method = "timer", group_list = rep("stad",dim(eset_acrg)[2]))
+timer <- deconvo_tme(eset = eset_acrg, method = "timer", group_list = rep("stad", dim(eset_acrg)[2]))
 head(timer)
 ```
 
@@ -309,8 +331,9 @@ head(timer)
 
 ## Method 7: quanTIseq
 
+
 ``` r
-quantiseq<-deconvo_tme(eset = eset_acrg, tumor = TRUE, arrays = TRUE, scale_mrna = TRUE, method = "quantiseq")
+quantiseq <- deconvo_tme(eset = eset_acrg, tumor = TRUE, arrays = TRUE, scale_mrna = TRUE, method = "quantiseq")
 ```
 
 ```
@@ -367,7 +390,7 @@ head(quantiseq)
 ```
 
 ``` r
-res<-cell_bar_plot(input = quantiseq[1:12, ], id = "ID", features = colnames(quantiseq)[2:12], title = "quanTIseq Cell Fraction")
+res <- cell_bar_plot(input = quantiseq[1:12, ], id = "ID", features = colnames(quantiseq)[2:12], title = "quanTIseq Cell Fraction")
 ```
 
 ```
@@ -380,8 +403,9 @@ res<-cell_bar_plot(input = quantiseq[1:12, ], id = "ID", features = colnames(qua
 
 ## Method 8: IPS
 
+
 ``` r
-ips<-deconvo_tme(eset = eset_acrg, method = "ips", plot= FALSE)
+ips <- deconvo_tme(eset = eset_acrg, method = "ips", plot = FALSE)
 head(ips)
 ```
 
@@ -397,17 +421,18 @@ head(ips)
 ## 6 GSM1523746    1.94  0.458 -0.346  0.261    2.31       8
 ```
 
-## Combination of above deconvolution results</a>
+## Combination of above deconvolution results
+
 
 ``` r
-tme_combine<-cibersort %>% 
-  inner_join(.,mcp,by       = "ID") %>% 
-  inner_join(.,xcell,by     = "ID") %>%
-  inner_join(.,epic,by      = "ID") %>% 
-  inner_join(.,estimate,by  = "ID") %>% 
-  inner_join(.,timer,by     = "ID") %>% 
-  inner_join(.,quantiseq,by = "ID") %>% 
-  inner_join(.,ips,by       = "ID")
+tme_combine <- cibersort %>%
+  inner_join(., mcp, by = "ID") %>%
+  inner_join(., xcell, by = "ID") %>%
+  inner_join(., epic, by = "ID") %>%
+  inner_join(., estimate, by = "ID") %>%
+  inner_join(., timer, by = "ID") %>%
+  inner_join(., quantiseq, by = "ID") %>%
+  inner_join(., ips, by = "ID")
 dim(tme_combine)
 ```
 
@@ -435,7 +460,7 @@ Data prepare using Seurat's standard pipeline.
 ``` r
 pbmc <- FindVariableFeatures(pbmc, selection.method = "vst", nfeatures = 2000, verbose = FALSE)
 pbmc <- NormalizeData(pbmc, normalization.method = "LogNormalize", scale.factor = 10000, verbose = FALSE)
-pbmc <- ScaleData(pbmc, features =  rownames(pbmc), verbose = FALSE)
+pbmc <- ScaleData(pbmc, features = rownames(pbmc), verbose = FALSE)
 pbmc <- RunPCA(pbmc, features = VariableFeatures(object = pbmc), verbose = FALSE)
 pbmc <- FindNeighbors(pbmc, dims = 1:10, verbose = FALSE)
 pbmc <- FindClusters(pbmc, resolution = 0.5, verbose = FALSE)
@@ -450,7 +475,7 @@ pbmc$celltype <- Idents(pbmc)
 Generate reference matrix using `generateRef_seurat` function.
 
 ``` r
-sm<- generateRef_seurat(sce = pbmc, celltype = "celltype", slot_out = "data")
+sm <- generateRef_seurat(sce = pbmc, celltype = "celltype", slot_out = "data")
 ```
 
 ```
@@ -491,7 +516,7 @@ Load the bulk RNA-seq data
 ``` r
 eset_stad <- load_data("eset_stad")
 eset <- count2tpm(countMat = eset_stad, source = "local", idType = "ensembl")
-svr<- deconvo_tme(eset = eset, reference  = sm,  method = "svr", arrays  = FALSE, absolute.mode = FALSE, perm = 100)
+svr <- deconvo_tme(eset = eset, reference = sm, method = "svr", arrays = FALSE, absolute.mode = FALSE, perm = 100)
 head(svr)
 ```
 
@@ -514,7 +539,7 @@ head(svr)
 
 
 ``` r
-res<-cell_bar_plot(input = svr, features = colnames(svr)[2:10], title = "SVR Cell Fraction")
+res <- cell_bar_plot(input = svr, features = colnames(svr)[2:10], title = "SVR Cell Fraction")
 ```
 
 

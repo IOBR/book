@@ -36,45 +36,43 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 # Load the annotation file `anno_hug133plus2` in IOBR.
 anno_hug133plus2 <- load_data("anno_hug133plus2")
 head(anno_hug133plus2)
-
 ```
 
 ```{r,message=FALSE,warning=FALSE}
 # Load the annotation file `anno_grch38` in IOBR.
 anno_grch38 <- load_data("anno_grch38")
 head(anno_grch38)
-
 ```
 
 ```{r,message=FALSE,warning=FALSE}
 # Load the annotation file `anno_gc_vm32` in IOBR for mouse RNAseq data
 anno_gc_vm32 <- load_data("anno_gc_vm32")
 head(anno_gc_vm32)
-
 ```
 
 ## Download array data using `GEOquery`
 Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.nih.gov/25894828/) using `GEOquery` R package.
 ```{r,message=FALSE,warning=FALSE}
-if (!requireNamespace("GEOquery", quietly = TRUE))  BiocManager::install("GEOquery")
+if (!requireNamespace("GEOquery", quietly = TRUE)) BiocManager::install("GEOquery")
 library("GEOquery")
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
-eset_geo<-getGEO(GEO     = "GSE62254", getGPL  = F, destdir = "./")
-eset    <-eset_geo[[1]]
-eset    <-exprs(eset)
-eset[1:5,1:5]
+eset_geo <- getGEO(GEO = "GSE62254", getGPL = F, destdir = "./")
+eset <- eset_geo[[1]]
+eset <- exprs(eset)
+eset[1:5, 1:5]
 ```
 
 ### For Array data: HGU133PLUS-2 (Affaymetrix)
 ```{r,message=FALSE,warning=FALSE}
+# Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others.
 
-# Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. 
-
-eset<-anno_eset(eset       = eset,
-                annotation = anno_hug133plus2,
-                symbol     = "symbol",
-                probe      = "probe_id",
-                method     = "mean")
+eset <- anno_eset(
+  eset = eset,
+  annotation = anno_hug133plus2,
+  symbol = "symbol",
+  probe = "probe_id",
+  method = "mean"
+)
 eset[1:5, 1:3]
 ```
 
@@ -85,8 +83,9 @@ In this section, we are going to download RNA-seq data from The Cancer Genome At
 Use the following code to check and install **UCSCXenaTools**.
 
 ```{r, eval=FALSE}
-if (!requireNamespace("UCSCXenaTools", quietly = TRUE))  
+if (!requireNamespace("UCSCXenaTools", quietly = TRUE)) {
   BiocManager::install("ropensci/UCSCXenaTools")
+}
 ```
 
 **UCSCXenaTools** provides an R interface to access public cancer datasets from [UCSC Xena data hubs](https://xenabrowser.net/datapages/), including multiple pan-cancer studies like TCGA and PCAWG. You can directly access information of all datasets in R.
@@ -104,10 +103,10 @@ head(XenaData)
 ```{r, eval=FALSE}
 library(UCSCXenaTools)
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
-eset_stad<-XenaGenerate(subset = XenaCohorts =="GDC TCGA Stomach Cancer (STAD)") %>% 
-  XenaFilter(filterDatasets    = "TCGA-STAD.star_counts.tsv") %>% 
+eset_stad <- XenaGenerate(subset = XenaCohorts == "GDC TCGA Stomach Cancer (STAD)") %>%
+  XenaFilter(filterDatasets = "TCGA-STAD.star_counts.tsv") %>%
   XenaQuery() %>%
-  XenaDownload() %>% 
+  XenaDownload() %>%
   XenaPrepare()
 eset_stad[1:5, 1:3]
 ```
@@ -115,7 +114,7 @@ eset_stad[1:5, 1:3]
 As the metadata of this dataset have been stored in the `XeneData` data.frame. You can easily recheck the dataset with code.
 
 ```{r, eval=FALSE}
-dplyr::filter(XenaData, XenaDatasets == "TCGA-STAD.star_counts.tsv") |> 
+dplyr::filter(XenaData, XenaDatasets == "TCGA-STAD.star_counts.tsv") |>
   as.list()
 ```
 
@@ -124,51 +123,52 @@ dplyr::filter(XenaData, XenaDatasets == "TCGA-STAD.star_counts.tsv") |>
 Transform gene expression matrix into TPM format, and conduct subsequent annotation. 
 ```{r, eval=FALSE}
 # Remove Ensembl IDs with the suffix '_PAR_Y'.
-eset_stad<- eset_stad[!grepl("_PAR_Y$", eset_stad$Ensembl_ID), ]
+eset_stad <- eset_stad[!grepl("_PAR_Y$", eset_stad$Ensembl_ID), ]
 
 # Remove the version numbers in Ensembl ID.
-eset_stad$Ensembl_ID<-substring(eset_stad$Ensembl_ID, 1, 15)
-eset_stad<-column_to_rownames(eset_stad, var = "Ensembl_ID")
+eset_stad$Ensembl_ID <- substring(eset_stad$Ensembl_ID, 1, 15)
+eset_stad <- column_to_rownames(eset_stad, var = "Ensembl_ID")
 
 # Revert back to original format because the data from UCSC was log2(x+1)transformed.
-eset_stad<-(2^eset_stad)-1
+eset_stad <- (2^eset_stad) - 1
 
-eset_stad<-count2tpm(countMat = eset_stad, idType = "Ensembl", org="hsa", source = "local" )
+eset_stad <- count2tpm(countMat = eset_stad, idType = "Ensembl", org = "hsa", source = "local")
 
-eset_stad[1:5,1:5]
+eset_stad[1:5, 1:5]
 ```
 
 ## Identifying outlier samples
 
 Take ACRG microarray data for example
 ```{r, message = F, warning = F,  fig.width= 7, fig.height=7, fig.align='center'}
-
 res <- find_outlier_samples(eset = eset, project = "ACRG", show_plot = TRUE)
 ```
 
 Removing potential outlier samples
 ```{r, message = F, }
-eset1 <- eset[, !colnames(eset)%in%res]
+eset1 <- eset[, !colnames(eset) %in% res]
 ```
 
 ## PCA analysis of molecular subtypes
 
 ```{r, message = F, warning = F, fig.width= 7.6, fig.height=7, fig.align='center'}
 pdata_acrg <- load_data("pdata_acrg")
-res<- iobr_pca(data       = eset1,
-              is.matrix   = TRUE,
-              scale       = TRUE,
-              is.log      = FALSE,
-              pdata       = pdata_acrg, 
-              id_pdata    = "ID", 
-              group       = "Subtype",
-              geom.ind    = "point", 
-              cols        = "normal",
-              palette     = "jama", 
-              repel       = FALSE,
-              ncp         = 5,
-              axes        = c(1, 2),
-              addEllipses = TRUE)
+res <- iobr_pca(
+  data = eset1,
+  is.matrix = TRUE,
+  scale = TRUE,
+  is.log = FALSE,
+  pdata = pdata_acrg,
+  id_pdata = "ID",
+  group = "Subtype",
+  geom.ind = "point",
+  cols = "normal",
+  palette = "jama",
+  repel = FALSE,
+  ncp = 5,
+  axes = c(1, 2),
+  addEllipses = TRUE
+)
 res
 ```
 
@@ -179,36 +179,40 @@ res
 Obtaining another data set from GEO [Gastric cancer: GSE57303](https://www.ncbi.nlm.nih.gov/pubmed/24935174/) using `GEOquery` R package.
 ```{r,message=FALSE,warning=FALSE}
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
-eset_geo<-getGEO(GEO     = "GSE57303", getGPL  = F, destdir = "./")
-eset2    <-eset_geo[[1]]
-eset2    <-exprs(eset2)
-eset2[1:5,1:5]
+eset_geo <- getGEO(GEO = "GSE57303", getGPL = F, destdir = "./")
+eset2 <- eset_geo[[1]]
+eset2 <- exprs(eset2)
+eset2[1:5, 1:5]
 ```
 
 Annotation of genes in the expression matrix and removal of duplicate genes.
 ```{r,message=FALSE,warning=FALSE}
-eset2<-anno_eset(eset       = eset2,
-                 annotation = anno_hug133plus2,
-                 symbol     = "symbol",
-                 probe      = "probe_id",
-                 method     = "mean")
+eset2 <- anno_eset(
+  eset = eset2,
+  annotation = anno_hug133plus2,
+  symbol = "symbol",
+  probe = "probe_id",
+  method = "mean"
+)
 eset2[1:5, 1:5]
 ```
 
 
 ```{r, message=FALSE, fig.width= 11, fig.height = 5, fig.align='center'}
-eset_com <- remove_batcheffect( eset1       = eset1,  
-                                eset2       = eset2,   
-                                eset3       = NULL,
-                                id_type     = "symbol",
-                                data_type   = "array", 
-                                cols        = "normal", 
-                                palette     = "jama", 
-                                log2        = TRUE, 
-                                check_eset  = TRUE,
-                                adjust_eset = TRUE,
-                                repel       = FALSE,
-                                path        = "result")
+eset_com <- remove_batcheffect(
+  eset1 = eset1,
+  eset2 = eset2,
+  eset3 = NULL,
+  id_type = "symbol",
+  data_type = "array",
+  cols = "normal",
+  palette = "jama",
+  log2 = TRUE,
+  check_eset = TRUE,
+  adjust_eset = TRUE,
+  repel = FALSE,
+  path = "result"
+)
 dim(eset_com)
 ```
 
@@ -216,7 +220,6 @@ dim(eset_com)
 ### For RNAseq count data
 
 ```{r, message=FALSE, fig.width= 11, fig.height = 5, fig.align='center'}
-
 eset_stad <- load_data("eset_stad")
 head(eset_stad)
 

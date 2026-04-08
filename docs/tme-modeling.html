@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="The tutorial of IOBR package" />
   <meta name="twitter:image" content="https://iobr.github.io/book/./fig/cover.png" />
 
-<meta name="author" content="Dongqiang Zeng, Yiran Fang" />
+<meta name="author" content="Dongqiang Zeng, Yiran Fang, Qingcong Luo, Hongqian Qian, Shixiang Wang" />
 
 
 <meta name="date" content="2026-04-08" />
@@ -158,8 +158,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
-<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 👆 Main Functions of IOBR</a></li>
-<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌐 Current working environment</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> ☝️ Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌎 Current working environment</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
 <ul>
@@ -217,7 +217,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-6-timer"><i class="fa fa-check"></i><b>5.9</b> Method 6: TIMER</a></li>
 <li class="chapter" data-level="5.10" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-7-quantiseq"><i class="fa fa-check"></i><b>5.10</b> Method 7: quanTIseq</a></li>
 <li class="chapter" data-level="5.11" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-8-ips"><i class="fa fa-check"></i><b>5.11</b> Method 8: IPS</a></li>
-<li class="chapter" data-level="5.12" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#combination-of-above-deconvolution-results"><i class="fa fa-check"></i><b>5.12</b> Combination of above deconvolution results</a></a></li>
+<li class="chapter" data-level="5.12" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#combination-of-above-deconvolution-results"><i class="fa fa-check"></i><b>5.12</b> Combination of above deconvolution results</a></li>
 <li class="chapter" data-level="5.13" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#how-to-customise-the-signature-matrix-for-svr-and-lesi-algorithm"><i class="fa fa-check"></i><b>5.13</b> How to customise the signature matrix for <code>SVR</code> and <code>lesi</code> algorithm</a></li>
 <li class="chapter" data-level="5.14" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#references-2"><i class="fa fa-check"></i><b>5.14</b> References</a></li>
 </ul></li>
@@ -338,24 +338,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Previous studies have shown that the tumour microenvironment is a complex ecosystem. No single cell or gene is sufficient to influence the phenotype. Therefore, machine learning models of the tumour microenvironment or models of tumour microenvironment typing are used to predict tumour phenotypes and treatment response. In the last section, we present common considerations and scenarios for constructing tumour microenvironment models.</p>
 <div id="loading-packages-7" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Loading packages<a href="tme-modeling.html#loading-packages-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="tme-modeling.html#cb367-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span>
-<span id="cb367-2"><a href="tme-modeling.html#cb367-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb367-3"><a href="tme-modeling.html#cb367-3" tabindex="-1"></a><span class="fu">library</span>(survival)</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="tme-modeling.html#cb369-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span>
+<span id="cb369-2"><a href="tme-modeling.html#cb369-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb369-3"><a href="tme-modeling.html#cb369-3" tabindex="-1"></a><span class="fu">library</span>(survival)</span></code></pre></div>
 </div>
 <div id="data-prepare" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> Data prepare<a href="tme-modeling.html#data-prepare" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Using data from IMvigor210, we demonstrate two common scenarios for building models of the tumour microenvironment: predicting survival and predicting treatment response (BOR, RECIEST 1.1).</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="tme-modeling.html#cb368-1" tabindex="-1"></a>imvigor210_sig <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;imvigor210_sig&quot;</span>)</span>
-<span id="cb368-2"><a href="tme-modeling.html#cb368-2" tabindex="-1"></a>imvigor210_pdata <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;imvigor210_pdata&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="tme-modeling.html#cb370-1" tabindex="-1"></a>imvigor210_sig <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;imvigor210_sig&quot;</span>)</span>
+<span id="cb370-2"><a href="tme-modeling.html#cb370-2" tabindex="-1"></a>imvigor210_pdata <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;imvigor210_pdata&quot;</span>)</span></code></pre></div>
 </div>
 <div id="input-data-overall-survival-prepare" class="section level2 hasAnchor" number="10.3">
 <h2><span class="header-section-number">10.3</span> Input data (overall survival) prepare<a href="tme-modeling.html#input-data-overall-survival-prepare" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="tme-modeling.html#cb369-1" tabindex="-1"></a>pdata_prog <span class="ot">&lt;-</span> imvigor210_pdata <span class="sc">%&gt;%</span> </span>
-<span id="cb369-2"><a href="tme-modeling.html#cb369-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(ID, OS_days, OS_status) <span class="sc">%&gt;%</span></span>
-<span id="cb369-3"><a href="tme-modeling.html#cb369-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OS_days =</span> <span class="fu">as.numeric</span>(.<span class="sc">$</span>OS_days)) <span class="sc">%&gt;%</span> </span>
-<span id="cb369-4"><a href="tme-modeling.html#cb369-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OS_status =</span> <span class="fu">as.numeric</span>(.<span class="sc">$</span>OS_status))</span>
-<span id="cb369-5"><a href="tme-modeling.html#cb369-5" tabindex="-1"></a></span>
-<span id="cb369-6"><a href="tme-modeling.html#cb369-6" tabindex="-1"></a><span class="fu">head</span>(pdata_prog)</span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="tme-modeling.html#cb371-1" tabindex="-1"></a>pdata_prog <span class="ot">&lt;-</span> imvigor210_pdata <span class="sc">%&gt;%</span></span>
+<span id="cb371-2"><a href="tme-modeling.html#cb371-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(ID, OS_days, OS_status) <span class="sc">%&gt;%</span></span>
+<span id="cb371-3"><a href="tme-modeling.html#cb371-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OS_days =</span> <span class="fu">as.numeric</span>(.<span class="sc">$</span>OS_days)) <span class="sc">%&gt;%</span></span>
+<span id="cb371-4"><a href="tme-modeling.html#cb371-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">OS_status =</span> <span class="fu">as.numeric</span>(.<span class="sc">$</span>OS_status))</span>
+<span id="cb371-5"><a href="tme-modeling.html#cb371-5" tabindex="-1"></a></span>
+<span id="cb371-6"><a href="tme-modeling.html#cb371-6" tabindex="-1"></a><span class="fu">head</span>(pdata_prog)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   ID              OS_days OS_status
 ##   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;
@@ -368,25 +368,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="constructing-survival-prediction-models" class="section level2 hasAnchor" number="10.4">
 <h2><span class="header-section-number">10.4</span> Constructing survival prediction models<a href="tme-modeling.html#constructing-survival-prediction-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="tme-modeling.html#cb371-1" tabindex="-1"></a>prognostic_result <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
-<span id="cb371-2"><a href="tme-modeling.html#cb371-2" tabindex="-1"></a>  <span class="fu">PrognosticModel</span>(<span class="at">x           =</span> imvigor210_sig, </span>
-<span id="cb371-3"><a href="tme-modeling.html#cb371-3" tabindex="-1"></a>                  <span class="at">y           =</span> pdata_prog, </span>
-<span id="cb371-4"><a href="tme-modeling.html#cb371-4" tabindex="-1"></a>                  <span class="at">scale       =</span> T, </span>
-<span id="cb371-5"><a href="tme-modeling.html#cb371-5" tabindex="-1"></a>                  <span class="at">seed        =</span> <span class="dv">123456</span>, </span>
-<span id="cb371-6"><a href="tme-modeling.html#cb371-6" tabindex="-1"></a>                  <span class="at">train_ratio =</span> <span class="fl">0.7</span>, </span>
-<span id="cb371-7"><a href="tme-modeling.html#cb371-7" tabindex="-1"></a>                  <span class="at">nfold       =</span> <span class="dv">8</span>,</span>
-<span id="cb371-8"><a href="tme-modeling.html#cb371-8" tabindex="-1"></a>                  <span class="at">plot        =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb371-9"><a href="tme-modeling.html#cb371-9" tabindex="-1"></a>}, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb371-10"><a href="tme-modeling.html#cb371-10" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;PrognosticModel error: &quot;</span>, e<span class="sc">$</span>message)</span>
-<span id="cb371-11"><a href="tme-modeling.html#cb371-11" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;Returning NULL - model construction failed&quot;</span>)</span>
-<span id="cb371-12"><a href="tme-modeling.html#cb371-12" tabindex="-1"></a>  <span class="cn">NULL</span></span>
-<span id="cb371-13"><a href="tme-modeling.html#cb371-13" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="tme-modeling.html#cb373-1" tabindex="-1"></a>prognostic_result <span class="ot">&lt;-</span> <span class="fu">PrognosticModel</span>(</span>
+<span id="cb373-2"><a href="tme-modeling.html#cb373-2" tabindex="-1"></a>  <span class="at">x =</span> imvigor210_sig,</span>
+<span id="cb373-3"><a href="tme-modeling.html#cb373-3" tabindex="-1"></a>  <span class="at">y =</span> pdata_prog,</span>
+<span id="cb373-4"><a href="tme-modeling.html#cb373-4" tabindex="-1"></a>  <span class="at">scale =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb373-5"><a href="tme-modeling.html#cb373-5" tabindex="-1"></a>  <span class="at">seed =</span> <span class="dv">123456</span>,</span>
+<span id="cb373-6"><a href="tme-modeling.html#cb373-6" tabindex="-1"></a>  <span class="at">train_ratio =</span> <span class="fl">0.7</span>,</span>
+<span id="cb373-7"><a href="tme-modeling.html#cb373-7" tabindex="-1"></a>  <span class="at">nfold =</span> <span class="dv">8</span>,</span>
+<span id="cb373-8"><a href="tme-modeling.html#cb373-8" tabindex="-1"></a>  <span class="at">plot =</span> <span class="cn">TRUE</span></span>
+<span id="cb373-9"><a href="tme-modeling.html#cb373-9" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="tme-modeling_files/figure-html/unnamed-chunk-4-1.png" alt="" width="672" /><img src="tme-modeling_files/figure-html/unnamed-chunk-4-2.png" alt="" width="672" /></p>
 </div>
 <div id="input-data-response-prepare" class="section level2 hasAnchor" number="10.5">
 <h2><span class="header-section-number">10.5</span> Input data (Response) prepare<a href="tme-modeling.html#input-data-response-prepare" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="tme-modeling.html#cb372-1" tabindex="-1"></a>pdata_group <span class="ot">&lt;-</span> imvigor210_pdata[<span class="sc">!</span>imvigor210_pdata<span class="sc">$</span>BOR_binary<span class="sc">==</span><span class="st">&quot;NA&quot;</span>,<span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>,<span class="st">&quot;BOR_binary&quot;</span>)]</span>
-<span id="cb372-2"><a href="tme-modeling.html#cb372-2" tabindex="-1"></a>pdata_group<span class="sc">$</span>BOR_binary <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(pdata_group<span class="sc">$</span>BOR_binary <span class="sc">==</span> <span class="st">&quot;R&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb372-3"><a href="tme-modeling.html#cb372-3" tabindex="-1"></a><span class="fu">head</span>(pdata_group)</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="tme-modeling.html#cb374-1" tabindex="-1"></a>pdata_group <span class="ot">&lt;-</span> imvigor210_pdata[<span class="sc">!</span>imvigor210_pdata<span class="sc">$</span>BOR_binary <span class="sc">==</span> <span class="st">&quot;NA&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;BOR_binary&quot;</span>)]</span>
+<span id="cb374-2"><a href="tme-modeling.html#cb374-2" tabindex="-1"></a>pdata_group<span class="sc">$</span>BOR_binary <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(pdata_group<span class="sc">$</span>BOR_binary <span class="sc">==</span> <span class="st">&quot;R&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb374-3"><a href="tme-modeling.html#cb374-3" tabindex="-1"></a><span class="fu">head</span>(pdata_group)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 2
 ##   ID              BOR_binary
 ##   &lt;chr&gt;                &lt;dbl&gt;
@@ -399,13 +396,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="constructing-prediction-models-for-response" class="section level2 hasAnchor" number="10.6">
 <h2><span class="header-section-number">10.6</span> Constructing prediction models for response<a href="tme-modeling.html#constructing-prediction-models-for-response" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="tme-modeling.html#cb374-1" tabindex="-1"></a>binom_res <span class="ot">&lt;-</span> <span class="fu">BinomialModel</span>(<span class="at">x           =</span> imvigor210_sig, </span>
-<span id="cb374-2"><a href="tme-modeling.html#cb374-2" tabindex="-1"></a>                           <span class="at">y           =</span> pdata_group, </span>
-<span id="cb374-3"><a href="tme-modeling.html#cb374-3" tabindex="-1"></a>                           <span class="at">seed        =</span> <span class="dv">123456</span>, </span>
-<span id="cb374-4"><a href="tme-modeling.html#cb374-4" tabindex="-1"></a>                           <span class="at">scale       =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb374-5"><a href="tme-modeling.html#cb374-5" tabindex="-1"></a>                           <span class="at">train_ratio =</span> <span class="fl">0.7</span>, </span>
-<span id="cb374-6"><a href="tme-modeling.html#cb374-6" tabindex="-1"></a>                           <span class="at">nfold       =</span> <span class="dv">8</span>, </span>
-<span id="cb374-7"><a href="tme-modeling.html#cb374-7" tabindex="-1"></a>                           <span class="at">plot        =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="tme-modeling.html#cb376-1" tabindex="-1"></a>binom_res <span class="ot">&lt;-</span> <span class="fu">BinomialModel</span>(</span>
+<span id="cb376-2"><a href="tme-modeling.html#cb376-2" tabindex="-1"></a>  <span class="at">x =</span> imvigor210_sig,</span>
+<span id="cb376-3"><a href="tme-modeling.html#cb376-3" tabindex="-1"></a>  <span class="at">y =</span> pdata_group,</span>
+<span id="cb376-4"><a href="tme-modeling.html#cb376-4" tabindex="-1"></a>  <span class="at">seed =</span> <span class="dv">123456</span>,</span>
+<span id="cb376-5"><a href="tme-modeling.html#cb376-5" tabindex="-1"></a>  <span class="at">scale =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb376-6"><a href="tme-modeling.html#cb376-6" tabindex="-1"></a>  <span class="at">train_ratio =</span> <span class="fl">0.7</span>,</span>
+<span id="cb376-7"><a href="tme-modeling.html#cb376-7" tabindex="-1"></a>  <span class="at">nfold =</span> <span class="dv">8</span>,</span>
+<span id="cb376-8"><a href="tme-modeling.html#cb376-8" tabindex="-1"></a>  <span class="at">plot =</span> <span class="cn">TRUE</span></span>
+<span id="cb376-9"><a href="tme-modeling.html#cb376-9" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="tme-modeling_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" /><img src="tme-modeling_files/figure-html/unnamed-chunk-6-2.png" alt="" width="672" /></p>
 </div>
 <div id="references-6" class="section level2 hasAnchor" number="10.7">

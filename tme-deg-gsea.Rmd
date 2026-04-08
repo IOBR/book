@@ -13,18 +13,23 @@ library(tibble)
 ```
 
 ## Downloading data for example
+
 Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.nih.gov/25894828/) using `GEOquery` R package.
+
 ```{r,message=FALSE,warning=FALSE}
-if (!requireNamespace("GEOquery", quietly = TRUE))  BiocManager::install("GEOquery")
+if (!requireNamespace("GEOquery", quietly = TRUE)) BiocManager::install("GEOquery")
 library("GEOquery")
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
-eset_geo <- tryCatch({
-  getGEO(GEO = "GSE62254", getGPL = F, destdir = "./")
-}, error = function(e) {
-  message("Cannot download GSE62254 from GEO: ", e$message)
-  message("Using eset_example1 from IOBR package instead...")
-  NULL
-})
+eset_geo <- tryCatch(
+  {
+    getGEO(GEO = "GSE62254", getGPL = F, destdir = "./")
+  },
+  error = function(e) {
+    message("Cannot download GSE62254 from GEO: ", e$message)
+    message("Using eset_example1 from IOBR package instead...")
+    NULL
+  }
+)
 
 if (is.null(eset_geo)) {
   # Use eset_example1 as fallback - it has samples as rows and genes as columns
@@ -33,53 +38,36 @@ if (is.null(eset_geo)) {
   eset <- eset_geo[[1]]
   eset <- exprs(eset)
 }
-eset[1:5,1:5]
+eset[1:5, 1:5]
 ```
 
 ## Gene Annotation: HGU133PLUS-2 (Affaymetrix)
+
 ```{r,message=FALSE,warning=FALSE}
 # Gene annotation is only needed for GEO data (probe IDs)
 # eset_example1 already has gene symbols, so skip annotation when using fallback
 if (!is.null(eset_geo)) {
   # Conduct gene annotation using `anno_hug133plus2` file
   anno_hug133plus2 <- load_data("anno_hug133plus2")
-  eset <- anno_eset(eset       = eset,
-                    annotation = anno_hug133plus2,
-                    symbol     = "symbol",
-                    probe      = "probe_id",
-                    method     = "mean")
+  eset <- anno_eset(
+    eset = eset,
+    annotation = anno_hug133plus2,
+    symbol = "symbol",
+    probe = "probe_id",
+    method = "mean"
+  )
 }
 eset[1:5, 1:3]
 ```
 
 ## Determine TME subtype of gastric cancer using [TMEclassifier R package](https://github.com/LiaoWJLab/TMEclassifier)
-```{r, message=FALSE, warning=FALSE}
-if (!requireNamespace("TMEclassifier", quietly = TRUE))  devtools::install_github("LiaoWJLab/TMEclassifier")
-library(TMEclassifier)
-data("eset_example1")
 
-# Try to run tme_classifier, if it fails, use a simple example
-tme <- tryCatch({
-  tme_classifier(eset = t(eset_example1), scale = TRUE, array = TRUE)
-}, error = function(e) {
-  message("Note: TMEclassifier encountered an error: ", e$message)
-  message("Using simulated data for demonstration...")
-  
-  # Create simulated data for demonstration with matching IDs
-  set.seed(123)
-  n_samples <- ncol(eset_example1)
-  tme <- data.frame(
-    ID = colnames(eset_example1),
-    IE = runif(n_samples, 0, 1),
-    IS = runif(n_samples, 0, 1),
-    IA = runif(n_samples, 0, 1),
-    TMEcluster = sample(c("IA", "IE", "IS"), n_samples, replace = TRUE),
-    stringsAsFactors = FALSE
-  )
-  tme
-})
-table(tme$TMEcluster)
-head(tme)
+```{r, message=FALSE, warning=FALSE}
+if (!requireNamespace("TMEclassifier", quietly = TRUE)) remotes::install_github("LiaoWJLab/TMEclassifier", dependencies = TRUE)
+# Specified version of xgboost
+# install.packages("https://cran.r-project.org/src/contrib/Archive/xgboost/xgboost_1.5.2.1.tar.gz", repos = NULL)
+library(TMEclassifier)
+tme <- tme_classifier(eset = eset, scale = TRUE)
 ```
 
 ```{r}
@@ -88,58 +76,24 @@ head(tme)
 ```
 
 ## DEG analysis: method1
+
 Differential analysis of selected immune-activated and immune-expelled gastric cancers
 
 ```{r}
-# Use eset_example1 data which matches the tme data
-# Note: eset_example1 has samples as rows and genes as columns, so we need to transpose it
-pdata <- tme[!tme$TMEcluster=="IS", ]
-
-# Check what groups are available after filtering
-available_groups <- unique(pdata$TMEcluster)
-message("Available groups after filtering: ", paste(available_groups, collapse = ", "))
-
-# Try to run DEG analysis, create simulated results if it fails
-deg <- tryCatch({
-  # Only proceed if we have at least 2 groups
-  if (length(available_groups) >= 2) {
-    # Use the first two available groups for contrast
-    contrast_groups <- available_groups[1:2]
-    message("Using contrast: ", paste(contrast_groups, collapse = " vs "))
-    
-    iobr_deg(eset         = t(eset_example1),
-             annotation    = NULL,
-             pdata        = pdata,
-             group_id     = "TMEcluster",
-             pdata_id     = "ID",
-             array        = TRUE,
-             method       = "limma",
-             contrast     = contrast_groups,
-             path         = "result",
-             padj_cutoff  = 0.01,
-             logfc_cutoff = 0.5)
-  } else {
-    stop("Not enough groups for differential analysis")
-  }
-}, error = function(e) {
-  message("Note: iobr_deg encountered an error: ", e$message)
-  message("Creating simulated DEG results for demonstration...")
-  
-  # Create simulated DEG results
-  set.seed(123)
-  n_genes <- 100
-  deg_sim <- data.frame(
-    gene = paste0("Gene", 1:n_genes),
-    logFC = rnorm(n_genes, 0, 1),
-    AveExpr = rnorm(n_genes, 5, 2),
-    t = rnorm(n_genes, 0, 1),
-    P.Value = runif(n_genes, 0, 0.1),
-    adj.P.Val = runif(n_genes, 0, 0.05),
-    B = rnorm(n_genes, 0, 1)
-  )
-  rownames(deg_sim) <- deg_sim$gene
-  deg_sim
-})
+pdata <- tme[!tme$TMEcluster == "IS", ]
+deg <- iobr_deg(
+  eset = eset,
+  annotation = NULL,
+  pdata = pdata,
+  group_id = "TMEcluster",
+  pdata_id = "ID",
+  array = TRUE,
+  method = "limma",
+  contrast = c("IA", "IE"),
+  path = "result",
+  padj_cutoff = 0.01,
+  logfc_cutoff = 0.5
+)
 ```
 
 ## GSEA analysis based on differential express gene analysis results
@@ -150,23 +104,25 @@ Select the gene set list in IOBR's signature collection.
 head(deg)
 
 signature_collection <- load_data("signature_collection")
-sig_list <- signature_collection[c("TMEscoreB_CIR", "TMEscoreA_CIR", "DNA_replication", "Base_excision_repair",
-                                   "Pan_F_TBRs", "TGFb.myCAF", "Ferroptosis", "TLS_Nature", "Glycolysis")]
-sig_list
+sig_list <- signature_collection[c(
+  "TMEscoreB_CIR", "TMEscoreA_CIR", "DNA_replication", "Base_excision_repair",
+  "Pan_F_TBRs", "TGFb.myCAF", "Ferroptosis", "TLS_Nature", "Glycolysis"
+)]
 ```
 
 ```{r, eval=FALSE}
-gsea<-     sig_gsea(deg,
-                    genesets          = sig_list,
-                    path              = "result",
-                    gene_symbol       = "symbol",
-                    logfc             = "log2FoldChange",
-                    org               = "hsa",
-                    show_plot         = FALSE,
-                    msigdb            = TRUE,
-                    category          = "H",
-                    subcategory       = NULL,
-                    palette_bar       = "set2")
+gsea <- sig_gsea(deg,
+  genesets          = sig_list,
+  path              = "result",
+  gene_symbol       = "symbol",
+  logfc             = "log2FoldChange",
+  org               = "hsa",
+  show_plot         = FALSE,
+  msigdb            = TRUE,
+  category          = "H",
+  subcategory       = NULL,
+  palette_bar       = "set2"
+)
 ```
 
 ```{r echo=FALSE, fig.cap='GSEA of TME gent sets', out.width='95%', fig.asp=.85, fig.align='center'}
@@ -175,19 +131,20 @@ knitr::include_graphics(rep("./fig/gsea-1.png", 1))
 
 Hallmark gene signatures
 ```{r, eval=FALSE}
-gsea<-     sig_gsea(deg,
-                    genesets          = NULL,
-                    path              = "GSEA",
-                    gene_symbol       = "symbol",
-                    logfc             = "log2FoldChange",
-                    org               = "hsa",
-                    show_plot         = FALSE,
-                    msigdb            = TRUE,
-                    category          = "H",
-                    subcategory       = NULL,
-                    palette_bar       = "aaas",
-                    show_bar          = 5,
-                    show_gsea         = 6)
+gsea <- sig_gsea(deg,
+  genesets          = NULL,
+  path              = "GSEA",
+  gene_symbol       = "symbol",
+  logfc             = "log2FoldChange",
+  org               = "hsa",
+  show_plot         = FALSE,
+  msigdb            = TRUE,
+  category          = "H",
+  subcategory       = NULL,
+  palette_bar       = "aaas",
+  show_bar          = 5,
+  show_gsea         = 6
+)
 ```
 
 ```{r echo=FALSE, fig.cap='GSEA of Hallmark gent sets', out.width='95%', fig.asp=.85, fig.align='center'}
@@ -199,126 +156,51 @@ knitr::include_graphics(rep("./fig/gsea-2.png", 1))
 
 Identifing TME subtype-related differential genes using alternative approach (ANOVA-based)
 ```{r, message = F, warning = F}
-# Note: Using ANOVA-based approach instead of find_markers_in_bulk to avoid Seurat crash
-# This is a more stable and memory-efficient method
-
-# Transpose eset_example1 to get genes as rows and samples as columns
-eset_for_tme <- t(eset_example1)
-
-# CRITICAL FIX: Ensure sample IDs match between eset_for_tme and tme
-common_samples <- intersect(colnames(eset_for_tme), tme$ID)
-print(paste("Common samples:", length(common_samples)))
-
-# Filter tme to only include common samples
-tme_filtered <- tme[tme$ID %in% common_samples, ]
-
-# Calculate differential expression using simple ANOVA approach
-marker_results <- lapply(unique(tme_filtered$TMEcluster), function(cluster) {
-  cluster_samples <- tme_filtered$ID[tme_filtered$TMEcluster == cluster]
-  other_samples <- tme_filtered$ID[tme_filtered$TMEcluster != cluster]
-  
-  # Ensure samples exist in eset_for_tme
-  cluster_samples <- intersect(cluster_samples, colnames(eset_for_tme))
-  other_samples <- intersect(other_samples, colnames(eset_for_tme))
-  
-  if (length(cluster_samples) > 0 && length(other_samples) > 0) {
-    # Calculate mean expression for each gene
-    cluster_mean <- rowMeans(eset_for_tme[, cluster_samples, drop = FALSE])
-    other_mean <- rowMeans(eset_for_tme[, other_samples, drop = FALSE])
-    
-    # Calculate log fold change
-    logFC <- cluster_mean - other_mean
-    
-    data.frame(
-      gene = names(logFC),
-      cluster = cluster,
-      avg_log2FC = logFC,
-      stringsAsFactors = FALSE
-    )
-  } else {
-    NULL
-  }
-})
-
-# Remove NULL entries and combine results
-marker_results <- marker_results[!sapply(marker_results, is.null)]
-
-# CRITICAL FIX: Handle case where marker_results is empty
-if (length(marker_results) > 0) {
-  top_markers <- do.call(rbind, marker_results)
-  top15 <- top_markers %>%
-    dplyr::group_by(cluster) %>%
-    dplyr::top_n(15, avg_log2FC) %>%
-    dplyr::arrange(cluster, desc(avg_log2FC))
-} else {
-  # Create simulated results if no markers found
-  print("Warning: No markers found. Creating simulated results for demonstration.")
-  set.seed(123)
-  available_genes <- rownames(eset_for_tme)
-  top15 <- data.frame(
-    gene = sample(available_genes, 45),
-    cluster = rep(unique(tme_filtered$TMEcluster), each = 15)[1:45],
-    avg_log2FC = runif(45, 0.5, 3),
-    stringsAsFactors = FALSE
-  )
-}
-
-print("Top 15 genes per cluster:")
-print(top15$gene)
+library(Seurat)
+res <- find_markers_in_bulk(
+  pdata = tme,
+  eset = eset,
+  group = "TMEcluster",
+  nfeatures = 2000,
+  top_n = 50,
+  thresh.use = 0.15,
+  only.pos = TRUE,
+  min.pct = 0.10
+)
+top15 <- res$top_markers %>%
+  dplyr::group_by(cluster) %>%
+  dplyr::top_n(15, avg_log2FC)
+top15$gene
 ```
 
 Heatmap visualisation using `Seurat`'s `DoHeatmap`
 ```{r,fig.show= 'hide',message=FALSE}
-#定义分型对应的颜色
-cols <- c('#2692a4','#fc0d3a','#ffbe0b')
-# Note: Since we're using ANOVA-based approach instead of Seurat, 
-# we create a placeholder heatmap
-p1 <- ggplot() + 
-  annotate("text", x = 0.5, y = 0.5, 
-           label = "Heatmap visualization\n(ANOVA-based approach used)", 
-           size = 5) + 
-  theme_void()
+# 定义分型对应的颜色
+cols <- c("#2692a4", "#fc0d3a", "#ffbe0b")
+p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols) +
+  scale_fill_gradientn(colours = rev(colorRampPalette(RColorBrewer::brewer.pal(11, "RdBu"))(256)))
 ```
 
 Extracting variables from the expression matrix to merge with TME subtypes
 
 ```{r,fig.show= 'hide',message=FALSE}
-# CRITICAL FIX: Use eset_for_tme which was created earlier
-# Ensure genes match between top15 and eset_for_tme
-matching_genes <- intersect(top15$gene, rownames(eset_for_tme))
-print(paste("Matching genes:", length(matching_genes)))
+input <- combine_pd_eset(eset = eset, pdata = tme, feas = top15$gene, scale = T)
+p2 <- sig_box(input,
+  variable = "TMEcluster", signature = "IFNG", jitter = TRUE,
+  cols = cols, size_of_pvalue = 4
+)
 
-if (length(matching_genes) > 0) {
-  input <- combine_pd_eset(eset = eset_for_tme, pdata = tme, feas = matching_genes, scale = T)
-  print(paste("Combined data dimensions:", nrow(input), "x", ncol(input)))
-  
-  if (nrow(input) > 0) {
-    gene1 <- matching_genes[1]
-    gene2 <- matching_genes[2]
-    
-    p2 <- sig_box(input, variable = "TMEcluster", signature = gene1, jitter = TRUE,
-                  cols = cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
-    
-    p3 <- sig_box(input, variable = "TMEcluster", signature = gene2, 
-                  jitter = TRUE, cols = cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
-  } else {
-    print("Warning: No samples in combined data")
-    p2 <- ggplot() + annotate("text", x = 0.5, y = 0.5, label = "No data available", size = 5) + theme_void()
-    p3 <- p2
-  }
-} else {
-  print("Warning: No matching genes found")
-  p2 <- ggplot() + annotate("text", x = 0.5, y = 0.5, label = "No matching genes", size = 5) + theme_void()
-  p3 <- p2
-}
+p3 <- sig_box(input,
+  variable = "TMEcluster", signature = "IL1A",
+  jitter = TRUE, cols = cols, size_of_pvalue = 4
+)
 ```
 
 ```{r, fig.width= 12, fig.height=9, message = F, warning = F}
-
-if (!requireNamespace("patchwork", quietly = TRUE))   install.packages("patchwork")
+if (!requireNamespace("patchwork", quietly = TRUE)) install.packages("patchwork")
 library(patchwork)
-p <- (p1|p2/p3) + plot_layout(widths = c(2.3,1))
-p + plot_annotation(tag_levels = 'A')
+p <- (p1 | p2 / p3) + plot_layout(widths = c(2.3, 1))
+p + plot_annotation(tag_levels = "A")
 ```
 
 
@@ -326,126 +208,48 @@ p + plot_annotation(tag_levels = 'A')
 
 Calculate TME associated signatures-(through PCA method).
 ```{r, message = F, warning = F}
-signature_collection <- load_data("signature_collection")
-# Note: eset_example1 has samples as rows and genes as columns, so we need to transpose it
-sig_tme<-calculate_sig_score(pdata           = NULL,
-                             eset            = t(eset_example1),
-                             signature       = signature_collection,
-                             method          = "pca",
-                             mini_gene_count = 2)
+sig_tme <- calculate_sig_score(
+  pdata = NULL,
+  eset = eset,
+  signature = signature_collection,
+  method = "pca",
+  mini_gene_count = 2
+)
 sig_tme <- t(column_to_rownames(sig_tme, var = "ID"))
 sig_tme[1:5, 1:3]
 ```
 
 Finding signatures or cell types associated with TMEcluster
 ```{r, message = F, warning = F}
-# Note: Since sig_tme contains signature scores (not gene expression),
-# we use a different approach to find differentially expressed signatures
-# We'll use a simple ANOVA-based approach
+res <- find_markers_in_bulk(pdata = tme, eset = sig_tme, group = "TMEcluster", nfeatures = 1000, top_n = 20, min.pct = 0.10)
 
-# Perform ANOVA for each signature across TME clusters
-signature_pvalues <- sapply(rownames(sig_tme), function(sig) {
-  tryCatch({
-    data_temp <- data.frame(
-      score = sig_tme[sig, ],
-      cluster = tme$TMEcluster[match(colnames(sig_tme), tme$ID)]
-    )
-    data_temp <- na.omit(data_temp)
-    if (nrow(data_temp) > 0 && length(unique(data_temp$cluster)) > 1) {
-      anova_result <- aov(score ~ cluster, data = data_temp)
-      summary(anova_result)[[1]][["Pr(>F)"]][1]
-    } else {
-      NA
-    }
-  }, error = function(e) NA)
-})
+top15 <- res$top_markers %>%
+  dplyr::group_by(cluster) %>%
+  dplyr::top_n(15, avg_log2FC)
 
-# Remove NA values and select top signatures
-valid_pvalues <- signature_pvalues[!is.na(signature_pvalues)]
-valid_pvalues <- sort(valid_pvalues)
-
-# Select top 15 signatures (or fewer if not enough available)
-n_top <- min(15, length(valid_pvalues))
-if (n_top > 0) {
-  top_signatures <- names(valid_pvalues)[1:n_top]
-  # Ensure all signatures exist in sig_tme
-  top_signatures <- intersect(top_signatures, rownames(sig_tme))
-} else {
-  # Fallback: use first 15 signatures from sig_tme
-  top_signatures <- rownames(sig_tme)[1:min(15, nrow(sig_tme))]
-}
-
-# Create a simple heatmap visualization
-if (length(top_signatures) > 0) {
-  heatmap_data <- sig_tme[top_signatures, , drop = FALSE]
-  # Simple placeholder for heatmap
-  p1 <- ggplot() + 
-    annotate("text", x = 0.5, y = 0.5, 
-             label = paste("Top differentially expressed signatures:\n", 
-                          paste(top_signatures[1:min(5, length(top_signatures))], collapse = "\n")), 
-             size = 4, hjust = 0.5) + 
-    theme_void()
-} else {
-  p1 <- ggplot() + 
-    annotate("text", x = 0.5, y = 0.5, label = "No significant signatures found", size = 5) + 
-    theme_void()
-}
-
-# Create top15 data frame for downstream analysis
-top15 <- data.frame(
-  gene = top_signatures,
-  cluster = "All",
-  avg_log2FC = runif(length(top_signatures), 0.5, 3),
-  stringsAsFactors = FALSE
-)
+p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols) +
+  scale_fill_gradientn(colours = rev(colorRampPalette(RColorBrewer::brewer.pal(11, "RdBu"))(256)))
 ```
 
 ```{r,fig.show= 'hide', message=FALSE}
-top15$gene  <- gsub(top15$gene, pattern = "-", replacement = "\\_")
+top15$gene <- gsub(top15$gene, pattern = "-", replacement = "\\_")
+input <- combine_pd_eset(eset = sig_tme, pdata = tme, feas = top15$gene, scale = T)
 
-# Ensure genes exist in sig_tme before combining
-matching_genes <- intersect(top15$gene, rownames(sig_tme))
-print(paste("Matching genes for combine_pd_eset:", length(matching_genes)))
+p2 <- sig_box(input,
+  variable = "TMEcluster", signature = "CD_8_T_effector", jitter = TRUE,
+  cols = cols, size_of_pvalue = 4, size_of_font = 6
+)
 
-if (length(matching_genes) >= 2) {
-  input <- combine_pd_eset(eset = sig_tme, pdata = tme, feas = matching_genes, scale = T)
-  print(paste("Combined data dimensions:", nrow(input), "x", ncol(input)))
-  
-  if (nrow(input) > 0) {
-    sig1 <- matching_genes[1]
-    sig2 <- matching_genes[2]
-    
-    p2 <- tryCatch({
-      sig_box(input, variable = "TMEcluster", signature = sig1, jitter = TRUE,
-              cols = cols, show_pairwise_p = TRUE, size_of_pvalue = 4, size_of_font = 6)
-    }, error = function(e) {
-      message("sig_box error for sig1: ", e$message)
-      ggplot() + annotate("text", x = 0.5, y = 0.5, label = paste("Error:", e$message), size = 4) + theme_void()
-    })
-    
-    p3 <- tryCatch({
-      sig_box(input, variable = "TMEcluster", signature = sig2, jitter = TRUE,
-              cols = cols, show_pairwise_p = TRUE, size_of_pvalue = 4, size_of_font = 6)
-    }, error = function(e) {
-      message("sig_box error for sig2: ", e$message)
-      ggplot() + annotate("text", x = 0.5, y = 0.5, label = paste("Error:", e$message), size = 4) + theme_void()
-    })
-  } else {
-    print("Warning: No samples in combined data")
-    p2 <- ggplot() + annotate("text", x = 0.5, y = 0.5, label = "No data available", size = 5) + theme_void()
-    p3 <- p2
-  }
-} else {
-  print("Warning: Not enough matching genes")
-  p2 <- ggplot() + annotate("text", x = 0.5, y = 0.5, label = "Not enough matching genes", size = 5) + theme_void()
-  p3 <- p2
-}
+p3 <- sig_box(input,
+  variable = "TMEcluster", signature = "Neutrophils_Bindea_et_al",
+  jitter = TRUE, cols = cols, size_of_pvalue = 4, size_of_font = 6
+)
 ```
 
 
 ```{r, fig.width= 12, fig.height=9}
-p <- (p1|p2/p3) + plot_layout(widths = c(2.3,1))
-p + plot_annotation(tag_levels = 'A')
+p <- (p1 | p2 / p3) + plot_layout(widths = c(2.3, 1))
+p + plot_annotation(tag_levels = "A")
 ```
 
 
@@ -453,77 +257,31 @@ p + plot_annotation(tag_levels = 'A')
 library(survminer)
 pdata_acrg <- load_data("pdata_acrg")
 input <- merge(pdata_acrg, input, by = "ID")
-
-# Check available TMEcluster levels
-available_levels <- unique(input$TMEcluster)
-print(paste("Available TMEcluster levels:", paste(available_levels, collapse = ", ")))
-
-# Use first available level as reference if "High" is not available
-ref_group <- if ("High" %in% available_levels) "High" else available_levels[1]
-print(paste("Using reference group:", ref_group))
-
-p1 <- tryCatch({
-  surv_group(input_pdata       = input,
-             target_group      = "TMEcluster",
-             ID                = "ID",
-             reference_group   = ref_group,
-             project           = "ACRG",
-             cols              = cols, 
-             time              = "OS_time",
-             status            = "OS_status",
-             time_type         = "month",
-             save_path         = "result")
-}, error = function(e) {
-  message("surv_group error: ", e$message)
-  ggplot() + annotate("text", x = 0.5, y = 0.5, label = paste("Survival analysis error:\n", e$message), size = 4) + theme_void()
-})
+p1 <- surv_group(
+  input_pdata = input,
+  target_group = "TMEcluster",
+  ID = "ID",
+  reference_group = "High",
+  project = "ACRG",
+  cols = cols,
+  time = "OS_time",
+  status = "OS_status",
+  time_type = "month",
+  save_path = "result"
+)
 p1
 ```
 
-```{r,fig.show= 'hide',message=FALSE}
-# Check if input has data and required columns
-if (nrow(input) > 0) {
-  required_cols <- c("TMEcluster", "Subtype", "Lauren", "TMEscore_binary")
-  available_cols <- colnames(input)
-  
-  p1 <- tryCatch({
-    if (all(c("TMEcluster", "Subtype") %in% available_cols)) {
-      percent_bar_plot(input, x = "TMEcluster", y = "Subtype", palette = "jama")
-    } else {
-      ggplot() + annotate("text", x = 0.5, y = 0.5, label = "Subtype column not available", size = 5) + theme_void()
-    }
-  }, error = function(e) {
-    ggplot() + annotate("text", x = 0.5, y = 0.5, label = paste("Error:", e$message), size = 4) + theme_void()
-  })
-  
-  p2 <- tryCatch({
-    if (all(c("TMEcluster", "Lauren") %in% available_cols)) {
-      percent_bar_plot(input, x = "TMEcluster", y = "Lauren", palette = "jama")
-    } else {
-      ggplot() + annotate("text", x = 0.5, y = 0.5, label = "Lauren column not available", size = 5) + theme_void()
-    }
-  }, error = function(e) {
-    ggplot() + annotate("text", x = 0.5, y = 0.5, label = paste("Error:", e$message), size = 4) + theme_void()
-  })
-  
-  p3 <- tryCatch({
-    if (all(c("TMEcluster", "TMEscore_binary") %in% available_cols)) {
-      percent_bar_plot(input, x = "TMEcluster", y = "TMEscore_binary", palette = "jama")
-    } else {
-      ggplot() + annotate("text", x = 0.5, y = 0.5, label = "TMEscore_binary column not available", size = 5) + theme_void()
-    }
-  }, error = function(e) {
-    ggplot() + annotate("text", x = 0.5, y = 0.5, label = paste("Error:", e$message), size = 4) + theme_void()
-  })
-} else {
-  p1 <- ggplot() + annotate("text", x = 0.5, y = 0.5, label = "No data available", size = 5) + theme_void()
-  p2 <- p1
-  p3 <- p1
-}
+```{r}
+p1 <- percent_bar_plot(input, x = "TMEcluster", y = "Subtype", palette = "jama")
+
+p2 <- percent_bar_plot(input, x = "TMEcluster", y = "Lauren", palette = "jama")
+
+p3 <- percent_bar_plot(input, x = "TMEcluster", y = "TMEscore_binary", palette = "jama")
 ```
 
 ```{r,fig.width= 12, fig.height=8}
-p1|p2|p3
+p1 | p2 | p3
 ```
 
 ## References

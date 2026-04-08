@@ -25,9 +25,9 @@ imvigor210_pdata <- load_data("imvigor210_pdata")
 ## Input data (overall survival) prepare
 
 ``` r
-pdata_prog <- imvigor210_pdata %>% 
+pdata_prog <- imvigor210_pdata %>%
   dplyr::select(ID, OS_days, OS_status) %>%
-  mutate(OS_days = as.numeric(.$OS_days)) %>% 
+  mutate(OS_days = as.numeric(.$OS_days)) %>%
   mutate(OS_status = as.numeric(.$OS_status))
 
 head(pdata_prog)
@@ -48,26 +48,24 @@ head(pdata_prog)
 ## Constructing survival prediction models
 
 ``` r
-prognostic_result <- tryCatch({
-  PrognosticModel(x           = imvigor210_sig, 
-                  y           = pdata_prog, 
-                  scale       = T, 
-                  seed        = 123456, 
-                  train_ratio = 0.7, 
-                  nfold       = 8,
-                  plot        = TRUE)
-}, error = function(e) {
-  message("PrognosticModel error: ", e$message)
-  message("Returning NULL - model construction failed")
-  NULL
-})
+prognostic_result <- PrognosticModel(
+  x = imvigor210_sig,
+  y = pdata_prog,
+  scale = TRUE,
+  seed = 123456,
+  train_ratio = 0.7,
+  nfold = 8,
+  plot = TRUE
+)
 ```
+
+<img src="tme-modeling_files/figure-html/unnamed-chunk-4-1.png" alt="" width="672" /><img src="tme-modeling_files/figure-html/unnamed-chunk-4-2.png" alt="" width="672" />
 
 
 ## Input data (Response) prepare
 
 ``` r
-pdata_group <- imvigor210_pdata[!imvigor210_pdata$BOR_binary=="NA",c("ID","BOR_binary")]
+pdata_group <- imvigor210_pdata[!imvigor210_pdata$BOR_binary == "NA", c("ID", "BOR_binary")]
 pdata_group$BOR_binary <- ifelse(pdata_group$BOR_binary == "R", 1, 0)
 head(pdata_group)
 ```
@@ -86,14 +84,17 @@ head(pdata_group)
 
 ## Constructing prediction models for response
 
+
 ``` r
-binom_res <- BinomialModel(x           = imvigor210_sig, 
-                           y           = pdata_group, 
-                           seed        = 123456, 
-                           scale       = TRUE, 
-                           train_ratio = 0.7, 
-                           nfold       = 8, 
-                           plot        = T)
+binom_res <- BinomialModel(
+  x = imvigor210_sig,
+  y = pdata_group,
+  seed = 123456,
+  scale = TRUE,
+  train_ratio = 0.7,
+  nfold = 8,
+  plot = TRUE
+)
 ```
 
 <img src="tme-modeling_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" /><img src="tme-modeling_files/figure-html/unnamed-chunk-6-2.png" alt="" width="672" />

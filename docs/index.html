@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="The tutorial of IOBR package" />
   <meta name="twitter:image" content="https://iobr.github.io/book/./fig/cover.png" />
 
-<meta name="author" content="Dongqiang Zeng, Yiran Fang" />
+<meta name="author" content="Dongqiang Zeng, Yiran Fang, Qingcong Luo, Hongqian Qian, Shixiang Wang" />
 
 
 <meta name="date" content="2026-04-08" />
@@ -158,8 +158,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
-<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 👆 Main Functions of IOBR</a></li>
-<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌐 Current working environment</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> ☝️ Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌎 Current working environment</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
 <ul>
@@ -217,7 +217,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-6-timer"><i class="fa fa-check"></i><b>5.9</b> Method 6: TIMER</a></li>
 <li class="chapter" data-level="5.10" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-7-quantiseq"><i class="fa fa-check"></i><b>5.10</b> Method 7: quanTIseq</a></li>
 <li class="chapter" data-level="5.11" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-8-ips"><i class="fa fa-check"></i><b>5.11</b> Method 8: IPS</a></li>
-<li class="chapter" data-level="5.12" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#combination-of-above-deconvolution-results"><i class="fa fa-check"></i><b>5.12</b> Combination of above deconvolution results</a></a></li>
+<li class="chapter" data-level="5.12" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#combination-of-above-deconvolution-results"><i class="fa fa-check"></i><b>5.12</b> Combination of above deconvolution results</a></li>
 <li class="chapter" data-level="5.13" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#how-to-customise-the-signature-matrix-for-svr-and-lesi-algorithm"><i class="fa fa-check"></i><b>5.13</b> How to customise the signature matrix for <code>SVR</code> and <code>lesi</code> algorithm</a></li>
 <li class="chapter" data-level="5.14" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#references-2"><i class="fa fa-check"></i><b>5.14</b> References</a></li>
 </ul></li>
@@ -335,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">IOBR (Immuno-Oncology Biological Research)</h1>
-<p class="author"><em>Dongqiang Zeng, Yiran Fang</em></p>
+<p class="author"><em>Dongqiang Zeng, Yiran Fang, Qingcong Luo, Hongqian Qian, Shixiang Wang</em></p>
 <p class="date"><em>2026-04-08</em></p>
 </div>
 <div id="introduction" class="section level1 unnumbered hasAnchor">
@@ -351,7 +351,7 @@ Figure 0.1: The workflow of IOBR
 <h2><span class="header-section-number">0.1</span> 📚 Introduction<a href="index.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>IOBR is the acronym for <a href="https://github.com/IOBR/IOBR">Immuno-Oncology Biological Research</a>.
 Recent advances in next-generation sequencing have triggered the rapid accumulation of publicly available multi-omics data. The application of integrated omics to explore robust signatures for clinical translation is increasingly highlighted in immuno-oncology, but poses computational and biological challenges. This vignette aims to demonstrate how to use the package named IOBR to perform multi-omics immuno-oncology biological research to decipher tumour microenvironment and signatures for clinical translation.</p>
-<p>This R package integrates 8 published methods for decoding the tumour microenvironment (TME) context: <code>CIBERSORT</code>, <code>TIMER</code>, <code>xCell</code>, <code>MCPcounter</code>, <code>ESITMATE</code>, <code>EPIC</code>, <code>IPS</code>, <code>quanTIseq</code>. In addition, 264 published signature gene sets have been collected by IOBR covering tumour microenvironment, tumour metabolism, m6A, exosomes, microsatellite instability and tertiary lymphoid structure. The <code>signature_collection_citation</code> function is run to obtain the source papers, and the <code>signature_collection</code> function returns the detailed signature genes of all given signatures. IOBR then uses three computational methods to calculate the signature score, including <code>PCA</code>, <code>z-score</code> and <code>ssGSEA</code>. Note that IOBR collected and used several approaches for variable transition, visualisation, batch survival analysis, feature selection and statistical analysis. Batch analysis and visualisation of results are supported. The details of how IOBR works are described below.</p>
+<p>This R package integrates 8 published methods for decoding the tumour microenvironment (TME) context: <code>CIBERSORT</code>, <code>TIMER</code>, <code>xCell</code>, <code>MCPcounter</code>, <code>ESITMATE</code>, <code>EPIC</code>, <code>IPS</code>, <code>quanTIseq</code>. In addition, &gt;200 published signature gene sets have been collected by IOBR covering tumour microenvironment, tumour metabolism, m6A, exosomes, microsatellite instability and tertiary lymphoid structure. The <code>signature_collection_citation</code> function is run to obtain the source papers, and the <code>signature_collection</code> function returns the detailed signature genes of all given signatures. IOBR then uses three computational methods to calculate the signature score, including <code>PCA</code>, <code>z-score</code> and <code>ssGSEA</code>. Note that IOBR collected and used several approaches for variable transition, visualisation, batch survival analysis, feature selection and statistical analysis. Batch analysis and visualisation of results are supported. The details of how IOBR works are described below.</p>
 </div>
 <div id="license" class="section level2 hasAnchor" number="0.2">
 <h2><span class="header-section-number">0.2</span> 💿 License<a href="index.html#license" class="anchor-section" aria-label="Anchor link to header"></a></h2>

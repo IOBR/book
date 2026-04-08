@@ -15,13 +15,13 @@ library(tidyverse)
 Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.nih.gov/25894828/) using `GEOquery` R package.
 
 ``` r
-if (!requireNamespace("GEOquery", quietly = TRUE))  BiocManager::install("GEOquery")
+if (!requireNamespace("GEOquery", quietly = TRUE)) BiocManager::install("GEOquery")
 library("GEOquery")
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
-eset_geo <- getGEO(GEO = "GSE62254", getGPL  = F, destdir = "./")
-eset    <- eset_geo[[1]]
-eset    <- exprs(eset)
-eset[1:5,1:5]
+eset_geo <- getGEO(GEO = "GSE62254", getGPL = F, destdir = "./")
+eset <- eset_geo[[1]]
+eset <- exprs(eset)
+eset[1:5, 1:5]
 ```
 
 ```
@@ -55,13 +55,15 @@ head(anno_hug133plus2)
 ```
 
 ``` r
-# Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. 
+# Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others.
 
-eset<-anno_eset(eset       = eset,
-                annotation = anno_hug133plus2,
-                symbol     = "symbol",
-                probe      = "probe_id",
-                method     = "mean")
+eset <- anno_eset(
+  eset = eset,
+  annotation = anno_hug133plus2,
+  symbol = "symbol",
+  probe = "probe_id",
+  method = "mean"
+)
 eset[1:5, 1:3]
 ```
 
@@ -79,11 +81,13 @@ eset[1:5, 1:3]
 
 ``` r
 signature_collection <- load_data("signature_collection")
-sig_tme<-calculate_sig_score(pdata           = NULL,
-                             eset            = eset,
-                             signature       = signature_collection,
-                             method          = "pca",
-                             mini_gene_count = 2)
+sig_tme <- calculate_sig_score(
+  pdata = NULL,
+  eset = eset,
+  signature = signature_collection,
+  method = "pca",
+  mini_gene_count = 2
+)
 
 sig_tme <- t(column_to_rownames(sig_tme, var = "ID"))
 sig_tme[1:5, 1:3]
@@ -223,10 +227,12 @@ input <- combine_pd_eset(eset = sig_tme, pdata = pdata_acrg, scale = T)
 
 
 ``` r
-res<- batch_surv(pdata    = input,
-                 time     = "OS_time", 
-                 status   = "OS_status", 
-                 variable = colnames(input)[69:ncol(input)])
+res <- batch_surv(
+  pdata = input,
+  time = "OS_time",
+  status = "OS_status",
+  variable = colnames(input)[69:ncol(input)]
+)
 head(res)
 ```
 
@@ -245,8 +251,8 @@ head(res)
 Use forest plots `sig_forest` to show the most relevant variables to overall survival
 
 ``` r
-res<- res[nchar(res$ID)<=28, ]
-p1<- sig_forest(res, signature = "ID", n = 20)
+res <- res[nchar(res$ID) <= 28, ]
+p1 <- sig_forest(res, signature = "ID", n = 20)
 ```
 
 ## Visulization using heatmap
@@ -255,19 +261,22 @@ Relationship between Signatures and molecular typing.
 Heatmap visualisation using `IOBR`'s `sig_heatmap`
 
 ``` r
-p2 <- sig_heatmap(input         = input, 
-                  features      = res$ID[1:20],
-                  group         = "Subtype", 
-                  palette_group = "jama", 
-                  palette       = 6,
-                  path          = "result" )
+p2 <- sig_heatmap(
+  input = input,
+  features = res$ID[1:20],
+  group = "Subtype",
+  palette_group = "jama",
+  palette = 6,
+  path = "result"
+)
 ```
 
 ```
 ## Warning: `when()` was deprecated in purrr 1.0.0.
 ## ℹ Please use `if` instead.
 ## ℹ The deprecated feature was likely used in the tidyHeatmap package.
-##   Please report the issue at <https://github.com/stemangiola/tidyHeatmap/issues>.
+##   Please report the issue at
+##   <https://github.com/stemangiola/tidyHeatmap/issues>.
 ## This warning is displayed once per session.
 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 ## generated.
@@ -278,17 +287,19 @@ p2 <- sig_heatmap(input         = input,
 ## Focus on target signatures
 
 ``` r
-p1 <- sig_box(data           = input, 
-              signature      = "Glycogen_Biosynthesis",
-              variable       = "Subtype",
-              jitter         = FALSE,
-              cols           =  NULL,
-              palette        = "jama",
-              show_pairwise_p    = TRUE,
-              size_of_pvalue = 5,
-              hjust          = 1, 
-              angle_x_text   = 60, 
-              size_of_font   = 8)
+p1 <- sig_box(
+  data = input,
+  signature = "Glycogen_Biosynthesis",
+  variable = "Subtype",
+  jitter = FALSE,
+  cols = NULL,
+  palette = "jama",
+  show_pairwise_p = TRUE,
+  size_of_pvalue = 5,
+  hjust = 1,
+  angle_x_text = 60,
+  size_of_font = 8
+)
 ```
 
 ```
@@ -304,17 +315,19 @@ p1 <- sig_box(data           = input,
 ```
 
 ``` r
-p2 <- sig_box(data           = input, 
-              signature      = "Pan_F_TBRs",
-              variable       = "Subtype",
-              jitter         = FALSE,
-              cols           = NULL,
-              palette        = "jama",
-              show_pairwise_p    = TRUE,
-              angle_x_text   = 60, 
-              hjust          = 1, 
-              size_of_pvalue = 5, 
-              size_of_font   = 8)
+p2 <- sig_box(
+  data = input,
+  signature = "Pan_F_TBRs",
+  variable = "Subtype",
+  jitter = FALSE,
+  cols = NULL,
+  palette = "jama",
+  show_pairwise_p = TRUE,
+  angle_x_text = 60,
+  hjust = 1,
+  size_of_pvalue = 5,
+  size_of_font = 8
+)
 ```
 
 ```
@@ -330,17 +343,19 @@ p2 <- sig_box(data           = input,
 ```
 
 ``` r
-p3 <- sig_box(data           = input, 
-              signature      = "Immune_Checkpoint",
-              variable       = "Subtype",
-              jitter         = FALSE,
-              cols           = NULL,
-              palette        = "jama",
-              show_pairwise_p    = TRUE,
-              angle_x_text   = 60, 
-              hjust          = 1, 
-              size_of_pvalue = 5, 
-              size_of_font   = 8)
+p3 <- sig_box(
+  data = input,
+  signature = "Immune_Checkpoint",
+  variable = "Subtype",
+  jitter = FALSE,
+  cols = NULL,
+  palette = "jama",
+  show_pairwise_p = TRUE,
+  angle_x_text = 60,
+  hjust = 1,
+  size_of_pvalue = 5,
+  size_of_font = 8
+)
 ```
 
 ```
@@ -358,7 +373,7 @@ p3 <- sig_box(data           = input,
 
 
 ``` r
-p1|p2|p3
+p1 | p2 | p3
 ```
 
 <img src="Feature-selections_files/figure-html/unnamed-chunk-10-1.png" alt="" width="960" style="display: block; margin: auto;" />
@@ -370,15 +385,17 @@ p1|p2|p3
 Displaying the outcomes of survival analyses using Kaplan-Meier plot. Multiple stratifications of the signature were used to judge the efficacy of this metric in predicting patient survival.
 
 ``` r
-res <-       sig_surv_plot(input_pdata       = input, 
-                           signature         = "Glycogen_Biosynthesis",
-                           cols              = NULL, 
-                           palette           = "jama",
-                           project           = "ACRG",
-                           time              = "OS_time",
-                           status            = "OS_status",
-                           time_type         = "month",
-                           save_path         = "result")
+res <- sig_surv_plot(
+  input_pdata = input,
+  signature = "Glycogen_Biosynthesis",
+  cols = NULL,
+  palette = "jama",
+  project = "ACRG",
+  time = "OS_time",
+  status = "OS_status",
+  time_type = "month",
+  save_path = "result"
+)
 res$plots
 ```
 
@@ -388,40 +405,44 @@ res$plots
 
 
 ``` r
-p1<- roc_time(input      = input,  
-             vars       = "Glycogen_Biosynthesis", 
-             time       = "OS_time",
-             status     = "OS_status", 
-             time_point = c(12, 24, 36), 
-             time_type  = "month",
-             palette    = "jama",
-             cols       = "normal",
-             seed       = 1234, 
-             show_col   = FALSE, 
-             path       = "result", 
-             main       = "OS",
-             index      = 1,
-             fig.type   = "pdf",
-             width      = 5,
-             height     = 5.2)
+p1 <- roc_time(
+  input = input,
+  vars = "Glycogen_Biosynthesis",
+  time = "OS_time",
+  status = "OS_status",
+  time_point = c(12, 24, 36),
+  time_type = "month",
+  palette = "jama",
+  cols = "normal",
+  seed = 1234,
+  show_col = FALSE,
+  path = "result",
+  main = "OS",
+  index = 1,
+  fig.type = "pdf",
+  width = 5,
+  height = 5.2
+)
 
-p2<- roc_time(input      = input,  
-             vars       = "Glycogen_Biosynthesis", 
-             time       = "RFS_time",
-             status     = "RFS_status", 
-             time_point = c(12, 24, 36), 
-             time_type  = "month",
-             palette    = "jama",
-             cols       = "normal",
-             seed       = 1234, 
-             show_col   = FALSE, 
-             path       = "result", 
-             main       = "OS",
-             index      = 1,
-             fig.type   = "pdf",
-             width      = 5,
-             height     = 5.2)
-p1|p2
+p2 <- roc_time(
+  input = input,
+  vars = "Glycogen_Biosynthesis",
+  time = "RFS_time",
+  status = "RFS_status",
+  time_point = c(12, 24, 36),
+  time_type = "month",
+  palette = "jama",
+  cols = "normal",
+  seed = 1234,
+  show_col = FALSE,
+  path = "result",
+  main = "OS",
+  index = 1,
+  fig.type = "pdf",
+  width = 5,
+  height = 5.2
+)
+p1 | p2
 ```
 
 <img src="Feature-selections_files/figure-html/unnamed-chunk-12-1.png" alt="" width="1344" />
@@ -464,8 +485,10 @@ head(res)
 
 
 ``` r
-p1<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glycogen_Biosynthesis", 
-             var2 = "TMEscore_CIR", subtype = "Subtype", palette = "aaas", path = "result")
+p1 <- get_cor(
+  eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glycogen_Biosynthesis",
+  var2 = "TMEscore_CIR", subtype = "Subtype", palette = "aaas", path = "result"
+)
 ```
 
 ```
@@ -481,8 +504,10 @@ p1<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glyco
 ```
 
 ``` r
-p2<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glycogen_Biosynthesis", 
-             var2 = "TGFβ_myCAF", subtype = "Subtype", palette = "aaas", path = "result")
+p2 <- get_cor(
+  eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glycogen_Biosynthesis",
+  var2 = "TGFβ_myCAF", subtype = "Subtype", palette = "aaas", path = "result"
+)
 ```
 
 ```
@@ -499,7 +524,7 @@ p2<- get_cor(eset = sig_tme, pdata = pdata_acrg, is.matrix = TRUE, var1 = "Glyco
 
 
 ``` r
-p1|p2
+p1 | p2
 ```
 
 <img src="Feature-selections_files/figure-html/unnamed-chunk-15-1.png" alt="" width="1152" />
@@ -511,15 +536,17 @@ Visualisation via correlation matrix
 ``` r
 feas1 <- c("Glycogen_Biosynthesis", "Ferroptosis")
 feas2 <- c("Glutathione_Metabolism", "TMEscore_CIR", "Purine_Metabolism", "ICB_resistance_Peng_et_al", "Interleukins_Li_et_al", "TLS_Nature")
-p <- get_cor_matrix(data           = input, 
-                    feas1          = feas2, 
-                    feas2          = feas1,
-                    method         = "pearson",
-                    font.size.star = 8, 
-                    font.size      = 15, 
-                    fill_by_cor    = FALSE, 
-                    round.num      = 1, 
-                    path           = "result")
+p <- get_cor_matrix(
+  data = input,
+  feas1 = feas2,
+  feas2 = feas1,
+  method = "pearson",
+  font.size.star = 8,
+  font.size = 15,
+  fill_by_cor = FALSE,
+  round.num = 1,
+  path = "result"
+)
 ```
 
 <img src="Feature-selections_files/figure-html/unnamed-chunk-16-1.png" alt="" width="960" />
@@ -527,8 +554,8 @@ p <- get_cor_matrix(data           = input,
 Demonstrate the correlation between signatures and genes
 
 ``` r
-input2 <- combine_pd_eset(eset = eset, pdata =  input[, c("ID", "Glycogen_Biosynthesis", "TLS_Nature", "Ferroptosis")])
-feas1 <- c("Glycogen_Biosynthesis","TLS_Nature", "Ferroptosis")
+input2 <- combine_pd_eset(eset = eset, pdata = input[, c("ID", "Glycogen_Biosynthesis", "TLS_Nature", "Ferroptosis")])
+feas1 <- c("Glycogen_Biosynthesis", "TLS_Nature", "Ferroptosis")
 feas2 <- signature_collection$CD_8_T_effector
 feas2
 ```
@@ -538,16 +565,18 @@ feas2
 ```
 
 ``` r
-p <- get_cor_matrix(data           = input2, 
-                    feas1          = feas2, 
-                    feas2          = feas1,
-                    method         = "pearson",
-                    scale          = T, 
-                    font.size.star = 8, 
-                    font.size      = 15, 
-                    fill_by_cor    = FALSE, 
-                    round.num      = 1,
-                    path           = "result")
+p <- get_cor_matrix(
+  data = input2,
+  feas1 = feas2,
+  feas2 = feas1,
+  method = "pearson",
+  scale = T,
+  font.size.star = 8,
+  font.size = 15,
+  fill_by_cor = FALSE,
+  round.num = 1,
+  path = "result"
+)
 ```
 
 <img src="Feature-selections_files/figure-html/unnamed-chunk-17-1.png" alt="" width="1056" />
@@ -555,16 +584,18 @@ p <- get_cor_matrix(data           = input2,
 Users can customize the image using parameters.
 
 ``` r
-p <- get_cor_matrix(data           = input2, 
-                    feas1          = feas2, 
-                    feas2          = feas1,
-                    method         = "pearson",
-                    scale          = T, 
-                    font.size.star = 8, 
-                    font.size      = 15, 
-                    fill_by_cor    = TRUE, 
-                    round.num      = 2,
-                    path           = "result")
+p <- get_cor_matrix(
+  data = input2,
+  feas1 = feas2,
+  feas2 = feas1,
+  method = "pearson",
+  scale = T,
+  font.size.star = 8,
+  font.size = 15,
+  fill_by_cor = TRUE,
+  round.num = 2,
+  path = "result"
+)
 ```
 
 <img src="Feature-selections_files/figure-html/unnamed-chunk-18-1.png" alt="" width="1056" />
@@ -592,17 +623,19 @@ head(res)
 ```
 
 ``` r
-p1 <- sig_box(data           = input, 
-              signature      = res$sig_names[1],
-              variable       = "TMEscore_binary",
-              jitter         = FALSE,
-              cols           =  NULL,
-              palette        = "jco",
-              show_pairwise_p    = TRUE,
-              size_of_pvalue = 5,
-              hjust          = 1, 
-              angle_x_text   = 60, 
-              size_of_font   = 8)
+p1 <- sig_box(
+  data = input,
+  signature = res$sig_names[1],
+  variable = "TMEscore_binary",
+  jitter = FALSE,
+  cols = NULL,
+  palette = "jco",
+  show_pairwise_p = TRUE,
+  size_of_pvalue = 5,
+  hjust = 1,
+  angle_x_text = 60,
+  size_of_font = 8
+)
 ```
 
 ```
@@ -613,17 +646,19 @@ p1 <- sig_box(data           = input,
 ```
 
 ``` r
-p2 <- sig_box(data           = input, 
-              signature      = res$sig_names[2],
-              variable       = "TMEscore_binary",
-              jitter         = FALSE,
-              cols           = NULL,
-              palette        = "jco",
-              show_pairwise_p    = TRUE,
-              angle_x_text   = 60, 
-              hjust          = 1, 
-              size_of_pvalue = 5, 
-              size_of_font   = 8)
+p2 <- sig_box(
+  data = input,
+  signature = res$sig_names[2],
+  variable = "TMEscore_binary",
+  jitter = FALSE,
+  cols = NULL,
+  palette = "jco",
+  show_pairwise_p = TRUE,
+  angle_x_text = 60,
+  hjust = 1,
+  size_of_pvalue = 5,
+  size_of_font = 8
+)
 ```
 
 ```
@@ -634,17 +669,19 @@ p2 <- sig_box(data           = input,
 ```
 
 ``` r
-p3 <- sig_box(data           = input, 
-              signature      = res$sig_names[3],
-              variable       = "TMEscore_binary",
-              jitter         = FALSE,
-              cols           = NULL,
-              palette        = "jco",
-              show_pairwise_p    = TRUE,
-              angle_x_text   = 60, 
-              hjust          = 1, 
-              size_of_pvalue = 5, 
-              size_of_font   = 8)
+p3 <- sig_box(
+  data = input,
+  signature = res$sig_names[3],
+  variable = "TMEscore_binary",
+  jitter = FALSE,
+  cols = NULL,
+  palette = "jco",
+  show_pairwise_p = TRUE,
+  angle_x_text = 60,
+  hjust = 1,
+  size_of_pvalue = 5,
+  size_of_font = 8
+)
 ```
 
 ```
@@ -657,7 +694,7 @@ p3 <- sig_box(data           = input,
 
 
 ``` r
-p1|p2|p3
+p1 | p2 | p3
 ```
 
 <img src="Feature-selections_files/figure-html/unnamed-chunk-21-1.png" alt="" width="864" style="display: block; margin: auto;" />
@@ -671,29 +708,32 @@ head(res)
 ```
 
 ```
-## # A tibble: 6 × 7
-##   sig_names                   p.value statistic   MSI    p.adj log10pvalue stars
-##   <chr>                         <dbl>     <dbl> <dbl>    <dbl>       <dbl> <fct>
-## 1 TMEscore_CIR               1.35e-28      133.    NA 4.26e-26        27.9 **** 
-## 2 Ether_Lipid_Metabolism     4.37e-27      126.    NA 5.71e-25        26.4 **** 
-## 3 TMEscoreB_CIR              5.88e-27      125.    NA 5.71e-25        26.2 **** 
-## 4 Inositol_Phosphate_Metabo… 7.25e-27      125.    NA 5.71e-25        26.1 **** 
-## 5 Selenocompound_Metabolism  1.17e-26      124.    NA 7.38e-25        25.9 **** 
-## 6 Folate_biosynthesis        1.63e-26      123.    NA 7.57e-25        25.8 ****
+## # A tibble: 6 × 10
+##   sig_names      p.value statistic   EMT    MSI `MSS/TP53+` `MSS/TP53-`    p.adj
+##   <chr>            <dbl>     <dbl> <dbl>  <dbl>       <dbl>       <dbl>    <dbl>
+## 1 TMEscore_CIR  1.35e-28      133. -1.36  1.000       0.305      0.0577 4.26e-26
+## 2 Ether_Lipid_… 4.37e-27      126.  1.46 -0.830      -0.253     -0.375  5.71e-25
+## 3 TMEscoreB_CIR 5.88e-27      125.  1.55 -0.829      -0.420     -0.303  5.71e-25
+## 4 Inositol_Pho… 7.25e-27      125.  1.53 -0.808      -0.315     -0.408  5.71e-25
+## 5 Selenocompou… 1.17e-26      124. -1.48  0.824       0.328      0.326  7.38e-25
+## 6 Folate_biosy… 1.63e-26      123. -1.12  1.05        0.127     -0.0573 7.57e-25
+## # ℹ 2 more variables: log10pvalue <dbl>, stars <fct>
 ```
 
 ``` r
-p1 <- sig_box(data           = input, 
-              signature      = res$sig_names[1],
-              variable       = "Subtype",
-              jitter         = FALSE,
-              cols           =  NULL,
-              palette        = "jco",
-              show_pairwise_p    = TRUE,
-              size_of_pvalue = 5,
-              hjust          = 1, 
-              angle_x_text   = 60, 
-              size_of_font   = 8)
+p1 <- sig_box(
+  data = input,
+  signature = res$sig_names[1],
+  variable = "Subtype",
+  jitter = FALSE,
+  cols = NULL,
+  palette = "jco",
+  show_pairwise_p = TRUE,
+  size_of_pvalue = 5,
+  hjust = 1,
+  angle_x_text = 60,
+  size_of_font = 8
+)
 ```
 
 ```
@@ -709,17 +749,19 @@ p1 <- sig_box(data           = input,
 ```
 
 ``` r
-p2 <- sig_box(data           = input, 
-              signature      = res$sig_names[2],
-              variable       = "Subtype",
-              jitter         = FALSE,
-              cols           = NULL,
-              palette        = "jco",
-              show_pairwise_p    = TRUE,
-              angle_x_text   = 60, 
-              hjust          = 1, 
-              size_of_pvalue = 5, 
-              size_of_font   = 8)
+p2 <- sig_box(
+  data = input,
+  signature = res$sig_names[2],
+  variable = "Subtype",
+  jitter = FALSE,
+  cols = NULL,
+  palette = "jco",
+  show_pairwise_p = TRUE,
+  angle_x_text = 60,
+  hjust = 1,
+  size_of_pvalue = 5,
+  size_of_font = 8
+)
 ```
 
 ```
@@ -735,17 +777,19 @@ p2 <- sig_box(data           = input,
 ```
 
 ``` r
-p3 <- sig_box(data           = input, 
-              signature      = res$sig_names[3],
-              variable       = "Subtype",
-              jitter         = FALSE,
-              cols           = NULL,
-              palette        = "jco",
-              show_pairwise_p    = TRUE,
-              angle_x_text   = 60, 
-              hjust          = 1, 
-              size_of_pvalue = 5, 
-              size_of_font   = 8)
+p3 <- sig_box(
+  data = input,
+  signature = res$sig_names[3],
+  variable = "Subtype",
+  jitter = FALSE,
+  cols = NULL,
+  palette = "jco",
+  show_pairwise_p = TRUE,
+  angle_x_text = 60,
+  hjust = 1,
+  size_of_pvalue = 5,
+  size_of_font = 8
+)
 ```
 
 ```
@@ -763,7 +807,7 @@ p3 <- sig_box(data           = input,
 
 
 ``` r
-p1|p2|p3
+p1 | p2 | p3
 ```
 
 <img src="Feature-selections_files/figure-html/unnamed-chunk-24-1.png" alt="" width="960" style="display: block; margin: auto;" />

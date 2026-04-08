@@ -8,7 +8,7 @@
 <p class="caption">(\#fig:flowchart)The main pipeline of IOBR</p>
 </div>
 
-## 👆 Main Functions of IOBR
+## ☝️ Main Functions of IOBR
 
 * <div style="color:green">**Data Preparation: data annotation and transformation**</div> 
    * **count2tpm()**: transform gene expression count data into Transcripts Per Million (TPM) values. This function supports gene IDs of type "Ensembl", "Entrez", or "Symbol", and retrieves gene length information using either an online connection to the bioMart database or a local dataset (specified by the source parameter).
@@ -67,8 +67,10 @@
   * **percent_bar_plot()**: create a percent bar plot based on the given data. The input is a data frame, with x and y-axis variables specified.
 </br>
 
+More details of the functions and their parameters can be found in the [IOBR reference manual](https://iobr.github.io/IOBR/reference/index.html).
 
-## 🌐 Current working environment
+
+## 🌎 Current working environment
 
 
 ``` r
@@ -90,7 +92,7 @@ sessionInfo()
 ## LAPACK: /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
 ## 
 ## locale:
-## [1] C.UTF-8/C.UTF-8/C.UTF-8/C/C.UTF-8/C.UTF-8
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 ## 
 ## time zone: Asia/Shanghai
 ## tzcode source: internal
@@ -99,17 +101,17 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] IOBR_2.1.0
+## [1] IOBR_2.1.1
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] tidyr_1.3.2        sass_0.4.10        generics_0.1.4     rstatix_0.7.3     
-##  [5] shape_1.4.6.1      stringi_1.8.7      lattice_0.22-7     digest_0.6.39     
+##  [5] shape_1.4.6.1      stringi_1.8.7      lattice_0.22-9     digest_0.6.39     
 ##  [9] magrittr_2.0.5     evaluate_1.0.5     grid_4.5.2         timechange_0.4.0  
 ## [13] RColorBrewer_1.1-3 bookdown_0.46      iterators_1.0.14   fastmap_1.2.0     
-## [17] foreach_1.5.2      jsonlite_2.0.0     glmnet_4.1-10      Matrix_1.7-4      
-## [21] backports_1.5.1    Formula_1.2-5      survival_3.8-3     gridExtra_2.3     
+## [17] foreach_1.5.2      jsonlite_2.0.0     glmnet_4.1-10      Matrix_1.7-5      
+## [21] backports_1.5.1    Formula_1.2-5      survival_3.8-6     gridExtra_2.3     
 ## [25] purrr_1.2.1        scales_1.4.0       codetools_0.2-20   jquerylib_0.1.4   
-## [29] abind_1.4-8        cli_3.6.5          rlang_1.1.7        crayon_1.5.3      
+## [29] abind_1.4-8        cli_3.6.5          rlang_1.2.0        crayon_1.5.3      
 ## [33] splines_4.5.2      cachem_1.1.0       yaml_2.3.12        otel_0.2.0        
 ## [37] parallel_4.5.2     tools_4.5.2        ggsignif_0.6.4     dplyr_1.2.1.9000  
 ## [41] ggplot2_4.0.2      ggpubr_0.6.3       broom_1.0.12       assertthat_0.2.1  

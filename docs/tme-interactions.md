@@ -14,14 +14,15 @@ library(tibble)
 ## Downloading data for example
 Obtaining data set from GEO [Gastric cancer: GSE62254](https://pubmed.ncbi.nlm.nih.gov/25894828/) using `GEOquery` R package.
 
+
 ``` r
-if (!requireNamespace("GEOquery", quietly = TRUE))  BiocManager::install("GEOquery")
+if (!requireNamespace("GEOquery", quietly = TRUE)) BiocManager::install("GEOquery")
 library("GEOquery")
 # NOTE: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.
-eset_geo<- getGEO(GEO     = "GSE62254", getGPL  = F, destdir = "./")
-eset    <- eset_geo[[1]]
-eset    <- exprs(eset)
-eset[1:5,1:5]
+eset_geo <- getGEO(GEO = "GSE62254", getGPL = F, destdir = "./")
+eset <- eset_geo[[1]]
+eset <- exprs(eset)
+eset[1:5, 1:5]
 ```
 
 ```
@@ -36,13 +37,15 @@ eset[1:5,1:5]
 ## Gene Annotation: HGU133PLUS-2 (Affaymetrix)
 
 ``` r
-# Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. 
+# Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others.
 anno_hug133plus2 <- load_data("anno_hug133plus2")
-eset<-anno_eset(eset       = eset,
-                annotation = anno_hug133plus2,
-                symbol     = "symbol",
-                probe      = "probe_id",
-                method     = "mean")
+eset <- anno_eset(
+  eset = eset,
+  annotation = anno_hug133plus2,
+  symbol = "symbol",
+  probe = "probe_id",
+  method = "mean"
+)
 eset[1:5, 1:3]
 ```
 
@@ -56,6 +59,7 @@ eset[1:5, 1:3]
 ```
 
 ## TME deconvolution using CIBERSORT algorithm
+
 
 ``` r
 cell <- deconvo_tme(eset = eset, method = "cibersort", arrays = TRUE, perm = 500, absolute.mode = TRUE)
@@ -80,7 +84,9 @@ head(cell)
 ## #   T_cells_follicular_helper_CIBERSORT <dbl>,
 ## #   `T_cells_regulatory_(Tregs)_CIBERSORT` <dbl>, …
 ```
+
 ## Identifying TME patterns
+
 Identification of optimal clustering based on cellular infiltration patterns in the microenvironment.
 
 
@@ -93,7 +99,8 @@ tme <- tme_cluster(input = cell, features = colnames(cell)[2:23], id = "ID", sca
 ##  85  96 119
 ```
 
-Use of heatmaps to reflect cellular differences between TME subtypes
+Use of heatmaps to reflect cellular differences between TME subtypes.
+
 
 ``` r
 colnames(tme) <- gsub(colnames(tme), pattern = "_CIBERSORT", replacement = "")
@@ -106,9 +113,11 @@ res <- sig_heatmap(input = tme, features = colnames(tme)[3:ncol(tme)], group = "
 
 
 ``` r
-cols <- c('#2692a4','#fc0d3a','#ffbe0b')
-p1 <- sig_box(tme, variable = "cluster", signature = "Macrophages_M1", jitter = TRUE,
-              cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
+cols <- c("#2692a4", "#fc0d3a", "#ffbe0b")
+p1 <- sig_box(tme,
+  variable = "cluster", signature = "Macrophages_M1", jitter = TRUE,
+  cols = cols, show_pairwise_p = TRUE, size_of_pvalue = 4
+)
 ```
 
 ```
@@ -121,8 +130,10 @@ p1 <- sig_box(tme, variable = "cluster", signature = "Macrophages_M1", jitter = 
 ```
 
 ``` r
-p2 <- sig_box(tme, variable = "cluster", signature = "Mast_cells_activated", 
-              jitter = TRUE, cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
+p2 <- sig_box(tme,
+  variable = "cluster", signature = "Mast_cells_activated",
+  jitter = TRUE, cols = cols, show_pairwise_p = TRUE, size_of_pvalue = 4
+)
 ```
 
 ```
@@ -135,8 +146,10 @@ p2 <- sig_box(tme, variable = "cluster", signature = "Mast_cells_activated",
 ```
 
 ``` r
-p3 <- sig_box(tme, variable = "cluster", signature = "Macrophages_M2", 
-              jitter = TRUE, cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
+p3 <- sig_box(tme,
+  variable = "cluster", signature = "Macrophages_M2",
+  jitter = TRUE, cols = cols, show_pairwise_p = TRUE, size_of_pvalue = 4
+)
 ```
 
 ```
@@ -150,7 +163,7 @@ p3 <- sig_box(tme, variable = "cluster", signature = "Macrophages_M2",
 
 
 ``` r
-p1|p2|p3
+p1 | p2 | p3
 ```
 
 <img src="tme-interactions_files/figure-html/unnamed-chunk-8-1.png" alt="" width="1056" />
@@ -164,48 +177,50 @@ We have developed a reliable classifier for the tumour microenvironment in gastr
 
 ``` r
 library(Seurat)
-res <- find_markers_in_bulk(pdata      = tme, 
-                            eset       = eset, 
-                            group      = "cluster", 
-                            nfeatures  = 2000, 
-                            top_n      = 50, 
-                            thresh.use = 0.15, 
-                            only.pos   = TRUE, 
-                            min.pct    = 0.10)
-top15 <-  res$top_markers %>% dplyr:: group_by(cluster) %>%  dplyr::top_n(15, avg_log2FC)
+res <- find_markers_in_bulk(
+  pdata = tme,
+  eset = eset,
+  group = "cluster",
+  nfeatures = 2000,
+  top_n = 50,
+  thresh.use = 0.15,
+  only.pos = TRUE,
+  min.pct = 0.10
+)
+top15 <- res$top_markers %>%
+  dplyr::group_by(cluster) %>%
+  dplyr::top_n(15, avg_log2FC)
 top15$gene
 ```
 
 ```
-##  [1] "ADH1B"          "LIPF"           "SCN7A"          "ABCA8"         
-##  [5] "MAMDC2"         "C2orf40"        "OGN"            "PGA4"          
-##  [9] "GKN2"           "GKN1"           "TMEM100"        "SCGB2A1"       
-## [13] "C6orf58"        "C1QTNF7"        "C7"             "SLCO1B3"       
-## [17] "CXCL11"         "IFNG"           "IDO1"           "COL11A1"       
-## [21] "GBP4"           "AIM2"           "ZBED2"          "EPYC"          
-## [25] "KLRC2"          "GZMB"           "GNLY"           "POLR3G"        
-## [29] "VSNL1"          "GAD1"           "PPBP"           "IL1A"          
-## [33] "PROK2"          "MAGEA6"         "MAGEA2B"        "IL11"          
-## [37] "MAGEA12"        "CLEC5A"         "REG1B"          "EREG"          
-## [41] "PI15"           "MAGEA4"         "IGFBP1"         "MAGEA10-MAGEA5"
-## [45] "CXCL6"
+##  [1] "C2orf40"  "LIPF"     "OGN"      "ADH1B"    "PGA4"     "SCN7A"   
+##  [7] "C7"       "MAMDC2"   "ABCA8"    "GIF"      "SCRG1"    "C6orf58" 
+## [13] "VIP"      "TMEM100"  "GHRL"     "IDO1"     "CXCL11"   "SLCO1B3" 
+## [19] "AIM2"     "IFNG"     "GZMB"     "CXCL10"   "GBP4"     "KRT13"   
+## [25] "CXCL9"    "GNLY"     "S100A2"   "COL11A1"  "SERPINB2" "KISS1R"  
+## [31] "IL1A"     "REG1B"    "PROK2"    "PI15"     "IL11"     "PPBP"    
+## [37] "CLEC5A"   "MAGEA6"   "MAGEA12"  "IGFBP1"   "TREM1"    "HCAR3"   
+## [43] "IL24"     "MAGEA2B"  "CXCL6"
 ```
 
 Heatmap visualisation using `Seurat`'s `DoHeatmap`
 
 ``` r
-#Defining cluster colors
-cols <- c('#2692a4','#fc0d3a','#ffbe0b')
-p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols )+
-  scale_fill_gradientn(colours = rev(colorRampPalette(RColorBrewer::brewer.pal(11,"RdBu"))(256)))
+# Defining cluster colors
+cols <- c("#2692a4", "#fc0d3a", "#ffbe0b")
+p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols) +
+  scale_fill_gradientn(colours = rev(colorRampPalette(RColorBrewer::brewer.pal(11, "RdBu"))(256)))
 ```
 
 Extracting variables from the expression matrix to merge with TME subtype
 
 ``` r
 input <- combine_pd_eset(eset = eset, pdata = tme, feas = top15$gene, scale = T)
-p2 <- sig_box(input, variable = "cluster", signature = "IFNG", jitter = TRUE,
-              cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
+p2 <- sig_box(input,
+  variable = "cluster", signature = "IFNG", jitter = TRUE,
+  cols = cols, show_pairwise_p = TRUE, size_of_pvalue = 4
+)
 ```
 
 ```
@@ -218,8 +233,10 @@ p2 <- sig_box(input, variable = "cluster", signature = "IFNG", jitter = TRUE,
 ```
 
 ``` r
-p3 <- sig_box(input, variable = "cluster", signature = "IL1A", 
-              jitter = TRUE, cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
+p3 <- sig_box(input,
+  variable = "cluster", signature = "IL1A",
+  jitter = TRUE, cols = cols, show_pairwise_p = TRUE, size_of_pvalue = 4
+)
 ```
 
 ```
@@ -236,8 +253,8 @@ Combining the results obtained above
 ``` r
 # if (!requireNamespace("patchwork", quietly = TRUE))   install.packages("patchwork")
 library(patchwork)
-p <- (p1|p2/p3) + plot_layout(widths = c(2.3,1))
-p + plot_annotation(tag_levels = 'A')
+p <- (p1 | p2 / p3) + plot_layout(widths = c(2.3, 1))
+p + plot_annotation(tag_levels = "A")
 ```
 
 <img src="tme-interactions_files/figure-html/unnamed-chunk-12-1.png" alt="" width="1152" />
@@ -256,35 +273,50 @@ lr_data <- LR_cal(eset = eset, data_type = "tpm", id_type = "symbol")
 
 
 ``` r
-lr <- column_to_rownames(lr_data,var = "ID") %>% t() %>% as.data.frame()
-res <- find_markers_in_bulk(pdata      = tme, 
-                            eset       = lr, 
-                            group      = "cluster", 
-                            nfeatures  = 2000, 
-                            top_n      = 50, 
-                            thresh.use = 0.15, 
-                            only.pos   = TRUE, 
-                            min.pct    = 0.10)
-top15 <-  res$top_markers %>% dplyr:: group_by(cluster) %>%  dplyr::top_n(15, avg_log2FC)
+lr <- column_to_rownames(lr_data, var = "ID") %>%
+  t() %>%
+  as.data.frame()
+res <- find_markers_in_bulk(
+  pdata = tme,
+  eset = lr,
+  group = "cluster",
+  nfeatures = 2000,
+  top_n = 50,
+  thresh.use = 0.15,
+  only.pos = TRUE,
+  min.pct = 0.10
+)
+top15 <- res$top_markers %>%
+  dplyr::group_by(cluster) %>%
+  dplyr::top_n(15, avg_log2FC)
 top15$gene
 ```
 
 ```
-##  [1] "ANGPTL1-TEK"        "COL4A5-CD93"        "FN1-ITGA8"         
-##  [4] "GNAI2-P2RY12"       "IFNG-IFNGR1-IFNGR2" "GZMB-IGF2R"        
-##  [7] "HLA-B-HLA-E-KLRD1"  "IL1A-IL1R1"         "IL1A-IL1R2"        
-## [10] "IL1A-IL1RAP"        "PPBP-CXCR2"         "FN1-TNFRSF11B"     
-## [13] "PPBP-CXCR1"         "THBS1-TNFRSF11B"    "EREG-EGFR"         
-## [16] "TNFSF10-TNFRSF11B"  "VWF-TNFRSF11B"      "OSM-IL6ST"         
-## [19] "TNFSF13-TNFRSF11B"
+##  [1] "ANGPTL1-TEK"        "FN1-ITGA8"          "COL4A5-CD93"       
+##  [4] "GNAI2-P2RY12"       "NCAM1-GFRA1"        "FGF7-FGFR1-NRP1"   
+##  [7] "LTF-LRP11"          "SFRP1-FZD6"         "MYOC-FZD4"         
+## [10] "EFNB2-EPHA3"        "ADAM10-EFNA1-EPHA3" "MYOC-FZD1"         
+## [13] "TSLP-IL7R"          "NCAM1-FGFR1"        "F13A1-ITGA9"       
+## [16] "IFNG-IFNGR1-IFNGR2" "GZMB-IGF2R"         "HLA-B-HLA-E-KLRD1" 
+## [19] "CXCL10-SDC4"        "FASLG-FAS"          "CCL7-CCR1"         
+## [22] "CCL7-CCR5"          "CCL8-CCR5"          "CCL5-SDC4"         
+## [25] "CCL7-ACKR4"         "CCL8-CCR1"          "CCL7-CCR2"         
+## [28] "CCL7-CXCR3"         "TNFSF9-TNFRSF9"     "IL15-IL2RA"        
+## [31] "IL1A-IL1R1"         "IL1A-IL1R2"         "PPBP-CXCR2"        
+## [34] "IL1A-IL1RAP"        "FN1-TNFRSF11B"      "THBS1-TNFRSF11B"   
+## [37] "TNFSF10-TNFRSF11B"  "OSM-IL6ST"          "PPBP-CXCR1"        
+## [40] "VWF-TNFRSF11B"      "EREG-EGFR"          "OSM-OSMR"          
+## [43] "TNFSF13-TNFRSF11B"  "IL6-IL6ST"          "ANXA1-APP-FPR2"
 ```
 
 Heatmap visualisation using `Seurat`'s `DoHeatmap`
 
+
 ``` r
-#cols <- c('#2692a4','#fc0d3a','#ffbe0b')
-p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols )+
-  scale_fill_gradientn(colours = rev(colorRampPalette(RColorBrewer::brewer.pal(11,"RdBu"))(256)))
+# cols <- c('#2692a4','#fc0d3a','#ffbe0b')
+p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols) +
+  scale_fill_gradientn(colours = rev(colorRampPalette(RColorBrewer::brewer.pal(11, "RdBu"))(256)))
 ```
 
 ```
@@ -292,14 +324,17 @@ p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols )+
 ## Adding another scale for fill, which will replace the existing scale.
 ```
 
-Extracting variables from the expression matrix to merge with TME subtype
+Extracting variables from the expression matrix to merge with TME subtype.
+
 
 ``` r
-top15$gene  <- gsub(top15$gene, pattern = "-", replacement = "\\_")
+top15$gene <- gsub(top15$gene, pattern = "-", replacement = "\\_")
 input <- combine_pd_eset(eset = lr, pdata = tme, feas = top15$gene, scale = T)
 
-p2 <- sig_box(input, variable = "cluster", signature = top15$gene[1], jitter = TRUE,
-              cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
+p2 <- sig_box(input,
+  variable = "cluster", signature = top15$gene[1], jitter = TRUE,
+  cols = cols, show_pairwise_p = TRUE, size_of_pvalue = 4
+)
 ```
 
 ```
@@ -312,26 +347,29 @@ p2 <- sig_box(input, variable = "cluster", signature = top15$gene[1], jitter = T
 ```
 
 ``` r
-p3 <- sig_box(input, variable = "cluster", signature = top15$gene[5], 
-              jitter = TRUE, cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
+p3 <- sig_box(input,
+  variable = "cluster", signature = top15$gene[5],
+  jitter = TRUE, cols = cols, show_pairwise_p = TRUE, size_of_pvalue = 4
+)
 ```
 
 ```
 ## # A tibble: 3 × 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   <chr>     <chr>  <chr>     <dbl>    <dbl> <chr>    <chr>    <chr>   
-## 1 signature TME3   TME2   1.11e-16 3.30e-16 < 2e-16  ****     Wilcoxon
-## 2 signature TME3   TME1   6.70e- 1 6.7 e- 1 0.67     ns       Wilcoxon
-## 3 signature TME2   TME1   5.60e-14 1.10e-13 5.6e-14  ****     Wilcoxon
+## 1 signature TME3   TME2   5.86e-16 1.80e-15 5.9e-16  ****     Wilcoxon
+## 2 signature TME3   TME1   1.31e-10 2.6 e-10 1.3e-10  ****     Wilcoxon
+## 3 signature TME2   TME1   1.14e- 1 1.1 e- 1 0.11     ns       Wilcoxon
 ```
 
-Combining the results obtained above
+Combining the results obtained above.
+
 
 ``` r
 # if (!requireNamespace("patchwork", quietly = TRUE))   install.packages("patchwork")
 library(patchwork)
-p <- (p1|p2/p3) + plot_layout(widths = c(2.3,1))
-p + plot_annotation(tag_levels = 'A')
+p <- (p1 | p2 / p3) + plot_layout(widths = c(2.3, 1))
+p + plot_annotation(tag_levels = "A")
 ```
 
 <img src="tme-interactions_files/figure-html/unnamed-chunk-17-1.png" alt="" width="1152" />
@@ -340,13 +378,16 @@ p + plot_annotation(tag_levels = 'A')
 
 Calculate TME associated signatures-(through PCA method).
 
+
 ``` r
 signature_collection <- load_data("signature_collection")
-sig_tme<-calculate_sig_score(pdata           = NULL,
-                             eset            = eset,
-                             signature       = signature_collection,
-                             method          = "pca",
-                             mini_gene_count = 2)
+sig_tme <- calculate_sig_score(
+  pdata = NULL,
+  eset = eset,
+  signature = signature_collection,
+  method = "pca",
+  mini_gene_count = 2
+)
 sig_tme <- t(column_to_rownames(sig_tme, var = "ID"))
 sig_tme[1:5, 1:3]
 ```
@@ -360,38 +401,30 @@ sig_tme[1:5, 1:3]
 ## CellCycle_Reg      0.1063358  0.7583302 -0.3649795
 ```
 
-Finding characteristic variables associated with TME clusters
+Finding characteristic variables associated with TME clusters.
+
 
 ``` r
-res <- tryCatch({
-  find_markers_in_bulk(pdata = tme, eset = sig_tme, group = "cluster", nfeatures = 2000, top_n = 20, min.pct = 0.01, thresh.use = 0.1)
-}, error = function(e) {
-  message("Note: find_markers_in_bulk encountered an error with signature score matrix. Using alternative approach.")
-  return(NULL)
-})
+res <- find_markers_in_bulk(pdata = tme, eset = sig_tme, group = "cluster", nfeatures = 1000, top_n = 20, min.pct = 0.10)
 
-if (!is.null(res)) {
-  top15 <- res$top_markers %>% dplyr::group_by(cluster) %>% dplyr::top_n(15, avg_log2FC)
-  p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols) +
-    scale_fill_gradientn(colours = rev(colorRampPalette(RColorBrewer::brewer.pal(11,"RdBu"))(256)))
-} else {
-  top15 <- data.frame(gene = c("CD_8_T_effector", "Neutrophils_Bindea_et_al"), cluster = c("A", "B"), avg_log2FC = c(1, -1))
-  p1 <- ggplot() + annotate("text", x = 0.5, y = 0.5, label = "Signature score matrix has insufficient variance for PCA analysis") + theme_void()
-}
+top15 <- res$top_markers %>%
+  dplyr::group_by(cluster) %>%
+  dplyr::top_n(15, avg_log2FC)
+
+p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols) +
+  scale_fill_gradientn(colours = rev(colorRampPalette(RColorBrewer::brewer.pal(11, "RdBu"))(256)))
 ```
 
 Visualizing results and selecting feature variables
 
 ``` r
-if (!is.null(res) && "gene" %in% colnames(top15)) {
-  top15$gene  <- gsub(top15$gene, pattern = "-", replacement = "\\_")
-  input <- combine_pd_eset(eset = sig_tme, pdata = tme, feas = top15$gene, scale = T)
-} else {
-  input <- combine_pd_eset(eset = sig_tme, pdata = tme, feas = c("CD_8_T_effector", "Neutrophils_Bindea_et_al"), scale = T)
-}
+top15$gene <- gsub(top15$gene, pattern = "-", replacement = "\\_")
+input <- combine_pd_eset(eset = sig_tme, pdata = tme, feas = top15$gene, scale = T)
 
-p2 <- sig_box(input, variable = "cluster", signature = "CD_8_T_effector", jitter = TRUE,
-              cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4, size_of_font = 6)
+p2 <- sig_box(input,
+  variable = "cluster", signature = "CD_8_T_effector", jitter = TRUE,
+  cols = cols, show_pairwise_p = TRUE, size_of_pvalue = 4, size_of_font = 6
+)
 ```
 
 ```
@@ -404,8 +437,10 @@ p2 <- sig_box(input, variable = "cluster", signature = "CD_8_T_effector", jitter
 ```
 
 ``` r
-p3 <- sig_box(input, variable = "cluster", signature = "Neutrophils_Bindea_et_al",  
-              jitter = TRUE, cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4, size_of_font = 6)
+p3 <- sig_box(input,
+  variable = "cluster", signature = "Neutrophils_Bindea_et_al",
+  jitter = TRUE, cols = cols, show_pairwise_p = TRUE, size_of_pvalue = 4, size_of_font = 6
+)
 ```
 
 ```
@@ -420,8 +455,8 @@ p3 <- sig_box(input, variable = "cluster", signature = "Neutrophils_Bindea_et_al
 
 
 ``` r
-p <- (p1|p2/p3) + plot_layout(widths = c(2.3,1))
-p + plot_annotation(tag_levels = 'A')
+p <- (p1 | p2 / p3) + plot_layout(widths = c(2.3, 1))
+p + plot_annotation(tag_levels = "A")
 ```
 
 <img src="tme-interactions_files/figure-html/unnamed-chunk-21-1.png" alt="" width="1152" />
@@ -441,16 +476,18 @@ library(survminer)
 ``` r
 pdata_acrg <- load_data("pdata_acrg")
 input <- merge(pdata_acrg, input, by = "ID")
-p1<-surv_group(input_pdata       = input,
-               target_group      = "cluster",
-               ID                = "ID",
-               reference_group   = "High",
-               project           = "ACRG",
-               cols              = cols, 
-               time              = "OS_time",
-               status            = "OS_status",
-               time_type         = "month",
-               save_path         = "result")
+p1 <- surv_group(
+  input_pdata = input,
+  target_group = "cluster",
+  ID = "ID",
+  reference_group = "High",
+  project = "ACRG",
+  cols = cols,
+  time = "OS_time",
+  status = "OS_status",
+  time_type = "month",
+  save_path = "result"
+)
 ```
 
 ```
@@ -464,6 +501,13 @@ p1<-surv_group(input_pdata       = input,
 
 ```
 ## ℹ Maximum follow-up time is 105.7 months; divided into 6 sections
+```
+
+```
+## Registered S3 methods overwritten by 'ggpp':
+##   method                  from   
+##   heightDetails.titleGrob ggplot2
+##   widthDetails.titleGrob  ggplot2
 ```
 
 ```
@@ -481,7 +525,7 @@ Relationship between tumour microenvironmental subtypes and other subtypes
 
 
 ``` r
-p1<- percent_bar_plot(input, x = "cluster" , y = "Subtype", palette = "jama", axis_angle = 60)
+p1 <- percent_bar_plot(input, x = "cluster", y = "Subtype", palette = "jama", axis_angle = 60)
 ```
 
 ```
@@ -508,7 +552,7 @@ p1<- percent_bar_plot(input, x = "cluster" , y = "Subtype", palette = "jama", ax
 ```
 
 ``` r
-p2<- percent_bar_plot(input, x = "cluster" , y = "Lauren", palette = "jama", axis_angle = 60)
+p2 <- percent_bar_plot(input, x = "cluster", y = "Lauren", palette = "jama", axis_angle = 60)
 ```
 
 ```
@@ -532,7 +576,7 @@ p2<- percent_bar_plot(input, x = "cluster" , y = "Lauren", palette = "jama", axi
 ```
 
 ``` r
-p3<- percent_bar_plot(input, x = "cluster" , y = "TMEscore_binary", palette = "jama", axis_angle = 60)
+p3 <- percent_bar_plot(input, x = "cluster", y = "TMEscore_binary", palette = "jama", axis_angle = 60)
 ```
 
 ```
@@ -555,7 +599,7 @@ p3<- percent_bar_plot(input, x = "cluster" , y = "TMEscore_binary", palette = "j
 
 
 ``` r
-p1|p2|p3
+p1 | p2 | p3
 ```
 
 <img src="tme-interactions_files/figure-html/unnamed-chunk-24-1.png" alt="" width="1152" />

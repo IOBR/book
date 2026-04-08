@@ -36,7 +36,7 @@ cols
 ```
 
 ``` r
-cols <- get_cols( palette = "jco", show_col = T)
+cols <- get_cols(palette = "jco", show_col = T)
 ```
 
 ```
