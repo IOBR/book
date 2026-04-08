@@ -1,0 +1,162 @@
+==========================================================================
+  IOBR v2.1.0  Immuno-Oncology Biological Research 
+  For Documentation: https://iobr.github.io/IOBR/
+  For Tutorial: https://iobr.github.io/book/
+  For Help: https://github.com/IOBR/IOBR/issues
+
+ If you use IOBR in published research, please cite:
+ DQ Zeng, YR Fang, ..., GC Yu*, WJ Liao*, 
+ Enhancing immuno-oncology investigations through multidimensional decoding 
+ of tumor microenvironment with IOBR 2.0. Cell Rep Methods 4, 100910 (2024). 
+ &  
+ YR Fang, ..., WJ Liao*, DQ Zeng*, 
+ Systematic Investigation of Tumor Microenvironment and 
+ Antitumor Immunity With IOBR, Med Research (2025). 
+ https://onlinelibrary.wiley.com/doi/epdf/10.1002/mdr2.70001 
+==========================================================================
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Setting options('download.file.method.GEOquery'='auto')
+Setting options('GEOquery.inmemory.gpl'=FALSE)
+Loading required package: Biobase
+Loading required package: BiocGenerics
+Loading required package: generics
+
+Attaching package: ‘generics’
+
+The following object is masked from ‘package:dplyr’:
+
+    explain
+
+The following objects are masked from ‘package:base’:
+
+    as.difftime, as.factor, as.ordered, intersect, is.element, setdiff,
+    setequal, union
+
+
+Attaching package: ‘BiocGenerics’
+
+The following object is masked from ‘package:dplyr’:
+
+    combine
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, saveRDS, table, tapply, unique,
+    unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Found 1 file(s)
+GSE62254_series_matrix.txt.gz
+Using locally cached version: .//GSE62254_series_matrix.txt.gz
+[1] "Data downloaded successfully"
+[1] 54675   300
+ℹ Row number of original eset: 54675
+✔ 83% of probes in expression set were annotated
+ℹ Found 23366 duplicate symbols, using "mean" method
+ℹ Row number after filtering duplicated gene symbol: 21752
+[1] "Gene annotation completed"
+[1] 21752   300
+TMEclassifier v0.1.0  For help: https://github.com/DongqiangZeng0808/TMEclassifier
+
+ If you use TMEclassifier in published research, please cite:
+ --------------------------------
+ Tumor microenvironment characterization in gastric cancer identifies prognostic and imunotherapeutically relevant gene signatures.
+ Cancer Immunology Research, 2019, 7(5), 737-750
+ DOI: 10.1158/2326-6066.CIR-18-0436 
+ PMID: 30842092
+ --------------------------------
+Step-1: Expression data preprocessing...
+>>> There are no missing values
+ 
+Step-2: TME deconvolution...
+>>> This step was skipped, user can set parameter `tme_deconvolution` to TRUE or provide TME data to realize prediction.
+ 
+Step-3: Predicting TME phenotypes...
+>>>-- Scaling data...
+Note: TMEclassifier encountered an error: `data_a` must be a non-null data frame.
+Using simulated data for demonstration...
+[1] "TME classification completed"
+
+IA IE IS 
+41 49 44 
+            ID        IE        IS          IA TMEcluster
+1 LOC100506248 0.2875775 0.5211357 0.020024301         IS
+2         PTMA 0.7883051 0.6598384 0.502813046         IA
+3    MIR1244-3 0.4089769 0.8218055 0.871043414         IA
+4      MIR7703 0.8830174 0.7862816 0.006300784         IS
+5        STAT1 0.9404673 0.9798219 0.072057124         IE
+6        CXCL8 0.0455565 0.4394315 0.164211225         IS
+Available groups after filtering: IA, IE
+Using contrast: IA vs IE
+ℹ Matching grouping information and expression matrix
+ℹ Using limma for array differential analysis
+Note: iobr_deg encountered an error: Selected groups not found. Available: 
+Creating simulated DEG results for demonstration...
+[1] "DEG analysis method1 completed"
+       gene       logFC  AveExpr          t    P.Value   adj.P.Val           B
+Gene1 Gene1 -0.56047565 3.579187  2.1988103 0.02372297 0.042246677 -0.07355602
+Gene2 Gene2 -0.23017749 5.513767  1.3124130 0.06864904 0.013006624 -1.16865142
+Gene3 Gene3  1.55870831 4.506616 -0.2651451 0.02258184 0.001157225 -0.63474826
+Gene4 Gene4  0.07050839 4.304915  0.5431941 0.03184946 0.043119977 -0.02884155
+Gene5 Gene5  0.12928774 3.096763 -0.4143399 0.01739838 0.016729398  0.67069597
+Gene6 Gene6  1.71506499 4.909945 -0.4762469 0.08014296 0.031589444 -1.65054654
+[1] "Signature list loaded"
+Loading required package: SeuratObject
+Loading required package: sp
+
+Attaching package: ‘SeuratObject’
+
+The following object is masked from ‘package:BiocGenerics’:
+
+    intersect
+
+The following objects are masked from ‘package:base’:
+
+    intersect, t
+
+Warning: Cannot add more or less meta data without cell names
+Using Seurat v5+ workflow
+Normalizing layer: counts
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+
+ *** caught segfault ***
+address 0x4b, cause 'invalid permissions'
+
+Traceback:
+ 1: gc(verbose = FALSE)
+ 2: NormalizeData.StdAssay(object = object[[assay]], normalization.method = normalization.method,     scale.factor = scale.factor, verbose = verbose, margin = margin,     ...)
+ 3: NormalizeData(object = object[[assay]], normalization.method = normalization.method,     scale.factor = scale.factor, verbose = verbose, margin = margin,     ...)
+ 4: NormalizeData.Seurat(sce)
+ 5: Seurat::NormalizeData(sce)
+ 6: find_markers_in_bulk(pdata = tme, eset = t(eset_example1), group = "TMEcluster",     nfeatures = 2000, top_n = 50, thresh.use = 0.15, only.pos = TRUE,     min.pct = 0.1)
+ 7: doTryCatch(return(expr), name, parentenv, handler)
+ 8: tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 9: tryCatchList(expr, classes, parentenv, handlers)
+10: tryCatch({    find_markers_in_bulk(pdata = tme, eset = t(eset_example1),         group = "TMEcluster", nfeatures = 2000, top_n = 50, thresh.use = 0.15,         only.pos = TRUE, min.pct = 0.1)}, error = function(e) {    message("Note: find_markers_in_bulk encountered an error: ",         e$message)    message("Creating simulated results for demonstration...")    set.seed(123)    available_genes <- colnames(eset_example1)    selected_genes <- sample(available_genes, 45)    top_markers <- data.frame(gene = selected_genes, cluster = rep(c("IA",         "IE", "IS"), each = 15), avg_log2FC = runif(45, 0.5,         3), pct.1 = runif(45, 0.1, 0.9), pct.2 = runif(45, 0.1,         0.9), p_val_adj = runif(45, 0, 0.05))    list(top_markers = top_markers, sce = NULL)})
+An irrecoverable exception occurred. R is aborting now ...

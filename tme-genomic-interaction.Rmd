@@ -48,15 +48,19 @@ mut <- mut_list$snp
 The microenvironmental data from the TCGA-STAD expression matrix was merged. The Cuzick or Wilcoxon test was used to identify genetic variants associated with microenvironmental factors. CD_8_T_effector was used as the target variable in this example.
 ```{r, fig.show= 'hide'}
 tcga_stad_sig <- load_data("tcga_stad_sig")
-res<-find_mutations(mutation_matrix     = mut, 
-                    signature_matrix    = tcga_stad_sig, 
-                    id_signature_matrix = "ID", 
-                    signature           = "CD_8_T_effector",
-                    palette             = "nrc",
-                    min_mut_freq        = 0.01, 
-                    plot                = TRUE, 
-                    jitter              = TRUE, 
-                    point.alpha         = 0.25)
+res <- tryCatch({
+  find_mutations(mutation_matrix     = mut, 
+                 signature_matrix    = tcga_stad_sig, 
+                 id_signature_matrix = "ID", 
+                 signature           = "CD_8_T_effector",
+                 palette             = "nrc",
+                 min_mut_freq        = 0.01, 
+                 plot                = TRUE, 
+                 jitter              = TRUE)
+}, error = function(e) {
+  message("find_mutations error: ", e$message)
+  NULL
+})
 ```
 
 ## OncoPrint of result

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 How to use IOBR | IOBR (Immuno-Oncology Biological Research)</title>
+  <meta name="description" content="The tutorial of IOBR package" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 How to use IOBR | IOBR (Immuno-Oncology Biological Research)" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://iobr.github.io/book/./fig/cover.png" />
+  <meta property="og:description" content="The tutorial of IOBR package" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 How to use IOBR | IOBR (Immuno-Oncology Biological Research)" />
+  
+  <meta name="twitter:description" content="The tutorial of IOBR package" />
+  <meta name="twitter:image" content="https://iobr.github.io/book/./fig/cover.png" />
+
+<meta name="author" content="Dongqiang Zeng, Yiran Fang" />
+
+
+<meta name="date" content="2026-04-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="how-to-install-iobr.html"/>
+<link rel="next" href="rna-data-preprocessing.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The tutorial of IOBR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><strong>Introduction</strong></a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#introduction-1"><i class="fa fa-check"></i><b>0.1</b> 📚 Introduction</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i><b>0.2</b> 💿 License</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#citations"><i class="fa fa-check"></i><b>0.3</b> 🏆 Citations</a></li>
+<li class="chapter" data-level="0.4" data-path="index.html"><a href="index.html#major-updates"><i class="fa fa-check"></i><b>0.4</b> ⏳ Major Updates</a></li>
+<li class="chapter" data-level="0.5" data-path="index.html"><a href="index.html#reporting-bugs"><i class="fa fa-check"></i><b>0.5</b> ✉️ Reporting bugs</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html"><i class="fa fa-check"></i><b>1</b> <strong>How to install IOBR</strong></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-dependency-packages"><i class="fa fa-check"></i><b>1.1</b> ⏳ Install Dependency Packages</a></li>
+<li class="chapter" data-level="1.2" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#install-iobr-package"><i class="fa fa-check"></i><b>1.2</b> 💻 Install IOBR package</a></li>
+<li class="chapter" data-level="1.3" data-path="how-to-install-iobr.html"><a href="how-to-install-iobr.html#how-to-update-iobr"><i class="fa fa-check"></i><b>1.3</b> 📌 How to update IOBR</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 👆 Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌐 Current working environment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#introduction-2"><i class="fa fa-check"></i><b>3.1</b> <strong>Introduction</strong></a></li>
+<li class="chapter" data-level="3.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#loading-packages"><i class="fa fa-check"></i><b>3.2</b> Loading packages</a></li>
+<li class="chapter" data-level="3.3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#gene-annotation"><i class="fa fa-check"></i><b>3.3</b> Gene Annotation</a></li>
+<li class="chapter" data-level="3.4" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-array-data-using-geoquery"><i class="fa fa-check"></i><b>3.4</b> Download array data using <code>GEOquery</code></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-array-data-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>3.4.1</b> For Array data: HGU133PLUS-2 (Affaymetrix)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#download-rnaseq-data-using-ucscxenatools"><i class="fa fa-check"></i><b>3.5</b> Download RNAseq data using <code>UCSCXenaTools</code></a></li>
+<li class="chapter" data-level="3.6" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#normalization-and-gene-annotation"><i class="fa fa-check"></i><b>3.6</b> Normalization and Gene annotation</a></li>
+<li class="chapter" data-level="3.7" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#identifying-outlier-samples"><i class="fa fa-check"></i><b>3.7</b> Identifying outlier samples</a></li>
+<li class="chapter" data-level="3.8" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#pca-analysis-of-molecular-subtypes"><i class="fa fa-check"></i><b>3.8</b> PCA analysis of molecular subtypes</a></li>
+<li class="chapter" data-level="3.9" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#batch-effect-correction"><i class="fa fa-check"></i><b>3.9</b> Batch effect correction</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-microarray-data"><i class="fa fa-check"></i><b>3.9.1</b> For microarray data</a></li>
+<li class="chapter" data-level="3.9.2" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#for-rnaseq-count-data"><i class="fa fa-check"></i><b>3.9.2</b> For RNAseq count data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html#references"><i class="fa fa-check"></i><b>3.10</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html"><i class="fa fa-check"></i><b>4</b> <strong>Signature Score Calculation</strong></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#loading-packages-1"><i class="fa fa-check"></i><b>4.1</b> Loading packages</a></li>
+<li class="chapter" data-level="4.2" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#downloading-data-for-example"><i class="fa fa-check"></i><b>4.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="4.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#signature-score-estimation"><i class="fa fa-check"></i><b>4.3</b> Signature score estimation</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#signature-collection-of-iobr"><i class="fa fa-check"></i><b>4.3.1</b> Signature collection of IOBR</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#estimation-of-signature-using-pca-method"><i class="fa fa-check"></i><b>4.4</b> Estimation of signature using PCA method</a></li>
+<li class="chapter" data-level="4.5" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#estimated-using-the-ssgsea-methodology"><i class="fa fa-check"></i><b>4.5</b> Estimated using the ssGSEA methodology</a></li>
+<li class="chapter" data-level="4.6" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#calculated-using-the-z-score-function."><i class="fa fa-check"></i><b>4.6</b> Calculated using the z-score function.</a></li>
+<li class="chapter" data-level="4.7" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#calculated-using-all-three-methods-at-the-same-time"><i class="fa fa-check"></i><b>4.7</b> Calculated using all three methods at the same time</a></li>
+<li class="chapter" data-level="4.8" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#classification-of-signatures"><i class="fa fa-check"></i><b>4.8</b> Classification of signatures</a></li>
+<li class="chapter" data-level="4.9" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#how-to-customise-the-signature-gene-list-for-calculate_signature_score"><i class="fa fa-check"></i><b>4.9</b> How to customise the signature gene list for <code>calculate_signature_score</code></a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-1-use-excel-for-storage-and-construction"><i class="fa fa-check"></i><b>4.9.1</b> Method-1: Use excel for storage and construction</a></li>
+<li class="chapter" data-level="4.9.2" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-2-build-the-list-structure-directly"><i class="fa fa-check"></i><b>4.9.2</b> Method-2: Build the list structure directly</a></li>
+<li class="chapter" data-level="4.9.3" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-3-add-the-new-signature-to-the-existing-gene-list"><i class="fa fa-check"></i><b>4.9.3</b> Method-3: Add the new signature to the existing gene list</a></li>
+<li class="chapter" data-level="4.9.4" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#method-4-construct-cell-specific-gene-signatures-from-single-cell-differential-analysis-results"><i class="fa fa-check"></i><b>4.9.4</b> Method-4: Construct cell-specific gene signatures from single-cell differential analysis results</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#how-to-export-gene-signature"><i class="fa fa-check"></i><b>4.10</b> How to export gene signature</a></li>
+<li class="chapter" data-level="4.11" data-path="signature-score-calculation.html"><a href="signature-score-calculation.html#references-1"><i class="fa fa-check"></i><b>4.11</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html"><i class="fa fa-check"></i><b>5</b> <strong>TME deconvolution</strong></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#loading-packages-2"><i class="fa fa-check"></i><b>5.1</b> Loading packages</a></li>
+<li class="chapter" data-level="5.2" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#downloading-data-for-example-1"><i class="fa fa-check"></i><b>5.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="5.3" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#available-methods-to-decode-tme-contexture"><i class="fa fa-check"></i><b>5.3</b> Available Methods to Decode TME Contexture</a></li>
+<li class="chapter" data-level="5.4" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-1-cibersort"><i class="fa fa-check"></i><b>5.4</b> Method 1: CIBERSORT</a></li>
+<li class="chapter" data-level="5.5" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-2-epic"><i class="fa fa-check"></i><b>5.5</b> Method 2: EPIC</a></li>
+<li class="chapter" data-level="5.6" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-3-mcpcounter"><i class="fa fa-check"></i><b>5.6</b> Method 3: MCPcounter</a></li>
+<li class="chapter" data-level="5.7" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-4-xcell"><i class="fa fa-check"></i><b>5.7</b> Method 4: xCELL</a></li>
+<li class="chapter" data-level="5.8" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-5-estimate"><i class="fa fa-check"></i><b>5.8</b> Method 5: ESTIMATE</a></li>
+<li class="chapter" data-level="5.9" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-6-timer"><i class="fa fa-check"></i><b>5.9</b> Method 6: TIMER</a></li>
+<li class="chapter" data-level="5.10" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-7-quantiseq"><i class="fa fa-check"></i><b>5.10</b> Method 7: quanTIseq</a></li>
+<li class="chapter" data-level="5.11" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#method-8-ips"><i class="fa fa-check"></i><b>5.11</b> Method 8: IPS</a></li>
+<li class="chapter" data-level="5.12" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#combination-of-above-deconvolution-results"><i class="fa fa-check"></i><b>5.12</b> Combination of above deconvolution results</a></a></li>
+<li class="chapter" data-level="5.13" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#how-to-customise-the-signature-matrix-for-svr-and-lesi-algorithm"><i class="fa fa-check"></i><b>5.13</b> How to customise the signature matrix for <code>SVR</code> and <code>lesi</code> algorithm</a></li>
+<li class="chapter" data-level="5.14" data-path="tme-deconvolution.html"><a href="tme-deconvolution.html#references-2"><i class="fa fa-check"></i><b>5.14</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html"><i class="fa fa-check"></i><b>6</b> <strong>Signature Score and Relevant phenotypes</strong></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#loading-packages-3"><i class="fa fa-check"></i><b>6.1</b> Loading packages</a></li>
+<li class="chapter" data-level="6.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#downloading-data-for-example-2"><i class="fa fa-check"></i><b>6.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="6.3" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#gene-annotation-1"><i class="fa fa-check"></i><b>6.3</b> Gene Annotation</a></li>
+<li class="chapter" data-level="6.4" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#estimation-of-signatures"><i class="fa fa-check"></i><b>6.4</b> Estimation of signatures</a></li>
+<li class="chapter" data-level="6.5" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#combining-score-data-and-phenotype-data"><i class="fa fa-check"></i><b>6.5</b> Combining score data and phenotype data</a></li>
+<li class="chapter" data-level="6.6" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#identifying-features-associated-with-survival"><i class="fa fa-check"></i><b>6.6</b> Identifying features associated with survival</a></li>
+<li class="chapter" data-level="6.7" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#visulization-using-heatmap"><i class="fa fa-check"></i><b>6.7</b> Visulization using heatmap</a></li>
+<li class="chapter" data-level="6.8" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#focus-on-target-signatures"><i class="fa fa-check"></i><b>6.8</b> Focus on target signatures</a></li>
+<li class="chapter" data-level="6.9" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#survival-analysis-and-visulization"><i class="fa fa-check"></i><b>6.9</b> Survival analysis and visulization</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#kaplan-meier-plot"><i class="fa fa-check"></i><b>6.9.1</b> Kaplan-Meier plot</a></li>
+<li class="chapter" data-level="6.9.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#time-dependent-roc-curve"><i class="fa fa-check"></i><b>6.9.2</b> Time-Dependent ROC curve</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#batch-correlation-analysis"><i class="fa fa-check"></i><b>6.10</b> Batch correlation analysis</a>
+<ul>
+<li class="chapter" data-level="6.10.1" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#finding-continuity-variables-associated-with-signatures"><i class="fa fa-check"></i><b>6.10.1</b> Finding continuity variables associated with signatures</a></li>
+<li class="chapter" data-level="6.10.2" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#identifying-category-variables-linked-to-signatures"><i class="fa fa-check"></i><b>6.10.2</b> Identifying Category Variables Linked to Signatures</a></li>
+<li class="chapter" data-level="6.10.3" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#for-multicategorical-variables-2-subgroups"><i class="fa fa-check"></i><b>6.10.3</b> For multicategorical variables (&gt;2 subgroups)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="signature-score-and-relevant-phenotypes.html"><a href="signature-score-and-relevant-phenotypes.html#reference"><i class="fa fa-check"></i><b>6.11</b> Reference</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html"><i class="fa fa-check"></i><b>7</b> <strong>TME Interaction analysis</strong></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#loading-packages-4"><i class="fa fa-check"></i><b>7.1</b> Loading packages</a></li>
+<li class="chapter" data-level="7.2" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#downloading-data-for-example-3"><i class="fa fa-check"></i><b>7.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="7.3" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#gene-annotation-hgu133plus-2-affaymetrix"><i class="fa fa-check"></i><b>7.3</b> Gene Annotation: HGU133PLUS-2 (Affaymetrix)</a></li>
+<li class="chapter" data-level="7.4" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#tme-deconvolution-using-cibersort-algorithm"><i class="fa fa-check"></i><b>7.4</b> TME deconvolution using CIBERSORT algorithm</a></li>
+<li class="chapter" data-level="7.5" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-tme-patterns"><i class="fa fa-check"></i><b>7.5</b> Identifying TME patterns</a></li>
+<li class="chapter" data-level="7.6" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#cell-abundance-of-each-cluster"><i class="fa fa-check"></i><b>7.6</b> Cell abundance of each cluster</a></li>
+<li class="chapter" data-level="7.7" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#deg-analysis-between-tme-subtypes"><i class="fa fa-check"></i><b>7.7</b> DEG analysis between TME subtypes</a></li>
+<li class="chapter" data-level="7.8" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-lr-associated-with-tme-clusters"><i class="fa fa-check"></i><b>7.8</b> Identifying LR associated with TME clusters</a></li>
+<li class="chapter" data-level="7.9" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#identifying-signatures-associated-with-tme-clusters"><i class="fa fa-check"></i><b>7.9</b> Identifying signatures associated with TME clusters</a></li>
+<li class="chapter" data-level="7.10" data-path="tme-interaction-analysis.html"><a href="tme-interaction-analysis.html#references-3"><i class="fa fa-check"></i><b>7.10</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html"><i class="fa fa-check"></i><b>8</b> <strong>Tumor ecosystem analysis</strong></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#loading-packages-5"><i class="fa fa-check"></i><b>8.1</b> Loading packages</a></li>
+<li class="chapter" data-level="8.2" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#downloading-data-for-example-4"><i class="fa fa-check"></i><b>8.2</b> Downloading data for example</a></li>
+<li class="chapter" data-level="8.3" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gene-annotation-hgu133plus-2-affaymetrix-1"><i class="fa fa-check"></i><b>8.3</b> Gene Annotation: HGU133PLUS-2 (Affaymetrix)</a></li>
+<li class="chapter" data-level="8.4" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#determine-tme-subtype-of-gastric-cancer-using-tmeclassifier-r-package"><i class="fa fa-check"></i><b>8.4</b> Determine TME subtype of gastric cancer using TMEclassifier R package</a></li>
+<li class="chapter" data-level="8.5" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis-method1"><i class="fa fa-check"></i><b>8.5</b> DEG analysis: method1</a></li>
+<li class="chapter" data-level="8.6" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#gsea-analysis-based-on-differential-express-gene-analysis-results"><i class="fa fa-check"></i><b>8.6</b> GSEA analysis based on differential express gene analysis results</a></li>
+<li class="chapter" data-level="8.7" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#deg-analysis-method2"><i class="fa fa-check"></i><b>8.7</b> DEG analysis: method2</a></li>
+<li class="chapter" data-level="8.8" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#identifying-signatures-associated-with-tme-clusters-1"><i class="fa fa-check"></i><b>8.8</b> Identifying signatures associated with TME clusters</a></li>
+<li class="chapter" data-level="8.9" data-path="tumor-ecosystem-analysis.html"><a href="tumor-ecosystem-analysis.html#references-4"><i class="fa fa-check"></i><b>8.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html"><i class="fa fa-check"></i><b>9</b> <strong>TME and genomic interaction</strong></a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#loading-packages-6"><i class="fa fa-check"></i><b>9.1</b> Loading packages</a></li>
+<li class="chapter" data-level="9.2" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#genomic-data-prepare"><i class="fa fa-check"></i><b>9.2</b> Genomic data prepare</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#using-tcgabiolinks-to-download-genomic-data"><i class="fa fa-check"></i><b>9.2.1</b> Using TCGAbiolinks to download genomic data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#identifying-mutations-associated-with-tme"><i class="fa fa-check"></i><b>9.3</b> Identifying Mutations Associated with TME</a></li>
+<li class="chapter" data-level="9.4" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#oncoprint-of-result"><i class="fa fa-check"></i><b>9.4</b> OncoPrint of result</a></li>
+<li class="chapter" data-level="9.5" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#boxplot-of-top-10-mutated-genes"><i class="fa fa-check"></i><b>9.5</b> Boxplot of top 10 mutated genes</a></li>
+<li class="chapter" data-level="9.6" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#other-methods-to-obtaind-genomic-data"><i class="fa fa-check"></i><b>9.6</b> Other methods to obtaind genomic data</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#using-tcgamutations"><i class="fa fa-check"></i><b>9.6.1</b> Using TCGAmutations</a></li>
+<li class="chapter" data-level="9.6.2" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#using-maftools"><i class="fa fa-check"></i><b>9.6.2</b> Using maftools</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="tme-and-genomic-interaction.html"><a href="tme-and-genomic-interaction.html#references-5"><i class="fa fa-check"></i><b>9.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tme-modeling.html"><a href="tme-modeling.html"><i class="fa fa-check"></i><b>10</b> <strong>TME Modeling</strong></a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="tme-modeling.html"><a href="tme-modeling.html#loading-packages-7"><i class="fa fa-check"></i><b>10.1</b> Loading packages</a></li>
+<li class="chapter" data-level="10.2" data-path="tme-modeling.html"><a href="tme-modeling.html#data-prepare"><i class="fa fa-check"></i><b>10.2</b> Data prepare</a></li>
+<li class="chapter" data-level="10.3" data-path="tme-modeling.html"><a href="tme-modeling.html#input-data-overall-survival-prepare"><i class="fa fa-check"></i><b>10.3</b> Input data (overall survival) prepare</a></li>
+<li class="chapter" data-level="10.4" data-path="tme-modeling.html"><a href="tme-modeling.html#constructing-survival-prediction-models"><i class="fa fa-check"></i><b>10.4</b> Constructing survival prediction models</a></li>
+<li class="chapter" data-level="10.5" data-path="tme-modeling.html"><a href="tme-modeling.html#input-data-response-prepare"><i class="fa fa-check"></i><b>10.5</b> Input data (Response) prepare</a></li>
+<li class="chapter" data-level="10.6" data-path="tme-modeling.html"><a href="tme-modeling.html#constructing-prediction-models-for-response"><i class="fa fa-check"></i><b>10.6</b> Constructing prediction models for response</a></li>
+<li class="chapter" data-level="10.7" data-path="tme-modeling.html"><a href="tme-modeling.html#references-6"><i class="fa fa-check"></i><b>10.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="some-tips-about-iobr.html"><a href="some-tips-about-iobr.html"><i class="fa fa-check"></i><b>11</b> <strong>Some tips about IOBR</strong></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="some-tips-about-iobr.html"><a href="some-tips-about-iobr.html#loading-packages-8"><i class="fa fa-check"></i><b>11.1</b> Loading packages</a></li>
+<li class="chapter" data-level="11.2" data-path="some-tips-about-iobr.html"><a href="some-tips-about-iobr.html#colour-configuration"><i class="fa fa-check"></i><b>11.2</b> Colour Configuration</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="some-tips-about-iobr.html"><a href="some-tips-about-iobr.html#categorical-variable"><i class="fa fa-check"></i><b>11.2.1</b> categorical variable</a></li>
+<li class="chapter" data-level="11.2.2" data-path="some-tips-about-iobr.html"><a href="some-tips-about-iobr.html#higher-number-of-subgroups"><i class="fa fa-check"></i><b>11.2.2</b> Higher number of subgroups</a></li>
+<li class="chapter" data-level="11.2.3" data-path="some-tips-about-iobr.html"><a href="some-tips-about-iobr.html#gradient-colour-or-heatmap-colour-scheme"><i class="fa fa-check"></i><b>11.2.3</b> Gradient colour or heatmap colour scheme</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="references-7.html"><a href="references-7.html"><i class="fa fa-check"></i><b>12</b> <strong>References</strong></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="references-7.html"><a href="references-7.html#tme-deconvolution-1"><i class="fa fa-check"></i><b>12.1</b> TME deconvolution</a></li>
+<li class="chapter" data-level="12.2" data-path="references-7.html"><a href="references-7.html#tme-signatures"><i class="fa fa-check"></i><b>12.2</b> TME Signatures</a></li>
+<li class="chapter" data-level="12.3" data-path="references-7.html"><a href="references-7.html#data-sets"><i class="fa fa-check"></i><b>12.3</b> Data sets</a></li>
+<li class="chapter" data-level="12.4" data-path="references-7.html"><a href="references-7.html#others"><i class="fa fa-check"></i><b>12.4</b> Others</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/DongqiangZeng0808" target="blank">Welcome to my GitHub</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">IOBR (Immuno-Oncology Biological Research)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="how-to-use-iobr" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> <strong>How to use IOBR</strong><a href="how-to-use-iobr.html#how-to-use-iobr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="the-main-pipeline-of-iobr" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> 🔍 The main pipeline of IOBR<a href="how-to-use-iobr.html#the-main-pipeline-of-iobr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:flowchart"></span>
+<img src="fig/IOBR-Package.png" alt="The main pipeline of IOBR" width="95%" />
+<p class="caption">
+Figure 2.1: The main pipeline of IOBR
+</p>
+</div>
+</div>
+<div id="main-functions-of-iobr" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> 👆 Main Functions of IOBR<a href="how-to-use-iobr.html#main-functions-of-iobr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><div style="color:green">
+<strong>Data Preparation: data annotation and transformation</strong>
+</div>
+<ul>
+<li><strong>count2tpm()</strong>: transform gene expression count data into Transcripts Per Million (TPM) values. This function supports gene IDs of type “Ensembl”, “Entrez”, or “Symbol”, and retrieves gene length information using either an online connection to the bioMart database or a local dataset (specified by the source parameter).</li>
+<li><strong>anno_eset()</strong>: annotate an ExpressionSet object (eset) with gene symbols using the provided annotation data. It retains only the rows with probes that have matching identifiers in the annotation data. The function handles duplicates according to the specified method. The output is an annotated and cleaned expression set.</li>
+<li><strong>remove_duplicate_genes()</strong>: remove duplicate gene symbols from gene expression data. The retention of gene symbols is based either on their mean values (if method is set as “mean”) or standard deviation values (if method is set as “sd”).</li>
+<li><strong>mouse2human_eset()</strong>: convert mouse gene symbols to human gene symbols of expression set.</li>
+<li><strong>find_outlier_samples()</strong>: analyze gene expression data and identify potential outlier samples based on connectivity analysis. By utilizing the “WGCNA” package, this function calculates the normalized adjacency and connectivity z-scores for each sample. It also offers multiple parameters to customize analysis and visualization.</li>
+<li><strong>remove_batcheffect()</strong>: remove batch effects from given expression datasets and visualize the corrected data using principal component analysis (PCA). It takes three expression datasets as input and performs batch effect correction using the “sva::ComBat” or “sva::ComBat_seq” methods. The function then generates PCA plots to compare the data before and after correction.
+</br></li>
+</ul></li>
+<li><div style="color:green">
+<strong>TME Deconvolution Module: integrate multiple algorithms to decode immune contexture</strong>
+</div>
+<ul>
+<li><strong>deconvo_tme()</strong>: decode the TME infiltration using various deconvolution methodologies, based on bulk RNAseq, microarray or single cell RNAseq data. It currently supports methods include “CIBERSORT”, “MCPcounter”, “EPIC”, “xCell”, “IPS”, “estimate”, “quanTIseq”, “TIMER”, “SVR” and “lsei”.</li>
+<li><strong>generateRef()</strong>: generate a novel gene reference data for specific feature deconvolution, such as infiltrating cell, utilizing different methods to identify differentially expressed genes (DEGs) . The function supports both “limma” and “DESeq2” methods.The resulting gene reference data can be used for <strong>deconvo_tme()</strong> with the “svr” and “lsei” algorithms.</li>
+<li><strong>generateRef_seurat()</strong>: take a Seurat object “sce” and additional parameters to perform various operations for generating reference gene expression data. It allows for specifying cell types, proportions, assays, preprocessing options, and statistical testing parameters.The resulting gene reference data can be used for <strong>deconvo_tme()</strong> with the “svr” and “lsei” algorithms.
+</br></li>
+</ul></li>
+<li><div style="color:green">
+<strong>Signature Module: calculating signature scores, estimate phenotype related signatures and corresponding genes, and evaluate signatures generated from single-cell RNA sequencing data </strong>
+</div>
+<ul>
+<li><strong>calculate_sig_score()</strong>: estimate the interested signatures enrolled in IOBR R package, which involves TME-associated, tumor-metabolism, and tumor-intrinsic signatures.The supported methods for signature score calculation include “PCA”, “ssGSEA”, “z-score”, and Integration.</li>
+<li><strong>feature_manipulation()</strong>: manipulate features including the cell fraction and signatures generated from multi-omics data for latter analysis and model construction. Remove missing values, outliers and variables without significant variance.</li>
+<li><strong>format_signatures()</strong>: generate the object for <strong>calculate_sig_score()</strong> function, by inputting a data frame with signatures as column names of corresponding gene sets, and return a list contain the signature information for calculating multiple signature scores.</li>
+<li><strong>format_msigdb()</strong>: transform the signature gene sets data with gmt format, which is not included in the signature collection and might be downloaded in the MSgiDB website, into the object of <strong>calculate_sig_score()</strong> function.</li>
+<li><strong>sig_gsea()</strong>: conduct Gene Set Enrichment Analysis (GSEA) to identify significant gene sets based on differential gene expression data. This function performs GSEA using the fgsea package and provides visualizations and results in the form of tables and plots. It supports the utilization of user-defined gene sets or the use of predefined gene sets from MSigDB.</li>
+<li><strong>get_sig_sc()</strong>: get top gene signatures from single-cell differential analysis for <strong>calculate_sig_score()</strong> function. The input is a matrix containing a ranked list of putative markers, and associated statistics (p-values, ROC score, etc.)
+</br></li>
+</ul></li>
+<li><div style="color:green">
+<strong>Batch Analysis and Visualization: batch survival analysis and batch correlation analysis and other batch statistical analyses </strong>
+</div>
+<ul>
+<li><strong>batch_surv()</strong>: perform batch survival analysis. It calculates hazard ratios and confidence intervals for the specified variables based on the given data containing time-related information.</li>
+<li><strong>subgroup_survival()</strong>: extract hazard ratio and confidence intervals from a coxph object of subgroup analysis.</li>
+<li><strong>batch_cor()</strong>: batch analysis of correlation between two continuous variables using Pearson correlation coefficient or Spearman’s rank correlation coefficient.</li>
+<li><strong>batch_wilcoxon()</strong>: perform Wilcoxon rank-sum tests on a given data set to compare the distribution of a specified feature between two groups. It computes the p-values and ranks the significant features based on the p-values. It returns a data frame with the feature names, p-values, adjusted p-values, logarithm of p-values, and a star rating based on the p-value ranges.</li>
+<li><strong>batch_pcc()</strong>: provide a batch way to calculate the partial correlation coefficient between feature and others when controlling a third variable.</li>
+<li><strong>iobr_cor_plot()</strong>: visualization of batch correlation analysis of signatures from “sig_group”. Visualize the correlation between signature or phenotype with expression of gene sets in target signature is also supported.</li>
+<li><strong>cell_bar_plot()</strong>: batch visualization of TME cell fraction, supporting input of deconvolution results from “CIBERSORT”, “EPIC” and “quanTIseq” methodologies to further compare the TME cell distributions within one sample or among different samples.</li>
+<li><strong>iobr_pca()</strong>: perform Principal Component Analysis (PCA), which reduces the dimensionality of data while maintaining most of the original variance, and visualizes the PCA results on a scatter plot.</li>
+<li><strong>iobr_deg()</strong>: perform differential expression analysis on gene expression data using the DESeq2 or limma method. It filters low count data, calculates fold changes and adjusted p-values, and identifies DEGs based on specified cutoffs. It also provides optional visualization tools such as volcano plots and heatmaps.</li>
+<li><strong>get_cor()</strong>: calculate and visualize the correlation between two variables in a dataset. It provides options to scale the data, handle missing values, and incorporate additional data. The function supports various correlation methods. It generates a correlation plot with optional subtypes or categories, including a regression line.</li>
+<li><strong>get_cor_matrix()</strong>: calculate and visualize the correlation matrix between two sets of variables in a dataset. It provides flexibility in defining correlation methods, handling missing values, and incorporating additional data. The function supports various correlation methods, such as Pearson correlation, and displays the correlation result in a customizable plot.</li>
+<li><strong>roc_time()</strong>: generate a Receiver Operating Characteristic (ROC) plot over time to assess the predictive performance of one or more variables in survival analysis. It calculates the Area Under the Curve (AUC) for each specified time point and variable combination, and creates a multi-line ROC plot with corresponding AUC values annotated.</li>
+<li><strong>sig_box()</strong>: generate a boxplot with optional statistical comparisons. It takes in various parameters such as data, signature, variable, and more to customize the plot. It can be used to visualize and analyze data in a Seurat object or any other data frame.</li>
+<li><strong>sig_heatmap()</strong>: generate a heatmap plot based on input data, grouping variables, and optional conditions. The function allows customization of various parameters such as palette selection, scaling, color boxes, plot dimensions, and more. It provides flexibility in visualizing relationships between variables and groups in a concise and informative manner.</li>
+<li><strong>sig_forest()</strong>: create a forest plot for visualizing survival analysis results generated by “batch_surv”.</li>
+<li><strong>sig_roc()</strong>: plot multiple ROC curves in a single graph, facilitating the comparison of different variables in terms of their ability to predict a binary response.</li>
+<li><strong>sig_surv_plot()</strong>: generat multiple Kaplan-Meier (KM) survival plots for a given signature or gene. It allows for detailed customization and is structured to handle various aspects of survival analysis.</li>
+<li><strong>find_markers_in_bulk()</strong>: find relevant results from the given gene expression data and meta information. It leverages the “Seurat” package to identify significant markers across multiple groups within the given data. The supported methods for comparison include “bootstrap”, “delong” and “venkatraman”.
+</br></li>
+</ul></li>
+<li><div style="color:green">
+<strong>Signature Associated Mutation Module: identify and analyze mutations relevant to targeted signatures</strong>
+</div>
+<ul>
+<li><strong>make_mut_matrix()</strong>: transform the mutation data with MAF format(contain the columns of gene ID and the corresponding gene alterations which including SNP, indel and frameshift) into a mutation matrix in a suitable manner for further investigating signature relevant mutations.</li>
+<li><strong>find_mutations()</strong>: identify mutations associated with a distinct phenotype or signature. The function conducts the Cuzick test, Wilcoxon test, or both (when the method is set to “multi”). It generates box plots for the top genes identified through these statistical tests and creates oncoprints to graphically represent the mutation landscape across samples.
+</br></li>
+</ul></li>
+<li><div style="color:green">
+<strong>Model Construction Module: feature selection and fast model construct to predict clinical phenotype</strong>
+</div>
+<ul>
+<li><strong>BinomialModel()</strong>: select features and construct a model to predict a binary phenotype. It accepts a dataset (x and y) as input and performs data processing, splitting into training and testing sets, and model fitting using both Lasso and Ridge regression techniques.</li>
+<li><strong>PrognosticMode()</strong>: select features and construct a model to predict clinical survival outcome. It primarily focuses on developing Lasso and Ridge regression models within the Cox proportional hazards framework.</li>
+<li><strong>combine_pd_eset()</strong>: combine the expression set (eset) with phenotype data (pdata).</li>
+<li><strong>percent_bar_plot()</strong>: create a percent bar plot based on the given data. The input is a data frame, with x and y-axis variables specified.
+</br></li>
+</ul></li>
+</ul>
+</div>
+<div id="current-working-environment" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> 🌐 Current working environment<a href="how-to-use-iobr.html#current-working-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="how-to-use-iobr.html#cb4-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="how-to-use-iobr.html#cb5-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.5.2 (2025-10-31)
+## Platform: aarch64-apple-darwin20
+## Running under: macOS Tahoe 26.3.1
+## 
+## Matrix products: default
+## BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
+## 
+## locale:
+## [1] C.UTF-8/C.UTF-8/C.UTF-8/C/C.UTF-8/C.UTF-8
+## 
+## time zone: Asia/Shanghai
+## tzcode source: internal
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] IOBR_2.1.0
+## 
+## loaded via a namespace (and not attached):
+##  [1] tidyr_1.3.2        sass_0.4.10        generics_0.1.4     rstatix_0.7.3     
+##  [5] shape_1.4.6.1      stringi_1.8.7      lattice_0.22-7     digest_0.6.39     
+##  [9] magrittr_2.0.5     evaluate_1.0.5     grid_4.5.2         timechange_0.4.0  
+## [13] RColorBrewer_1.1-3 bookdown_0.46      iterators_1.0.14   fastmap_1.2.0     
+## [17] foreach_1.5.2      jsonlite_2.0.0     glmnet_4.1-10      Matrix_1.7-4      
+## [21] backports_1.5.1    Formula_1.2-5      survival_3.8-3     gridExtra_2.3     
+## [25] purrr_1.2.1        scales_1.4.0       codetools_0.2-20   jquerylib_0.1.4   
+## [29] abind_1.4-8        cli_3.6.5          rlang_1.1.7        crayon_1.5.3      
+## [33] splines_4.5.2      cachem_1.1.0       yaml_2.3.12        otel_0.2.0        
+## [37] parallel_4.5.2     tools_4.5.2        ggsignif_0.6.4     dplyr_1.2.1.9000  
+## [41] ggplot2_4.0.2      ggpubr_0.6.3       broom_1.0.12       assertthat_0.2.1  
+## [45] vctrs_0.7.2        R6_2.6.1           lifecycle_1.0.5    lubridate_1.9.5   
+## [49] stringr_1.6.0      car_3.1-5          pkgconfig_2.0.3    survminer_0.5.2   
+## [53] pillar_1.11.1      bslib_0.10.0       gtable_0.3.6       glue_1.8.0        
+## [57] Rcpp_1.1.1         xfun_0.57          tibble_3.3.1       tidyselect_1.2.1  
+## [61] emo_0.0.0.9000     knitr_1.51         farver_2.1.2       htmltools_0.5.9   
+## [65] carData_3.0-6      rmarkdown_2.31     compiler_4.5.2     S7_0.2.1</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="how-to-install-iobr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rna-data-preprocessing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/DongqiangZeng0808/how-to-use.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

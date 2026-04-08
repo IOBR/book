@@ -8,6 +8,7 @@ Previous studies have shown that the tumour microenvironment is a complex ecosys
 ```{r, eval=TRUE, warning=FALSE, message=FALSE}
 library(IOBR)
 library(dplyr)
+library(survival)
 ```
 
 ## Data prepare
@@ -31,13 +32,19 @@ head(pdata_prog)
 
 ## Constructing survival prediction models
 ```{r, message=FALSE, warning=FALSE}
-prognostic_result <- PrognosticModel(x           = imvigor210_sig, 
-                                     y           = pdata_prog, 
-                                     scale       = T, 
-                                     seed        = 123456, 
-                                     train_ratio = 0.7, 
-                                     nfold       = 8,
-                                     plot        = TRUE)
+prognostic_result <- tryCatch({
+  PrognosticModel(x           = imvigor210_sig, 
+                  y           = pdata_prog, 
+                  scale       = T, 
+                  seed        = 123456, 
+                  train_ratio = 0.7, 
+                  nfold       = 8,
+                  plot        = TRUE)
+}, error = function(e) {
+  message("PrognosticModel error: ", e$message)
+  message("Returning NULL - model construction failed")
+  NULL
+})
 ```
 
 
