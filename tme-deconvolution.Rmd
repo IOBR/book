@@ -30,6 +30,7 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 library(IOBR)
 
 # Load the annotation file `anno_hug133plus2` in IOBR.
+anno_hug133plus2 <- load_data("anno_hug133plus2")
 head(anno_hug133plus2)
 # Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. 
 
@@ -161,7 +162,7 @@ sm<- generateRef_seurat(sce = pbmc, celltype = "celltype", slot_out = "data")
 
 Load the bulk RNA-seq data
 ```{r, message=FALSE, warning=FALSE}
-data(eset_stad, package = "IOBR")
+eset_stad <- load_data("eset_stad")
 eset <- count2tpm(countMat = eset_stad, source = "local", idType = "ensembl")
 svr<- deconvo_tme(eset = eset, reference  = sm,  method = "svr", arrays  = FALSE, absolute.mode = FALSE, perm = 100)
 head(svr)

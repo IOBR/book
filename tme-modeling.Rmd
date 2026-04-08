@@ -7,6 +7,7 @@ Previous studies have shown that the tumour microenvironment is a complex ecosys
 
 ```{r, eval=TRUE, warning=FALSE, message=FALSE}
 library(IOBR)
+library(dplyr)
 ```
 
 ## Data prepare
@@ -14,8 +15,8 @@ library(IOBR)
 Using data from IMvigor210, we demonstrate two common scenarios for building models of the tumour microenvironment: predicting survival and predicting treatment response (BOR, RECIEST 1.1).
 
 ```{r,message=FALSE,warning=FALSE}
-data("imvigor210_sig", package = "IOBR")
-data("imvigor210_pdata", package = "IOBR")
+imvigor210_sig <- load_data("imvigor210_sig")
+imvigor210_pdata <- load_data("imvigor210_pdata")
 ```
 
 ## Input data (overall survival) prepare

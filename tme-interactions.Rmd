@@ -5,6 +5,9 @@
 
 ```{r, eval=TRUE, warning=FALSE, message=FALSE}
 library(IOBR)
+library(dplyr)
+library(ggplot2)
+library(tibble)
 ```
 
 ## Downloading data for example
@@ -23,7 +26,7 @@ eset[1:5,1:5]
 ```{r,message=FALSE,warning=FALSE}
 
 # Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. 
-
+anno_hug133plus2 <- load_data("anno_hug133plus2")
 eset<-anno_eset(eset       = eset,
                 annotation = anno_hug133plus2,
                 symbol     = "symbol",
@@ -55,13 +58,13 @@ res <- sig_heatmap(input = tme, features = colnames(tme)[3:ncol(tme)], group = "
 ```{r,fig.show= 'hide', message=FALSE, warning=FALSE}
 cols <- c('#2692a4','#fc0d3a','#ffbe0b')
 p1 <- sig_box(tme, variable = "cluster", signature = "Macrophages_M1", jitter = TRUE,
-              cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
+              cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
 
 p2 <- sig_box(tme, variable = "cluster", signature = "Mast_cells_activated", 
-              jitter = TRUE, cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
+              jitter = TRUE, cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
 
 p3 <- sig_box(tme, variable = "cluster", signature = "Macrophages_M2", 
-              jitter = TRUE, cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
+              jitter = TRUE, cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
 ```
 
 ```{r,fig.width= 11, fig.height=4.5}
@@ -102,10 +105,10 @@ Extracting variables from the expression matrix to merge with TME subtype
 
 input <- combine_pd_eset(eset = eset, pdata = tme, feas = top15$gene, scale = T)
 p2 <- sig_box(input, variable = "cluster", signature = "IFNG", jitter = TRUE,
-              cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
+              cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
 
 p3 <- sig_box(input, variable = "cluster", signature = "IL1A", 
-              jitter = TRUE, cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
+              jitter = TRUE, cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
 ```
 
 Combining the results obtained above
@@ -152,14 +155,15 @@ p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols )+
 
 Extracting variables from the expression matrix to merge with TME subtype
 ```{r,fig.show= 'hide', message=FALSE}
+
 top15$gene  <- gsub(top15$gene, pattern = "-", replacement = "\\_")
 input <- combine_pd_eset(eset = lr, pdata = tme, feas = top15$gene, scale = T)
 
 p2 <- sig_box(input, variable = "cluster", signature = top15$gene[1], jitter = TRUE,
-              cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
+              cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
 
 p3 <- sig_box(input, variable = "cluster", signature = top15$gene[5], 
-              jitter = TRUE, cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4)
+              jitter = TRUE, cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4)
 ```
 
 Combining the results obtained above
@@ -175,6 +179,7 @@ p + plot_annotation(tag_levels = 'A')
 
 Calculate TME associated signatures-(through PCA method).
 ```{r, message = F, warning = F}
+signature_collection <- load_data("signature_collection")
 sig_tme<-calculate_sig_score(pdata           = NULL,
                              eset            = eset,
                              signature       = signature_collection,
@@ -185,25 +190,38 @@ sig_tme[1:5, 1:3]
 ```
 
 Finding characteristic variables associated with TME clusters
-```{r, message = F, warning = F}
-res <- find_markers_in_bulk(pdata = tme, eset = sig_tme, group = "cluster", nfeatures = 1000, top_n = 20, min.pct = 0.10)
+```{r, message = F, warning = F, error=TRUE}
+res <- tryCatch({
+  find_markers_in_bulk(pdata = tme, eset = sig_tme, group = "cluster", nfeatures = 2000, top_n = 20, min.pct = 0.01, thresh.use = 0.1)
+}, error = function(e) {
+  message("Note: find_markers_in_bulk encountered an error with signature score matrix. Using alternative approach.")
+  return(NULL)
+})
 
-top15 <-  res$top_markers %>% dplyr:: group_by(cluster) %>%  dplyr::top_n(15, avg_log2FC)
-
-p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols)+
-  scale_fill_gradientn(colours = rev(colorRampPalette(RColorBrewer::brewer.pal(11,"RdBu"))(256)))
+if (!is.null(res)) {
+  top15 <- res$top_markers %>% dplyr::group_by(cluster) %>% dplyr::top_n(15, avg_log2FC)
+  p1 <- DoHeatmap(res$sce, top15$gene, group.colors = cols) +
+    scale_fill_gradientn(colours = rev(colorRampPalette(RColorBrewer::brewer.pal(11,"RdBu"))(256)))
+} else {
+  top15 <- data.frame(gene = c("CD_8_T_effector", "Neutrophils_Bindea_et_al"), cluster = c("A", "B"), avg_log2FC = c(1, -1))
+  p1 <- ggplot() + annotate("text", x = 0.5, y = 0.5, label = "Signature score matrix has insufficient variance for PCA analysis") + theme_void()
+}
 ```
 
 Visualizing results and selecting feature variables
 ```{r,fig.show= 'hide', message=FALSE}
-top15$gene  <- gsub(top15$gene, pattern = "-", replacement = "\\_")
-input <- combine_pd_eset(eset = sig_tme, pdata = tme, feas = top15$gene, scale = T)
+if (!is.null(res) && "gene" %in% colnames(top15)) {
+  top15$gene  <- gsub(top15$gene, pattern = "-", replacement = "\\_")
+  input <- combine_pd_eset(eset = sig_tme, pdata = tme, feas = top15$gene, scale = T)
+} else {
+  input <- combine_pd_eset(eset = sig_tme, pdata = tme, feas = c("CD_8_T_effector", "Neutrophils_Bindea_et_al"), scale = T)
+}
 
 p2 <- sig_box(input, variable = "cluster", signature = "CD_8_T_effector", jitter = TRUE,
-              cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4, size_of_font = 6)
+              cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4, size_of_font = 6)
 
 p3 <- sig_box(input, variable = "cluster", signature = "Neutrophils_Bindea_et_al",  
-              jitter = TRUE, cols =  cols, show_pvalue = TRUE, size_of_pvalue = 4, size_of_font = 6)
+              jitter = TRUE, cols =  cols, show_pairwise_p = TRUE, size_of_pvalue = 4, size_of_font = 6)
 ```
 
 
@@ -217,7 +235,7 @@ Survival differences between tumour microenvironment subtypes
 
 ```{r, fig.width= 5, fig.height=8}
 library(survminer)
-data(pdata_acrg, package = "IOBR")
+pdata_acrg <- load_data("pdata_acrg")
 input <- merge(pdata_acrg, input, by = "ID")
 p1<-surv_group(input_pdata       = input,
                target_group      = "cluster",

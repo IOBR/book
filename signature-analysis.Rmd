@@ -28,6 +28,7 @@ Annotation of genes in the expression matrix and removal of duplicate genes.
 ```{r,message=FALSE,warning=FALSE}
 
 # Load the annotation file `anno_hug133plus2` in IOBR.
+anno_hug133plus2 <- load_data("anno_hug133plus2")
 head(anno_hug133plus2)
 # Conduct gene annotation using `anno_hug133plus2` file; If identical gene symbols exists, these genes would be ordered by the mean expression levels. The gene symbol with highest mean expression level is selected and remove others. 
 
@@ -46,32 +47,28 @@ eset[1:5, 1:3]
 **322 reported gene signatures** are collected in IOBR, including those related to the TME, metabolism, gene signatures derived from single-cell RNA-seq data, and others. The extensive signature collection is categorized into three distinct groups: **TME-associated**, **tumour-metabolism**, and **tumour-intrinsic signatures**.
 
 ```{r}
-# Return available parameter options of signature estimation.
-signature_score_calculation_methods
 #TME associated signatures
-names(signature_tme)[1:20]
+msig_immune <- load_data("msig_immune")
+names(msig_immune)[1:20]
 ```
 
 ```{r}
 #Metabolism related signatures
-names(signature_metabolism)[1:20]
+onco_sig <- load_data("onco_sig")
+names(onco_sig)[1:20]
 
 ```
 
 Signatures associated with basic biomedical research, such as m6A, TLS, ferroptosis and exosomes.
 ```{r}
-names(signature_tumor)
+msig_sc <- load_data("msig_sc")
+names(msig_sc)
 ```
 
 `signature_collection` including all aforementioned signatures 
 ```{r}
+signature_collection <- load_data("signature_collection")
 names(signature_collection)[1:20]
-```
-
-
-```{r}
-#citation of signatures
-signature_collection_citation[1:20, ]
 ```
 
 The evaluation of signature scores involved three methodologies: Single-sample Gene Set Enrichment Analysis (ssGSEA), Principal Component Analysis (PCA), and Z-score.
@@ -158,7 +155,7 @@ Users can collect gene signatures using either an `Excel` or `CSV` file. The for
 
 Here we provide a sample data `sig_excel`, please refer to this format to construct the required csv or excel files.
 ```{r, message = F, warning = F}
-data("sig_excel", package = "IOBR")
+sig_excel <- load_data("sig_excel")
 sig <- format_signatures(sig_excel)
 print(sig[1:5])
 ```
@@ -174,14 +171,15 @@ sig
 ### Method-3: Add the new signature to the existing gene list
 
 ```{r, warning = F}
-sig<- signature_tumor
+msig_sc <- load_data("msig_sc")
+sig<- msig_sc
 sig$CD8 <- c("CD8A",  "CXCL10", "CXCL9",  "GZMA",   "GZMB",   "IFNG",   "PRF1",   "TBX21")
 sig
 ```
 
 ### Method-4: Construct cell-specific gene signatures from single-cell differential analysis results
 ```{r, message = F, warning = F}
-data('deg', package = "IOBR")
+deg <- load_data("deg")
 sig <- get_sig_sc(deg, cluster = "cluster", gene = "gene", avg_log2FC = "avg_log2FC", n = 100)
 sig
 ```
@@ -190,7 +188,8 @@ sig
 
 Using the `output_sig` function, user can export the signatures of the list structure to a csv file for other purposes. This step is exactly the reverse of `format_signatures`.
 ```{r, warning = F}
-sig <- output_sig(signatures = signature_sc, format = "csv", file.name = "sc_signature")
+msig_sc <- load_data("msig_sc")
+sig <- output_sig(signatures = msig_sc, format = "csv", file.name = "sc_signature")
 sig[1:8, 1:5]
 ```
 

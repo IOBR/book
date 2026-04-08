@@ -34,18 +34,21 @@ library(clusterProfiler)
 Annotation of genes in the expression matrix and removal of duplicate genes.
 ```{r,message=FALSE,warning=FALSE}
 # Load the annotation file `anno_hug133plus2` in IOBR.
+anno_hug133plus2 <- load_data("anno_hug133plus2")
 head(anno_hug133plus2)
 
 ```
 
 ```{r,message=FALSE,warning=FALSE}
 # Load the annotation file `anno_grch38` in IOBR.
+anno_grch38 <- load_data("anno_grch38")
 head(anno_grch38)
 
 ```
 
 ```{r,message=FALSE,warning=FALSE}
 # Load the annotation file `anno_gc_vm32` in IOBR for mouse RNAseq data
+anno_gc_vm32 <- load_data("anno_gc_vm32")
 head(anno_gc_vm32)
 
 ```
@@ -128,7 +131,7 @@ eset_stad$Ensembl_ID<-substring(eset_stad$Ensembl_ID, 1, 15)
 eset_stad<-column_to_rownames(eset_stad, var = "Ensembl_ID")
 
 # Revert back to original format because the data from UCSC was log2(x+1)transformed.
-eset_stad<-(2^eset_stad)+1
+eset_stad<-(2^eset_stad)-1
 
 eset_stad<-count2tpm(countMat = eset_stad, idType = "Ensembl", org="hsa", source = "local" )
 
@@ -151,7 +154,7 @@ eset1 <- eset[, !colnames(eset)%in%res]
 ## PCA analysis of molecular subtypes
 
 ```{r, message = F, warning = F, fig.width= 7.6, fig.height=7, fig.align='center'}
-data("pdata_acrg", package = "IOBR")
+pdata_acrg <- load_data("pdata_acrg")
 res<- iobr_pca(data       = eset1,
               is.matrix   = TRUE,
               scale       = TRUE,
@@ -214,10 +217,10 @@ dim(eset_com)
 
 ```{r, message=FALSE, fig.width= 11, fig.height = 5, fig.align='center'}
 
-data("eset_stad", package = "IOBR")
+eset_stad <- load_data("eset_stad")
 head(eset_stad)
 
-data("eset_blca", package = "IOBR")
+eset_blca <- load_data("eset_blca")
 head(eset_blca)
 
 eset_com <- remove_batcheffect(eset_stad, eset_blca, id_type = "ensembl", data_type = "count")

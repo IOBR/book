@@ -47,7 +47,7 @@ mut <- mut_list$snp
 ## Identifying Mutations Associated with TME
 The microenvironmental data from the TCGA-STAD expression matrix was merged. The Cuzick or Wilcoxon test was used to identify genetic variants associated with microenvironmental factors. CD_8_T_effector was used as the target variable in this example.
 ```{r, fig.show= 'hide'}
-data("tcga_stad_sig", package = "IOBR")
+tcga_stad_sig <- load_data("tcga_stad_sig")
 res<-find_mutations(mutation_matrix     = mut, 
                     signature_matrix    = tcga_stad_sig, 
                     id_signature_matrix = "ID", 
