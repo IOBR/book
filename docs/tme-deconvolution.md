@@ -143,6 +143,10 @@ cibersort <- deconvo_tme(eset = eset_acrg, method = "cibersort", arrays = TRUE, 
 ## ℹ Running CIBERSORT
 ```
 
+```
+## ℹ Loading cached data: "lm22"
+```
+
 ``` r
 # head(cibersort)
 res <- cell_bar_plot(input = cibersort[1:12, ], features = colnames(cibersort)[3:24], title = "CIBERSORT Cell Fraction")
@@ -177,6 +181,14 @@ epic <- deconvo_tme(eset = eset_acrg, method = "epic", arrays = TRUE)
 
 ```
 ## ℹ Running EPIC deconvolution
+```
+
+```
+## ℹ Loading cached data: "TRef"
+```
+
+```
+## ℹ Loading cached data: "mRNA_cell_default"
 ```
 
 ```
@@ -287,6 +299,9 @@ estimate <- deconvo_tme(eset = eset_acrg, method = "estimate")
 
 ```
 ## [1] "Merged dataset includes 9940 genes (472 mismatched)."
+```
+
+```
 ## [1] "1 gene set: StromalSignature  overlap= 136"
 ## [1] "2 gene set: ImmuneSignature  overlap= 138"
 ```
@@ -350,7 +365,15 @@ quantiseq <- deconvo_tme(eset = eset_acrg, tumor = TRUE, arrays = TRUE, scale_mr
 ```
 
 ```
+## ℹ Loading cached data: "quantiseq_data"
+```
+
+```
 ## ℹ Gene expression normalization and re-annotation (arrays: TRUE)
+```
+
+```
+## ℹ Loading cached data: "quantiseq_data"
 ```
 
 ```

@@ -66,7 +66,7 @@ mut_list <- make_mut_matrix(maf = maf, isTCGA = T, category = "multi")
 ##   FLG
 ## -Processing clinical data
 ## --Missing clinical data
-## -Finished in 3.097s elapsed (3.213s cpu)
+## -Finished in 6.166s elapsed (6.172s cpu)
 ```
 
 ```
@@ -92,6 +92,13 @@ The microenvironmental data from the TCGA-STAD expression matrix was merged. The
 
 ``` r
 tcga_stad_sig <- load_data("tcga_stad_sig")
+```
+
+```
+## ℹ Loading cached data: "tcga_stad_sig"
+```
+
+``` r
 res <- tryCatch(
   {
     find_mutations(

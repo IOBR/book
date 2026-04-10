@@ -87,6 +87,17 @@ eset[1:5, 1:3]
 ``` r
 # TME associated signatures
 msig_immune <- load_data("msig_immune")
+```
+
+```
+## ℹ Trying mirror 1/4: <https://github.com>
+```
+
+```
+## ✔ Download complete: "msig_immune"
+```
+
+``` r
 names(msig_immune)[1:20]
 ```
 
@@ -117,6 +128,17 @@ names(msig_immune)[1:20]
 ``` r
 # Metabolism related signatures
 onco_sig <- load_data("onco_sig")
+```
+
+```
+## ℹ Trying mirror 1/4: <https://github.com>
+```
+
+```
+## ✔ Download complete: "onco_sig"
+```
+
+``` r
 names(onco_sig)[1:20]
 ```
 
@@ -137,6 +159,17 @@ Signatures associated with basic biomedical research, such as m6A, TLS, ferropto
 
 ``` r
 msig_sc <- load_data("msig_sc")
+```
+
+```
+## ℹ Trying mirror 1/4: <https://github.com>
+```
+
+```
+## ✔ Download complete: "msig_sc"
+```
+
+``` r
 names(msig_sc)[1:20]
 ```
 
@@ -430,6 +463,13 @@ sig
 
 ``` r
 msig_sc <- load_data("msig_sc")
+```
+
+```
+## ℹ Loading cached data: "msig_sc"
+```
+
+``` r
 sig <- msig_sc
 sig$CD8 <- c("CD8A", "CXCL10", "CXCL9", "GZMA", "GZMB", "IFNG", "PRF1", "TBX21")
 tail(sig, 1)
@@ -686,6 +726,13 @@ Using the `output_sig` function, user can export the signatures of the list stru
 
 ``` r
 msig_sc <- load_data("msig_sc")
+```
+
+```
+## ℹ Loading cached data: "msig_sc"
+```
+
+``` r
 sig <- output_sig(signatures = msig_sc, format = "csv", file.name = "sc_signature")
 ```
 

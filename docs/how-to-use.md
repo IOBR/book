@@ -8,7 +8,7 @@
 <p class="caption">(\#fig:flowchart)The main pipeline of IOBR</p>
 </div>
 
-## ☝️ Main Functions of IOBR
+## 👉 Main Functions of IOBR
 
 * <div style="color:green">**Data Preparation: data annotation and transformation**</div> 
    * **count2tpm()**: transform gene expression count data into Transcripts Per Million (TPM) values. This function supports gene IDs of type "Ensembl", "Entrez", or "Symbol", and retrieves gene length information using either an online connection to the bioMart database or a local dataset (specified by the source parameter).
@@ -101,7 +101,7 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] IOBR_2.1.1
+## [1] IOBR_2.2.0
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] tidyr_1.3.2        sass_0.4.10        generics_0.1.4     rstatix_0.7.3     

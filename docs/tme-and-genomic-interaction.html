@@ -23,7 +23,7 @@
 <meta name="author" content="Dongqiang Zeng, Yiran Fang, Qingcong Luo, Hongqian Qian, Shixiang Wang" />
 
 
-<meta name="date" content="2026-04-08" />
+<meta name="date" content="2026-04-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
-<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> ☝️ Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 👉 Main Functions of IOBR</a></li>
 <li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌎 Current working environment</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
@@ -337,7 +337,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 9</span> <strong>TME and genomic interaction</strong><a href="tme-and-genomic-interaction.html#tme-and-genomic-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="loading-packages-6" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> Loading packages<a href="tme-and-genomic-interaction.html#loading-packages-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="tme-and-genomic-interaction.html#cb351-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="tme-and-genomic-interaction.html#cb374-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span></code></pre></div>
 </div>
 <div id="genomic-data-prepare" class="section level2 hasAnchor" number="9.2">
 <h2><span class="header-section-number">9.2</span> Genomic data prepare<a href="tme-and-genomic-interaction.html#genomic-data-prepare" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -345,25 +345,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="using-tcgabiolinks-to-download-genomic-data" class="section level3 hasAnchor" number="9.2.1">
 <h3><span class="header-section-number">9.2.1</span> Using TCGAbiolinks to download genomic data<a href="tme-and-genomic-interaction.html#using-tcgabiolinks-to-download-genomic-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R Bioconductor package <strong><a href="https://bioconductor.org/packages/TCGAbiolinks/">TCGAbiolinks</a></strong> provides an R interface of <a href="https://portal.gdc.cancer.gov/">GDC data portal</a>, which stores updating TCGA data. You can check and install this package with the following code.</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="tme-and-genomic-interaction.html#cb352-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;TCGAbiolinks&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb352-2"><a href="tme-and-genomic-interaction.html#cb352-2" tabindex="-1"></a>  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;TCGAbiolinks&quot;</span>)</span>
-<span id="cb352-3"><a href="tme-and-genomic-interaction.html#cb352-3" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="tme-and-genomic-interaction.html#cb375-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;TCGAbiolinks&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb375-2"><a href="tme-and-genomic-interaction.html#cb375-2" tabindex="-1"></a>  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;TCGAbiolinks&quot;</span>)</span>
+<span id="cb375-3"><a href="tme-and-genomic-interaction.html#cb375-3" tabindex="-1"></a>}</span></code></pre></div>
 <p>Then you can query, download and prepare the required dataset.</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="tme-and-genomic-interaction.html#cb353-1" tabindex="-1"></a><span class="fu">library</span>(TCGAbiolinks)</span>
-<span id="cb353-2"><a href="tme-and-genomic-interaction.html#cb353-2" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="fu">GDCquery</span>(</span>
-<span id="cb353-3"><a href="tme-and-genomic-interaction.html#cb353-3" tabindex="-1"></a>  <span class="at">project =</span> <span class="st">&quot;TCGA-STAD&quot;</span>,</span>
-<span id="cb353-4"><a href="tme-and-genomic-interaction.html#cb353-4" tabindex="-1"></a>  <span class="at">data.category =</span> <span class="st">&quot;Simple Nucleotide Variation&quot;</span>,</span>
-<span id="cb353-5"><a href="tme-and-genomic-interaction.html#cb353-5" tabindex="-1"></a>  <span class="at">access =</span> <span class="st">&quot;open&quot;</span>,</span>
-<span id="cb353-6"><a href="tme-and-genomic-interaction.html#cb353-6" tabindex="-1"></a>  <span class="at">data.type =</span> <span class="st">&quot;Masked Somatic Mutation&quot;</span>,</span>
-<span id="cb353-7"><a href="tme-and-genomic-interaction.html#cb353-7" tabindex="-1"></a>  <span class="at">workflow.type =</span> <span class="st">&quot;Aliquot Ensemble Somatic Variant Merging and Masking&quot;</span></span>
-<span id="cb353-8"><a href="tme-and-genomic-interaction.html#cb353-8" tabindex="-1"></a>)</span>
-<span id="cb353-9"><a href="tme-and-genomic-interaction.html#cb353-9" tabindex="-1"></a><span class="fu">GDCdownload</span>(query)</span>
-<span id="cb353-10"><a href="tme-and-genomic-interaction.html#cb353-10" tabindex="-1"></a>maf <span class="ot">&lt;-</span> <span class="fu">GDCprepare</span>(query)</span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="tme-and-genomic-interaction.html#cb376-1" tabindex="-1"></a><span class="fu">library</span>(TCGAbiolinks)</span>
+<span id="cb376-2"><a href="tme-and-genomic-interaction.html#cb376-2" tabindex="-1"></a>query <span class="ot">&lt;-</span> <span class="fu">GDCquery</span>(</span>
+<span id="cb376-3"><a href="tme-and-genomic-interaction.html#cb376-3" tabindex="-1"></a>  <span class="at">project =</span> <span class="st">&quot;TCGA-STAD&quot;</span>,</span>
+<span id="cb376-4"><a href="tme-and-genomic-interaction.html#cb376-4" tabindex="-1"></a>  <span class="at">data.category =</span> <span class="st">&quot;Simple Nucleotide Variation&quot;</span>,</span>
+<span id="cb376-5"><a href="tme-and-genomic-interaction.html#cb376-5" tabindex="-1"></a>  <span class="at">access =</span> <span class="st">&quot;open&quot;</span>,</span>
+<span id="cb376-6"><a href="tme-and-genomic-interaction.html#cb376-6" tabindex="-1"></a>  <span class="at">data.type =</span> <span class="st">&quot;Masked Somatic Mutation&quot;</span>,</span>
+<span id="cb376-7"><a href="tme-and-genomic-interaction.html#cb376-7" tabindex="-1"></a>  <span class="at">workflow.type =</span> <span class="st">&quot;Aliquot Ensemble Somatic Variant Merging and Masking&quot;</span></span>
+<span id="cb376-8"><a href="tme-and-genomic-interaction.html#cb376-8" tabindex="-1"></a>)</span>
+<span id="cb376-9"><a href="tme-and-genomic-interaction.html#cb376-9" tabindex="-1"></a><span class="fu">GDCdownload</span>(query)</span>
+<span id="cb376-10"><a href="tme-and-genomic-interaction.html#cb376-10" tabindex="-1"></a>maf <span class="ot">&lt;-</span> <span class="fu">GDCprepare</span>(query)</span></code></pre></div>
 <p>This <code>maf</code> object is a <code>data.frame</code>, you can use <code>read.maf()</code> from R package <strong><a href="https://github.com/PoisonAlien/maftools">Maftools</a></strong> to convert it to a MAF object.</p>
 <p>In this example, we used the maf file of TCGA-STAD to extract the SNPs in it,and then transformed it into a non-negative matrix.</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="tme-and-genomic-interaction.html#cb354-1" tabindex="-1"></a>(<span class="fu">load</span>(<span class="st">&quot;TCGA-STAD.maf.RData&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="tme-and-genomic-interaction.html#cb377-1" tabindex="-1"></a>(<span class="fu">load</span>(<span class="st">&quot;TCGA-STAD.maf.RData&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;maf&quot;</code></pre>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="tme-and-genomic-interaction.html#cb356-1" tabindex="-1"></a>mut_list <span class="ot">&lt;-</span> <span class="fu">make_mut_matrix</span>(<span class="at">maf =</span> maf, <span class="at">isTCGA =</span> T, <span class="at">category =</span> <span class="st">&quot;multi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="tme-and-genomic-interaction.html#cb379-1" tabindex="-1"></a>mut_list <span class="ot">&lt;-</span> <span class="fu">make_mut_matrix</span>(<span class="at">maf =</span> maf, <span class="at">isTCGA =</span> T, <span class="at">category =</span> <span class="st">&quot;multi&quot;</span>)</span></code></pre></div>
 <pre><code>## -Validating
 ## -Silent variants: 45460 
 ## -Summarizing
@@ -374,7 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   FLG
 ## -Processing clinical data
 ## --Missing clinical data
-## -Finished in 3.097s elapsed (3.213s cpu)</code></pre>
+## -Finished in 6.166s elapsed (6.172s cpu)</code></pre>
 <pre><code>##        Frame_Shift_Del        Frame_Shift_Ins           In_Frame_Del 
 ##                  21547                   4526                   1196 
 ##           In_Frame_Ins      Missense_Mutation      Nonsense_Mutation 
@@ -383,31 +383,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                    117                   2242                    107</code></pre>
 <pre><code>##    DEL    INS    ONP    SNP 
 ##  22997   4675     10 109965</code></pre>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="tme-and-genomic-interaction.html#cb360-1" tabindex="-1"></a>mut <span class="ot">&lt;-</span> mut_list<span class="sc">$</span>snp</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="tme-and-genomic-interaction.html#cb383-1" tabindex="-1"></a>mut <span class="ot">&lt;-</span> mut_list<span class="sc">$</span>snp</span></code></pre></div>
 </div>
 </div>
 <div id="identifying-mutations-associated-with-tme" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> Identifying Mutations Associated with TME<a href="tme-and-genomic-interaction.html#identifying-mutations-associated-with-tme" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The microenvironmental data from the TCGA-STAD expression matrix was merged. The Cuzick or Wilcoxon test was used to identify genetic variants associated with microenvironmental factors. CD_8_T_effector was used as the target variable in this example.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="tme-and-genomic-interaction.html#cb361-1" tabindex="-1"></a>tcga_stad_sig <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;tcga_stad_sig&quot;</span>)</span>
-<span id="cb361-2"><a href="tme-and-genomic-interaction.html#cb361-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(</span>
-<span id="cb361-3"><a href="tme-and-genomic-interaction.html#cb361-3" tabindex="-1"></a>  {</span>
-<span id="cb361-4"><a href="tme-and-genomic-interaction.html#cb361-4" tabindex="-1"></a>    <span class="fu">find_mutations</span>(</span>
-<span id="cb361-5"><a href="tme-and-genomic-interaction.html#cb361-5" tabindex="-1"></a>      <span class="at">mutation_matrix =</span> mut,</span>
-<span id="cb361-6"><a href="tme-and-genomic-interaction.html#cb361-6" tabindex="-1"></a>      <span class="at">signature_matrix =</span> tcga_stad_sig,</span>
-<span id="cb361-7"><a href="tme-and-genomic-interaction.html#cb361-7" tabindex="-1"></a>      <span class="at">id_signature_matrix =</span> <span class="st">&quot;ID&quot;</span>,</span>
-<span id="cb361-8"><a href="tme-and-genomic-interaction.html#cb361-8" tabindex="-1"></a>      <span class="at">signature =</span> <span class="st">&quot;CD_8_T_effector&quot;</span>,</span>
-<span id="cb361-9"><a href="tme-and-genomic-interaction.html#cb361-9" tabindex="-1"></a>      <span class="at">palette =</span> <span class="st">&quot;nrc&quot;</span>,</span>
-<span id="cb361-10"><a href="tme-and-genomic-interaction.html#cb361-10" tabindex="-1"></a>      <span class="at">min_mut_freq =</span> <span class="fl">0.01</span>,</span>
-<span id="cb361-11"><a href="tme-and-genomic-interaction.html#cb361-11" tabindex="-1"></a>      <span class="at">plot =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb361-12"><a href="tme-and-genomic-interaction.html#cb361-12" tabindex="-1"></a>      <span class="at">jitter =</span> <span class="cn">TRUE</span></span>
-<span id="cb361-13"><a href="tme-and-genomic-interaction.html#cb361-13" tabindex="-1"></a>    )</span>
-<span id="cb361-14"><a href="tme-and-genomic-interaction.html#cb361-14" tabindex="-1"></a>  },</span>
-<span id="cb361-15"><a href="tme-and-genomic-interaction.html#cb361-15" tabindex="-1"></a>  <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb361-16"><a href="tme-and-genomic-interaction.html#cb361-16" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;find_mutations error: &quot;</span>, e<span class="sc">$</span>message)</span>
-<span id="cb361-17"><a href="tme-and-genomic-interaction.html#cb361-17" tabindex="-1"></a>    <span class="cn">NULL</span></span>
-<span id="cb361-18"><a href="tme-and-genomic-interaction.html#cb361-18" tabindex="-1"></a>  }</span>
-<span id="cb361-19"><a href="tme-and-genomic-interaction.html#cb361-19" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="tme-and-genomic-interaction.html#cb384-1" tabindex="-1"></a>tcga_stad_sig <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;tcga_stad_sig&quot;</span>)</span></code></pre></div>
+<pre><code>## ℹ Loading cached data: &quot;tcga_stad_sig&quot;</code></pre>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="tme-and-genomic-interaction.html#cb386-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(</span>
+<span id="cb386-2"><a href="tme-and-genomic-interaction.html#cb386-2" tabindex="-1"></a>  {</span>
+<span id="cb386-3"><a href="tme-and-genomic-interaction.html#cb386-3" tabindex="-1"></a>    <span class="fu">find_mutations</span>(</span>
+<span id="cb386-4"><a href="tme-and-genomic-interaction.html#cb386-4" tabindex="-1"></a>      <span class="at">mutation_matrix =</span> mut,</span>
+<span id="cb386-5"><a href="tme-and-genomic-interaction.html#cb386-5" tabindex="-1"></a>      <span class="at">signature_matrix =</span> tcga_stad_sig,</span>
+<span id="cb386-6"><a href="tme-and-genomic-interaction.html#cb386-6" tabindex="-1"></a>      <span class="at">id_signature_matrix =</span> <span class="st">&quot;ID&quot;</span>,</span>
+<span id="cb386-7"><a href="tme-and-genomic-interaction.html#cb386-7" tabindex="-1"></a>      <span class="at">signature =</span> <span class="st">&quot;CD_8_T_effector&quot;</span>,</span>
+<span id="cb386-8"><a href="tme-and-genomic-interaction.html#cb386-8" tabindex="-1"></a>      <span class="at">palette =</span> <span class="st">&quot;nrc&quot;</span>,</span>
+<span id="cb386-9"><a href="tme-and-genomic-interaction.html#cb386-9" tabindex="-1"></a>      <span class="at">min_mut_freq =</span> <span class="fl">0.01</span>,</span>
+<span id="cb386-10"><a href="tme-and-genomic-interaction.html#cb386-10" tabindex="-1"></a>      <span class="at">plot =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb386-11"><a href="tme-and-genomic-interaction.html#cb386-11" tabindex="-1"></a>      <span class="at">jitter =</span> <span class="cn">TRUE</span></span>
+<span id="cb386-12"><a href="tme-and-genomic-interaction.html#cb386-12" tabindex="-1"></a>    )</span>
+<span id="cb386-13"><a href="tme-and-genomic-interaction.html#cb386-13" tabindex="-1"></a>  },</span>
+<span id="cb386-14"><a href="tme-and-genomic-interaction.html#cb386-14" tabindex="-1"></a>  <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb386-15"><a href="tme-and-genomic-interaction.html#cb386-15" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;find_mutations error: &quot;</span>, e<span class="sc">$</span>message)</span>
+<span id="cb386-16"><a href="tme-and-genomic-interaction.html#cb386-16" tabindex="-1"></a>    <span class="cn">NULL</span></span>
+<span id="cb386-17"><a href="tme-and-genomic-interaction.html#cb386-17" tabindex="-1"></a>  }</span>
+<span id="cb386-18"><a href="tme-and-genomic-interaction.html#cb386-18" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
 ## ℹ Please use the `linewidth` argument instead.
 ## ℹ The deprecated feature was likely used in the IOBR package.
@@ -452,24 +453,24 @@ Figure 9.2: Top 10 mutated genes
 <div id="using-tcgamutations" class="section level3 hasAnchor" number="9.6.1">
 <h3><span class="header-section-number">9.6.1</span> Using TCGAmutations<a href="tme-and-genomic-interaction.html#using-tcgamutations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As its name, the R package <strong><a href="https://github.com/PoisonAlien/TCGAmutations">TCGAmutations</a></strong> provides pre-compiled, curated somatic mutations from 33 TCGA cohorts along with relevant clinical information for all sequenced samples. You can install it similar to the <strong>TCGAbiolinks</strong>.</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="tme-and-genomic-interaction.html#cb365-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;TCGAmutations&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb365-2"><a href="tme-and-genomic-interaction.html#cb365-2" tabindex="-1"></a>  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;PoisonAlien/TCGAmutations&quot;</span>)</span>
-<span id="cb365-3"><a href="tme-and-genomic-interaction.html#cb365-3" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="tme-and-genomic-interaction.html#cb390-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;TCGAmutations&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb390-2"><a href="tme-and-genomic-interaction.html#cb390-2" tabindex="-1"></a>  BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;PoisonAlien/TCGAmutations&quot;</span>)</span>
+<span id="cb390-3"><a href="tme-and-genomic-interaction.html#cb390-3" tabindex="-1"></a>}</span></code></pre></div>
 <p>It’s quite simple to use:</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="tme-and-genomic-interaction.html#cb366-1" tabindex="-1"></a>maf <span class="ot">&lt;-</span> TCGAmutations<span class="sc">::</span><span class="fu">tcga_load</span>(<span class="at">study =</span> <span class="st">&quot;STAD&quot;</span>)</span>
-<span id="cb366-2"><a href="tme-and-genomic-interaction.html#cb366-2" tabindex="-1"></a><span class="co"># Change `source` argument to Firehose for MAF files from Broad Firehose</span></span>
-<span id="cb366-3"><a href="tme-and-genomic-interaction.html#cb366-3" tabindex="-1"></a><span class="co"># maf = TCGAmutations::tcga_load(study = &quot;STAD&quot;, source = &quot;Firehose&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="tme-and-genomic-interaction.html#cb391-1" tabindex="-1"></a>maf <span class="ot">&lt;-</span> TCGAmutations<span class="sc">::</span><span class="fu">tcga_load</span>(<span class="at">study =</span> <span class="st">&quot;STAD&quot;</span>)</span>
+<span id="cb391-2"><a href="tme-and-genomic-interaction.html#cb391-2" tabindex="-1"></a><span class="co"># Change `source` argument to Firehose for MAF files from Broad Firehose</span></span>
+<span id="cb391-3"><a href="tme-and-genomic-interaction.html#cb391-3" tabindex="-1"></a><span class="co"># maf = TCGAmutations::tcga_load(study = &quot;STAD&quot;, source = &quot;Firehose&quot;)</span></span></code></pre></div>
 </div>
 <div id="using-maftools" class="section level3 hasAnchor" number="9.6.2">
 <h3><span class="header-section-number">9.6.2</span> Using maftools<a href="tme-and-genomic-interaction.html#using-maftools" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If you are a user of R package <strong><a href="https://github.com/PoisonAlien/maftools">Maftools</a></strong>, you can access and load the data in a similar way (because the author of <strong>TCGAmutations</strong> and <strong>Maftools</strong> is the same person).</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="tme-and-genomic-interaction.html#cb367-1" tabindex="-1"></a><span class="co"># The following github can be changed to gitee</span></span>
-<span id="cb367-2"><a href="tme-and-genomic-interaction.html#cb367-2" tabindex="-1"></a><span class="co"># it maybe fast in China mainland</span></span>
-<span id="cb367-3"><a href="tme-and-genomic-interaction.html#cb367-3" tabindex="-1"></a>maftools<span class="sc">::</span><span class="fu">tcgaAvailable</span>(<span class="at">repo =</span> <span class="st">&quot;github&quot;</span>)</span>
-<span id="cb367-4"><a href="tme-and-genomic-interaction.html#cb367-4" tabindex="-1"></a>maftools<span class="sc">::</span><span class="fu">tcgaLoad</span>(<span class="st">&quot;STAD&quot;</span>, <span class="at">repo =</span> <span class="st">&quot;github&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="tme-and-genomic-interaction.html#cb392-1" tabindex="-1"></a><span class="co"># The following github can be changed to gitee</span></span>
+<span id="cb392-2"><a href="tme-and-genomic-interaction.html#cb392-2" tabindex="-1"></a><span class="co"># it maybe fast in China mainland</span></span>
+<span id="cb392-3"><a href="tme-and-genomic-interaction.html#cb392-3" tabindex="-1"></a>maftools<span class="sc">::</span><span class="fu">tcgaAvailable</span>(<span class="at">repo =</span> <span class="st">&quot;github&quot;</span>)</span>
+<span id="cb392-4"><a href="tme-and-genomic-interaction.html#cb392-4" tabindex="-1"></a>maftools<span class="sc">::</span><span class="fu">tcgaLoad</span>(<span class="st">&quot;STAD&quot;</span>, <span class="at">repo =</span> <span class="st">&quot;github&quot;</span>)</span></code></pre></div>
 <p>MAF data transformation
 To prepare the data for the downstream analysis. We need to extract the SNV data in it and transform it into a non-negative matrix.</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="tme-and-genomic-interaction.html#cb368-1" tabindex="-1"></a>mut_list <span class="ot">&lt;-</span> <span class="fu">make_mut_matrix</span>(<span class="at">maf =</span> maf, <span class="at">isTCGA =</span> <span class="cn">TRUE</span>, <span class="at">category =</span> <span class="st">&quot;multi&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="tme-and-genomic-interaction.html#cb393-1" tabindex="-1"></a>mut_list <span class="ot">&lt;-</span> <span class="fu">make_mut_matrix</span>(<span class="at">maf =</span> maf, <span class="at">isTCGA =</span> <span class="cn">TRUE</span>, <span class="at">category =</span> <span class="st">&quot;multi&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="references-5" class="section level2 hasAnchor" number="9.7">

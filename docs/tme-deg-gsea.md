@@ -449,6 +449,13 @@ library(survminer)
 
 ``` r
 pdata_acrg <- load_data("pdata_acrg")
+```
+
+```
+## ℹ Loading cached data: "pdata_acrg"
+```
+
+``` r
 input <- merge(pdata_acrg, input, by = "ID")
 p1 <- surv_group(
   input_pdata = input,

@@ -23,7 +23,7 @@
 <meta name="author" content="Dongqiang Zeng, Yiran Fang, Qingcong Luo, Hongqian Qian, Shixiang Wang" />
 
 
-<meta name="date" content="2026-04-08" />
+<meta name="date" content="2026-04-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
-<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> ☝️ Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 👉 Main Functions of IOBR</a></li>
 <li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌎 Current working environment</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
@@ -337,36 +337,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 8</span> <strong>Tumor ecosystem analysis</strong><a href="tumor-ecosystem-analysis.html#tumor-ecosystem-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="loading-packages-5" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Loading packages<a href="tumor-ecosystem-analysis.html#loading-packages-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="tumor-ecosystem-analysis.html#cb286-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span>
-<span id="cb286-2"><a href="tumor-ecosystem-analysis.html#cb286-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb286-3"><a href="tumor-ecosystem-analysis.html#cb286-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb286-4"><a href="tumor-ecosystem-analysis.html#cb286-4" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="tumor-ecosystem-analysis.html#cb307-1" tabindex="-1"></a><span class="fu">library</span>(IOBR)</span>
+<span id="cb307-2"><a href="tumor-ecosystem-analysis.html#cb307-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb307-3"><a href="tumor-ecosystem-analysis.html#cb307-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb307-4"><a href="tumor-ecosystem-analysis.html#cb307-4" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code></pre></div>
 </div>
 <div id="downloading-data-for-example-4" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> Downloading data for example<a href="tumor-ecosystem-analysis.html#downloading-data-for-example-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Obtaining data set from GEO <a href="https://pubmed.ncbi.nlm.nih.gov/25894828/">Gastric cancer: GSE62254</a> using <code>GEOquery</code> R package.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="tumor-ecosystem-analysis.html#cb287-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;GEOquery&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
-<span id="cb287-2"><a href="tumor-ecosystem-analysis.html#cb287-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
-<span id="cb287-3"><a href="tumor-ecosystem-analysis.html#cb287-3" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
-<span id="cb287-4"><a href="tumor-ecosystem-analysis.html#cb287-4" tabindex="-1"></a>eset_geo <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(</span>
-<span id="cb287-5"><a href="tumor-ecosystem-analysis.html#cb287-5" tabindex="-1"></a>  {</span>
-<span id="cb287-6"><a href="tumor-ecosystem-analysis.html#cb287-6" tabindex="-1"></a>    <span class="fu">getGEO</span>(<span class="at">GEO =</span> <span class="st">&quot;GSE62254&quot;</span>, <span class="at">getGPL =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
-<span id="cb287-7"><a href="tumor-ecosystem-analysis.html#cb287-7" tabindex="-1"></a>  },</span>
-<span id="cb287-8"><a href="tumor-ecosystem-analysis.html#cb287-8" tabindex="-1"></a>  <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb287-9"><a href="tumor-ecosystem-analysis.html#cb287-9" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;Cannot download GSE62254 from GEO: &quot;</span>, e<span class="sc">$</span>message)</span>
-<span id="cb287-10"><a href="tumor-ecosystem-analysis.html#cb287-10" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;Using eset_example1 from IOBR package instead...&quot;</span>)</span>
-<span id="cb287-11"><a href="tumor-ecosystem-analysis.html#cb287-11" tabindex="-1"></a>    <span class="cn">NULL</span></span>
-<span id="cb287-12"><a href="tumor-ecosystem-analysis.html#cb287-12" tabindex="-1"></a>  }</span>
-<span id="cb287-13"><a href="tumor-ecosystem-analysis.html#cb287-13" tabindex="-1"></a>)</span>
-<span id="cb287-14"><a href="tumor-ecosystem-analysis.html#cb287-14" tabindex="-1"></a></span>
-<span id="cb287-15"><a href="tumor-ecosystem-analysis.html#cb287-15" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">is.null</span>(eset_geo)) {</span>
-<span id="cb287-16"><a href="tumor-ecosystem-analysis.html#cb287-16" tabindex="-1"></a>  <span class="co"># Use eset_example1 as fallback - it has samples as rows and genes as columns</span></span>
-<span id="cb287-17"><a href="tumor-ecosystem-analysis.html#cb287-17" tabindex="-1"></a>  eset <span class="ot">&lt;-</span> <span class="fu">t</span>(eset_example1)</span>
-<span id="cb287-18"><a href="tumor-ecosystem-analysis.html#cb287-18" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb287-19"><a href="tumor-ecosystem-analysis.html#cb287-19" tabindex="-1"></a>  eset <span class="ot">&lt;-</span> eset_geo[[<span class="dv">1</span>]]</span>
-<span id="cb287-20"><a href="tumor-ecosystem-analysis.html#cb287-20" tabindex="-1"></a>  eset <span class="ot">&lt;-</span> <span class="fu">exprs</span>(eset)</span>
-<span id="cb287-21"><a href="tumor-ecosystem-analysis.html#cb287-21" tabindex="-1"></a>}</span>
-<span id="cb287-22"><a href="tumor-ecosystem-analysis.html#cb287-22" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="tumor-ecosystem-analysis.html#cb308-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;GEOquery&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
+<span id="cb308-2"><a href="tumor-ecosystem-analysis.html#cb308-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;GEOquery&quot;</span>)</span>
+<span id="cb308-3"><a href="tumor-ecosystem-analysis.html#cb308-3" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: This process may take a few minutes which depends on the internet connection speed. Please wait for its completion.</span></span>
+<span id="cb308-4"><a href="tumor-ecosystem-analysis.html#cb308-4" tabindex="-1"></a>eset_geo <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(</span>
+<span id="cb308-5"><a href="tumor-ecosystem-analysis.html#cb308-5" tabindex="-1"></a>  {</span>
+<span id="cb308-6"><a href="tumor-ecosystem-analysis.html#cb308-6" tabindex="-1"></a>    <span class="fu">getGEO</span>(<span class="at">GEO =</span> <span class="st">&quot;GSE62254&quot;</span>, <span class="at">getGPL =</span> F, <span class="at">destdir =</span> <span class="st">&quot;./&quot;</span>)</span>
+<span id="cb308-7"><a href="tumor-ecosystem-analysis.html#cb308-7" tabindex="-1"></a>  },</span>
+<span id="cb308-8"><a href="tumor-ecosystem-analysis.html#cb308-8" tabindex="-1"></a>  <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb308-9"><a href="tumor-ecosystem-analysis.html#cb308-9" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;Cannot download GSE62254 from GEO: &quot;</span>, e<span class="sc">$</span>message)</span>
+<span id="cb308-10"><a href="tumor-ecosystem-analysis.html#cb308-10" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;Using eset_example1 from IOBR package instead...&quot;</span>)</span>
+<span id="cb308-11"><a href="tumor-ecosystem-analysis.html#cb308-11" tabindex="-1"></a>    <span class="cn">NULL</span></span>
+<span id="cb308-12"><a href="tumor-ecosystem-analysis.html#cb308-12" tabindex="-1"></a>  }</span>
+<span id="cb308-13"><a href="tumor-ecosystem-analysis.html#cb308-13" tabindex="-1"></a>)</span>
+<span id="cb308-14"><a href="tumor-ecosystem-analysis.html#cb308-14" tabindex="-1"></a></span>
+<span id="cb308-15"><a href="tumor-ecosystem-analysis.html#cb308-15" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">is.null</span>(eset_geo)) {</span>
+<span id="cb308-16"><a href="tumor-ecosystem-analysis.html#cb308-16" tabindex="-1"></a>  <span class="co"># Use eset_example1 as fallback - it has samples as rows and genes as columns</span></span>
+<span id="cb308-17"><a href="tumor-ecosystem-analysis.html#cb308-17" tabindex="-1"></a>  eset <span class="ot">&lt;-</span> <span class="fu">t</span>(eset_example1)</span>
+<span id="cb308-18"><a href="tumor-ecosystem-analysis.html#cb308-18" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb308-19"><a href="tumor-ecosystem-analysis.html#cb308-19" tabindex="-1"></a>  eset <span class="ot">&lt;-</span> eset_geo[[<span class="dv">1</span>]]</span>
+<span id="cb308-20"><a href="tumor-ecosystem-analysis.html#cb308-20" tabindex="-1"></a>  eset <span class="ot">&lt;-</span> <span class="fu">exprs</span>(eset)</span>
+<span id="cb308-21"><a href="tumor-ecosystem-analysis.html#cb308-21" tabindex="-1"></a>}</span>
+<span id="cb308-22"><a href="tumor-ecosystem-analysis.html#cb308-22" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>##           GSM1523727 GSM1523728 GSM1523729 GSM1523744 GSM1523745
 ## 1007_s_at  3.2176645  3.0624323  3.0279131   2.921683  2.8456013
 ## 1053_at    2.4050109  2.4394879  2.2442708   2.345916  2.4328582
@@ -376,20 +376,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="gene-annotation-hgu133plus-2-affaymetrix-1" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> Gene Annotation: HGU133PLUS-2 (Affaymetrix)<a href="tumor-ecosystem-analysis.html#gene-annotation-hgu133plus-2-affaymetrix-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="tumor-ecosystem-analysis.html#cb289-1" tabindex="-1"></a><span class="co"># Gene annotation is only needed for GEO data (probe IDs)</span></span>
-<span id="cb289-2"><a href="tumor-ecosystem-analysis.html#cb289-2" tabindex="-1"></a><span class="co"># eset_example1 already has gene symbols, so skip annotation when using fallback</span></span>
-<span id="cb289-3"><a href="tumor-ecosystem-analysis.html#cb289-3" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(eset_geo)) {</span>
-<span id="cb289-4"><a href="tumor-ecosystem-analysis.html#cb289-4" tabindex="-1"></a>  <span class="co"># Conduct gene annotation using `anno_hug133plus2` file</span></span>
-<span id="cb289-5"><a href="tumor-ecosystem-analysis.html#cb289-5" tabindex="-1"></a>  anno_hug133plus2 <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;anno_hug133plus2&quot;</span>)</span>
-<span id="cb289-6"><a href="tumor-ecosystem-analysis.html#cb289-6" tabindex="-1"></a>  eset <span class="ot">&lt;-</span> <span class="fu">anno_eset</span>(</span>
-<span id="cb289-7"><a href="tumor-ecosystem-analysis.html#cb289-7" tabindex="-1"></a>    <span class="at">eset =</span> eset,</span>
-<span id="cb289-8"><a href="tumor-ecosystem-analysis.html#cb289-8" tabindex="-1"></a>    <span class="at">annotation =</span> anno_hug133plus2,</span>
-<span id="cb289-9"><a href="tumor-ecosystem-analysis.html#cb289-9" tabindex="-1"></a>    <span class="at">symbol =</span> <span class="st">&quot;symbol&quot;</span>,</span>
-<span id="cb289-10"><a href="tumor-ecosystem-analysis.html#cb289-10" tabindex="-1"></a>    <span class="at">probe =</span> <span class="st">&quot;probe_id&quot;</span>,</span>
-<span id="cb289-11"><a href="tumor-ecosystem-analysis.html#cb289-11" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;mean&quot;</span></span>
-<span id="cb289-12"><a href="tumor-ecosystem-analysis.html#cb289-12" tabindex="-1"></a>  )</span>
-<span id="cb289-13"><a href="tumor-ecosystem-analysis.html#cb289-13" tabindex="-1"></a>}</span>
-<span id="cb289-14"><a href="tumor-ecosystem-analysis.html#cb289-14" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="tumor-ecosystem-analysis.html#cb310-1" tabindex="-1"></a><span class="co"># Gene annotation is only needed for GEO data (probe IDs)</span></span>
+<span id="cb310-2"><a href="tumor-ecosystem-analysis.html#cb310-2" tabindex="-1"></a><span class="co"># eset_example1 already has gene symbols, so skip annotation when using fallback</span></span>
+<span id="cb310-3"><a href="tumor-ecosystem-analysis.html#cb310-3" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(eset_geo)) {</span>
+<span id="cb310-4"><a href="tumor-ecosystem-analysis.html#cb310-4" tabindex="-1"></a>  <span class="co"># Conduct gene annotation using `anno_hug133plus2` file</span></span>
+<span id="cb310-5"><a href="tumor-ecosystem-analysis.html#cb310-5" tabindex="-1"></a>  anno_hug133plus2 <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;anno_hug133plus2&quot;</span>)</span>
+<span id="cb310-6"><a href="tumor-ecosystem-analysis.html#cb310-6" tabindex="-1"></a>  eset <span class="ot">&lt;-</span> <span class="fu">anno_eset</span>(</span>
+<span id="cb310-7"><a href="tumor-ecosystem-analysis.html#cb310-7" tabindex="-1"></a>    <span class="at">eset =</span> eset,</span>
+<span id="cb310-8"><a href="tumor-ecosystem-analysis.html#cb310-8" tabindex="-1"></a>    <span class="at">annotation =</span> anno_hug133plus2,</span>
+<span id="cb310-9"><a href="tumor-ecosystem-analysis.html#cb310-9" tabindex="-1"></a>    <span class="at">symbol =</span> <span class="st">&quot;symbol&quot;</span>,</span>
+<span id="cb310-10"><a href="tumor-ecosystem-analysis.html#cb310-10" tabindex="-1"></a>    <span class="at">probe =</span> <span class="st">&quot;probe_id&quot;</span>,</span>
+<span id="cb310-11"><a href="tumor-ecosystem-analysis.html#cb310-11" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;mean&quot;</span></span>
+<span id="cb310-12"><a href="tumor-ecosystem-analysis.html#cb310-12" tabindex="-1"></a>  )</span>
+<span id="cb310-13"><a href="tumor-ecosystem-analysis.html#cb310-13" tabindex="-1"></a>}</span>
+<span id="cb310-14"><a href="tumor-ecosystem-analysis.html#cb310-14" tabindex="-1"></a>eset[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>##              GSM1523727 GSM1523728 GSM1523729
 ## SH3KBP1        4.327974   4.316195   4.351425
 ## RPL41          4.246149   4.246808   4.257940
@@ -399,20 +399,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="determine-tme-subtype-of-gastric-cancer-using-tmeclassifier-r-package" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Determine TME subtype of gastric cancer using <a href="https://github.com/LiaoWJLab/TMEclassifier">TMEclassifier R package</a><a href="tumor-ecosystem-analysis.html#determine-tme-subtype-of-gastric-cancer-using-tmeclassifier-r-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="tumor-ecosystem-analysis.html#cb291-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;TMEclassifier&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;LiaoWJLab/TMEclassifier&quot;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb291-2"><a href="tumor-ecosystem-analysis.html#cb291-2" tabindex="-1"></a><span class="co"># Specified version of xgboost</span></span>
-<span id="cb291-3"><a href="tumor-ecosystem-analysis.html#cb291-3" tabindex="-1"></a><span class="co"># install.packages(&quot;https://cran.r-project.org/src/contrib/Archive/xgboost/xgboost_1.5.2.1.tar.gz&quot;, repos = NULL)</span></span>
-<span id="cb291-4"><a href="tumor-ecosystem-analysis.html#cb291-4" tabindex="-1"></a><span class="fu">library</span>(TMEclassifier)</span>
-<span id="cb291-5"><a href="tumor-ecosystem-analysis.html#cb291-5" tabindex="-1"></a>tme <span class="ot">&lt;-</span> <span class="fu">tme_classifier</span>(<span class="at">eset =</span> eset, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="tumor-ecosystem-analysis.html#cb312-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;TMEclassifier&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;LiaoWJLab/TMEclassifier&quot;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb312-2"><a href="tumor-ecosystem-analysis.html#cb312-2" tabindex="-1"></a><span class="co"># Specified version of xgboost</span></span>
+<span id="cb312-3"><a href="tumor-ecosystem-analysis.html#cb312-3" tabindex="-1"></a><span class="co"># install.packages(&quot;https://cran.r-project.org/src/contrib/Archive/xgboost/xgboost_1.5.2.1.tar.gz&quot;, repos = NULL)</span></span>
+<span id="cb312-4"><a href="tumor-ecosystem-analysis.html#cb312-4" tabindex="-1"></a><span class="fu">library</span>(TMEclassifier)</span>
+<span id="cb312-5"><a href="tumor-ecosystem-analysis.html#cb312-5" tabindex="-1"></a>tme <span class="ot">&lt;-</span> <span class="fu">tme_classifier</span>(<span class="at">eset =</span> eset, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## Step-1: Expression data preprocessing...</code></pre>
 <pre><code>## Step-2: TME deconvolution...</code></pre>
 <pre><code>## Step-3: Predicting TME phenotypes...</code></pre>
 <pre><code>## &gt;&gt;&gt;--- DONE!</code></pre>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="tumor-ecosystem-analysis.html#cb296-1" tabindex="-1"></a><span class="fu">table</span>(tme<span class="sc">$</span>TMEcluster)</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="tumor-ecosystem-analysis.html#cb317-1" tabindex="-1"></a><span class="fu">table</span>(tme<span class="sc">$</span>TMEcluster)</span></code></pre></div>
 <pre><code>## 
 ##  IA  IE  IS 
 ## 107  96  97</code></pre>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="tumor-ecosystem-analysis.html#cb298-1" tabindex="-1"></a><span class="fu">head</span>(tme)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="tumor-ecosystem-analysis.html#cb319-1" tabindex="-1"></a><span class="fu">head</span>(tme)</span></code></pre></div>
 <pre><code>##           ID          IE         IS         IA TMEcluster
 ## 1 GSM1523727 0.204623557 0.11212681 0.68324962         IA
 ## 2 GSM1523728 0.009599504 0.11179146 0.87860903         IA
@@ -424,20 +424,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="deg-analysis-method1" class="section level2 hasAnchor" number="8.5">
 <h2><span class="header-section-number">8.5</span> DEG analysis: method1<a href="tumor-ecosystem-analysis.html#deg-analysis-method1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Differential analysis of selected immune-activated and immune-expelled gastric cancers</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="tumor-ecosystem-analysis.html#cb300-1" tabindex="-1"></a>pdata <span class="ot">&lt;-</span> tme[<span class="sc">!</span>tme<span class="sc">$</span>TMEcluster <span class="sc">==</span> <span class="st">&quot;IS&quot;</span>, ]</span>
-<span id="cb300-2"><a href="tumor-ecosystem-analysis.html#cb300-2" tabindex="-1"></a>deg <span class="ot">&lt;-</span> <span class="fu">iobr_deg</span>(</span>
-<span id="cb300-3"><a href="tumor-ecosystem-analysis.html#cb300-3" tabindex="-1"></a>  <span class="at">eset =</span> eset,</span>
-<span id="cb300-4"><a href="tumor-ecosystem-analysis.html#cb300-4" tabindex="-1"></a>  <span class="at">annotation =</span> <span class="cn">NULL</span>,</span>
-<span id="cb300-5"><a href="tumor-ecosystem-analysis.html#cb300-5" tabindex="-1"></a>  <span class="at">pdata =</span> pdata,</span>
-<span id="cb300-6"><a href="tumor-ecosystem-analysis.html#cb300-6" tabindex="-1"></a>  <span class="at">group_id =</span> <span class="st">&quot;TMEcluster&quot;</span>,</span>
-<span id="cb300-7"><a href="tumor-ecosystem-analysis.html#cb300-7" tabindex="-1"></a>  <span class="at">pdata_id =</span> <span class="st">&quot;ID&quot;</span>,</span>
-<span id="cb300-8"><a href="tumor-ecosystem-analysis.html#cb300-8" tabindex="-1"></a>  <span class="at">array =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb300-9"><a href="tumor-ecosystem-analysis.html#cb300-9" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;limma&quot;</span>,</span>
-<span id="cb300-10"><a href="tumor-ecosystem-analysis.html#cb300-10" tabindex="-1"></a>  <span class="at">contrast =</span> <span class="fu">c</span>(<span class="st">&quot;IA&quot;</span>, <span class="st">&quot;IE&quot;</span>),</span>
-<span id="cb300-11"><a href="tumor-ecosystem-analysis.html#cb300-11" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">&quot;result&quot;</span>,</span>
-<span id="cb300-12"><a href="tumor-ecosystem-analysis.html#cb300-12" tabindex="-1"></a>  <span class="at">padj_cutoff =</span> <span class="fl">0.01</span>,</span>
-<span id="cb300-13"><a href="tumor-ecosystem-analysis.html#cb300-13" tabindex="-1"></a>  <span class="at">logfc_cutoff =</span> <span class="fl">0.5</span></span>
-<span id="cb300-14"><a href="tumor-ecosystem-analysis.html#cb300-14" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="tumor-ecosystem-analysis.html#cb321-1" tabindex="-1"></a>pdata <span class="ot">&lt;-</span> tme[<span class="sc">!</span>tme<span class="sc">$</span>TMEcluster <span class="sc">==</span> <span class="st">&quot;IS&quot;</span>, ]</span>
+<span id="cb321-2"><a href="tumor-ecosystem-analysis.html#cb321-2" tabindex="-1"></a>deg <span class="ot">&lt;-</span> <span class="fu">iobr_deg</span>(</span>
+<span id="cb321-3"><a href="tumor-ecosystem-analysis.html#cb321-3" tabindex="-1"></a>  <span class="at">eset =</span> eset,</span>
+<span id="cb321-4"><a href="tumor-ecosystem-analysis.html#cb321-4" tabindex="-1"></a>  <span class="at">annotation =</span> <span class="cn">NULL</span>,</span>
+<span id="cb321-5"><a href="tumor-ecosystem-analysis.html#cb321-5" tabindex="-1"></a>  <span class="at">pdata =</span> pdata,</span>
+<span id="cb321-6"><a href="tumor-ecosystem-analysis.html#cb321-6" tabindex="-1"></a>  <span class="at">group_id =</span> <span class="st">&quot;TMEcluster&quot;</span>,</span>
+<span id="cb321-7"><a href="tumor-ecosystem-analysis.html#cb321-7" tabindex="-1"></a>  <span class="at">pdata_id =</span> <span class="st">&quot;ID&quot;</span>,</span>
+<span id="cb321-8"><a href="tumor-ecosystem-analysis.html#cb321-8" tabindex="-1"></a>  <span class="at">array =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb321-9"><a href="tumor-ecosystem-analysis.html#cb321-9" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;limma&quot;</span>,</span>
+<span id="cb321-10"><a href="tumor-ecosystem-analysis.html#cb321-10" tabindex="-1"></a>  <span class="at">contrast =</span> <span class="fu">c</span>(<span class="st">&quot;IA&quot;</span>, <span class="st">&quot;IE&quot;</span>),</span>
+<span id="cb321-11"><a href="tumor-ecosystem-analysis.html#cb321-11" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">&quot;result&quot;</span>,</span>
+<span id="cb321-12"><a href="tumor-ecosystem-analysis.html#cb321-12" tabindex="-1"></a>  <span class="at">padj_cutoff =</span> <span class="fl">0.01</span>,</span>
+<span id="cb321-13"><a href="tumor-ecosystem-analysis.html#cb321-13" tabindex="-1"></a>  <span class="at">logfc_cutoff =</span> <span class="fl">0.5</span></span>
+<span id="cb321-14"><a href="tumor-ecosystem-analysis.html#cb321-14" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## ℹ Matching grouping information and expression matrix</code></pre>
 <pre><code>## ℹ Using limma for array differential analysis</code></pre>
 <pre><code>## ℹ Group 1 = IA</code></pre>
@@ -447,7 +447,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="gsea-analysis-based-on-differential-express-gene-analysis-results" class="section level2 hasAnchor" number="8.6">
 <h2><span class="header-section-number">8.6</span> GSEA analysis based on differential express gene analysis results<a href="tumor-ecosystem-analysis.html#gsea-analysis-based-on-differential-express-gene-analysis-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Select the gene set list in IOBR’s signature collection.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="tumor-ecosystem-analysis.html#cb306-1" tabindex="-1"></a><span class="fu">head</span>(deg)</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="tumor-ecosystem-analysis.html#cb327-1" tabindex="-1"></a><span class="fu">head</span>(deg)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 11
 ##   symbol  log2FoldChange AveExpr     t   pvalue     padj     B sigORnot    label
 ##   &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;
@@ -458,23 +458,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 MCM6             0.211    3.02  12.1 1.02e-25 4.46e-22  47.7 NOT         Sign…
 ## 6 ADH1B           -0.907    1.86 -12.0 2.27e-25 7.04e-22  47.0 Down_regul… Both 
 ## # ℹ 2 more variables: IA &lt;dbl&gt;, IE &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="tumor-ecosystem-analysis.html#cb308-1" tabindex="-1"></a>signature_collection <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;signature_collection&quot;</span>)</span>
-<span id="cb308-2"><a href="tumor-ecosystem-analysis.html#cb308-2" tabindex="-1"></a>sig_list <span class="ot">&lt;-</span> signature_collection[<span class="fu">c</span>(</span>
-<span id="cb308-3"><a href="tumor-ecosystem-analysis.html#cb308-3" tabindex="-1"></a>  <span class="st">&quot;TMEscoreB_CIR&quot;</span>, <span class="st">&quot;TMEscoreA_CIR&quot;</span>, <span class="st">&quot;DNA_replication&quot;</span>, <span class="st">&quot;Base_excision_repair&quot;</span>,</span>
-<span id="cb308-4"><a href="tumor-ecosystem-analysis.html#cb308-4" tabindex="-1"></a>  <span class="st">&quot;Pan_F_TBRs&quot;</span>, <span class="st">&quot;TGFb.myCAF&quot;</span>, <span class="st">&quot;Ferroptosis&quot;</span>, <span class="st">&quot;TLS_Nature&quot;</span>, <span class="st">&quot;Glycolysis&quot;</span></span>
-<span id="cb308-5"><a href="tumor-ecosystem-analysis.html#cb308-5" tabindex="-1"></a>)]</span></code></pre></div>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="tumor-ecosystem-analysis.html#cb309-1" tabindex="-1"></a>gsea <span class="ot">&lt;-</span> <span class="fu">sig_gsea</span>(deg,</span>
-<span id="cb309-2"><a href="tumor-ecosystem-analysis.html#cb309-2" tabindex="-1"></a>  <span class="at">genesets          =</span> sig_list,</span>
-<span id="cb309-3"><a href="tumor-ecosystem-analysis.html#cb309-3" tabindex="-1"></a>  <span class="at">path              =</span> <span class="st">&quot;result&quot;</span>,</span>
-<span id="cb309-4"><a href="tumor-ecosystem-analysis.html#cb309-4" tabindex="-1"></a>  <span class="at">gene_symbol       =</span> <span class="st">&quot;symbol&quot;</span>,</span>
-<span id="cb309-5"><a href="tumor-ecosystem-analysis.html#cb309-5" tabindex="-1"></a>  <span class="at">logfc             =</span> <span class="st">&quot;log2FoldChange&quot;</span>,</span>
-<span id="cb309-6"><a href="tumor-ecosystem-analysis.html#cb309-6" tabindex="-1"></a>  <span class="at">org               =</span> <span class="st">&quot;hsa&quot;</span>,</span>
-<span id="cb309-7"><a href="tumor-ecosystem-analysis.html#cb309-7" tabindex="-1"></a>  <span class="at">show_plot         =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb309-8"><a href="tumor-ecosystem-analysis.html#cb309-8" tabindex="-1"></a>  <span class="at">msigdb            =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb309-9"><a href="tumor-ecosystem-analysis.html#cb309-9" tabindex="-1"></a>  <span class="at">category          =</span> <span class="st">&quot;H&quot;</span>,</span>
-<span id="cb309-10"><a href="tumor-ecosystem-analysis.html#cb309-10" tabindex="-1"></a>  <span class="at">subcategory       =</span> <span class="cn">NULL</span>,</span>
-<span id="cb309-11"><a href="tumor-ecosystem-analysis.html#cb309-11" tabindex="-1"></a>  <span class="at">palette_bar       =</span> <span class="st">&quot;set2&quot;</span></span>
-<span id="cb309-12"><a href="tumor-ecosystem-analysis.html#cb309-12" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="tumor-ecosystem-analysis.html#cb329-1" tabindex="-1"></a>signature_collection <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;signature_collection&quot;</span>)</span>
+<span id="cb329-2"><a href="tumor-ecosystem-analysis.html#cb329-2" tabindex="-1"></a>sig_list <span class="ot">&lt;-</span> signature_collection[<span class="fu">c</span>(</span>
+<span id="cb329-3"><a href="tumor-ecosystem-analysis.html#cb329-3" tabindex="-1"></a>  <span class="st">&quot;TMEscoreB_CIR&quot;</span>, <span class="st">&quot;TMEscoreA_CIR&quot;</span>, <span class="st">&quot;DNA_replication&quot;</span>, <span class="st">&quot;Base_excision_repair&quot;</span>,</span>
+<span id="cb329-4"><a href="tumor-ecosystem-analysis.html#cb329-4" tabindex="-1"></a>  <span class="st">&quot;Pan_F_TBRs&quot;</span>, <span class="st">&quot;TGFb.myCAF&quot;</span>, <span class="st">&quot;Ferroptosis&quot;</span>, <span class="st">&quot;TLS_Nature&quot;</span>, <span class="st">&quot;Glycolysis&quot;</span></span>
+<span id="cb329-5"><a href="tumor-ecosystem-analysis.html#cb329-5" tabindex="-1"></a>)]</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="tumor-ecosystem-analysis.html#cb330-1" tabindex="-1"></a>gsea <span class="ot">&lt;-</span> <span class="fu">sig_gsea</span>(deg,</span>
+<span id="cb330-2"><a href="tumor-ecosystem-analysis.html#cb330-2" tabindex="-1"></a>  <span class="at">genesets          =</span> sig_list,</span>
+<span id="cb330-3"><a href="tumor-ecosystem-analysis.html#cb330-3" tabindex="-1"></a>  <span class="at">path              =</span> <span class="st">&quot;result&quot;</span>,</span>
+<span id="cb330-4"><a href="tumor-ecosystem-analysis.html#cb330-4" tabindex="-1"></a>  <span class="at">gene_symbol       =</span> <span class="st">&quot;symbol&quot;</span>,</span>
+<span id="cb330-5"><a href="tumor-ecosystem-analysis.html#cb330-5" tabindex="-1"></a>  <span class="at">logfc             =</span> <span class="st">&quot;log2FoldChange&quot;</span>,</span>
+<span id="cb330-6"><a href="tumor-ecosystem-analysis.html#cb330-6" tabindex="-1"></a>  <span class="at">org               =</span> <span class="st">&quot;hsa&quot;</span>,</span>
+<span id="cb330-7"><a href="tumor-ecosystem-analysis.html#cb330-7" tabindex="-1"></a>  <span class="at">show_plot         =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb330-8"><a href="tumor-ecosystem-analysis.html#cb330-8" tabindex="-1"></a>  <span class="at">msigdb            =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb330-9"><a href="tumor-ecosystem-analysis.html#cb330-9" tabindex="-1"></a>  <span class="at">category          =</span> <span class="st">&quot;H&quot;</span>,</span>
+<span id="cb330-10"><a href="tumor-ecosystem-analysis.html#cb330-10" tabindex="-1"></a>  <span class="at">subcategory       =</span> <span class="cn">NULL</span>,</span>
+<span id="cb330-11"><a href="tumor-ecosystem-analysis.html#cb330-11" tabindex="-1"></a>  <span class="at">palette_bar       =</span> <span class="st">&quot;set2&quot;</span></span>
+<span id="cb330-12"><a href="tumor-ecosystem-analysis.html#cb330-12" tabindex="-1"></a>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
 <img src="fig/gsea-1.png" alt="GSEA of TME gent sets" width="95%" />
 <p class="caption">
@@ -482,20 +482,20 @@ Figure 4.1: GSEA of TME gent sets
 </p>
 </div>
 <p>Hallmark gene signatures</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="tumor-ecosystem-analysis.html#cb310-1" tabindex="-1"></a>gsea <span class="ot">&lt;-</span> <span class="fu">sig_gsea</span>(deg,</span>
-<span id="cb310-2"><a href="tumor-ecosystem-analysis.html#cb310-2" tabindex="-1"></a>  <span class="at">genesets          =</span> <span class="cn">NULL</span>,</span>
-<span id="cb310-3"><a href="tumor-ecosystem-analysis.html#cb310-3" tabindex="-1"></a>  <span class="at">path              =</span> <span class="st">&quot;GSEA&quot;</span>,</span>
-<span id="cb310-4"><a href="tumor-ecosystem-analysis.html#cb310-4" tabindex="-1"></a>  <span class="at">gene_symbol       =</span> <span class="st">&quot;symbol&quot;</span>,</span>
-<span id="cb310-5"><a href="tumor-ecosystem-analysis.html#cb310-5" tabindex="-1"></a>  <span class="at">logfc             =</span> <span class="st">&quot;log2FoldChange&quot;</span>,</span>
-<span id="cb310-6"><a href="tumor-ecosystem-analysis.html#cb310-6" tabindex="-1"></a>  <span class="at">org               =</span> <span class="st">&quot;hsa&quot;</span>,</span>
-<span id="cb310-7"><a href="tumor-ecosystem-analysis.html#cb310-7" tabindex="-1"></a>  <span class="at">show_plot         =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb310-8"><a href="tumor-ecosystem-analysis.html#cb310-8" tabindex="-1"></a>  <span class="at">msigdb            =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb310-9"><a href="tumor-ecosystem-analysis.html#cb310-9" tabindex="-1"></a>  <span class="at">category          =</span> <span class="st">&quot;H&quot;</span>,</span>
-<span id="cb310-10"><a href="tumor-ecosystem-analysis.html#cb310-10" tabindex="-1"></a>  <span class="at">subcategory       =</span> <span class="cn">NULL</span>,</span>
-<span id="cb310-11"><a href="tumor-ecosystem-analysis.html#cb310-11" tabindex="-1"></a>  <span class="at">palette_bar       =</span> <span class="st">&quot;aaas&quot;</span>,</span>
-<span id="cb310-12"><a href="tumor-ecosystem-analysis.html#cb310-12" tabindex="-1"></a>  <span class="at">show_bar          =</span> <span class="dv">5</span>,</span>
-<span id="cb310-13"><a href="tumor-ecosystem-analysis.html#cb310-13" tabindex="-1"></a>  <span class="at">show_gsea         =</span> <span class="dv">6</span></span>
-<span id="cb310-14"><a href="tumor-ecosystem-analysis.html#cb310-14" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="tumor-ecosystem-analysis.html#cb331-1" tabindex="-1"></a>gsea <span class="ot">&lt;-</span> <span class="fu">sig_gsea</span>(deg,</span>
+<span id="cb331-2"><a href="tumor-ecosystem-analysis.html#cb331-2" tabindex="-1"></a>  <span class="at">genesets          =</span> <span class="cn">NULL</span>,</span>
+<span id="cb331-3"><a href="tumor-ecosystem-analysis.html#cb331-3" tabindex="-1"></a>  <span class="at">path              =</span> <span class="st">&quot;GSEA&quot;</span>,</span>
+<span id="cb331-4"><a href="tumor-ecosystem-analysis.html#cb331-4" tabindex="-1"></a>  <span class="at">gene_symbol       =</span> <span class="st">&quot;symbol&quot;</span>,</span>
+<span id="cb331-5"><a href="tumor-ecosystem-analysis.html#cb331-5" tabindex="-1"></a>  <span class="at">logfc             =</span> <span class="st">&quot;log2FoldChange&quot;</span>,</span>
+<span id="cb331-6"><a href="tumor-ecosystem-analysis.html#cb331-6" tabindex="-1"></a>  <span class="at">org               =</span> <span class="st">&quot;hsa&quot;</span>,</span>
+<span id="cb331-7"><a href="tumor-ecosystem-analysis.html#cb331-7" tabindex="-1"></a>  <span class="at">show_plot         =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb331-8"><a href="tumor-ecosystem-analysis.html#cb331-8" tabindex="-1"></a>  <span class="at">msigdb            =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb331-9"><a href="tumor-ecosystem-analysis.html#cb331-9" tabindex="-1"></a>  <span class="at">category          =</span> <span class="st">&quot;H&quot;</span>,</span>
+<span id="cb331-10"><a href="tumor-ecosystem-analysis.html#cb331-10" tabindex="-1"></a>  <span class="at">subcategory       =</span> <span class="cn">NULL</span>,</span>
+<span id="cb331-11"><a href="tumor-ecosystem-analysis.html#cb331-11" tabindex="-1"></a>  <span class="at">palette_bar       =</span> <span class="st">&quot;aaas&quot;</span>,</span>
+<span id="cb331-12"><a href="tumor-ecosystem-analysis.html#cb331-12" tabindex="-1"></a>  <span class="at">show_bar          =</span> <span class="dv">5</span>,</span>
+<span id="cb331-13"><a href="tumor-ecosystem-analysis.html#cb331-13" tabindex="-1"></a>  <span class="at">show_gsea         =</span> <span class="dv">6</span></span>
+<span id="cb331-14"><a href="tumor-ecosystem-analysis.html#cb331-14" tabindex="-1"></a>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
 <img src="fig/gsea-2.png" alt="GSEA of Hallmark gent sets" width="95%" />
 <p class="caption">
@@ -506,21 +506,21 @@ Figure 8.1: GSEA of Hallmark gent sets
 <div id="deg-analysis-method2" class="section level2 hasAnchor" number="8.7">
 <h2><span class="header-section-number">8.7</span> DEG analysis: method2<a href="tumor-ecosystem-analysis.html#deg-analysis-method2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Identifing TME subtype-related differential genes using alternative approach (ANOVA-based)</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="tumor-ecosystem-analysis.html#cb311-1" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
-<span id="cb311-2"><a href="tumor-ecosystem-analysis.html#cb311-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">find_markers_in_bulk</span>(</span>
-<span id="cb311-3"><a href="tumor-ecosystem-analysis.html#cb311-3" tabindex="-1"></a>  <span class="at">pdata =</span> tme,</span>
-<span id="cb311-4"><a href="tumor-ecosystem-analysis.html#cb311-4" tabindex="-1"></a>  <span class="at">eset =</span> eset,</span>
-<span id="cb311-5"><a href="tumor-ecosystem-analysis.html#cb311-5" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">&quot;TMEcluster&quot;</span>,</span>
-<span id="cb311-6"><a href="tumor-ecosystem-analysis.html#cb311-6" tabindex="-1"></a>  <span class="at">nfeatures =</span> <span class="dv">2000</span>,</span>
-<span id="cb311-7"><a href="tumor-ecosystem-analysis.html#cb311-7" tabindex="-1"></a>  <span class="at">top_n =</span> <span class="dv">50</span>,</span>
-<span id="cb311-8"><a href="tumor-ecosystem-analysis.html#cb311-8" tabindex="-1"></a>  <span class="at">thresh.use =</span> <span class="fl">0.15</span>,</span>
-<span id="cb311-9"><a href="tumor-ecosystem-analysis.html#cb311-9" tabindex="-1"></a>  <span class="at">only.pos =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb311-10"><a href="tumor-ecosystem-analysis.html#cb311-10" tabindex="-1"></a>  <span class="at">min.pct =</span> <span class="fl">0.10</span></span>
-<span id="cb311-11"><a href="tumor-ecosystem-analysis.html#cb311-11" tabindex="-1"></a>)</span>
-<span id="cb311-12"><a href="tumor-ecosystem-analysis.html#cb311-12" tabindex="-1"></a>top15 <span class="ot">&lt;-</span> res<span class="sc">$</span>top_markers <span class="sc">%&gt;%</span></span>
-<span id="cb311-13"><a href="tumor-ecosystem-analysis.html#cb311-13" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
-<span id="cb311-14"><a href="tumor-ecosystem-analysis.html#cb311-14" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">top_n</span>(<span class="dv">15</span>, avg_log2FC)</span>
-<span id="cb311-15"><a href="tumor-ecosystem-analysis.html#cb311-15" tabindex="-1"></a>top15<span class="sc">$</span>gene</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="tumor-ecosystem-analysis.html#cb332-1" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb332-2"><a href="tumor-ecosystem-analysis.html#cb332-2" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">find_markers_in_bulk</span>(</span>
+<span id="cb332-3"><a href="tumor-ecosystem-analysis.html#cb332-3" tabindex="-1"></a>  <span class="at">pdata =</span> tme,</span>
+<span id="cb332-4"><a href="tumor-ecosystem-analysis.html#cb332-4" tabindex="-1"></a>  <span class="at">eset =</span> eset,</span>
+<span id="cb332-5"><a href="tumor-ecosystem-analysis.html#cb332-5" tabindex="-1"></a>  <span class="at">group =</span> <span class="st">&quot;TMEcluster&quot;</span>,</span>
+<span id="cb332-6"><a href="tumor-ecosystem-analysis.html#cb332-6" tabindex="-1"></a>  <span class="at">nfeatures =</span> <span class="dv">2000</span>,</span>
+<span id="cb332-7"><a href="tumor-ecosystem-analysis.html#cb332-7" tabindex="-1"></a>  <span class="at">top_n =</span> <span class="dv">50</span>,</span>
+<span id="cb332-8"><a href="tumor-ecosystem-analysis.html#cb332-8" tabindex="-1"></a>  <span class="at">thresh.use =</span> <span class="fl">0.15</span>,</span>
+<span id="cb332-9"><a href="tumor-ecosystem-analysis.html#cb332-9" tabindex="-1"></a>  <span class="at">only.pos =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb332-10"><a href="tumor-ecosystem-analysis.html#cb332-10" tabindex="-1"></a>  <span class="at">min.pct =</span> <span class="fl">0.10</span></span>
+<span id="cb332-11"><a href="tumor-ecosystem-analysis.html#cb332-11" tabindex="-1"></a>)</span>
+<span id="cb332-12"><a href="tumor-ecosystem-analysis.html#cb332-12" tabindex="-1"></a>top15 <span class="ot">&lt;-</span> res<span class="sc">$</span>top_markers <span class="sc">%&gt;%</span></span>
+<span id="cb332-13"><a href="tumor-ecosystem-analysis.html#cb332-13" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb332-14"><a href="tumor-ecosystem-analysis.html#cb332-14" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">top_n</span>(<span class="dv">15</span>, avg_log2FC)</span>
+<span id="cb332-15"><a href="tumor-ecosystem-analysis.html#cb332-15" tabindex="-1"></a>top15<span class="sc">$</span>gene</span></code></pre></div>
 <pre><code>##  [1] &quot;IDO1&quot;           &quot;CXCL11&quot;         &quot;SLCO1B3&quot;        &quot;IFNG&quot;          
 ##  [5] &quot;AIM2&quot;           &quot;GZMB&quot;           &quot;VSNL1&quot;          &quot;CXCL10&quot;        
 ##  [9] &quot;CXCL9&quot;          &quot;GBP4&quot;           &quot;KLRC2&quot;          &quot;GNLY&quot;          
@@ -534,16 +534,16 @@ Figure 8.1: GSEA of Hallmark gent sets
 ## [41] &quot;MAGEA2B&quot;        &quot;CLEC5A&quot;         &quot;IL24&quot;           &quot;CTAG1A&quot;        
 ## [45] &quot;EREG&quot;</code></pre>
 <p>Heatmap visualisation using <code>Seurat</code>’s <code>DoHeatmap</code></p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="tumor-ecosystem-analysis.html#cb313-1" tabindex="-1"></a><span class="co"># 定义分型对应的颜色</span></span>
-<span id="cb313-2"><a href="tumor-ecosystem-analysis.html#cb313-2" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#2692a4&quot;</span>, <span class="st">&quot;#fc0d3a&quot;</span>, <span class="st">&quot;#ffbe0b&quot;</span>)</span>
-<span id="cb313-3"><a href="tumor-ecosystem-analysis.html#cb313-3" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">DoHeatmap</span>(res<span class="sc">$</span>sce, top15<span class="sc">$</span>gene, <span class="at">group.colors =</span> cols) <span class="sc">+</span></span>
-<span id="cb313-4"><a href="tumor-ecosystem-analysis.html#cb313-4" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> <span class="fu">rev</span>(<span class="fu">colorRampPalette</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">11</span>, <span class="st">&quot;RdBu&quot;</span>))(<span class="dv">256</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="tumor-ecosystem-analysis.html#cb334-1" tabindex="-1"></a><span class="co"># 定义分型对应的颜色</span></span>
+<span id="cb334-2"><a href="tumor-ecosystem-analysis.html#cb334-2" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#2692a4&quot;</span>, <span class="st">&quot;#fc0d3a&quot;</span>, <span class="st">&quot;#ffbe0b&quot;</span>)</span>
+<span id="cb334-3"><a href="tumor-ecosystem-analysis.html#cb334-3" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">DoHeatmap</span>(res<span class="sc">$</span>sce, top15<span class="sc">$</span>gene, <span class="at">group.colors =</span> cols) <span class="sc">+</span></span>
+<span id="cb334-4"><a href="tumor-ecosystem-analysis.html#cb334-4" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> <span class="fu">rev</span>(<span class="fu">colorRampPalette</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">11</span>, <span class="st">&quot;RdBu&quot;</span>))(<span class="dv">256</span>)))</span></code></pre></div>
 <p>Extracting variables from the expression matrix to merge with TME subtypes</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="tumor-ecosystem-analysis.html#cb314-1" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">combine_pd_eset</span>(<span class="at">eset =</span> eset, <span class="at">pdata =</span> tme, <span class="at">feas =</span> top15<span class="sc">$</span>gene, <span class="at">scale =</span> T)</span>
-<span id="cb314-2"><a href="tumor-ecosystem-analysis.html#cb314-2" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(input,</span>
-<span id="cb314-3"><a href="tumor-ecosystem-analysis.html#cb314-3" tabindex="-1"></a>  <span class="at">variable =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;IFNG&quot;</span>, <span class="at">jitter =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb314-4"><a href="tumor-ecosystem-analysis.html#cb314-4" tabindex="-1"></a>  <span class="at">cols =</span> cols, <span class="at">size_of_pvalue =</span> <span class="dv">4</span></span>
-<span id="cb314-5"><a href="tumor-ecosystem-analysis.html#cb314-5" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="tumor-ecosystem-analysis.html#cb335-1" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">combine_pd_eset</span>(<span class="at">eset =</span> eset, <span class="at">pdata =</span> tme, <span class="at">feas =</span> top15<span class="sc">$</span>gene, <span class="at">scale =</span> T)</span>
+<span id="cb335-2"><a href="tumor-ecosystem-analysis.html#cb335-2" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(input,</span>
+<span id="cb335-3"><a href="tumor-ecosystem-analysis.html#cb335-3" tabindex="-1"></a>  <span class="at">variable =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;IFNG&quot;</span>, <span class="at">jitter =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb335-4"><a href="tumor-ecosystem-analysis.html#cb335-4" tabindex="-1"></a>  <span class="at">cols =</span> cols, <span class="at">size_of_pvalue =</span> <span class="dv">4</span></span>
+<span id="cb335-5"><a href="tumor-ecosystem-analysis.html#cb335-5" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
 ## ℹ Please use the `linewidth` argument instead.
 ## ℹ The deprecated feature was likely used in the IOBR package.
@@ -557,34 +557,34 @@ Figure 8.1: GSEA of Hallmark gent sets
 ## 1 signature IA     IE     4.09e-17 1.20e-16 &lt; 2e-16  ****     Wilcoxon
 ## 2 signature IA     IS     1.44e-13 2.90e-13 1.4e-13  ****     Wilcoxon
 ## 3 signature IE     IS     8.35e- 2 8.4 e- 2 0.084    ns       Wilcoxon</code></pre>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="tumor-ecosystem-analysis.html#cb317-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(input,</span>
-<span id="cb317-2"><a href="tumor-ecosystem-analysis.html#cb317-2" tabindex="-1"></a>  <span class="at">variable =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;IL1A&quot;</span>,</span>
-<span id="cb317-3"><a href="tumor-ecosystem-analysis.html#cb317-3" tabindex="-1"></a>  <span class="at">jitter =</span> <span class="cn">TRUE</span>, <span class="at">cols =</span> cols, <span class="at">size_of_pvalue =</span> <span class="dv">4</span></span>
-<span id="cb317-4"><a href="tumor-ecosystem-analysis.html#cb317-4" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="tumor-ecosystem-analysis.html#cb338-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(input,</span>
+<span id="cb338-2"><a href="tumor-ecosystem-analysis.html#cb338-2" tabindex="-1"></a>  <span class="at">variable =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;IL1A&quot;</span>,</span>
+<span id="cb338-3"><a href="tumor-ecosystem-analysis.html#cb338-3" tabindex="-1"></a>  <span class="at">jitter =</span> <span class="cn">TRUE</span>, <span class="at">cols =</span> cols, <span class="at">size_of_pvalue =</span> <span class="dv">4</span></span>
+<span id="cb338-4"><a href="tumor-ecosystem-analysis.html#cb338-4" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
 ## 1 signature IA     IE     1.46e-10 2.90e-10 1.5e-10  ****     Wilcoxon
 ## 2 signature IA     IS     8.22e- 7 8.2 e- 7 8.2e-07  ****     Wilcoxon
 ## 3 signature IE     IS     4.90e-20 1.5 e-19 &lt; 2e-16  ****     Wilcoxon</code></pre>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="tumor-ecosystem-analysis.html#cb319-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;patchwork&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;patchwork&quot;</span>)</span>
-<span id="cb319-2"><a href="tumor-ecosystem-analysis.html#cb319-2" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb319-3"><a href="tumor-ecosystem-analysis.html#cb319-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> (p1 <span class="sc">|</span> p2 <span class="sc">/</span> p3) <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">widths =</span> <span class="fu">c</span>(<span class="fl">2.3</span>, <span class="dv">1</span>))</span>
-<span id="cb319-4"><a href="tumor-ecosystem-analysis.html#cb319-4" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">&quot;A&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="tumor-ecosystem-analysis.html#cb340-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">&quot;patchwork&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;patchwork&quot;</span>)</span>
+<span id="cb340-2"><a href="tumor-ecosystem-analysis.html#cb340-2" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb340-3"><a href="tumor-ecosystem-analysis.html#cb340-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> (p1 <span class="sc">|</span> p2 <span class="sc">/</span> p3) <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">widths =</span> <span class="fu">c</span>(<span class="fl">2.3</span>, <span class="dv">1</span>))</span>
+<span id="cb340-4"><a href="tumor-ecosystem-analysis.html#cb340-4" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">&quot;A&quot;</span>)</span></code></pre></div>
 <p><img src="tme-deg-gsea_files/figure-html/unnamed-chunk-15-1.png" alt="" width="1152" /></p>
 </div>
 <div id="identifying-signatures-associated-with-tme-clusters-1" class="section level2 hasAnchor" number="8.8">
 <h2><span class="header-section-number">8.8</span> Identifying signatures associated with TME clusters<a href="tumor-ecosystem-analysis.html#identifying-signatures-associated-with-tme-clusters-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Calculate TME associated signatures-(through PCA method).</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="tumor-ecosystem-analysis.html#cb320-1" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">calculate_sig_score</span>(</span>
-<span id="cb320-2"><a href="tumor-ecosystem-analysis.html#cb320-2" tabindex="-1"></a>  <span class="at">pdata =</span> <span class="cn">NULL</span>,</span>
-<span id="cb320-3"><a href="tumor-ecosystem-analysis.html#cb320-3" tabindex="-1"></a>  <span class="at">eset =</span> eset,</span>
-<span id="cb320-4"><a href="tumor-ecosystem-analysis.html#cb320-4" tabindex="-1"></a>  <span class="at">signature =</span> signature_collection,</span>
-<span id="cb320-5"><a href="tumor-ecosystem-analysis.html#cb320-5" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;pca&quot;</span>,</span>
-<span id="cb320-6"><a href="tumor-ecosystem-analysis.html#cb320-6" tabindex="-1"></a>  <span class="at">mini_gene_count =</span> <span class="dv">2</span></span>
-<span id="cb320-7"><a href="tumor-ecosystem-analysis.html#cb320-7" tabindex="-1"></a>)</span>
-<span id="cb320-8"><a href="tumor-ecosystem-analysis.html#cb320-8" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">column_to_rownames</span>(sig_tme, <span class="at">var =</span> <span class="st">&quot;ID&quot;</span>))</span>
-<span id="cb320-9"><a href="tumor-ecosystem-analysis.html#cb320-9" tabindex="-1"></a>sig_tme[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="tumor-ecosystem-analysis.html#cb341-1" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">calculate_sig_score</span>(</span>
+<span id="cb341-2"><a href="tumor-ecosystem-analysis.html#cb341-2" tabindex="-1"></a>  <span class="at">pdata =</span> <span class="cn">NULL</span>,</span>
+<span id="cb341-3"><a href="tumor-ecosystem-analysis.html#cb341-3" tabindex="-1"></a>  <span class="at">eset =</span> eset,</span>
+<span id="cb341-4"><a href="tumor-ecosystem-analysis.html#cb341-4" tabindex="-1"></a>  <span class="at">signature =</span> signature_collection,</span>
+<span id="cb341-5"><a href="tumor-ecosystem-analysis.html#cb341-5" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;pca&quot;</span>,</span>
+<span id="cb341-6"><a href="tumor-ecosystem-analysis.html#cb341-6" tabindex="-1"></a>  <span class="at">mini_gene_count =</span> <span class="dv">2</span></span>
+<span id="cb341-7"><a href="tumor-ecosystem-analysis.html#cb341-7" tabindex="-1"></a>)</span>
+<span id="cb341-8"><a href="tumor-ecosystem-analysis.html#cb341-8" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">column_to_rownames</span>(sig_tme, <span class="at">var =</span> <span class="st">&quot;ID&quot;</span>))</span>
+<span id="cb341-9"><a href="tumor-ecosystem-analysis.html#cb341-9" tabindex="-1"></a>sig_tme[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>##                   GSM1523727 GSM1523728 GSM1523729
 ## CD_8_T_effector   -2.5513794  0.7789141 -2.1770675
 ## DDR               -0.8747614  0.7425162 -1.3272054
@@ -592,56 +592,57 @@ Figure 8.1: GSEA of Hallmark gent sets
 ## Immune_Checkpoint -2.3701787  0.9455120 -1.4844104
 ## CellCycle_Reg      0.1063358  0.7583302 -0.3649795</code></pre>
 <p>Finding signatures or cell types associated with TMEcluster</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="tumor-ecosystem-analysis.html#cb322-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">find_markers_in_bulk</span>(<span class="at">pdata =</span> tme, <span class="at">eset =</span> sig_tme, <span class="at">group =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">1000</span>, <span class="at">top_n =</span> <span class="dv">20</span>, <span class="at">min.pct =</span> <span class="fl">0.10</span>)</span>
-<span id="cb322-2"><a href="tumor-ecosystem-analysis.html#cb322-2" tabindex="-1"></a></span>
-<span id="cb322-3"><a href="tumor-ecosystem-analysis.html#cb322-3" tabindex="-1"></a>top15 <span class="ot">&lt;-</span> res<span class="sc">$</span>top_markers <span class="sc">%&gt;%</span></span>
-<span id="cb322-4"><a href="tumor-ecosystem-analysis.html#cb322-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
-<span id="cb322-5"><a href="tumor-ecosystem-analysis.html#cb322-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">top_n</span>(<span class="dv">15</span>, avg_log2FC)</span>
-<span id="cb322-6"><a href="tumor-ecosystem-analysis.html#cb322-6" tabindex="-1"></a></span>
-<span id="cb322-7"><a href="tumor-ecosystem-analysis.html#cb322-7" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">DoHeatmap</span>(res<span class="sc">$</span>sce, top15<span class="sc">$</span>gene, <span class="at">group.colors =</span> cols) <span class="sc">+</span></span>
-<span id="cb322-8"><a href="tumor-ecosystem-analysis.html#cb322-8" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> <span class="fu">rev</span>(<span class="fu">colorRampPalette</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">11</span>, <span class="st">&quot;RdBu&quot;</span>))(<span class="dv">256</span>)))</span></code></pre></div>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="tumor-ecosystem-analysis.html#cb323-1" tabindex="-1"></a>top15<span class="sc">$</span>gene <span class="ot">&lt;-</span> <span class="fu">gsub</span>(top15<span class="sc">$</span>gene, <span class="at">pattern =</span> <span class="st">&quot;-&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">_&quot;</span>)</span>
-<span id="cb323-2"><a href="tumor-ecosystem-analysis.html#cb323-2" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">combine_pd_eset</span>(<span class="at">eset =</span> sig_tme, <span class="at">pdata =</span> tme, <span class="at">feas =</span> top15<span class="sc">$</span>gene, <span class="at">scale =</span> T)</span>
-<span id="cb323-3"><a href="tumor-ecosystem-analysis.html#cb323-3" tabindex="-1"></a></span>
-<span id="cb323-4"><a href="tumor-ecosystem-analysis.html#cb323-4" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(input,</span>
-<span id="cb323-5"><a href="tumor-ecosystem-analysis.html#cb323-5" tabindex="-1"></a>  <span class="at">variable =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;CD_8_T_effector&quot;</span>, <span class="at">jitter =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb323-6"><a href="tumor-ecosystem-analysis.html#cb323-6" tabindex="-1"></a>  <span class="at">cols =</span> cols, <span class="at">size_of_pvalue =</span> <span class="dv">4</span>, <span class="at">size_of_font =</span> <span class="dv">6</span></span>
-<span id="cb323-7"><a href="tumor-ecosystem-analysis.html#cb323-7" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="tumor-ecosystem-analysis.html#cb343-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">find_markers_in_bulk</span>(<span class="at">pdata =</span> tme, <span class="at">eset =</span> sig_tme, <span class="at">group =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">1000</span>, <span class="at">top_n =</span> <span class="dv">20</span>, <span class="at">min.pct =</span> <span class="fl">0.10</span>)</span>
+<span id="cb343-2"><a href="tumor-ecosystem-analysis.html#cb343-2" tabindex="-1"></a></span>
+<span id="cb343-3"><a href="tumor-ecosystem-analysis.html#cb343-3" tabindex="-1"></a>top15 <span class="ot">&lt;-</span> res<span class="sc">$</span>top_markers <span class="sc">%&gt;%</span></span>
+<span id="cb343-4"><a href="tumor-ecosystem-analysis.html#cb343-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb343-5"><a href="tumor-ecosystem-analysis.html#cb343-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">top_n</span>(<span class="dv">15</span>, avg_log2FC)</span>
+<span id="cb343-6"><a href="tumor-ecosystem-analysis.html#cb343-6" tabindex="-1"></a></span>
+<span id="cb343-7"><a href="tumor-ecosystem-analysis.html#cb343-7" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">DoHeatmap</span>(res<span class="sc">$</span>sce, top15<span class="sc">$</span>gene, <span class="at">group.colors =</span> cols) <span class="sc">+</span></span>
+<span id="cb343-8"><a href="tumor-ecosystem-analysis.html#cb343-8" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> <span class="fu">rev</span>(<span class="fu">colorRampPalette</span>(RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">11</span>, <span class="st">&quot;RdBu&quot;</span>))(<span class="dv">256</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="tumor-ecosystem-analysis.html#cb344-1" tabindex="-1"></a>top15<span class="sc">$</span>gene <span class="ot">&lt;-</span> <span class="fu">gsub</span>(top15<span class="sc">$</span>gene, <span class="at">pattern =</span> <span class="st">&quot;-&quot;</span>, <span class="at">replacement =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">_&quot;</span>)</span>
+<span id="cb344-2"><a href="tumor-ecosystem-analysis.html#cb344-2" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">combine_pd_eset</span>(<span class="at">eset =</span> sig_tme, <span class="at">pdata =</span> tme, <span class="at">feas =</span> top15<span class="sc">$</span>gene, <span class="at">scale =</span> T)</span>
+<span id="cb344-3"><a href="tumor-ecosystem-analysis.html#cb344-3" tabindex="-1"></a></span>
+<span id="cb344-4"><a href="tumor-ecosystem-analysis.html#cb344-4" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(input,</span>
+<span id="cb344-5"><a href="tumor-ecosystem-analysis.html#cb344-5" tabindex="-1"></a>  <span class="at">variable =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;CD_8_T_effector&quot;</span>, <span class="at">jitter =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb344-6"><a href="tumor-ecosystem-analysis.html#cb344-6" tabindex="-1"></a>  <span class="at">cols =</span> cols, <span class="at">size_of_pvalue =</span> <span class="dv">4</span>, <span class="at">size_of_font =</span> <span class="dv">6</span></span>
+<span id="cb344-7"><a href="tumor-ecosystem-analysis.html#cb344-7" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 8
 ##   .y.       group1 group2        p    p.adj p.format p.signif method  
 ##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
 ## 1 signature IA     IE     3.53e-10 7.10e-10 3.5e-10  ****     Wilcoxon
 ## 2 signature IA     IS     8.49e-13 2.5 e-12 8.5e-13  ****     Wilcoxon
 ## 3 signature IE     IS     1.41e- 1 1.4 e- 1 0.14     ns       Wilcoxon</code></pre>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="tumor-ecosystem-analysis.html#cb325-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(input,</span>
-<span id="cb325-2"><a href="tumor-ecosystem-analysis.html#cb325-2" tabindex="-1"></a>  <span class="at">variable =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;Neutrophils_Bindea_et_al&quot;</span>,</span>
-<span id="cb325-3"><a href="tumor-ecosystem-analysis.html#cb325-3" tabindex="-1"></a>  <span class="at">jitter =</span> <span class="cn">TRUE</span>, <span class="at">cols =</span> cols, <span class="at">size_of_pvalue =</span> <span class="dv">4</span>, <span class="at">size_of_font =</span> <span class="dv">6</span></span>
-<span id="cb325-4"><a href="tumor-ecosystem-analysis.html#cb325-4" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="tumor-ecosystem-analysis.html#cb346-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">sig_box</span>(input,</span>
+<span id="cb346-2"><a href="tumor-ecosystem-analysis.html#cb346-2" tabindex="-1"></a>  <span class="at">variable =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">signature =</span> <span class="st">&quot;Neutrophils_Bindea_et_al&quot;</span>,</span>
+<span id="cb346-3"><a href="tumor-ecosystem-analysis.html#cb346-3" tabindex="-1"></a>  <span class="at">jitter =</span> <span class="cn">TRUE</span>, <span class="at">cols =</span> cols, <span class="at">size_of_pvalue =</span> <span class="dv">4</span>, <span class="at">size_of_font =</span> <span class="dv">6</span></span>
+<span id="cb346-4"><a href="tumor-ecosystem-analysis.html#cb346-4" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 8
 ##   .y.       group1 group2         p   p.adj p.format p.signif method  
 ##   &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
 ## 1 signature IA     IE     0.00639   0.013   0.0064   **       Wilcoxon
 ## 2 signature IA     IS     0.0584    0.058   0.0584   ns       Wilcoxon
 ## 3 signature IE     IS     0.0000929 0.00028 9.3e-05  ****     Wilcoxon</code></pre>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="tumor-ecosystem-analysis.html#cb327-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> (p1 <span class="sc">|</span> p2 <span class="sc">/</span> p3) <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">widths =</span> <span class="fu">c</span>(<span class="fl">2.3</span>, <span class="dv">1</span>))</span>
-<span id="cb327-2"><a href="tumor-ecosystem-analysis.html#cb327-2" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">&quot;A&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="tumor-ecosystem-analysis.html#cb348-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> (p1 <span class="sc">|</span> p2 <span class="sc">/</span> p3) <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">widths =</span> <span class="fu">c</span>(<span class="fl">2.3</span>, <span class="dv">1</span>))</span>
+<span id="cb348-2"><a href="tumor-ecosystem-analysis.html#cb348-2" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">&quot;A&quot;</span>)</span></code></pre></div>
 <p><img src="tme-deg-gsea_files/figure-html/unnamed-chunk-19-1.png" alt="" width="1152" /></p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="tumor-ecosystem-analysis.html#cb328-1" tabindex="-1"></a><span class="fu">library</span>(survminer)</span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="tumor-ecosystem-analysis.html#cb349-1" tabindex="-1"></a><span class="fu">library</span>(survminer)</span></code></pre></div>
 <pre><code>## Loading required package: ggpubr</code></pre>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="tumor-ecosystem-analysis.html#cb330-1" tabindex="-1"></a>pdata_acrg <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;pdata_acrg&quot;</span>)</span>
-<span id="cb330-2"><a href="tumor-ecosystem-analysis.html#cb330-2" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">merge</span>(pdata_acrg, input, <span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span>
-<span id="cb330-3"><a href="tumor-ecosystem-analysis.html#cb330-3" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">surv_group</span>(</span>
-<span id="cb330-4"><a href="tumor-ecosystem-analysis.html#cb330-4" tabindex="-1"></a>  <span class="at">input_pdata =</span> input,</span>
-<span id="cb330-5"><a href="tumor-ecosystem-analysis.html#cb330-5" tabindex="-1"></a>  <span class="at">target_group =</span> <span class="st">&quot;TMEcluster&quot;</span>,</span>
-<span id="cb330-6"><a href="tumor-ecosystem-analysis.html#cb330-6" tabindex="-1"></a>  <span class="at">ID =</span> <span class="st">&quot;ID&quot;</span>,</span>
-<span id="cb330-7"><a href="tumor-ecosystem-analysis.html#cb330-7" tabindex="-1"></a>  <span class="at">reference_group =</span> <span class="st">&quot;High&quot;</span>,</span>
-<span id="cb330-8"><a href="tumor-ecosystem-analysis.html#cb330-8" tabindex="-1"></a>  <span class="at">project =</span> <span class="st">&quot;ACRG&quot;</span>,</span>
-<span id="cb330-9"><a href="tumor-ecosystem-analysis.html#cb330-9" tabindex="-1"></a>  <span class="at">cols =</span> cols,</span>
-<span id="cb330-10"><a href="tumor-ecosystem-analysis.html#cb330-10" tabindex="-1"></a>  <span class="at">time =</span> <span class="st">&quot;OS_time&quot;</span>,</span>
-<span id="cb330-11"><a href="tumor-ecosystem-analysis.html#cb330-11" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">&quot;OS_status&quot;</span>,</span>
-<span id="cb330-12"><a href="tumor-ecosystem-analysis.html#cb330-12" tabindex="-1"></a>  <span class="at">time_type =</span> <span class="st">&quot;month&quot;</span>,</span>
-<span id="cb330-13"><a href="tumor-ecosystem-analysis.html#cb330-13" tabindex="-1"></a>  <span class="at">save_path =</span> <span class="st">&quot;result&quot;</span></span>
-<span id="cb330-14"><a href="tumor-ecosystem-analysis.html#cb330-14" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="tumor-ecosystem-analysis.html#cb351-1" tabindex="-1"></a>pdata_acrg <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;pdata_acrg&quot;</span>)</span></code></pre></div>
+<pre><code>## ℹ Loading cached data: &quot;pdata_acrg&quot;</code></pre>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="tumor-ecosystem-analysis.html#cb353-1" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">merge</span>(pdata_acrg, input, <span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span>
+<span id="cb353-2"><a href="tumor-ecosystem-analysis.html#cb353-2" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">surv_group</span>(</span>
+<span id="cb353-3"><a href="tumor-ecosystem-analysis.html#cb353-3" tabindex="-1"></a>  <span class="at">input_pdata =</span> input,</span>
+<span id="cb353-4"><a href="tumor-ecosystem-analysis.html#cb353-4" tabindex="-1"></a>  <span class="at">target_group =</span> <span class="st">&quot;TMEcluster&quot;</span>,</span>
+<span id="cb353-5"><a href="tumor-ecosystem-analysis.html#cb353-5" tabindex="-1"></a>  <span class="at">ID =</span> <span class="st">&quot;ID&quot;</span>,</span>
+<span id="cb353-6"><a href="tumor-ecosystem-analysis.html#cb353-6" tabindex="-1"></a>  <span class="at">reference_group =</span> <span class="st">&quot;High&quot;</span>,</span>
+<span id="cb353-7"><a href="tumor-ecosystem-analysis.html#cb353-7" tabindex="-1"></a>  <span class="at">project =</span> <span class="st">&quot;ACRG&quot;</span>,</span>
+<span id="cb353-8"><a href="tumor-ecosystem-analysis.html#cb353-8" tabindex="-1"></a>  <span class="at">cols =</span> cols,</span>
+<span id="cb353-9"><a href="tumor-ecosystem-analysis.html#cb353-9" tabindex="-1"></a>  <span class="at">time =</span> <span class="st">&quot;OS_time&quot;</span>,</span>
+<span id="cb353-10"><a href="tumor-ecosystem-analysis.html#cb353-10" tabindex="-1"></a>  <span class="at">status =</span> <span class="st">&quot;OS_status&quot;</span>,</span>
+<span id="cb353-11"><a href="tumor-ecosystem-analysis.html#cb353-11" tabindex="-1"></a>  <span class="at">time_type =</span> <span class="st">&quot;month&quot;</span>,</span>
+<span id="cb353-12"><a href="tumor-ecosystem-analysis.html#cb353-12" tabindex="-1"></a>  <span class="at">save_path =</span> <span class="st">&quot;result&quot;</span></span>
+<span id="cb353-13"><a href="tumor-ecosystem-analysis.html#cb353-13" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## ℹ Follow-up time ranges from 1 to 105.7 months</code></pre>
 <pre><code>##  IA  IE  IS 
 ## 107  96  97</code></pre>
@@ -652,9 +653,9 @@ Figure 8.1: GSEA of Hallmark gent sets
 ##   widthDetails.titleGrob  ggplot2</code></pre>
 <pre><code>## Ignoring unknown labels:
 ## • colour : &quot;Strata&quot;</code></pre>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="tumor-ecosystem-analysis.html#cb336-1" tabindex="-1"></a>p1</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="tumor-ecosystem-analysis.html#cb359-1" tabindex="-1"></a>p1</span></code></pre></div>
 <p><img src="tme-deg-gsea_files/figure-html/unnamed-chunk-20-1.png" alt="" width="480" /></p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="tumor-ecosystem-analysis.html#cb337-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">percent_bar_plot</span>(input, <span class="at">x =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Subtype&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;jama&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="tumor-ecosystem-analysis.html#cb360-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">percent_bar_plot</span>(input, <span class="at">x =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Subtype&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;jama&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 12 × 5
 ## # Groups:   TMEcluster [3]
 ##    TMEcluster Subtype    Freq  Prop count
@@ -675,7 +676,7 @@ Figure 8.1: GSEA of Hallmark gent sets
 <pre><code>## ℹ Box palettes: nrc, jama, aaas, jco, paired1, paired2, paired3, paired4, accent, set2</code></pre>
 <pre><code>## [1] &quot;&#39;#374E55FF&#39;, &#39;#DF8F44FF&#39;, &#39;#00A1D5FF&#39;, &#39;#B24745FF&#39;, &#39;#79AF97FF&#39;, &#39;#6A6599FF&#39;, &#39;#80796BFF&#39;&quot;</code></pre>
 <p><img src="tme-deg-gsea_files/figure-html/unnamed-chunk-21-1.png" alt="" width="672" /><img src="tme-deg-gsea_files/figure-html/unnamed-chunk-21-2.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="tumor-ecosystem-analysis.html#cb342-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">percent_bar_plot</span>(input, <span class="at">x =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Lauren&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;jama&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="tumor-ecosystem-analysis.html#cb365-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">percent_bar_plot</span>(input, <span class="at">x =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Lauren&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;jama&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 9 × 5
 ## # Groups:   TMEcluster [3]
 ##   TMEcluster Lauren      Freq  Prop count
@@ -693,7 +694,7 @@ Figure 8.1: GSEA of Hallmark gent sets
 ## ℹ Box palettes: nrc, jama, aaas, jco, paired1, paired2, paired3, paired4, accent, set2</code></pre>
 <pre><code>## [1] &quot;&#39;#374E55FF&#39;, &#39;#DF8F44FF&#39;, &#39;#00A1D5FF&#39;, &#39;#B24745FF&#39;, &#39;#79AF97FF&#39;, &#39;#6A6599FF&#39;, &#39;#80796BFF&#39;&quot;</code></pre>
 <p><img src="tme-deg-gsea_files/figure-html/unnamed-chunk-21-3.png" alt="" width="672" /><img src="tme-deg-gsea_files/figure-html/unnamed-chunk-21-4.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="tumor-ecosystem-analysis.html#cb346-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">percent_bar_plot</span>(input, <span class="at">x =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">y =</span> <span class="st">&quot;TMEscore_binary&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;jama&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="tumor-ecosystem-analysis.html#cb369-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">percent_bar_plot</span>(input, <span class="at">x =</span> <span class="st">&quot;TMEcluster&quot;</span>, <span class="at">y =</span> <span class="st">&quot;TMEscore_binary&quot;</span>, <span class="at">palette =</span> <span class="st">&quot;jama&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 7 × 5
 ## # Groups:   TMEcluster [3]
 ##   TMEcluster TMEscore_binary  Freq  Prop count
@@ -709,7 +710,7 @@ Figure 8.1: GSEA of Hallmark gent sets
 ## ℹ Box palettes: nrc, jama, aaas, jco, paired1, paired2, paired3, paired4, accent, set2</code></pre>
 <pre><code>## [1] &quot;&#39;#374E55FF&#39;, &#39;#DF8F44FF&#39;, &#39;#00A1D5FF&#39;, &#39;#B24745FF&#39;, &#39;#79AF97FF&#39;, &#39;#6A6599FF&#39;, &#39;#80796BFF&#39;&quot;</code></pre>
 <p><img src="tme-deg-gsea_files/figure-html/unnamed-chunk-21-5.png" alt="" width="672" /><img src="tme-deg-gsea_files/figure-html/unnamed-chunk-21-6.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="tumor-ecosystem-analysis.html#cb350-1" tabindex="-1"></a>p1 <span class="sc">|</span> p2 <span class="sc">|</span> p3</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="tumor-ecosystem-analysis.html#cb373-1" tabindex="-1"></a>p1 <span class="sc">|</span> p2 <span class="sc">|</span> p3</span></code></pre></div>
 <p><img src="tme-deg-gsea_files/figure-html/unnamed-chunk-22-1.png" alt="" width="1152" /></p>
 </div>
 <div id="references-4" class="section level2 hasAnchor" number="8.9">

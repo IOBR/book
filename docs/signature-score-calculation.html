@@ -23,7 +23,7 @@
 <meta name="author" content="Dongqiang Zeng, Yiran Fang, Qingcong Luo, Hongqian Qian, Shixiang Wang" />
 
 
-<meta name="date" content="2026-04-08" />
+<meta name="date" content="2026-04-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html"><i class="fa fa-check"></i><b>2</b> <strong>How to use IOBR</strong></a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#the-main-pipeline-of-iobr"><i class="fa fa-check"></i><b>2.1</b> 🔍 The main pipeline of IOBR</a></li>
-<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> ☝️ Main Functions of IOBR</a></li>
+<li class="chapter" data-level="2.2" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#main-functions-of-iobr"><i class="fa fa-check"></i><b>2.2</b> 👉 Main Functions of IOBR</a></li>
 <li class="chapter" data-level="2.3" data-path="how-to-use-iobr.html"><a href="how-to-use-iobr.html#current-working-environment"><i class="fa fa-check"></i><b>2.3</b> 🌎 Current working environment</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="rna-data-preprocessing.html"><a href="rna-data-preprocessing.html"><i class="fa fa-check"></i><b>3</b> <strong>RNA Data preprocessing</strong></a>
@@ -395,8 +395,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.3.1</span> Signature collection of IOBR<a href="signature-score-calculation.html#signature-collection-of-iobr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>322 reported gene signatures</strong> are collected in IOBR, including those related to the TME, metabolism, gene signatures derived from single-cell RNA-seq data, and others. The extensive signature collection is categorized into three distinct groups: <strong>TME-associated</strong>, <strong>tumour-metabolism</strong>, and <strong>tumour-intrinsic signatures</strong>.</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="signature-score-calculation.html#cb67-1" tabindex="-1"></a><span class="co"># TME associated signatures</span></span>
-<span id="cb67-2"><a href="signature-score-calculation.html#cb67-2" tabindex="-1"></a>msig_immune <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;msig_immune&quot;</span>)</span>
-<span id="cb67-3"><a href="signature-score-calculation.html#cb67-3" tabindex="-1"></a><span class="fu">names</span>(msig_immune)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
+<span id="cb67-2"><a href="signature-score-calculation.html#cb67-2" tabindex="-1"></a>msig_immune <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;msig_immune&quot;</span>)</span></code></pre></div>
+<pre><code>## ℹ Trying mirror 1/4: &lt;https://github.com&gt;</code></pre>
+<pre><code>## ✔ Download complete: &quot;msig_immune&quot;</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="signature-score-calculation.html#cb70-1" tabindex="-1"></a><span class="fu">names</span>(msig_immune)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
 <pre><code>##  [1] &quot;GOLDRATH_EFF_VS_MEMORY_CD8_TCELL_DN&quot;                                       
 ##  [2] &quot;GOLDRATH_EFF_VS_MEMORY_CD8_TCELL_UP&quot;                                       
 ##  [3] &quot;GOLDRATH_NAIVE_VS_EFF_CD8_TCELL_DN&quot;                                        
@@ -417,9 +419,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [18] &quot;GSE10239_KLRG1INT_VS_KLRG1HIGH_EFF_CD8_TCELL_UP&quot;                           
 ## [19] &quot;GSE10239_MEMORY_VS_DAY4.5_EFF_CD8_TCELL_DN&quot;                                
 ## [20] &quot;GSE10239_MEMORY_VS_DAY4.5_EFF_CD8_TCELL_UP&quot;</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="signature-score-calculation.html#cb69-1" tabindex="-1"></a><span class="co"># Metabolism related signatures</span></span>
-<span id="cb69-2"><a href="signature-score-calculation.html#cb69-2" tabindex="-1"></a>onco_sig <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;onco_sig&quot;</span>)</span>
-<span id="cb69-3"><a href="signature-score-calculation.html#cb69-3" tabindex="-1"></a><span class="fu">names</span>(onco_sig)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="signature-score-calculation.html#cb72-1" tabindex="-1"></a><span class="co"># Metabolism related signatures</span></span>
+<span id="cb72-2"><a href="signature-score-calculation.html#cb72-2" tabindex="-1"></a>onco_sig <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;onco_sig&quot;</span>)</span></code></pre></div>
+<pre><code>## ℹ Trying mirror 1/4: &lt;https://github.com&gt;</code></pre>
+<pre><code>## ✔ Download complete: &quot;onco_sig&quot;</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="signature-score-calculation.html#cb75-1" tabindex="-1"></a><span class="fu">names</span>(onco_sig)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
 <pre><code>##  [1] &quot;GLI1_UP.V1_DN&quot;           &quot;GLI1_UP.V1_UP&quot;          
 ##  [3] &quot;E2F1_UP.V1_DN&quot;           &quot;E2F1_UP.V1_UP&quot;          
 ##  [5] &quot;EGFR_UP.V1_DN&quot;           &quot;EGFR_UP.V1_UP&quot;          
@@ -431,8 +435,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [17] &quot;CYCLIN_D1_KE_.V1_DN&quot;     &quot;CYCLIN_D1_KE_.V1_UP&quot;    
 ## [19] &quot;CYCLIN_D1_UP.V1_DN&quot;      &quot;CYCLIN_D1_UP.V1_UP&quot;</code></pre>
 <p>Signatures associated with basic biomedical research, such as m6A, TLS, ferroptosis and exosomes.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="signature-score-calculation.html#cb71-1" tabindex="-1"></a>msig_sc <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;msig_sc&quot;</span>)</span>
-<span id="cb71-2"><a href="signature-score-calculation.html#cb71-2" tabindex="-1"></a><span class="fu">names</span>(msig_sc)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="signature-score-calculation.html#cb77-1" tabindex="-1"></a>msig_sc <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;msig_sc&quot;</span>)</span></code></pre></div>
+<pre><code>## ℹ Trying mirror 1/4: &lt;https://github.com&gt;</code></pre>
+<pre><code>## ✔ Download complete: &quot;msig_sc&quot;</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="signature-score-calculation.html#cb80-1" tabindex="-1"></a><span class="fu">names</span>(msig_sc)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
 <pre><code>##  [1] &quot;AIZARANI_LIVER_C1_NK_NKT_CELLS_1&quot;              
 ##  [2] &quot;AIZARANI_LIVER_C10_MVECS_1&quot;                    
 ##  [3] &quot;AIZARANI_LIVER_C11_HEPATOCYTES_1&quot;              
@@ -454,8 +460,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [19] &quot;AIZARANI_LIVER_C30_HEPATOCYTES_4&quot;              
 ## [20] &quot;AIZARANI_LIVER_C31_KUPFFER_CELLS_5&quot;</code></pre>
 <p><code>signature_collection</code> including all aforementioned signatures</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="signature-score-calculation.html#cb73-1" tabindex="-1"></a>signature_collection <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;signature_collection&quot;</span>)</span>
-<span id="cb73-2"><a href="signature-score-calculation.html#cb73-2" tabindex="-1"></a><span class="fu">names</span>(signature_collection)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="signature-score-calculation.html#cb82-1" tabindex="-1"></a>signature_collection <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;signature_collection&quot;</span>)</span>
+<span id="cb82-2"><a href="signature-score-calculation.html#cb82-2" tabindex="-1"></a><span class="fu">names</span>(signature_collection)[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>]</span></code></pre></div>
 <pre><code>##  [1] &quot;CD_8_T_effector&quot;            &quot;DDR&quot;                       
 ##  [3] &quot;APM&quot;                        &quot;Immune_Checkpoint&quot;         
 ##  [5] &quot;CellCycle_Reg&quot;              &quot;Pan_F_TBRs&quot;                
@@ -472,16 +478,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="estimation-of-signature-using-pca-method" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Estimation of signature using PCA method<a href="signature-score-calculation.html#estimation-of-signature-using-pca-method" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The PCA method is ideal for gene sets with co-expression. Heatmaps and correlation matrices can be used to determine if co-expression is present in the applicable gene set.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="signature-score-calculation.html#cb75-1" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">calculate_sig_score</span>(</span>
-<span id="cb75-2"><a href="signature-score-calculation.html#cb75-2" tabindex="-1"></a>  <span class="at">pdata =</span> <span class="cn">NULL</span>,</span>
-<span id="cb75-3"><a href="signature-score-calculation.html#cb75-3" tabindex="-1"></a>  <span class="at">eset =</span> eset,</span>
-<span id="cb75-4"><a href="signature-score-calculation.html#cb75-4" tabindex="-1"></a>  <span class="at">signature =</span> signature_collection,</span>
-<span id="cb75-5"><a href="signature-score-calculation.html#cb75-5" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;pca&quot;</span>,</span>
-<span id="cb75-6"><a href="signature-score-calculation.html#cb75-6" tabindex="-1"></a>  <span class="at">mini_gene_count =</span> <span class="dv">2</span></span>
-<span id="cb75-7"><a href="signature-score-calculation.html#cb75-7" tabindex="-1"></a>)</span>
-<span id="cb75-8"><a href="signature-score-calculation.html#cb75-8" tabindex="-1"></a></span>
-<span id="cb75-9"><a href="signature-score-calculation.html#cb75-9" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">column_to_rownames</span>(sig_tme, <span class="at">var =</span> <span class="st">&quot;ID&quot;</span>))</span>
-<span id="cb75-10"><a href="signature-score-calculation.html#cb75-10" tabindex="-1"></a>sig_tme[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="signature-score-calculation.html#cb84-1" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">calculate_sig_score</span>(</span>
+<span id="cb84-2"><a href="signature-score-calculation.html#cb84-2" tabindex="-1"></a>  <span class="at">pdata =</span> <span class="cn">NULL</span>,</span>
+<span id="cb84-3"><a href="signature-score-calculation.html#cb84-3" tabindex="-1"></a>  <span class="at">eset =</span> eset,</span>
+<span id="cb84-4"><a href="signature-score-calculation.html#cb84-4" tabindex="-1"></a>  <span class="at">signature =</span> signature_collection,</span>
+<span id="cb84-5"><a href="signature-score-calculation.html#cb84-5" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;pca&quot;</span>,</span>
+<span id="cb84-6"><a href="signature-score-calculation.html#cb84-6" tabindex="-1"></a>  <span class="at">mini_gene_count =</span> <span class="dv">2</span></span>
+<span id="cb84-7"><a href="signature-score-calculation.html#cb84-7" tabindex="-1"></a>)</span>
+<span id="cb84-8"><a href="signature-score-calculation.html#cb84-8" tabindex="-1"></a></span>
+<span id="cb84-9"><a href="signature-score-calculation.html#cb84-9" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">column_to_rownames</span>(sig_tme, <span class="at">var =</span> <span class="st">&quot;ID&quot;</span>))</span>
+<span id="cb84-10"><a href="signature-score-calculation.html#cb84-10" tabindex="-1"></a>sig_tme[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>##                   GSM1523727 GSM1523728 GSM1523729
 ## CD_8_T_effector   -2.5513794  0.7789141 -2.1770675
 ## DDR               -0.8747614  0.7425162 -1.3272054
@@ -498,45 +504,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Figure 4.1: Gene sets of MSigDb
 </p>
 </div>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="signature-score-calculation.html#cb77-1" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">calculate_sig_score</span>(</span>
-<span id="cb77-2"><a href="signature-score-calculation.html#cb77-2" tabindex="-1"></a>  <span class="at">pdata =</span> <span class="cn">NULL</span>,</span>
-<span id="cb77-3"><a href="signature-score-calculation.html#cb77-3" tabindex="-1"></a>  <span class="at">eset =</span> eset,</span>
-<span id="cb77-4"><a href="signature-score-calculation.html#cb77-4" tabindex="-1"></a>  <span class="at">signature =</span> <span class="fu">load_data</span>(<span class="st">&quot;go_bp&quot;</span>),</span>
-<span id="cb77-5"><a href="signature-score-calculation.html#cb77-5" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;ssgsea&quot;</span>,</span>
-<span id="cb77-6"><a href="signature-score-calculation.html#cb77-6" tabindex="-1"></a>  <span class="at">mini_gene_count =</span> <span class="dv">2</span></span>
-<span id="cb77-7"><a href="signature-score-calculation.html#cb77-7" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="signature-score-calculation.html#cb86-1" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">calculate_sig_score</span>(</span>
+<span id="cb86-2"><a href="signature-score-calculation.html#cb86-2" tabindex="-1"></a>  <span class="at">pdata =</span> <span class="cn">NULL</span>,</span>
+<span id="cb86-3"><a href="signature-score-calculation.html#cb86-3" tabindex="-1"></a>  <span class="at">eset =</span> eset,</span>
+<span id="cb86-4"><a href="signature-score-calculation.html#cb86-4" tabindex="-1"></a>  <span class="at">signature =</span> <span class="fu">load_data</span>(<span class="st">&quot;go_bp&quot;</span>),</span>
+<span id="cb86-5"><a href="signature-score-calculation.html#cb86-5" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;ssgsea&quot;</span>,</span>
+<span id="cb86-6"><a href="signature-score-calculation.html#cb86-6" tabindex="-1"></a>  <span class="at">mini_gene_count =</span> <span class="dv">2</span></span>
+<span id="cb86-7"><a href="signature-score-calculation.html#cb86-7" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="calculated-using-the-z-score-function." class="section level2 hasAnchor" number="4.6">
 <h2><span class="header-section-number">4.6</span> Calculated using the z-score function.<a href="signature-score-calculation.html#calculated-using-the-z-score-function." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="signature-score-calculation.html#cb78-1" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">calculate_sig_score</span>(</span>
-<span id="cb78-2"><a href="signature-score-calculation.html#cb78-2" tabindex="-1"></a>  <span class="at">pdata =</span> <span class="cn">NULL</span>,</span>
-<span id="cb78-3"><a href="signature-score-calculation.html#cb78-3" tabindex="-1"></a>  <span class="at">eset =</span> eset,</span>
-<span id="cb78-4"><a href="signature-score-calculation.html#cb78-4" tabindex="-1"></a>  <span class="at">signature =</span> <span class="fu">load_data</span>(<span class="st">&quot;signature_collection&quot;</span>),</span>
-<span id="cb78-5"><a href="signature-score-calculation.html#cb78-5" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;zscore&quot;</span>,</span>
-<span id="cb78-6"><a href="signature-score-calculation.html#cb78-6" tabindex="-1"></a>  <span class="at">mini_gene_count =</span> <span class="dv">2</span></span>
-<span id="cb78-7"><a href="signature-score-calculation.html#cb78-7" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="signature-score-calculation.html#cb87-1" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">calculate_sig_score</span>(</span>
+<span id="cb87-2"><a href="signature-score-calculation.html#cb87-2" tabindex="-1"></a>  <span class="at">pdata =</span> <span class="cn">NULL</span>,</span>
+<span id="cb87-3"><a href="signature-score-calculation.html#cb87-3" tabindex="-1"></a>  <span class="at">eset =</span> eset,</span>
+<span id="cb87-4"><a href="signature-score-calculation.html#cb87-4" tabindex="-1"></a>  <span class="at">signature =</span> <span class="fu">load_data</span>(<span class="st">&quot;signature_collection&quot;</span>),</span>
+<span id="cb87-5"><a href="signature-score-calculation.html#cb87-5" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;zscore&quot;</span>,</span>
+<span id="cb87-6"><a href="signature-score-calculation.html#cb87-6" tabindex="-1"></a>  <span class="at">mini_gene_count =</span> <span class="dv">2</span></span>
+<span id="cb87-7"><a href="signature-score-calculation.html#cb87-7" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="calculated-using-all-three-methods-at-the-same-time" class="section level2 hasAnchor" number="4.7">
 <h2><span class="header-section-number">4.7</span> Calculated using all three methods at the same time<a href="signature-score-calculation.html#calculated-using-all-three-methods-at-the-same-time" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="signature-score-calculation.html#cb79-1" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">calculate_sig_score</span>(</span>
-<span id="cb79-2"><a href="signature-score-calculation.html#cb79-2" tabindex="-1"></a>  <span class="at">pdata =</span> <span class="cn">NULL</span>,</span>
-<span id="cb79-3"><a href="signature-score-calculation.html#cb79-3" tabindex="-1"></a>  <span class="at">eset =</span> eset,</span>
-<span id="cb79-4"><a href="signature-score-calculation.html#cb79-4" tabindex="-1"></a>  <span class="at">signature =</span> <span class="fu">load_data</span>(<span class="st">&quot;signature_collection&quot;</span>),</span>
-<span id="cb79-5"><a href="signature-score-calculation.html#cb79-5" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;integration&quot;</span>,</span>
-<span id="cb79-6"><a href="signature-score-calculation.html#cb79-6" tabindex="-1"></a>  <span class="at">mini_gene_count =</span> <span class="dv">2</span></span>
-<span id="cb79-7"><a href="signature-score-calculation.html#cb79-7" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="signature-score-calculation.html#cb88-1" tabindex="-1"></a>sig_tme <span class="ot">&lt;-</span> <span class="fu">calculate_sig_score</span>(</span>
+<span id="cb88-2"><a href="signature-score-calculation.html#cb88-2" tabindex="-1"></a>  <span class="at">pdata =</span> <span class="cn">NULL</span>,</span>
+<span id="cb88-3"><a href="signature-score-calculation.html#cb88-3" tabindex="-1"></a>  <span class="at">eset =</span> eset,</span>
+<span id="cb88-4"><a href="signature-score-calculation.html#cb88-4" tabindex="-1"></a>  <span class="at">signature =</span> <span class="fu">load_data</span>(<span class="st">&quot;signature_collection&quot;</span>),</span>
+<span id="cb88-5"><a href="signature-score-calculation.html#cb88-5" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;integration&quot;</span>,</span>
+<span id="cb88-6"><a href="signature-score-calculation.html#cb88-6" tabindex="-1"></a>  <span class="at">mini_gene_count =</span> <span class="dv">2</span></span>
+<span id="cb88-7"><a href="signature-score-calculation.html#cb88-7" tabindex="-1"></a>)</span></code></pre></div>
 <p>The same signature in this case will be scored using all three methods simultaneously.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="signature-score-calculation.html#cb80-1" tabindex="-1"></a><span class="fu">colnames</span>(sig_tme)[<span class="fu">grep</span>(<span class="fu">colnames</span>(sig_tme), <span class="at">pattern =</span> <span class="st">&quot;CD_8_T_effector&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="signature-score-calculation.html#cb89-1" tabindex="-1"></a><span class="fu">colnames</span>(sig_tme)[<span class="fu">grep</span>(<span class="fu">colnames</span>(sig_tme), <span class="at">pattern =</span> <span class="st">&quot;CD_8_T_effector&quot;</span>)]</span></code></pre></div>
 <pre><code>## [1] &quot;CD_8_T_effector_PCA&quot;    &quot;CD_8_T_effector_zscore&quot; &quot;CD_8_T_effector_ssGSEA&quot;</code></pre>
 <p>The <code>select_method()</code> function allows the user to extract data using various methods.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="signature-score-calculation.html#cb82-1" tabindex="-1"></a>sig_tme_pca <span class="ot">&lt;-</span> <span class="fu">select_method</span>(<span class="at">data =</span> sig_tme, <span class="at">method =</span> <span class="st">&quot;PCA&quot;</span>)</span>
-<span id="cb82-2"><a href="signature-score-calculation.html#cb82-2" tabindex="-1"></a><span class="fu">colnames</span>(sig_tme_pca)[<span class="fu">grep</span>(<span class="fu">colnames</span>(sig_tme_pca), <span class="at">pattern =</span> <span class="st">&quot;CD_8_T_effector&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="signature-score-calculation.html#cb91-1" tabindex="-1"></a>sig_tme_pca <span class="ot">&lt;-</span> <span class="fu">select_method</span>(<span class="at">data =</span> sig_tme, <span class="at">method =</span> <span class="st">&quot;PCA&quot;</span>)</span>
+<span id="cb91-2"><a href="signature-score-calculation.html#cb91-2" tabindex="-1"></a><span class="fu">colnames</span>(sig_tme_pca)[<span class="fu">grep</span>(<span class="fu">colnames</span>(sig_tme_pca), <span class="at">pattern =</span> <span class="st">&quot;CD_8_T_effector&quot;</span>)]</span></code></pre></div>
 <pre><code>## [1] &quot;CD_8_T_effector&quot;</code></pre>
 </div>
 <div id="classification-of-signatures" class="section level2 hasAnchor" number="4.8">
 <h2><span class="header-section-number">4.8</span> Classification of signatures<a href="signature-score-calculation.html#classification-of-signatures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As more signatures related to the tumour microenvironment were collected in IOBR, and we may continue to add gene signatures related to the tumour microenvironment in the future, we have made a basic classification of these signatures by combining them with our analysis experience. Users can compare the signatures in the same group during the analysis process to improve the reliability and consistency of the conclusions.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="signature-score-calculation.html#cb84-1" tabindex="-1"></a><span class="fu">load_data</span>(<span class="st">&quot;sig_group&quot;</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="signature-score-calculation.html#cb93-1" tabindex="-1"></a><span class="fu">load_data</span>(<span class="st">&quot;sig_group&quot;</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>]</span></code></pre></div>
 <pre><code>## $tumor_signature
 ##  [1] &quot;CellCycle_Reg&quot;                            
 ##  [2] &quot;Cell_cycle&quot;                               
@@ -614,9 +620,9 @@ Figure 4.1: Gene sets of MSigDb
 <h3><span class="header-section-number">4.9.1</span> Method-1: Use excel for storage and construction<a href="signature-score-calculation.html#method-1-use-excel-for-storage-and-construction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Users can collect gene signatures using either an <code>Excel</code> or <code>CSV</code> file. The format should have the name of the signature in the first row, followed by the genes contained in each signature from the second row onwards. Once imported, the function <code>format_signature</code> can be used to transform the data into a gene list of signatures required for <code>calculate_signature_score</code>. To import the file into R, users can use the functions read.csv or read_excel. It is important to note here that the user needs to use the longest signature as a criterion and then replace all the vacant grids using NA, otherwise an error may be reported when reading into R.</p>
 <p>Here we provide a sample data <code>sig_excel</code>, please refer to this format to construct the required csv or excel files.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="signature-score-calculation.html#cb86-1" tabindex="-1"></a>sig_excel <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;sig_excel&quot;</span>)</span>
-<span id="cb86-2"><a href="signature-score-calculation.html#cb86-2" tabindex="-1"></a>sig <span class="ot">&lt;-</span> <span class="fu">format_signatures</span>(sig_excel)</span>
-<span id="cb86-3"><a href="signature-score-calculation.html#cb86-3" tabindex="-1"></a><span class="fu">print</span>(sig[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="signature-score-calculation.html#cb95-1" tabindex="-1"></a>sig_excel <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;sig_excel&quot;</span>)</span>
+<span id="cb95-2"><a href="signature-score-calculation.html#cb95-2" tabindex="-1"></a>sig <span class="ot">&lt;-</span> <span class="fu">format_signatures</span>(sig_excel)</span>
+<span id="cb95-3"><a href="signature-score-calculation.html#cb95-3" tabindex="-1"></a><span class="fu">print</span>(sig[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
 <pre><code>## $Tcell_co_inhibitors
 ##  [1] &quot;ADORA2A&quot;  &quot;BTLA&quot;     &quot;BTN2A2&quot;   &quot;BTN3A1&quot;   &quot;BTN3A2&quot;   &quot;BTNL2&quot;   
 ##  [7] &quot;C10orf54&quot; &quot;CSF1R&quot;    &quot;HAVCR2&quot;   &quot;IDO1&quot;     &quot;IL10&quot;     &quot;IL10RB&quot;  
@@ -647,11 +653,11 @@ Figure 4.1: Gene sets of MSigDb
 </div>
 <div id="method-2-build-the-list-structure-directly" class="section level3 hasAnchor" number="4.9.2">
 <h3><span class="header-section-number">4.9.2</span> Method-2: Build the list structure directly<a href="signature-score-calculation.html#method-2-build-the-list-structure-directly" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="signature-score-calculation.html#cb88-1" tabindex="-1"></a>sig <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb88-2"><a href="signature-score-calculation.html#cb88-2" tabindex="-1"></a>  <span class="st">&quot;CD8&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;CD8A&quot;</span>, <span class="st">&quot;CXCL10&quot;</span>, <span class="st">&quot;CXCL9&quot;</span>, <span class="st">&quot;GZMA&quot;</span>, <span class="st">&quot;GZMB&quot;</span>, <span class="st">&quot;IFNG&quot;</span>, <span class="st">&quot;PRF1&quot;</span>, <span class="st">&quot;TBX21&quot;</span>),</span>
-<span id="cb88-3"><a href="signature-score-calculation.html#cb88-3" tabindex="-1"></a>  <span class="st">&quot;ICB&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;CD274&quot;</span>, <span class="st">&quot;PDCD1LG2&quot;</span>, <span class="st">&quot;CTLA4&quot;</span>, <span class="st">&quot;PDCD1&quot;</span>, <span class="st">&quot;LAG3&quot;</span>, <span class="st">&quot;HAVCR2&quot;</span>, <span class="st">&quot;TIGIT&quot;</span>)</span>
-<span id="cb88-4"><a href="signature-score-calculation.html#cb88-4" tabindex="-1"></a>)</span>
-<span id="cb88-5"><a href="signature-score-calculation.html#cb88-5" tabindex="-1"></a>sig</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="signature-score-calculation.html#cb97-1" tabindex="-1"></a>sig <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb97-2"><a href="signature-score-calculation.html#cb97-2" tabindex="-1"></a>  <span class="st">&quot;CD8&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;CD8A&quot;</span>, <span class="st">&quot;CXCL10&quot;</span>, <span class="st">&quot;CXCL9&quot;</span>, <span class="st">&quot;GZMA&quot;</span>, <span class="st">&quot;GZMB&quot;</span>, <span class="st">&quot;IFNG&quot;</span>, <span class="st">&quot;PRF1&quot;</span>, <span class="st">&quot;TBX21&quot;</span>),</span>
+<span id="cb97-3"><a href="signature-score-calculation.html#cb97-3" tabindex="-1"></a>  <span class="st">&quot;ICB&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;CD274&quot;</span>, <span class="st">&quot;PDCD1LG2&quot;</span>, <span class="st">&quot;CTLA4&quot;</span>, <span class="st">&quot;PDCD1&quot;</span>, <span class="st">&quot;LAG3&quot;</span>, <span class="st">&quot;HAVCR2&quot;</span>, <span class="st">&quot;TIGIT&quot;</span>)</span>
+<span id="cb97-4"><a href="signature-score-calculation.html#cb97-4" tabindex="-1"></a>)</span>
+<span id="cb97-5"><a href="signature-score-calculation.html#cb97-5" tabindex="-1"></a>sig</span></code></pre></div>
 <pre><code>## $CD8
 ## [1] &quot;CD8A&quot;   &quot;CXCL10&quot; &quot;CXCL9&quot;  &quot;GZMA&quot;   &quot;GZMB&quot;   &quot;IFNG&quot;   &quot;PRF1&quot;   &quot;TBX21&quot; 
 ## 
@@ -660,18 +666,19 @@ Figure 4.1: Gene sets of MSigDb
 </div>
 <div id="method-3-add-the-new-signature-to-the-existing-gene-list" class="section level3 hasAnchor" number="4.9.3">
 <h3><span class="header-section-number">4.9.3</span> Method-3: Add the new signature to the existing gene list<a href="signature-score-calculation.html#method-3-add-the-new-signature-to-the-existing-gene-list" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="signature-score-calculation.html#cb90-1" tabindex="-1"></a>msig_sc <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;msig_sc&quot;</span>)</span>
-<span id="cb90-2"><a href="signature-score-calculation.html#cb90-2" tabindex="-1"></a>sig <span class="ot">&lt;-</span> msig_sc</span>
-<span id="cb90-3"><a href="signature-score-calculation.html#cb90-3" tabindex="-1"></a>sig<span class="sc">$</span>CD8 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;CD8A&quot;</span>, <span class="st">&quot;CXCL10&quot;</span>, <span class="st">&quot;CXCL9&quot;</span>, <span class="st">&quot;GZMA&quot;</span>, <span class="st">&quot;GZMB&quot;</span>, <span class="st">&quot;IFNG&quot;</span>, <span class="st">&quot;PRF1&quot;</span>, <span class="st">&quot;TBX21&quot;</span>)</span>
-<span id="cb90-4"><a href="signature-score-calculation.html#cb90-4" tabindex="-1"></a><span class="fu">tail</span>(sig, <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="signature-score-calculation.html#cb99-1" tabindex="-1"></a>msig_sc <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;msig_sc&quot;</span>)</span></code></pre></div>
+<pre><code>## ℹ Loading cached data: &quot;msig_sc&quot;</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="signature-score-calculation.html#cb101-1" tabindex="-1"></a>sig <span class="ot">&lt;-</span> msig_sc</span>
+<span id="cb101-2"><a href="signature-score-calculation.html#cb101-2" tabindex="-1"></a>sig<span class="sc">$</span>CD8 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;CD8A&quot;</span>, <span class="st">&quot;CXCL10&quot;</span>, <span class="st">&quot;CXCL9&quot;</span>, <span class="st">&quot;GZMA&quot;</span>, <span class="st">&quot;GZMB&quot;</span>, <span class="st">&quot;IFNG&quot;</span>, <span class="st">&quot;PRF1&quot;</span>, <span class="st">&quot;TBX21&quot;</span>)</span>
+<span id="cb101-3"><a href="signature-score-calculation.html#cb101-3" tabindex="-1"></a><span class="fu">tail</span>(sig, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## $CD8
 ## [1] &quot;CD8A&quot;   &quot;CXCL10&quot; &quot;CXCL9&quot;  &quot;GZMA&quot;   &quot;GZMB&quot;   &quot;IFNG&quot;   &quot;PRF1&quot;   &quot;TBX21&quot;</code></pre>
 </div>
 <div id="method-4-construct-cell-specific-gene-signatures-from-single-cell-differential-analysis-results" class="section level3 hasAnchor" number="4.9.4">
 <h3><span class="header-section-number">4.9.4</span> Method-4: Construct cell-specific gene signatures from single-cell differential analysis results<a href="signature-score-calculation.html#method-4-construct-cell-specific-gene-signatures-from-single-cell-differential-analysis-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="signature-score-calculation.html#cb92-1" tabindex="-1"></a>deg <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;deg&quot;</span>)</span>
-<span id="cb92-2"><a href="signature-score-calculation.html#cb92-2" tabindex="-1"></a>sig <span class="ot">&lt;-</span> <span class="fu">get_sig_sc</span>(deg, <span class="at">cluster =</span> <span class="st">&quot;cluster&quot;</span>, <span class="at">gene =</span> <span class="st">&quot;gene&quot;</span>, <span class="at">avg_log2FC =</span> <span class="st">&quot;avg_log2FC&quot;</span>, <span class="at">n =</span> <span class="dv">100</span>)</span>
-<span id="cb92-3"><a href="signature-score-calculation.html#cb92-3" tabindex="-1"></a>sig</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="signature-score-calculation.html#cb103-1" tabindex="-1"></a>deg <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;deg&quot;</span>)</span>
+<span id="cb103-2"><a href="signature-score-calculation.html#cb103-2" tabindex="-1"></a>sig <span class="ot">&lt;-</span> <span class="fu">get_sig_sc</span>(deg, <span class="at">cluster =</span> <span class="st">&quot;cluster&quot;</span>, <span class="at">gene =</span> <span class="st">&quot;gene&quot;</span>, <span class="at">avg_log2FC =</span> <span class="st">&quot;avg_log2FC&quot;</span>, <span class="at">n =</span> <span class="dv">100</span>)</span>
+<span id="cb103-3"><a href="signature-score-calculation.html#cb103-3" tabindex="-1"></a>sig</span></code></pre></div>
 <pre><code>## $`Epithelial cells 11`
 ##   [1] &quot;AQP4&quot;        &quot;BCAT1&quot;       &quot;RGS16&quot;       &quot;LRRN4&quot;       &quot;TIMP3&quot;      
 ##   [6] &quot;SUSD2&quot;       &quot;AQP1&quot;        &quot;CYP4B1&quot;      &quot;AGER&quot;        &quot;FAM46B&quot;     
@@ -904,10 +911,11 @@ Figure 4.1: Gene sets of MSigDb
 <div id="how-to-export-gene-signature" class="section level2 hasAnchor" number="4.10">
 <h2><span class="header-section-number">4.10</span> How to export gene signature<a href="signature-score-calculation.html#how-to-export-gene-signature" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Using the <code>output_sig</code> function, user can export the signatures of the list structure to a csv file for other purposes. This step is exactly the reverse of <code>format_signatures</code>.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="signature-score-calculation.html#cb94-1" tabindex="-1"></a>msig_sc <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;msig_sc&quot;</span>)</span>
-<span id="cb94-2"><a href="signature-score-calculation.html#cb94-2" tabindex="-1"></a>sig <span class="ot">&lt;-</span> <span class="fu">output_sig</span>(<span class="at">signatures =</span> msig_sc, <span class="at">format =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">file.name =</span> <span class="st">&quot;sc_signature&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="signature-score-calculation.html#cb105-1" tabindex="-1"></a>msig_sc <span class="ot">&lt;-</span> <span class="fu">load_data</span>(<span class="st">&quot;msig_sc&quot;</span>)</span></code></pre></div>
+<pre><code>## ℹ Loading cached data: &quot;msig_sc&quot;</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="signature-score-calculation.html#cb107-1" tabindex="-1"></a>sig <span class="ot">&lt;-</span> <span class="fu">output_sig</span>(<span class="at">signatures =</span> msig_sc, <span class="at">format =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">file.name =</span> <span class="st">&quot;sc_signature&quot;</span>)</span></code></pre></div>
 <pre><code>## ✔ Signature data saved to &#39;sc_signature.csv&#39;</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="signature-score-calculation.html#cb96-1" tabindex="-1"></a>sig[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="signature-score-calculation.html#cb109-1" tabindex="-1"></a>sig[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>##   AIZARANI_LIVER_C1_NK_NKT_CELLS_1 AIZARANI_LIVER_C10_MVECS_1
 ## 1                           ADGRE5                        A2M
 ## 2                           ADGRG1                      ACKR1
